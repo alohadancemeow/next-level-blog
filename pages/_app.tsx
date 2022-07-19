@@ -8,7 +8,7 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>Page title</title>
+        <title>Personal Home</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
 
@@ -18,6 +18,11 @@ export default function App(props: AppProps) {
         theme={{
           /** Put your mantine theme override here */
           colorScheme: 'light',
+          fontFamily: 'JetBrains Mono',
+
+          headings: {
+            fontFamily: 'JetBrains Mono',
+          },
         }}
       >
         <Component {...pageProps} />
