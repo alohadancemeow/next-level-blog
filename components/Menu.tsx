@@ -9,7 +9,8 @@ const Menu = (props: Props) => {
     return (
         <Container style={{
             marginTop: '-15px',
-            backgroundColor: 'orange'
+            backgroundColor: 'orange',
+            padding: '5px 10px'
             }}>
             <Title>alohadancemeow blog</Title>
             {/* <Center style={{ gap: 5, margin: '10px' }}>

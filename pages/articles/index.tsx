@@ -5,10 +5,10 @@ import { allPosts, Post } from "contentlayer/generated";
 
 import { Container, Divider, Space, Stack, Center } from '@mantine/core';
 
-import PostCard from '../components/PostCard'
-import Menu from '../components/Menu'
-import Header from '../components/Header'
-import TagsBanner from '../components/TagsBanner'
+import PostCard from '../../components/PostCard'
+import Menu from '../../components/Menu'
+import Header from '../../components/Header'
+import TagsBanner from '../../components/TagsBanner'
 
 type Tags = {
     [key: string]: number
@@ -34,7 +34,7 @@ const ArticlesPage: NextPage<Props> = ({ posts, tags }) => {
                     // border: '1px solid red'
 
                 }} >
-                <Stack style={{ margin: '0 auto' }}>
+                <Stack style={{ margin: '0 2rem' }}>
                     <Header />
                     <Menu />
                     <TagsBanner {...tags} />
