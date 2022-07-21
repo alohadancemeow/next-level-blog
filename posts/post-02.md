@@ -1,7 +1,7 @@
 ---
 title: "GCD and Euclidean Algorithm"
 date: "2017-05-28T22:40:32.169Z"
-tags: ["number theory", "math"]
+tags: ["markdown", "number theory", "math"]
 description: "This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter."
 ---
 

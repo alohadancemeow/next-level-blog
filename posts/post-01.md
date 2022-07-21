@@ -1,7 +1,7 @@
 ---
 title: Lorem Ipsum
 date: 2021-12-24
-tags: ["Markdown"]
+tags: ["markdown", "untitled"]
 description: "Ullamco et nostrud magna commodo nostrud"
 ---
 
