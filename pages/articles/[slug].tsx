@@ -21,7 +21,7 @@ const PostLayout = ({ post }: { post: Post }) => {
                         justifyContent: 'flex-start',
                         alignItems: 'center',
                         margin: "0 auto",
-                    }} >
+                    }}>
                     <Stack style={{ margin: '0 2rem' }}>
                         <article>
                             <Center style={{

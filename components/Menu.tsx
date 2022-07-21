@@ -3,16 +3,18 @@ import React from 'react'
 
 import { Title, Container, Center } from '@mantine/core'
 
-type Props = {}
+type Props = {
+    title: string
+}
 
-const Menu = (props: Props) => {
+const Menu = ({ title }: Props) => {
     return (
         <Container style={{
             marginTop: '-15px',
             backgroundColor: 'orange',
             padding: '5px 10px'
-            }}>
-            <Title>alohadancemeow blog</Title>
+        }}>
+            <Title>{title}</Title>
             {/* <Center style={{ gap: 5, margin: '10px' }}>
                 <Link href="/">
                     <a style={{ textDecoration: 'none', color: '#000' }}>Home</a>

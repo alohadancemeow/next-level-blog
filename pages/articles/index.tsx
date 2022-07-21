@@ -3,12 +3,13 @@ import React from 'react'
 import { compareDesc } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 
-import { Container, Divider, Space, Stack, Center } from '@mantine/core';
+import { Space } from '@mantine/core';
 
 import PostCard from '../../components/PostCard'
 import Menu from '../../components/Menu'
 import TagsBanner from '../../components/TagsBanner'
 import Layout from '../../components/Layout'
+import PageLayout from '../../components/PageLayout'
 
 type Tags = {
     [key: string]: number
@@ -24,30 +25,16 @@ const ArticlesPage: NextPage<Props> = ({ posts, tags }) => {
 
     return (
         <Layout title='Articles'>
-            <Container>
-                <Center
-                    style={{
-                        width: '100%',
-                        // height: '100vh',
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        alignItems: 'center',
-                        // border: '1px solid red'
+            <PageLayout>
+                <Menu title='alohadancemeow blog' />
+                <TagsBanner {...tags} />
+                <Space h="xs" />
 
-                    }} >
-                    <Stack style={{ margin: '0 2rem' }}>
-                        <Menu />
-                        <TagsBanner {...tags} />
+                {posts.map((item, idx) => (
+                    <PostCard key={idx} post={item} />
+                ))}
 
-                        {/* <Divider my="xs" variant="solid" /> */}
-                        <Space h="xs" />
-
-                        {posts.map((item, idx) => (
-                            <PostCard key={idx} post={item} />
-                        ))}
-                    </Stack>
-                </Center>
-            </Container>
+            </PageLayout>
         </Layout>
     )
 }
