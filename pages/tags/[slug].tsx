@@ -16,7 +16,7 @@ const TagsLayout = ({ posts }: { posts: Post[] }) => {
     return (
         <Layout title={asPath}>
             <PageLayout>
-                <Menu title={`Tag: ${query.slug}`} />
+                <Menu title={`#${query.slug}`} />
                 <Space h={'xs'} />
 
                 {posts.map((item, idx) => (
