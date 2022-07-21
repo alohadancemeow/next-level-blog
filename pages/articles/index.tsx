@@ -7,8 +7,8 @@ import { Container, Divider, Space, Stack, Center } from '@mantine/core';
 
 import PostCard from '../../components/PostCard'
 import Menu from '../../components/Menu'
-import Header from '../../components/Header'
 import TagsBanner from '../../components/TagsBanner'
+import Layout from '../../components/Layout'
 
 type Tags = {
     [key: string]: number
@@ -23,32 +23,32 @@ const ArticlesPage: NextPage<Props> = ({ posts, tags }) => {
     // console.log(tags);
 
     return (
-        <Container>
-            <Center
-                style={{
-                    width: '100%',
-                    // height: '100vh',
-                    display: 'flex',
-                    justifyContent: 'flex-start',
-                    alignItems: 'center',
-                    // border: '1px solid red'
+        <Layout title='Articles'>
+            <Container>
+                <Center
+                    style={{
+                        width: '100%',
+                        // height: '100vh',
+                        display: 'flex',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        // border: '1px solid red'
 
-                }} >
-                <Stack style={{ margin: '0 2rem' }}>
-                    <Header />
-                    <Menu />
-                    <TagsBanner {...tags} />
+                    }} >
+                    <Stack style={{ margin: '0 2rem' }}>
+                        <Menu />
+                        <TagsBanner {...tags} />
 
-                    {/* <Divider my="xs" variant="solid" /> */}
-                    <Space h="xs" />
+                        {/* <Divider my="xs" variant="solid" /> */}
+                        <Space h="xs" />
 
-                    {posts.map((item, idx) => (
-                        <PostCard key={idx} post={item} />
-                    ))}
-
-                </Stack>
-            </Center>
-        </Container>
+                        {posts.map((item, idx) => (
+                            <PostCard key={idx} post={item} />
+                        ))}
+                    </Stack>
+                </Center>
+            </Container>
+        </Layout>
     )
 }
 

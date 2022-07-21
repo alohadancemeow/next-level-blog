@@ -31,3 +31,28 @@ const saltyDuckEgg = "chinese preserved food product";
 | 1      | Harry Potter and the Philosopher’s Stone | 2001 |
 | 2      | Harry Potter and the Chamber of Secrets  | 2002 |
 | 3      | Harry Potter and the Prisoner of Azkaban | 2004 |
+
+
+## 🚀 Rendering each post
+
+```tsx
+// articles/[slug].tsx
+export const getStaticPaths: GetStaticPaths = () => {
+  const paths: string[] = allPosts.map((post) => post.url);
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = ({ params }) => {
+  const post = allPosts.find(
+    (post) => post._raw.flattenedPath === params!.slug
+  );
+  return {
+    props: {
+      post,
+    },
+  };
+};
+```

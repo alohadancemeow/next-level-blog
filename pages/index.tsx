@@ -53,7 +53,7 @@ const Home: NextPage = () => {
               </Grid.Col>
               <Grid.Col span={6}>
                 <Link href="/" passHref>
-                  <UnstyledButton component='a'>✏️ Reviews</UnstyledButton>
+                  <UnstyledButton component='a'>📚 Projects</UnstyledButton>
                 </Link>
               </Grid.Col>
               <Grid.Col span={6}>
