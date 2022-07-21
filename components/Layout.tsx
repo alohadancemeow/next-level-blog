@@ -18,13 +18,14 @@ const Layout = ({ children, title }: Props) => {
             <Head>
                 <title>{`alohadancemeow | ${title}`}</title>
             </Head>
-            <Container
+            <Container size={'xl'}
                 style={{
                     width: '100%',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    padding: '0px'
                 }}
             >
                 <Box>

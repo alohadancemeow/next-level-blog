@@ -6,7 +6,7 @@ type Props = {}
 
 const Footer = (props: Props) => {
     return (
-        <Container style={{ margin: '2rem 0' }}>
+        <Container size={'xl'} style={{ margin: '2rem 0' }}>
             <Center style={{ fontWeight: '500', gap: '5px' }}>
                 <Text>Made with 🧡 </Text>
                 <Text
