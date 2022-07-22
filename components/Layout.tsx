@@ -18,7 +18,8 @@ const Layout = ({ children, title }: Props) => {
             <Head>
                 <title>{`alohadancemeow | ${title}`}</title>
             </Head>
-            <Container size={'xl'}
+            <Container
+                size={'xl'}
                 style={{
                     width: '100%',
                     height: '100%',

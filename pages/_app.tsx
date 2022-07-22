@@ -24,6 +24,13 @@ export default function App(props: AppProps) {
           headings: {
             fontFamily: 'JetBrains Mono',
           },
+          breakpoints: {
+            xs: 500,
+            sm: 800,
+            md: 1000,
+            lg: 1275,
+            xl: 1800,
+          },
         }}
       >
         <Component {...pageProps} />

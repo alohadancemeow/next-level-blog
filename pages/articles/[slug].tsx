@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 
-import { Container, Space, Stack, Center, Title, Grid } from '@mantine/core';
+import { Container, Space, Stack, Center, Title, Grid, Box, MediaQuery } from '@mantine/core';
 import Tags from "components/Tags";
 import Layout from "components/Layout";
 import TableOfContents from '../../components/TableOfContents'
@@ -15,6 +15,73 @@ const PostLayout = ({ post }: { post: Post }) => {
 
     const { contentHeader, contentWithId } = getTableOfContents(post)
 
+
+    // # Title of contents
+    const ContentTitle = () => (
+        <Center style={{
+            display: "flex",
+            flexDirection: 'column',
+            gap: 5,
+        }}>
+            <time dateTime={post.date}>
+                {format(parseISO(post.date), "LLLL d, yyyy")}
+            </time>
+            <Title style={{ backgroundColor: 'orange', padding: '5px 10px' }}>
+                {post.title}
+            </Title>
+            <Tags tags={post.tags} />
+            <Space h="xs" />
+        </Center>
+    )
+
+    // Body of contents
+    const ContentBody = () => (
+        <Grid grow gutter={'xl'}>
+            <MediaQuery
+                smallerThan={'md'}
+                styles={{
+                    display: 'none'
+                }}
+            >
+                <Grid.Col md={2} lg={3}></Grid.Col>
+            </MediaQuery>
+
+            <MediaQuery
+                smallerThan={'md'}
+                styles={{
+                    margin: '0 auto',
+                    padding: '0 3rem'
+                }}
+            >
+                <Grid.Col md={6} lg={6}>
+                    <Center
+                        style={{
+                            // width: '90%',
+                            display: 'flex',
+                            justifyContent: 'flex-start',
+                            alignItems: 'center',
+                            margin: "0 auto",
+                        }}
+                    >
+                        <article>
+                            <div dangerouslySetInnerHTML={{ __html: contentWithId }} />
+                        </article>
+                    </Center>
+                </Grid.Col>
+            </MediaQuery>
+
+            <MediaQuery
+                smallerThan={'md'}
+                styles={{ display: 'none' }}
+            >
+                <Grid.Col md={2} lg={3}>
+                    {contentHeader && <TableOfContents links={contentHeader} />}
+                </Grid.Col>
+            </MediaQuery>
+
+        </Grid>
+    )
+
     return (
         <Layout title={post.title}>
             <Container
@@ -24,50 +91,8 @@ const PostLayout = ({ post }: { post: Post }) => {
                     height: '100%',
                 }}
             >
-                <Grid grow gutter={'xl'}>
-                    <Grid.Col md={2} lg={3} xl={3} >
-                    </Grid.Col>
-                    <Grid.Col sm={4} md={6} lg={6} xl={6}>
-                        <Center
-                            style={{
-                                // width: '90%',
-                                display: 'flex',
-                                justifyContent: 'flex-start',
-                                alignItems: 'center',
-                                margin: "0 auto",
-                            }}
-                        >
-                            <Stack
-                            // style={{ margin: '0 2rem' }}
-                            >
-                                <article>
-                                    <Center style={{
-                                        display: "flex",
-                                        flexDirection: 'column',
-                                        gap: 5,
-                                    }}>
-                                        <time dateTime={post.date}>
-                                            {format(parseISO(post.date), "LLLL d, yyyy")}
-                                        </time>
-                                        <Title style={{ backgroundColor: 'orange', padding: '5px 10px' }}>
-                                            {post.title}
-                                        </Title>
-                                        <Tags tags={post.tags} />
-                                        <Space h="xs" />
-                                    </Center>
-                                    <div
-                                        className="prose"
-                                        dangerouslySetInnerHTML={{ __html: contentWithId }}
-                                    />
-                                </article>
-                            </Stack>
-                        </Center>
-
-                    </Grid.Col>
-                    <Grid.Col md={2} lg={2} xl={3}>
-                        {contentHeader && <TableOfContents links={contentHeader} />}
-                    </Grid.Col>
-                </Grid>
+                <ContentTitle />
+                <ContentBody />
             </Container>
         </Layout>
     );
