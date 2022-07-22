@@ -7,52 +7,13 @@ import Tags from "components/Tags";
 import Layout from "components/Layout";
 import TableOfContents from '../../components/TableOfContents'
 
-import { unified } from "unified";
-import rehypeParse from 'rehype-parse'
-import rehypeStringify from 'rehype-stringify'
-import { visit } from 'unist-util-visit'
-import parameterize from 'parameterize';
+import { getTableOfContents } from '../../lib/getTableOfContents'
 
-type ContentHeader = {
-    label: string
-    link: string
-    order: number
-}
 
 const PostLayout = ({ post }: { post: Post }) => {
     // console.log(post);
 
-    const contentHeader: ContentHeader[] = []
-    console.log('contentHeader', contentHeader);
-
-
-    // read post elements
-    const content = unified()
-        .use(rehypeParse, {
-            fragment: true,
-        })
-        .use(() => {
-            return (tree) => {
-                // console.log('tree', tree)
-                visit(tree, 'element', (node) => {
-
-                    if (['h1', 'h2', 'h3'].includes(node.tagName)) {
-                        console.log('node', node);
-                        const id = parameterize(node.children[0].value)
-                        node.properties!.id = id
-
-                        contentHeader.push({
-                            label: id,
-                            link: `#${id}`,
-                            order: 1
-                        })
-                    }
-                })
-            }
-        })
-        .use(rehypeStringify)
-        .processSync(post.body.html)
-        .toString()
+    const { contentHeader, contentWithId } = getTableOfContents(post)
 
     return (
         <Layout title={post.title}>
@@ -96,7 +57,7 @@ const PostLayout = ({ post }: { post: Post }) => {
                                     </Center>
                                     <div
                                         className="prose"
-                                        dangerouslySetInnerHTML={{ __html: content }}
+                                        dangerouslySetInnerHTML={{ __html: contentWithId }}
                                     />
                                 </article>
                             </Stack>
@@ -104,7 +65,7 @@ const PostLayout = ({ post }: { post: Post }) => {
 
                     </Grid.Col>
                     <Grid.Col md={2} lg={2} xl={3}>
-                        <TableOfContents links={contentHeader} />
+                        {contentHeader && <TableOfContents links={contentHeader} />}
                     </Grid.Col>
                 </Grid>
             </Container>
