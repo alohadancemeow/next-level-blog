@@ -15,7 +15,6 @@ const PostLayout = ({ post }: { post: Post }) => {
 
     const { contentHeader, contentWithId } = getTableOfContents(post)
 
-
     // # Title of contents
     const ContentTitle = () => (
         <Center style={{
@@ -26,7 +25,13 @@ const PostLayout = ({ post }: { post: Post }) => {
             <time dateTime={post.date}>
                 {format(parseISO(post.date), "LLLL d, yyyy")}
             </time>
-            <Title style={{ backgroundColor: 'orange', padding: '5px 10px' }}>
+            <Title
+                style={{ backgroundColor: 'orange', padding: '5px 10px' }}
+                sx={(theme) => ({
+                    [theme.fn.smallerThan('md')]: { fontSize: '25px' },
+                    [theme.fn.smallerThan('xs')]: { fontSize: '12px' },
+                })}
+            >
                 {post.title}
             </Title>
             <Tags tags={post.tags} />
@@ -37,48 +42,31 @@ const PostLayout = ({ post }: { post: Post }) => {
     // Body of contents
     const ContentBody = () => (
         <Grid grow gutter={'xl'}>
-            <MediaQuery
-                smallerThan={'md'}
-                styles={{
-                    display: 'none'
-                }}
-            >
-                <Grid.Col md={2} lg={3}></Grid.Col>
-            </MediaQuery>
 
-            <MediaQuery
-                smallerThan={'md'}
-                styles={{
-                    margin: '0 auto',
-                    padding: '0 3rem'
-                }}
-            >
-                <Grid.Col md={6} lg={6}>
-                    <Center
-                        style={{
-                            // width: '90%',
-                            display: 'flex',
-                            justifyContent: 'flex-start',
-                            alignItems: 'center',
-                            margin: "0 auto",
-                        }}
-                    >
-                        <article>
-                            <div dangerouslySetInnerHTML={{ __html: contentWithId }} />
-                        </article>
-                    </Center>
-                </Grid.Col>
-            </MediaQuery>
+            <Grid.Col md={2} lg={3}
+                sx={(theme) => ({
+                    [theme.fn.smallerThan('md')]: { display: 'none' },
+                })}
+            />
 
-            <MediaQuery
-                smallerThan={'md'}
-                styles={{ display: 'none' }}
+            <Grid.Col md={6} lg={6}
+                sx={(theme) => ({
+                    [theme.fn.smallerThan('md')]: { padding: '0 6rem' },
+                    [theme.fn.smallerThan('xs')]: { padding: '0 2.5rem', fontSize: '12px' },
+                })}
             >
-                <Grid.Col md={2} lg={3}>
-                    {contentHeader && <TableOfContents links={contentHeader} />}
-                </Grid.Col>
-            </MediaQuery>
+                <article>
+                    <div dangerouslySetInnerHTML={{ __html: contentWithId }} />
+                </article>
+            </Grid.Col>
 
+            <Grid.Col md={2} lg={3}
+                sx={(theme) => ({
+                    [theme.fn.smallerThan('md')]: { display: 'none' },
+                })}
+            >
+                {contentHeader && <TableOfContents links={contentHeader} />}
+            </Grid.Col>
         </Grid>
     )
 
@@ -87,8 +75,8 @@ const PostLayout = ({ post }: { post: Post }) => {
             <Container
                 size={'xl'}
                 style={{
-                    // maxWidth: '100vw',
                     height: '100%',
+                    padding: '0'
                 }}
             >
                 <ContentTitle />

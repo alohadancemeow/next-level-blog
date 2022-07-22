@@ -28,8 +28,8 @@ export default function App(props: AppProps) {
             xs: 500,
             sm: 800,
             md: 1000,
-            lg: 1275,
-            xl: 1800,
+            lg: 1200,
+            xl: 1400,
           },
         }}
       >

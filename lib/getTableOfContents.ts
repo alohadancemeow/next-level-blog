@@ -25,7 +25,7 @@ export const getTableOfContents = (post: Post) => {
                 visit(tree, 'element', (node) => {
 
                     if (['h1', 'h2', 'h3'].includes(node.tagName)) {
-                        console.log('node', node);
+                        // console.log('node', node);
 
                         const id = parameterize(node.children[0].value)
                         node.properties!.id = id
