@@ -34,7 +34,7 @@ export const getTableOfContents = (post: Post) => {
 
                         contentHeader.push({
                             label: capitalizedId,
-                            link: `#${id}`,
+                            link: `${id}`,
                             order: 1
                         })
                     }
