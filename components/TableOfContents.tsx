@@ -47,28 +47,29 @@ const TableOfContents = ({ links }: TableOfContentsFloatingProps) => {
     const items = links.map((item, index) => (
         <Link
             key={item.label}
+            activeClass={classes.linkActive}
             className={cx(classes.link, { [classes.linkActive]: active === index })}
             // sx={(theme) => ({ paddingLeft: item.order * theme.spacing.lg })}
             to={item.link}
             spy={true}
             smooth={true}
-            // hashSpy={true}
-            offset={-25}
+            hashSpy={true}
+            offset={-50}
             onClick={() => setActive(index)}
             onSetActive={() => setActive(index)}
         >
             {item.label}
-        </Link>
+        </Link >
+
     ));
 
     return (
-        <div
-            style={{
-                position: 'sticky',
-                top: '5%',
-                right: 0,
-                margin: '15px',
-            }}
+        <div style={{
+            position: 'sticky',
+            top: '5%',
+            right: 0,
+            margin: '15px',
+        }}
         >
             <Group mb="md">
                 <ListSearch size={18} />

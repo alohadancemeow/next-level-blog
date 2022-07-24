@@ -8,12 +8,28 @@ import Layout from "components/Layout";
 import TableOfContents from '../../components/TableOfContents'
 
 import { getTableOfContents } from '../../lib/getTableOfContents'
+import { useEffect, useState } from "react";
+import { ContentHeader } from '../../lib/getTableOfContents'
 
 
 const PostLayout = ({ post }: { post: Post }) => {
-    // console.log(post);
 
     const { contentHeader, contentWithId } = getTableOfContents(post)
+
+    // new way to get element's headings
+    const [headings, setHeadings] = useState<ContentHeader[]>()
+
+    useEffect(() => {
+        const elements = Array.from(document.querySelectorAll('h2,h3,h4'))
+            .filter(el => el.id)
+            .map(el => ({
+                label: el.textContent || '',
+                link: el.id,
+                order: Number(el.tagName.substring(1))
+            }))
+        setHeadings(elements)
+    }, [])
+
 
     // # Title of contents
     const ContentTitle = () => (
@@ -65,7 +81,8 @@ const PostLayout = ({ post }: { post: Post }) => {
                     [theme.fn.smallerThan('md')]: { display: 'none' },
                 })}
             >
-                {contentHeader && <TableOfContents links={contentHeader} />}
+                {/* {contentHeader && <TableOfContents links={contentHeader} />} */}
+                {headings && <TableOfContents links={headings} />}
             </Grid.Col>
         </Grid>
     )
