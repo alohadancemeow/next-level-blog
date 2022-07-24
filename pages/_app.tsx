@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
+import GlobalStyles from 'styles/GlobalStyles';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -19,10 +20,10 @@ export default function App(props: AppProps) {
           /** Put your mantine theme override here */
           colorScheme: 'light',
           primaryColor: 'orange',
-          fontFamily: 'JetBrains Mono',
+          fontFamily: "'JetBrains Mono', monospace",
 
           headings: {
-            fontFamily: 'JetBrains Mono',
+            fontFamily: "'JetBrains Mono', monospace",
           },
           breakpoints: {
             xs: 500,
@@ -33,6 +34,7 @@ export default function App(props: AppProps) {
           },
         }}
       >
+        <GlobalStyles />
         <Component {...pageProps} />
       </MantineProvider>
     </>

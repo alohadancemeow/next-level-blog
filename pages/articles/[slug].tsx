@@ -11,17 +11,27 @@ import { getTableOfContents } from '../../lib/getTableOfContents'
 import { useEffect, useState } from "react";
 import { ContentHeader } from '../../lib/getTableOfContents'
 
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import CodeBox from '../../components/Post/Code'
+
+const myMdxComponents = {
+    CodeBox
+}
 
 const PostLayout = ({ post }: { post: Post }) => {
+    // console.log(post);
 
-    const { contentHeader, contentWithId } = getTableOfContents(post)
+    const MDXContent = useMDXComponent(post.body.code)
+
+    // const { contentHeader, contentWithId } = getTableOfContents(post)
 
     // new way to get element's headings
     const [headings, setHeadings] = useState<ContentHeader[]>()
+    // console.log(headings);
 
     useEffect(() => {
         const elements = Array.from(document.querySelectorAll('h2,h3,h4'))
-            .filter(el => el.id)
+            // .filter(el => el.id)
             .map(el => ({
                 label: el.textContent || '',
                 link: el.id,
@@ -72,7 +82,8 @@ const PostLayout = ({ post }: { post: Post }) => {
                 })}
             >
                 <article>
-                    <div dangerouslySetInnerHTML={{ __html: contentWithId }} />
+                    {/* <div dangerouslySetInnerHTML={{ __html: contentWithId }} /> */}
+                    <MDXContent components={myMdxComponents} />
                 </article>
             </Grid.Col>
 
@@ -81,11 +92,11 @@ const PostLayout = ({ post }: { post: Post }) => {
                     [theme.fn.smallerThan('md')]: { display: 'none' },
                 })}
             >
-                {/* {contentHeader && <TableOfContents links={contentHeader} />} */}
                 {headings && <TableOfContents links={headings} />}
             </Grid.Col>
         </Grid>
     )
+
 
     return (
         <Layout title={post.title}>
