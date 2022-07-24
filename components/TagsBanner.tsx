@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import { Box } from '@mantine/core'
 
 const Tags = ({ ...tags }: { [key: string]: number }) => {
     // console.log(tags);
@@ -12,7 +13,7 @@ const Tags = ({ ...tags }: { [key: string]: number }) => {
             justifyContent: 'center',
         }}>
             {Object.keys(tags).map((tag, i) => (
-                <div
+                <Box
                     key={i}
                     style={{
                         // backgroundColor: 'grey',
@@ -20,6 +21,9 @@ const Tags = ({ ...tags }: { [key: string]: number }) => {
                         borderRadius: '3px',
                         padding: '2px 5px',
                     }}
+                    sx={(theme) => ({
+                        [theme.fn.smallerThan('md')]: { fontSize: '15px' },
+                    })}
                 >
                     <Link href={`/tags/${tag.split(" ").join("-")}`}>
                         <a style={{
@@ -31,7 +35,7 @@ const Tags = ({ ...tags }: { [key: string]: number }) => {
                             <span>({tags[tag]})</span>
                         </a>
                     </Link>
-                </div>
+                </Box>
             ))}
         </div>
     )

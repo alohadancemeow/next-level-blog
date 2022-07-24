@@ -3,7 +3,7 @@ import React from 'react'
 import { format, parseISO } from "date-fns";
 import Link from 'next/link';
 
-import { Title } from '@mantine/core';
+import { Title, Box } from '@mantine/core';
 import Tags from './Tags'
 
 type Props = {
@@ -13,7 +13,12 @@ type Props = {
 const PostCard = ({ post }: Props) => {
     return (
         <div >
-            <Title order={2}>
+            <Title order={2}
+                sx={(theme) => ({
+                    [theme.fn.smallerThan('md')]: { fontSize: '24px' },
+                    [theme.fn.smallerThan('xs')]: { fontSize: '18px' },
+                })}
+            >
                 <Link href={post.url}>
                     <a >{post.title}</a>
                 </Link>
@@ -24,7 +29,10 @@ const PostCard = ({ post }: Props) => {
 
             <Tags tags={post.tags} />
 
-            <div
+            <Box
+                sx={(theme) => ({
+                    [theme.fn.smallerThan('md')]: { fontSize: '15px' },
+                })}
                 dangerouslySetInnerHTML={{ __html: post.description }}
             />
         </div>

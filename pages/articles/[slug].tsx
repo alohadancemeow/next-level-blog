@@ -2,49 +2,102 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 
-import { Container, Space, Stack, Center, Title } from '@mantine/core';
+import { Container, Space, Stack, Center, Title, Grid, Box, MediaQuery } from '@mantine/core';
 import Tags from "components/Tags";
 import Layout from "components/Layout";
+import TableOfContents from '../../components/TableOfContents'
+
+import { getTableOfContents } from '../../lib/getTableOfContents'
+import { useEffect, useState } from "react";
+import { ContentHeader } from '../../lib/getTableOfContents'
 
 
 const PostLayout = ({ post }: { post: Post }) => {
+
+    const { contentHeader, contentWithId } = getTableOfContents(post)
+
+    // new way to get element's headings
+    const [headings, setHeadings] = useState<ContentHeader[]>()
+
+    useEffect(() => {
+        const elements = Array.from(document.querySelectorAll('h2,h3,h4'))
+            .filter(el => el.id)
+            .map(el => ({
+                label: el.textContent || '',
+                link: el.id,
+                order: Number(el.tagName.substring(1))
+            }))
+        setHeadings(elements)
+    }, [])
+
+
+    // # Title of contents
+    const ContentTitle = () => (
+        <Center style={{
+            display: "flex",
+            flexDirection: 'column',
+            gap: 5,
+        }}>
+            <time dateTime={post.date}>
+                {format(parseISO(post.date), "LLLL d, yyyy")}
+            </time>
+            <Title
+                style={{ backgroundColor: 'orange', padding: '5px 10px' }}
+                sx={(theme) => ({
+                    [theme.fn.smallerThan('md')]: { fontSize: '25px' },
+                    [theme.fn.smallerThan('xs')]: { fontSize: '12px' },
+                })}
+            >
+                {post.title}
+            </Title>
+            <Tags tags={post.tags} />
+            <Space h="xs" />
+        </Center>
+    )
+
+    // Body of contents
+    const ContentBody = () => (
+        <Grid grow gutter={'xl'}>
+
+            <Grid.Col md={2} lg={3}
+                sx={(theme) => ({
+                    [theme.fn.smallerThan('md')]: { display: 'none' },
+                })}
+            />
+
+            <Grid.Col md={6} lg={6}
+                sx={(theme) => ({
+                    [theme.fn.smallerThan('md')]: { padding: '0 6rem' },
+                    [theme.fn.smallerThan('xs')]: { padding: '0 2.5rem', fontSize: '12px' },
+                })}
+            >
+                <article>
+                    <div dangerouslySetInnerHTML={{ __html: contentWithId }} />
+                </article>
+            </Grid.Col>
+
+            <Grid.Col md={2} lg={3}
+                sx={(theme) => ({
+                    [theme.fn.smallerThan('md')]: { display: 'none' },
+                })}
+            >
+                {/* {contentHeader && <TableOfContents links={contentHeader} />} */}
+                {headings && <TableOfContents links={headings} />}
+            </Grid.Col>
+        </Grid>
+    )
+
     return (
         <Layout title={post.title}>
-            <Container style={{
-                 width: '100%',
-                 height: '100%',
-            }}>
-                <Center
-                    style={{
-                        width: '90%',
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        alignItems: 'center',
-                        margin: "0 auto",
-                    }}>
-                    <Stack style={{ margin: '0 2rem' }}>
-                        <article>
-                            <Center style={{
-                                display: "flex",
-                                flexDirection: 'column',
-                                gap: 5,
-                            }}>
-                                <time dateTime={post.date}>
-                                    {format(parseISO(post.date), "LLLL d, yyyy")}
-                                </time>
-                                <Title style={{ backgroundColor: 'orange', padding: '5px 10px' }}>
-                                    {post.title}
-                                </Title>
-                                <Tags tags={post.tags} />
-                                <Space h="xs" />
-                            </Center>
-                            <div
-                                className="prose"
-                                dangerouslySetInnerHTML={{ __html: post.body.html }}
-                            />
-                        </article>
-                    </Stack>
-                </Center>
+            <Container
+                size={'xl'}
+                style={{
+                    height: '100%',
+                    padding: '0'
+                }}
+            >
+                <ContentTitle />
+                <ContentBody />
             </Container>
         </Layout>
     );

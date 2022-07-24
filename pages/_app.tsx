@@ -18,10 +18,18 @@ export default function App(props: AppProps) {
         theme={{
           /** Put your mantine theme override here */
           colorScheme: 'light',
+          primaryColor: 'orange',
           fontFamily: 'JetBrains Mono',
 
           headings: {
             fontFamily: 'JetBrains Mono',
+          },
+          breakpoints: {
+            xs: 500,
+            sm: 800,
+            md: 1000,
+            lg: 1200,
+            xl: 1400,
           },
         }}
       >
