@@ -5,14 +5,15 @@ import { allPosts, Post } from "contentlayer/generated";
 import { Container, Space, Stack, Center, Title, Grid, Box, MediaQuery } from '@mantine/core';
 import Tags from "components/Tags";
 import Layout from "components/Layout";
-import TableOfContents from '../../components/TableOfContents'
+import TableOfContents from 'components/TableOfContents'
+import Header from "components/Header";
 
 import { getTableOfContents } from '../../lib/getTableOfContents'
 import { useEffect, useState } from "react";
 import { ContentHeader } from '../../lib/getTableOfContents'
 
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import CodeBox from '../../components/Post/Code'
+import CodeBox from 'components/Post/Code'
 
 const myMdxComponents = {
     CodeBox
@@ -51,15 +52,7 @@ const PostLayout = ({ post }: { post: Post }) => {
             <time dateTime={post.date}>
                 {format(parseISO(post.date), "LLLL d, yyyy")}
             </time>
-            <Title
-                style={{ backgroundColor: 'orange', padding: '5px 10px' }}
-                sx={(theme) => ({
-                    [theme.fn.smallerThan('md')]: { fontSize: '25px' },
-                    [theme.fn.smallerThan('xs')]: { fontSize: '12px' },
-                })}
-            >
-                {post.title}
-            </Title>
+            <Header title={post.title} />
             <Tags tags={post.tags} />
             <Space h="xs" />
         </Center>
@@ -67,7 +60,7 @@ const PostLayout = ({ post }: { post: Post }) => {
 
     // Body of contents
     const ContentBody = () => (
-        <Grid grow gutter={'xl'}>
+        <Grid gutter={'xl'}>
 
             <Grid.Col md={2} lg={3}
                 sx={(theme) => ({

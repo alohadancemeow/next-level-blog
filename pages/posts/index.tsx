@@ -20,11 +20,11 @@ type Props = {
     tags: Tags
 }
 
-const ArticlesPage: NextPage<Props> = ({ posts, tags }) => {
+const PostsPage: NextPage<Props> = ({ posts, tags }) => {
     // console.log(tags);
 
     return (
-        <Layout title='Articles'>
+        <Layout title='Posts'>
             <PageLayout>
                 <Menu title='alohadancemeow blog' />
                 <TagsBanner {...tags} />
@@ -39,7 +39,7 @@ const ArticlesPage: NextPage<Props> = ({ posts, tags }) => {
     )
 }
 
-export default ArticlesPage
+export default PostsPage
 
 
 export const getStaticProps: GetStaticProps = async () => {

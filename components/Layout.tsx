@@ -2,8 +2,9 @@ import React, { ReactNode } from 'react'
 import Head from 'next/head'
 import { Container, Box } from '@mantine/core'
 
-import Header from './Header'
+import Logo from './Logo'
 import Footer from './Footer'
+import ThemeMode from './ThemeMode'
 
 type Props = {
     children: ReactNode,
@@ -30,7 +31,8 @@ const Layout = ({ children, title }: Props) => {
                 }}
             >
                 <Box>
-                    <Header />
+                    <Logo />
+                    <ThemeMode />
                     {children}
                 </Box>
                 <Footer />

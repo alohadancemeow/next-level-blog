@@ -17,20 +17,29 @@ const GlobalStyles = () => {
                     margin: 0,
                     fontFamily: ["'JetBrains Mono', monospace"],
                     fontSize: '18px',
+                    overflowX: 'hidden'
                 },
                 code: {
                     fontFamily: 'JetBrains Mono',
                     fontSize: '15px',
-                    lineHeight: '1.5rem'
+                    lineHeight: '1.5rem',
                 },
                 p: {
                     fontFamily: 'Space Mono',
                     fontSize: '18px'
                 },
                 a: {
+                    cursor: 'pointer',
                     textDecoration: 'none',
-                    // color: 'inherit'
+                    color:
+                        theme.colorScheme === 'dark'
+                            ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.7)
+                            : theme.colors[theme.primaryColor][5],
+                },
+                div: {
+                    fontFamily: 'JetBrains Mono',
                 }
+
             })}
         />
     );
