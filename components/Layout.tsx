@@ -14,7 +14,7 @@ type Props = {
 const Layout = ({ children, title }: Props) => {
     return (
         <div style={{
-            height: '100vh',
+            // height: '100vh',
         }}>
             <Head>
                 <title>{`alohadancemeow | ${title}`}</title>

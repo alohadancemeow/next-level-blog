@@ -3,7 +3,6 @@ import React from 'react'
 import { Box } from '@mantine/core'
 
 const Tags = ({ ...tags }: { [key: string]: number }) => {
-    // console.log(tags);
 
     return (
         <div style={{
