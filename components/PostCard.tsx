@@ -3,7 +3,7 @@ import React from 'react'
 import { format, parseISO } from "date-fns";
 import Link from 'next/link';
 
-import { Title, Box, Card, Image, Text, Grid } from '@mantine/core';
+import { Card, Image, Text } from '@mantine/core';
 import Tags from './Tags'
 
 type Props = {
@@ -20,6 +20,17 @@ const PostCard = ({ post }: Props) => {
                     p="xl"
                     radius={'sm'}
                     style={{ height: '450px' }}
+
+                    sx={(theme) => ({
+                        '&:hover': {
+                            backgroundColor:
+                                theme.colorScheme === 'dark'
+                                    ? theme.colors.dark[5]
+                                    : theme.colors.gray[1],
+                            transform: 'translateY(-8px)',
+                            transition: 'ease .3s'
+                        }
+                    })}
                 >
                     <Text size='xs' mb={'xs'}>
                         <time dateTime={post.date}>
