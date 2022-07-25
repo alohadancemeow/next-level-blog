@@ -2,7 +2,9 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 
-import { Container, Space, Stack, Center, Title, Grid, Box, MediaQuery } from '@mantine/core';
+import { Prism } from '@mantine/prism';
+import { Container, Space, Center, Title, Grid, Box } from '@mantine/core';
+
 import Tags from "components/Tags";
 import Layout from "components/Layout";
 import TableOfContents from 'components/TableOfContents'
@@ -16,7 +18,9 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 import CodeBox from 'components/Post/Code'
 
 const myMdxComponents = {
-    CodeBox
+    CodeBox,
+    Space,
+    Prism
 }
 
 const PostLayout = ({ post }: { post: Post }) => {
@@ -31,12 +35,12 @@ const PostLayout = ({ post }: { post: Post }) => {
     // console.log(headings);
 
     useEffect(() => {
-        const elements = Array.from(document.querySelectorAll('h2,h3,h4'))
+        const elements = Array.from(document.querySelectorAll('h2'))
             // .filter(el => el.id)
             .map(el => ({
                 label: el.textContent || '',
                 link: el.id,
-                order: Number(el.tagName.substring(1))
+                order: Number(el.tagName.substring(1)) - 1
             }))
         setHeadings(elements)
     }, [])

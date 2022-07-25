@@ -1,8 +1,8 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useState } from 'react';
 import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
+
 import GlobalStyles from 'styles/GlobalStyles';
 
 export default function App(props: AppProps) {
@@ -34,10 +34,11 @@ export default function App(props: AppProps) {
             /** Put your mantine theme override here */
             colorScheme: colorScheme,
             primaryColor: 'orange',
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: ["'JetBrains Mono', monospace", "'Space Mono' monospace"],
 
             headings: {
               fontFamily: "'JetBrains Mono', monospace",
+              fontWeight: '500'
             },
             breakpoints: {
               xs: 500,
@@ -46,6 +47,7 @@ export default function App(props: AppProps) {
               lg: 1200,
               xl: 1400,
             },
+
           }}
         >
           <GlobalStyles />
