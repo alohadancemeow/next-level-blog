@@ -45,11 +45,12 @@ const TableOfContents = ({ links }: TableOfContentsFloatingProps) => {
     const [active, setActive] = useState(0);
 
     const items = links.map((item, index) => (
-        <Link
+        <Box
+            component={Link}
             key={item.label}
-            activeClass={classes.linkActive}
+            // activeClass={classes.linkActive}
             className={cx(classes.link, { [classes.linkActive]: active === index })}
-            // sx={(theme) => ({ paddingLeft: item.order * theme.spacing.lg })}
+            sx={(theme) => ({ paddingLeft: item.order * theme.spacing.lg })}
             to={item.link}
             spy={true}
             smooth={true}
@@ -59,7 +60,7 @@ const TableOfContents = ({ links }: TableOfContentsFloatingProps) => {
             onSetActive={() => setActive(index)}
         >
             {item.label}
-        </Link >
+        </Box >
 
     ));
 

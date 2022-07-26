@@ -3,40 +3,40 @@ import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 
 import { Prism } from '@mantine/prism';
-import { Container, Space, Center, Title, Grid, Box } from '@mantine/core';
+import { Container, Space, Center, Grid, Image } from '@mantine/core';
 
 import Tags from "components/Tags";
 import Layout from "components/Layout";
 import TableOfContents from 'components/TableOfContents'
 import Header from "components/Header";
 
-import { getTableOfContents } from '../../lib/getTableOfContents'
 import { useEffect, useState } from "react";
 import { ContentHeader } from '../../lib/getTableOfContents'
 
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import CodeBox from 'components/Post/Code'
+import { CSSIcon, JsIcon, TsIcon } from '../../components/Post/SvgIcons'
 
 const myMdxComponents = {
     CodeBox,
     Space,
-    Prism
+    Prism,
+    Image,
+    CSSIcon,
+    JsIcon,
+    TsIcon,
 }
 
 const PostLayout = ({ post }: { post: Post }) => {
-    // console.log(post);
 
     const MDXContent = useMDXComponent(post.body.code)
 
-    // const { contentHeader, contentWithId } = getTableOfContents(post)
-
     // new way to get element's headings
     const [headings, setHeadings] = useState<ContentHeader[]>()
-    // console.log(headings);
 
     useEffect(() => {
-        const elements = Array.from(document.querySelectorAll('h2'))
-            // .filter(el => el.id)
+        const elements = Array.from(document.querySelectorAll('h2,h3'))
+            .filter(el => el.id)
             .map(el => ({
                 label: el.textContent || '',
                 link: el.id,
@@ -79,7 +79,6 @@ const PostLayout = ({ post }: { post: Post }) => {
                 })}
             >
                 <article>
-                    {/* <div dangerouslySetInnerHTML={{ __html: contentWithId }} /> */}
                     <MDXContent components={myMdxComponents} />
                 </article>
             </Grid.Col>
