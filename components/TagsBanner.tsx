@@ -12,10 +12,12 @@ const Tags = ({ ...tags }: { [key: string]: number }) => {
             justifyContent: 'center',
         }}>
             {Object.keys(tags).map((tag, i) => (
-                <Link href={`/tags/${tag.split(" ").join("-")}`}>
+                <Link
+                    key={i}
+                    href={`/tags/${tag.split(" ").join("-")}`}
+                >
                     <Box
                         component='a'
-                        key={i}
                         style={{
                             // padding: '2px 5px',
                             fontWeight: '500'
