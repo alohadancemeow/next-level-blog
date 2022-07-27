@@ -1,6 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
+import { useEffect, useState } from "react";
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import { ContentHeader } from 'lib/getTableOfContents'
 
 import { Prism } from '@mantine/prism';
 import { Space, Center, Grid, Image } from '@mantine/core';
@@ -9,13 +12,8 @@ import Tags from "components/Tags";
 import Layout from "components/Layout";
 import TableOfContents from 'components/TableOfContents'
 import Header from "components/Header";
-
-import { useEffect, useState } from "react";
-import { ContentHeader } from '../../lib/getTableOfContents'
-
-import { useMDXComponent } from 'next-contentlayer/hooks'
 import CodeBox from 'components/Post/Code'
-import { CSSIcon, JsIcon, TsIcon } from '../../components/Post/SvgIcons'
+import { CSSIcon, JsIcon, TsIcon } from 'components/Post/SvgIcons'
 
 const myMdxComponents = {
     CodeBox,
