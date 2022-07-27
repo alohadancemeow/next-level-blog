@@ -26,7 +26,7 @@ const GlobalStyles = () => {
                 },
                 'p, ul, li': {
                     fontFamily: "Space Mono",
-                    fontSize: '18px',
+                    // fontSize: '18px',
                 },
                 a: {
                     fontFamily: 'JetBrains Mono',

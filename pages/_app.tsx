@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { MantineProvider, ColorSchemeProvider, ColorScheme } from '@mantine/core';
+import { MantineProvider, ColorSchemeProvider, ColorScheme, Container } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import GlobalStyles from 'styles/GlobalStyles';
@@ -47,7 +47,6 @@ export default function App(props: AppProps) {
               lg: 1200,
               xl: 1400,
             },
-
           }}
         >
           <GlobalStyles />

@@ -1,12 +1,12 @@
 import React from 'react'
-import { Container, Center, Text } from '@mantine/core'
+import { Center, Text } from '@mantine/core'
 
 
 type Props = {}
 
 const Footer = (props: Props) => {
     return (
-        <Container size={'xl'} style={{ margin: '2rem 0' }}>
+        <div style={{ margin: '2rem 0' }}>
             <Center style={{ fontWeight: '500', gap: '5px' }}>
                 <Text>Made with 🧡 </Text>
                 <Text
@@ -18,7 +18,7 @@ const Footer = (props: Props) => {
                     alohadancemeow
                 </Text>
             </Center>
-        </Container>
+        </div>
     )
 }
 

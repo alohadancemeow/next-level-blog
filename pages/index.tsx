@@ -19,7 +19,7 @@ const Home: NextPage = () => {
           <Box>
             <NextImage
               layout='fixed'
-              src="/image.jpg"
+              src="/image3.gif"
               alt="image"
               width={200}
               height={200}

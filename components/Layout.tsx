@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import Head from 'next/head'
-import { Container, Box } from '@mantine/core'
+import { Box } from '@mantine/core'
 
 import Logo from './Logo'
 import Footer from './Footer'
@@ -13,14 +13,11 @@ type Props = {
 
 const Layout = ({ children, title }: Props) => {
     return (
-        <div style={{
-            // height: '100vh',
-        }}>
+        <div>
             <Head>
                 <title>{`alohadancemeow | ${title}`}</title>
             </Head>
-            <Container
-                size={'xl'}
+            <div
                 style={{
                     width: '100%',
                     height: '100%',
@@ -36,7 +33,7 @@ const Layout = ({ children, title }: Props) => {
                     {children}
                 </Box>
                 <Footer />
-            </Container>
+            </div>
         </div>
     )
 }
