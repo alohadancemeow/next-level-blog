@@ -9,7 +9,7 @@ const ThemeMode = () => {
         <Group position="center" my="xl">
             <SegmentedControl
                 value={colorScheme}
-                onChange={toggleColorScheme}
+                onChange={() => toggleColorScheme()}
                 data={[
                     {
                         value: 'light',

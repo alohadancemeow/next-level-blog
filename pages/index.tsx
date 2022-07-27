@@ -1,9 +1,13 @@
 import type { NextPage } from 'next'
-import Link from 'next/link';
-import { Container, Text, UnstyledButton, Divider, Grid, Space, Stack, Title, Box, Center, Image } from '@mantine/core';
 import NextImage from 'next/image'
+import Link from 'next/link';
+import { Container, Text, UnstyledButton, Divider, Grid, Space, Stack, Title, Box, Center, Kbd, useMantineColorScheme } from '@mantine/core';
+import { IconBrightnessHalf } from '@tabler/icons';
 
 const Home: NextPage = () => {
+
+  const { toggleColorScheme } = useMantineColorScheme();
+
   return (
     <Container>
       <Center
@@ -36,7 +40,7 @@ const Home: NextPage = () => {
             <Text color="gray">Hi there! 👋 I'm Hai [はい] aka : alohadancemeow ✌️</Text>
           </Box>
 
-          <Divider my="xs" variant="dotted" />
+          <Divider my="xs" variant="solid" />
           <Space h="sm" />
 
           <Box style={{ width: '70%' }}>
@@ -64,6 +68,34 @@ const Home: NextPage = () => {
             </Grid>
           </Box>
 
+          <Space h="sm" />
+
+          <Divider
+            my="lg"
+            variant="solid"
+            labelPosition="left"
+            label={
+              <UnstyledButton
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  // fontWeight: '500'
+                }}
+                onClick={() => toggleColorScheme()}
+              >
+                <IconBrightnessHalf size={30} />
+                <Box ml={5} mr={10}>Switch Mode</Box>
+                <Kbd>⌘</Kbd>
+                <span style={{ margin: '0 5px' }}>+</span>
+                <Kbd>D</Kbd>
+                <span style={{ margin: '0 10px' }}>/</span>
+                <Kbd>Ctrl</Kbd>
+                <span style={{ margin: '0 5px' }}>+</span>
+                <Kbd>D</Kbd>
+              </UnstyledButton>
+            }
+          />
         </Stack>
       </Center>
     </Container>

@@ -5,11 +5,14 @@ import { allPosts, Post } from "contentlayer/generated";
 
 import { Space, Grid } from '@mantine/core';
 
-import PostCard from '../../components/PostCard'
-import Menu from '../../components/Menu'
-import TagsBanner from '../../components/TagsBanner'
-import Layout from '../../components/Layout'
-import PageLayout from '../../components/PageLayout'
+import PostCard from 'components/PostCard'
+import Menu from 'components/Menu'
+import TagsBanner from 'components/TagsBanner'
+import Layout from 'components/Layout'
+import PageLayout from 'components/PageLayout'
+
+import Spotlight from 'components/Spotlight';
+import SearchPost from 'components/SearchPost'
 
 type Tags = {
     [key: string]: number
@@ -18,28 +21,32 @@ type Tags = {
 type Props = {
     posts: Post[],
     tags: Tags
-
 }
+
 const PostsPage: NextPage<Props> = ({ posts, tags }) => {
     // console.log(tags);
 
     return (
-        <Layout title='Posts'>
-            <PageLayout>
-                <Menu title='alohadancemeow blog' />
-                <TagsBanner {...tags} />
-                <Space h="xs" />
+        <Spotlight data={posts}>
+            <Layout title='Posts'>
+                <PageLayout>
+                    <Menu title='alohadancemeow blog' />
+                    <SearchPost />
+                    <TagsBanner {...tags} />
 
-                <Grid gutter="lg">
-                    {posts.map((item, idx) => (
-                        <Grid.Col key={idx} xs={6} md={4}>
-                            <PostCard post={item} />
-                        </Grid.Col>
-                    ))}
-                </Grid>
+                    <Space h="xs" />
 
-            </PageLayout>
-        </Layout>
+                    <Grid gutter="lg">
+                        {posts.map((item, idx) => (
+                            <Grid.Col key={idx} xs={6} md={4}>
+                                <PostCard post={item} />
+                            </Grid.Col>
+                        ))}
+                    </Grid>
+
+                </PageLayout>
+            </Layout>
+        </Spotlight>
     )
 }
 
