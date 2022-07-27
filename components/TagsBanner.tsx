@@ -20,10 +20,11 @@ const Tags = ({ ...tags }: { [key: string]: number }) => {
                         component='a'
                         style={{
                             // padding: '2px 5px',
-                            fontWeight: '500'
+                            fontWeight: '500',
                         }}
                         sx={(theme) => ({
-                            [theme.fn.largerThan('md')]: { fontSize: '18px' },
+                            [theme.fn.largerThan('lg')]: { fontSize: '18px' },
+                            [theme.fn.smallerThan('lg')]: { fontSize: '16px' },
                             [theme.fn.smallerThan('md')]: { fontSize: '15px' },
                             color: theme.colors.gray[6],
 

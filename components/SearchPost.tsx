@@ -23,7 +23,7 @@ const SearchPost = (props: Props) => {
                     }}
                     onClick={() => openSpotlight()}
                 >
-                    <Search />
+                    <Search size={28} />
                     <Box ml={5} mr={10}>Search</Box>
                     <Kbd>⌘</Kbd>
                     <span style={{ margin: '0 5px' }}>+</span>
