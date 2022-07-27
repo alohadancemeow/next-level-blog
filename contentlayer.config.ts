@@ -3,10 +3,16 @@ import remarkGfm from 'remark-gfm'
 import rehypeHightlight from 'rehype-highlight'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypeHighlight from 'rehype-highlight'
+import rehypePrism from 'rehype-prism-plus'
+import rehypeSlug from 'rehype-slug'
 
 const Post = defineDocumentType(() => ({
     name: 'Post',
-    filePathPattern: `**/*.md`,
+    filePathPattern: `**/*.mdx`,
+    contentType: 'mdx',
     fields: {
         title: {
             type: 'string',
@@ -35,7 +41,7 @@ const Post = defineDocumentType(() => ({
     computedFields: {
         url: {
             type: 'string',
-            resolve: (doc) => `/articles/${doc._raw.flattenedPath}`,
+            resolve: (doc) => `/posts/${doc._raw.flattenedPath}`,
         },
     },
 }))
@@ -43,8 +49,17 @@ const Post = defineDocumentType(() => ({
 export default makeSource({
     contentDirPath: 'posts',
     documentTypes: [Post],
-    markdown: {
+    mdx: {
         remarkPlugins: [remarkGfm, remarkMath],
-        rehypePlugins: [rehypeHightlight, rehypeKatex]
-    },
+        rehypePlugins: [
+            // rehypeHightlight,
+            rehypeKatex,
+            rehypeCodeTitles,
+            rehypeHighlight,
+            rehypeSlug,
+            // rehypePrism,
+            rehypeAutolinkHeadings,
+           
+        ]
+    }
 })

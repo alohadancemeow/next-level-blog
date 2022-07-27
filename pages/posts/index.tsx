@@ -3,7 +3,7 @@ import React from 'react'
 import { compareDesc } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 
-import { Space } from '@mantine/core';
+import { Space, Grid } from '@mantine/core';
 
 import PostCard from '../../components/PostCard'
 import Menu from '../../components/Menu'
@@ -18,28 +18,32 @@ type Tags = {
 type Props = {
     posts: Post[],
     tags: Tags
-}
 
-const ArticlesPage: NextPage<Props> = ({ posts, tags }) => {
+}
+const PostsPage: NextPage<Props> = ({ posts, tags }) => {
     // console.log(tags);
 
     return (
-        <Layout title='Articles'>
+        <Layout title='Posts'>
             <PageLayout>
                 <Menu title='alohadancemeow blog' />
                 <TagsBanner {...tags} />
                 <Space h="xs" />
 
-                {posts.map((item, idx) => (
-                    <PostCard key={idx} post={item} />
-                ))}
+                <Grid gutter="lg">
+                    {posts.map((item, idx) => (
+                        <Grid.Col key={idx} xs={6} md={4}>
+                            <PostCard post={item} />
+                        </Grid.Col>
+                    ))}
+                </Grid>
 
             </PageLayout>
         </Layout>
     )
 }
 
-export default ArticlesPage
+export default PostsPage
 
 
 export const getStaticProps: GetStaticProps = async () => {

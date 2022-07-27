@@ -1,15 +1,17 @@
 ---
 title: "GCD and Euclidean Algorithm"
 date: "2017-05-28T22:40:32.169Z"
-tags: ["markdown", "number theory", "math"]
-description: "This is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter."
+tags: ["Markdown", "Number theory", "Math"]
+description: "This is a custom description for SEO and Open Graph purposes."
 ---
 
 Suppose we have two integers $a$ and $b$. We say that the number $d$ is the greatest common divisor of $a$ and $b$ if and only if, $d \mid a$ and $d \mid b$ and if $c \mid a$ and $c \mid b$, then $c \leq d$. Condition $1$ says that $d$ is a common divisor of $a$ and $b$, and condition $2$ says that it is the greatest such divisor.
 
 Note that if $a$ and $b$ are not both zero, then the set of common divisors of $a$ and $b$ is a set of integers that is bounded above by the largest of $a$, $b$, $-a$, and $-b$. Hence, from the well ordering principle for the integers, the set has a largest element, so the greatest common divisor of $a$ and $b$ exists and is unique. Note that $gcd(0,0)$ is not defined, and when $gcd(a,b)$ is defined, then it is positive. In fact, $gcd(a, b) \geq 1$ because $1 \mid a$ and $1 \mid b$ for all $a$ and $b$.
 
-### Properties of GCD
+<CodeBox />
+
+## Properties of GCD
 
 - $gcd(a, 0) = |a|$
 - $gcd(a, b) = gcd(b, a)$
@@ -23,7 +25,7 @@ Note that if $a$ and $b$ are not both zero, then the set of common divisors of $
 - Every common divisor of $a$ and $b$ is also a divisor of $gcd(a, b)$
 - If $gcd(a, b) = d$, then there exists integers $x, y$ such that $ax + by = d$
 
-### Mathematical Proofs
+## Mathematical Proofs
 
 > If a and b are not both 0, and let $d = gcd(a, b)$. Then $d$ is the smallest positive integer that can be expressed as a linear combination of $a$ and $b$, $d = sa+tb$.
 
@@ -49,11 +51,11 @@ Let us assume that, $gcd(a / d, b / d) = 1$. We know that $gcd(ca, cb)$ is the s
 
 Let $d = gcd(a, b)$. We know that since $d \mid a$ and $d \mid b$, it follows from $b = qa + r$ that $d \mid r$. Thus $d$ is a common divisor of $a$ and $r$. Now we need to make sure that $d$ is the greatest of all common divisors of $a$ and $r$. Let $c$ be a common divisor of $a$ and $r$. From $b = qa + r$, if $c \mid a$ and $c \mid r$, then also $c \mid b$. Now $c \leq d$, because $d$ is the largest of all common divisors. So we can conclude that $gcd(a, b)$ = $gcd(b, a \mod b) = gcd(b, r)$ where $r = a \mod b$.
 
-### Prime Factorization to Compute GCD
+## Prime Factorization to Compute GCD
 
 If we have two integers $a, b$ and we can find $gcd(a, b)$ from the prime factorization of $a, b$. Suppose $a = 2^{a_1} \times 3^{a_2} \times 5^{a_3}...$ and $b = 2^{b_1} \times 3^{b_2} \times 5^{b_3}...$, then we can write $a \times b = 2^{a_1 + b_1} \times3^{a_2+b_2} \times5^{a_3 + b_3}...$. Now, if we take the $min(a_i, b_i)$ for each $p_i$ we get the common portion for that $p_i$. In this way, we can keep multiplying the common portions to get $gcd(a, b)$. Thus mathematically if $ab = p_1^{a_1 + b_1} \times p_2^{a_2 + b_2} \times p_3^{a_3 + b_3} \times \dots \times p_n^{a_n + b_n}$ then, $$gcd(a, b) = \prod p_i^{min(a_i , b_i)}$$
 
-### Euclidean Algorithm to Compute GCD
+## Euclidean Algorithm to Compute GCD
 
 One of the ways to compute the GCD of two integers is to list down the divisors of $a$ and $b$ and pick the largest one. But this naive method takes a lot of time. Another way is the Euclidean Algorithm. This is much more efficient and the time complexity of this algorithm is roughly $O(log_2n)$. This algorithm is based on the fact that when $a = bq + r$, then we can say that $gcd(a, b) = gcd(b, r)$. We know from the division algorithm, $a = bq + r$, where $r$ is the remainder when $a$ is divided by $b$. So, $r = a \mod b$.
 
@@ -85,11 +87,11 @@ console.log("heloo");
 
 ### Related problems
 
-[UVa 11417 - GCD](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2412) <br>
-[SPOJ GCD - Greatest Common Divisor](https://www.spoj.com/problems/GCD/) <br>
-[CF 664A - Complicated GCD](https://codeforces.com/problemset/problem/664/A) <br>
+[UVa 11417 - GCD](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2412) <br />
+[SPOJ GCD - Greatest Common Divisor](https://www.spoj.com/problems/GCD/) <br />
+[CF 664A - Complicated GCD](https://codeforces.com/problemset/problem/664/A) <br />
 
 ### References
 
-[Wikipedia - Greatest Common Divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor) <br>
+[Wikipedia - Greatest Common Divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor) <br />
 [Khan Academy - Euclidean Algorithm](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm)

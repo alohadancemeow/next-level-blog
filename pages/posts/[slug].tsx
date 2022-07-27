@@ -2,30 +2,45 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 
-import { Container, Space, Stack, Center, Title, Grid, Box, MediaQuery } from '@mantine/core';
+import { Prism } from '@mantine/prism';
+import { Space, Center, Grid, Image } from '@mantine/core';
+
 import Tags from "components/Tags";
 import Layout from "components/Layout";
-import TableOfContents from '../../components/TableOfContents'
+import TableOfContents from 'components/TableOfContents'
+import Header from "components/Header";
 
-import { getTableOfContents } from '../../lib/getTableOfContents'
 import { useEffect, useState } from "react";
 import { ContentHeader } from '../../lib/getTableOfContents'
 
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import CodeBox from 'components/Post/Code'
+import { CSSIcon, JsIcon, TsIcon } from '../../components/Post/SvgIcons'
+
+const myMdxComponents = {
+    CodeBox,
+    Space,
+    Prism,
+    Image,
+    CSSIcon,
+    JsIcon,
+    TsIcon,
+}
 
 const PostLayout = ({ post }: { post: Post }) => {
 
-    const { contentHeader, contentWithId } = getTableOfContents(post)
+    const MDXContent = useMDXComponent(post.body.code)
 
     // new way to get element's headings
     const [headings, setHeadings] = useState<ContentHeader[]>()
 
     useEffect(() => {
-        const elements = Array.from(document.querySelectorAll('h2,h3,h4'))
+        const elements = Array.from(document.querySelectorAll('h2,h3'))
             .filter(el => el.id)
             .map(el => ({
                 label: el.textContent || '',
                 link: el.id,
-                order: Number(el.tagName.substring(1))
+                order: Number(el.tagName.substring(1)) - 1
             }))
         setHeadings(elements)
     }, [])
@@ -41,15 +56,7 @@ const PostLayout = ({ post }: { post: Post }) => {
             <time dateTime={post.date}>
                 {format(parseISO(post.date), "LLLL d, yyyy")}
             </time>
-            <Title
-                style={{ backgroundColor: 'orange', padding: '5px 10px' }}
-                sx={(theme) => ({
-                    [theme.fn.smallerThan('md')]: { fontSize: '25px' },
-                    [theme.fn.smallerThan('xs')]: { fontSize: '12px' },
-                })}
-            >
-                {post.title}
-            </Title>
+            <Header title={post.title} />
             <Tags tags={post.tags} />
             <Space h="xs" />
         </Center>
@@ -57,40 +64,45 @@ const PostLayout = ({ post }: { post: Post }) => {
 
     // Body of contents
     const ContentBody = () => (
-        <Grid grow gutter={'xl'}>
+        <div
+            style={{
+                width: '90%',
+                margin: '0 auto',
+            }}
+        >
+            <Grid gutter={50}>
+                <Grid.Col lg={3}
+                    sx={(theme) => ({
+                        [theme.fn.smallerThan('md')]: { display: 'none' },
+                    })}
+                />
 
-            <Grid.Col md={2} lg={3}
-                sx={(theme) => ({
-                    [theme.fn.smallerThan('md')]: { display: 'none' },
-                })}
-            />
+                <Grid.Col md={8} lg={6}
+                    sx={(theme) => ({
+                        [theme.fn.smallerThan('md')]: { padding: '0 6rem' },
+                        [theme.fn.smallerThan('xs')]: { padding: '0 2.5rem', fontSize: '15px' },
+                    })}
+                >
+                    <article>
+                        <MDXContent components={myMdxComponents} />
+                    </article>
+                </Grid.Col>
 
-            <Grid.Col md={6} lg={6}
-                sx={(theme) => ({
-                    [theme.fn.smallerThan('md')]: { padding: '0 6rem' },
-                    [theme.fn.smallerThan('xs')]: { padding: '0 2.5rem', fontSize: '12px' },
-                })}
-            >
-                <article>
-                    <div dangerouslySetInnerHTML={{ __html: contentWithId }} />
-                </article>
-            </Grid.Col>
-
-            <Grid.Col md={2} lg={3}
-                sx={(theme) => ({
-                    [theme.fn.smallerThan('md')]: { display: 'none' },
-                })}
-            >
-                {/* {contentHeader && <TableOfContents links={contentHeader} />} */}
-                {headings && <TableOfContents links={headings} />}
-            </Grid.Col>
-        </Grid>
+                <Grid.Col md={4} lg={3}
+                    sx={(theme) => ({
+                        [theme.fn.smallerThan('md')]: { display: 'none' },
+                    })}
+                >
+                    {headings && <TableOfContents links={headings} />}
+                </Grid.Col>
+            </Grid>
+        </div>
     )
+
 
     return (
         <Layout title={post.title}>
-            <Container
-                size={'xl'}
+            <div
                 style={{
                     height: '100%',
                     padding: '0'
@@ -98,7 +110,7 @@ const PostLayout = ({ post }: { post: Post }) => {
             >
                 <ContentTitle />
                 <ContentBody />
-            </Container>
+            </div>
         </Layout>
     );
 };

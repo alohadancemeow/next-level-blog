@@ -3,39 +3,42 @@ import React from 'react'
 import { Box } from '@mantine/core'
 
 const Tags = ({ ...tags }: { [key: string]: number }) => {
-    // console.log(tags);
 
     return (
         <div style={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: 10,
+            gap: '3px 10px',
             justifyContent: 'center',
         }}>
             {Object.keys(tags).map((tag, i) => (
-                <Box
+                <Link
                     key={i}
-                    style={{
-                        // backgroundColor: 'grey',
-                        border: '1px solid grey',
-                        borderRadius: '3px',
-                        padding: '2px 5px',
-                    }}
-                    sx={(theme) => ({
-                        [theme.fn.smallerThan('md')]: { fontSize: '15px' },
-                    })}
+                    href={`/tags/${tag.split(" ").join("-")}`}
                 >
-                    <Link href={`/tags/${tag.split(" ").join("-")}`}>
-                        <a style={{
-                            textDecoration: 'none',
-                            color: 'grey',
-                            fontWeight: 'bold'
-                        }}>
-                            <span>{`#${tag}`}</span>{""}
-                            <span>({tags[tag]})</span>
-                        </a>
-                    </Link>
-                </Box>
+                    <Box
+                        component='a'
+                        style={{
+                            // padding: '2px 5px',
+                            fontWeight: '500'
+                        }}
+                        sx={(theme) => ({
+                            [theme.fn.largerThan('md')]: { fontSize: '18px' },
+                            [theme.fn.smallerThan('md')]: { fontSize: '15px' },
+                            color: theme.colors.gray[6],
+
+                            '&:hover': {
+                                color:
+                                    theme.colorScheme === 'dark'
+                                        ? theme.colors[theme.primaryColor][3]
+                                        : theme.black,
+                            }
+                        })}
+                    >
+                        <span>{`#${tag}`}</span>{""}
+                        <span>({tags[tag]})</span>
+                    </Box>
+                </Link>
             ))}
         </div>
     )

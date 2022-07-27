@@ -1,26 +1,39 @@
 import Link from 'next/link'
 import React from 'react'
 
+import { Box } from '@mantine/core'
+import { useState } from 'react'
+import { useEffect } from 'react'
+
 type Props = {
     tags: string[]
 }
 
 const Tags = ({ tags }: Props) => {
+
+    const [postTags, setPostTags] = useState<string[]>()
+
+    useEffect(() => {
+        if (tags) setPostTags(tags)
+    }, [tags])
+
     return (
-        <div
+        <Box
             style={{
                 display: 'flex',
-                gap: 10,
-                padding: '2px 0',
+                flexWrap: 'wrap',
+                gap: 5,
+                alignItems: 'center',
+                marginTop: '15px',
+                fontSize: '12px',
             }}
         >
-            {tags.map((tag, idx) => (
+            {postTags && postTags.map((tag, idx) => (
                 <div key={idx}>
                     <Link href={`/tags/${tag.split(' ').join('-')}`}>
                         <a style={{
                             textDecoration: 'none',
                             color: 'grey',
-                            // fontWeight: 'bold'
                         }}
                         >
                             {`#${tag}`}
@@ -28,7 +41,7 @@ const Tags = ({ tags }: Props) => {
                     </Link>
                 </div>
             ))}
-        </div>
+        </Box>
     )
 }
 

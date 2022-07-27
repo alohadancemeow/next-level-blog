@@ -42,7 +42,7 @@ export const getTableOfContents = (post: Post) => {
             }
         })
         .use(rehypeStringify)
-        .processSync(post.body.html)
+        .processSync(post.body.code)
         .toString()
 
     return { contentWithId, contentHeader }

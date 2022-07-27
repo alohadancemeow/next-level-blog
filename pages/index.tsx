@@ -15,11 +15,11 @@ const Home: NextPage = () => {
           alignItems: 'center'
 
         }} >
-        <Stack style={{ margin: '0 auto' }}>
+        <Stack style={{ margin: '0 auto', paddingLeft: '10px' }}>
           <Box>
             <NextImage
               layout='fixed'
-              src="/image.jpg"
+              src="/image3.gif"
               alt="image"
               width={200}
               height={200}
@@ -47,8 +47,8 @@ const Home: NextPage = () => {
                 </Link>
               </Grid.Col>
               <Grid.Col span={6}>
-                <Link href="/articles" passHref>
-                  <UnstyledButton component='a'>📖 Articles</UnstyledButton>
+                <Link href="/posts" passHref>
+                  <UnstyledButton component='a'>📖 Posts</UnstyledButton>
                 </Link>
               </Grid.Col>
               <Grid.Col span={6}>
