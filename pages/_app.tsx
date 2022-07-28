@@ -34,11 +34,15 @@ export default function App(props: AppProps) {
             /** Put your mantine theme override here */
             colorScheme: colorScheme,
             primaryColor: 'orange',
-            fontFamily: ["'JetBrains Mono', monospace", "'Space Mono' monospace"],
+            fontFamily: ["'JetBrains Mono', 'Bai Jamjuree'"],
 
             headings: {
-              fontFamily: "'JetBrains Mono', monospace",
-              fontWeight: '500'
+              fontFamily: 'JetBrains Mono',
+              fontWeight: '500',
+              sizes: {
+                h2: 24,
+                h3: 18
+              }
             },
             breakpoints: {
               xs: 500,

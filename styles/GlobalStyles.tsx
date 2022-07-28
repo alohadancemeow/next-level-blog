@@ -12,24 +12,41 @@ const GlobalStyles = () => {
                     ...theme.fn.fontStyles(),
                     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
                     color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.black,
-                    lineHeight: theme.lineHeight,
+                    // color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+                    // lineHeight: theme.lineHeight,
                     padding: 0,
                     margin: 0,
-                    fontFamily: ["'JetBrains Mono', monospace", "'Noto Sans Thai', sans-serif", "'Space Mono' monospace"],
-                    fontSize: '18px',
+                    lineHeight: 1.75,
+                    fontFamily: ["'JetBrains Mono', 'Bai Jamjuree'"],
+                    fontWeight: '400',
+                    fontSize: '16px',
                     overflowX: 'hidden'
+                },
+                div: {
+                    fontFamily: ["'JetBrains Mono', 'Bai Jamjuree'"],
                 },
                 code: {
                     fontFamily: 'JetBrains Mono',
-                    fontSize: '15px',
-                    lineHeight: '1.5rem',
+                    fontSize: '14px',
+                    padding: '4px',
+                    backgroundColor:
+                        theme.colorScheme === 'dark'
+                            ? theme.colors.gray[9]
+                            : theme.colors.gray[1],
                 },
-                'p, ul, li': {
-                    fontFamily: "Space Mono",
-                    // fontSize: '18px',
+                ul: {
+                    marginBottom: '16px',
+                    paddingLeft: '24px',
+                    listStyle: 'square'
+                },
+                li: {
+                    fontSize: '16px',
+                    marginBottom: '4px',
+                },
+                p: {
+                    marginBottom: '16px',
                 },
                 a: {
-                    fontFamily: 'JetBrains Mono',
                     cursor: 'pointer',
                     textDecoration: 'none',
                     color:
@@ -37,18 +54,15 @@ const GlobalStyles = () => {
                             ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.7)
                             : theme.colors[theme.primaryColor][5],
                 },
-                div: {
-                    fontFamily: "'JetBrains Mono', monospace",
-                },
                 blockquote: {
-                    margin: '0',
+                    margin: '10px',
                     padding: '0 15px',
                     color:
                         theme.colorScheme === 'dark'
                             ? theme.fn.rgba(theme.colors[theme.primaryColor][1], 0.7)
                             : theme.colors[theme.black],
                     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
-                    borderLeft: `2px solid ${theme.colors[theme.primaryColor][7]}`
+                    borderLeft: `4px solid ${theme.colors[theme.primaryColor][7]}`
                 },
                 strong: {
                     fontWeight: '600',
