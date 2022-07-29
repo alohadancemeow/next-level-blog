@@ -13,7 +13,7 @@ import Layout from "components/Layout";
 import TableOfContents from 'components/TableOfContents'
 import Header from "components/Header";
 import CodeBox from 'components/Post/Code'
-import { CSSIcon, JsIcon, TsIcon } from 'components/Post/SvgIcons'
+import { CSSIcon, JsIcon, TsIcon, NpmIcon } from 'components/Post/SvgIcons'
 
 const myMdxComponents = {
     CodeBox,
@@ -23,6 +23,7 @@ const myMdxComponents = {
     CSSIcon,
     JsIcon,
     TsIcon,
+    NpmIcon,
 }
 
 const PostLayout = ({ post }: { post: Post }) => {
