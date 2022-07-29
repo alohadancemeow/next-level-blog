@@ -1,7 +1,7 @@
 import React from 'react'
 import { Prism } from '@mantine/prism';
 
-import { CSSIcon, JsIcon, TsIcon } from './SvgIcons'
+import { CSSIcon, JsIcon, TsIcon, NpmIcon } from './SvgIcons'
 
 type Props = {
     code?: string
@@ -33,6 +33,14 @@ const Code = ({ code }: Props) => {
                 icon={<CSSIcon />}
             >
                 {cssDemo}
+            </Prism.Tab>
+            <Prism.Tab
+                colorScheme='dark'
+                label="npm"
+                language="bash"
+                icon={<NpmIcon />}
+            >
+                {npmCode}
             </Prism.Tab>
         </Prism.Tabs>
     )
@@ -86,4 +94,10 @@ const PageA  = ({ state }) => {
         //TODO: do something.
     )
 }
+`
+
+const npmCode = `
+npx create-next-app my-app
+cd my-app
+npm run dev
 `

@@ -1,0 +1,111 @@
+---
+title: Getting Started
+date: 2022-07-29
+tags: ["Markdown"]
+description: "Getting started with mdx and Mantine compenents."
+---
+
+
+## Intro 👋
+
+Getting started with mdx and Mantine compenents.
+
+<Space h={'sm'} />
+
+## 📌 Headings 
+
+# H1 
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+
+<Space h={'sm'} />
+
+## 📌 Texts
+
+**bold text**
+
+*italicized text*
+
+> blockquote
+
+[link](http://localhost:3000)
+
+`code`
+
+**`strong text with code`**
+
+<Space h={'sm'} />
+
+## 📌 Lists
+
+### 📝 Ordered list
+
+1. First item
+2. Second item
+3. Third item
+
+### 📝 Unordered list
+
+- First item
+- Second item
+- Third item
+
+<Space h={'sm'} />
+
+## 📌 Image by Mantine
+
+<Image
+    src="/image.jpg"
+    height={420}
+    alt="No way!"
+/>
+
+<Space h={'md'} />
+
+## 📌 Code by Mantine Prism
+
+### 📝 Without tab
+
+<Prism language='tsx' colorScheme='dark'>
+    {`
+import type { NextPage } from 'next'
+const App: NextPage = () => {
+    return (
+         <div>
+             Hi mom!
+        </div>
+        )
+    }
+export default App
+    `}
+</Prism>
+
+### 📝 With tab
+
+<Prism.Tabs>
+    <Prism.Tab
+        colorScheme='dark'
+        label="App.tsx"
+        language="tsx"
+        icon={<TsIcon />}
+        >
+{`
+import type { NextPage } from 'next'
+const App: NextPage = () => {
+    return (
+         <div>
+             Hi mom!
+        </div>
+        )
+    }
+export default App
+`}
+    </Prism.Tab>
+</Prism.Tabs>
+
+### 📝 With multiple tabs
+
+<CodeBox />
