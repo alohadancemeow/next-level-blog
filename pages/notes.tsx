@@ -4,7 +4,7 @@ import Menu from 'components/Menu';
 import Layout from 'components/Layout'
 import PageLayout from 'components/PageLayout'
 
-import { Container, Box, Divider, Kbd, Space } from '@mantine/core'
+import { Container, Box, Divider, Kbd, Space, Blockquote } from '@mantine/core'
 
 type Props = {}
 
@@ -12,16 +12,16 @@ const notes = (props: Props) => {
     return (
         <Layout title='Notes'>
             <PageLayout>
-                <Menu title='alohadancemeow notes' />
+                <Menu title='Notes' />
                 <Space h={'lg'} />
-                <Container size={'lg'}>
+                <Container size={'sm'}>
                     <ul>
                         <li>
                             <Box sx={(theme) => ({
                                 [theme.fn.smallerThan('xs')]: { fontSize: '15px' },
                             })}
                             >
-                                <span> 🌤️ Switch Mode (Global) :</span>
+                                <span> 🌤️ Switch Mode (<em>Global</em>) :</span>
                                 <Divider
                                     size={'xs'}
                                     variant="solid"
@@ -53,7 +53,7 @@ const notes = (props: Props) => {
                                 [theme.fn.smallerThan('xs')]: { fontSize: '15px' },
                             })}
                             >
-                                <span>🪶 Search for posts (Only allowed in posts/tags page) :</span>
+                                <span>🪶 Search for posts (<em>Only allowed in posts/tags page</em>) :</span>
                                 <Divider
                                     size={'xs'}
                                     variant="solid"
@@ -67,19 +67,29 @@ const notes = (props: Props) => {
                                             <Box ml={5} mr={10}>Using</Box>
                                             <Kbd>⌘</Kbd>
                                             <span style={{ margin: '0 5px' }}>+</span>
-                                            <Kbd>D</Kbd>
+                                            <Kbd>S</Kbd>
                                             <span style={{ margin: '0 10px' }}>/</span>
                                             <Kbd>Ctrl</Kbd>
                                             <span style={{ margin: '0 5px' }}>+</span>
-                                            <Kbd>D</Kbd>
+                                            <Kbd>S</Kbd>
                                         </Box>
                                     }
                                 />
                             </Box>
                         </li>
                     </ul>
+
+                    <Space h={'xl'} />
+                    <Blockquote
+                        cite="– Forrest Gump"
+                        color="orange"
+                        sx={{ borderLeft: 'none' }}
+                    >
+                        Life is like an npm install – you never know what you are going to get.
+                    </Blockquote>
+                    <Space h={'lg'} />
+
                 </Container>
-                <Space h={'lg'} />
             </PageLayout>
         </Layout>
     )
