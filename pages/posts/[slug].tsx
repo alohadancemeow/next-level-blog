@@ -15,6 +15,7 @@ import CodeBox from 'components/Post/Code'
 import { CSSIcon, JsIcon, TsIcon, NpmIcon } from 'components/Post/SvgIcons'
 import Comments from "components/Comments";
 import Breadcrumbs from "components/Breadcrumbs";
+import ScrollToTop from "components/ScrollToTop";
 
 const myMdxComponents = {
     CodeBox,
@@ -122,6 +123,7 @@ const PostLayout = ({ post }: { post: Post }) => {
             >
                 <ContentTitle />
                 <ContentBody />
+                <ScrollToTop />
 
             </div>
         </Layout>
