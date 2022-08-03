@@ -15,6 +15,8 @@ import Header from "components/Header";
 import CodeBox from 'components/Post/Code'
 import { CSSIcon, JsIcon, TsIcon, NpmIcon } from 'components/Post/SvgIcons'
 
+import Comments from "components/Comments";
+
 const myMdxComponents = {
     CodeBox,
     Space,
@@ -85,6 +87,11 @@ const PostLayout = ({ post }: { post: Post }) => {
                     <article>
                         <MDXContent components={myMdxComponents} />
                     </article>
+
+                    <Space h={'xl'} />
+                    <Space h={'xl'} />
+                    <Comments />
+
                 </Grid.Col>
 
                 <Grid.Col md={4} lg={3}
@@ -109,6 +116,7 @@ const PostLayout = ({ post }: { post: Post }) => {
             >
                 <ContentTitle />
                 <ContentBody />
+
             </div>
         </Layout>
     );
