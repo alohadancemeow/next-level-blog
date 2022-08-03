@@ -23,10 +23,12 @@ const IconLogo = () => (
             style={{
                 display: 'inline-flex',
                 gap: '10px',
+                alignItems: 'center'
             }}
         >
-            <span>
-                <Icon />
+            <span style={{fontSize: '20px'}}>
+                {/* <Icon /> */}
+                ✌️
             </span>
             <Text style={{ fontWeight: 'bold' }}>
                 alohadancemeow
