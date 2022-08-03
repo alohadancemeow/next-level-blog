@@ -3,7 +3,6 @@ import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 import { useEffect, useState } from "react";
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import { ContentHeader } from 'lib/getTableOfContents'
 
 import { Prism } from '@mantine/prism';
 import { Space, Center, Grid, Image } from '@mantine/core';
@@ -14,6 +13,8 @@ import TableOfContents from 'components/TableOfContents'
 import Header from "components/Header";
 import CodeBox from 'components/Post/Code'
 import { CSSIcon, JsIcon, TsIcon, NpmIcon } from 'components/Post/SvgIcons'
+import Comments from "components/Comments";
+import Breadcrumbs from "components/Breadcrumbs";
 
 const myMdxComponents = {
     CodeBox,
@@ -24,6 +25,12 @@ const myMdxComponents = {
     JsIcon,
     TsIcon,
     NpmIcon,
+}
+
+type ContentHeader = {
+    label: string
+    link: string
+    order: number
 }
 
 const PostLayout = ({ post }: { post: Post }) => {
@@ -58,6 +65,8 @@ const PostLayout = ({ post }: { post: Post }) => {
             <Header title={post.title} />
             <Tags tags={post.tags} />
             <Space h="xs" />
+            <Breadcrumbs />
+            <Space h="xs" />
         </Center>
     )
 
@@ -72,7 +81,7 @@ const PostLayout = ({ post }: { post: Post }) => {
             <Grid gutter={50}>
                 <Grid.Col lg={3}
                     sx={(theme) => ({
-                        [theme.fn.smallerThan('md')]: { display: 'none' },
+                        [theme.fn.smallerThan('lg')]: { display: 'none' },
                     })}
                 />
 
@@ -85,6 +94,10 @@ const PostLayout = ({ post }: { post: Post }) => {
                     <article>
                         <MDXContent components={myMdxComponents} />
                     </article>
+                    <Space h={'xl'} />
+                    <Space h={'xl'} />
+                    <Comments />
+
                 </Grid.Col>
 
                 <Grid.Col md={4} lg={3}
@@ -109,6 +122,7 @@ const PostLayout = ({ post }: { post: Post }) => {
             >
                 <ContentTitle />
                 <ContentBody />
+
             </div>
         </Layout>
     );

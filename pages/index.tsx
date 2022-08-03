@@ -2,11 +2,11 @@ import type { NextPage } from 'next'
 import NextImage from 'next/image'
 import Link from 'next/link';
 import { Container, Text, UnstyledButton, Divider, Grid, Space, Stack, Title, Box, Center, Kbd, useMantineColorScheme } from '@mantine/core';
-import { IconBrightnessHalf } from '@tabler/icons';
+
 
 const Home: NextPage = () => {
 
-  const { toggleColorScheme } = useMantineColorScheme();
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
     <Container>
@@ -84,7 +84,9 @@ const Home: NextPage = () => {
                 }}
                 onClick={() => toggleColorScheme()}
               >
-                <IconBrightnessHalf size={30} />
+                <span style={{ fontSize: '20px' }}>
+                  {colorScheme === 'dark' ? '🌙' : '🌤️'}
+                </span>
                 <Box ml={5} mr={10}>Switch Mode</Box>
                 <Kbd>⌘</Kbd>
                 <span style={{ margin: '0 5px' }}>+</span>

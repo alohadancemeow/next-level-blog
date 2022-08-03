@@ -15,7 +15,7 @@ const Layout = ({ children, title }: Props) => {
     return (
         <div>
             <Head>
-                <title>{`alohadancemeow | ${title}`}</title>
+                <title>{`${title} | alohadancemeow`}</title>
             </Head>
             <div
                 style={{

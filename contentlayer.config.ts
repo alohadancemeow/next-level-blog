@@ -1,6 +1,5 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 import remarkGfm from 'remark-gfm'
-import rehypeHightlight from 'rehype-highlight'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -52,14 +51,12 @@ export default makeSource({
     mdx: {
         remarkPlugins: [remarkGfm, remarkMath],
         rehypePlugins: [
-            // rehypeHightlight,
             rehypeKatex,
             rehypeCodeTitles,
             rehypeHighlight,
             rehypeSlug,
-            // rehypePrism,
             rehypeAutolinkHeadings,
-           
+            // rehypePrism,        
         ]
     }
 })

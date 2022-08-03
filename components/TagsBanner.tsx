@@ -23,8 +23,8 @@ const Tags = ({ ...tags }: { [key: string]: number }) => {
                             fontWeight: '500',
                         }}
                         sx={(theme) => ({
-                            [theme.fn.largerThan('lg')]: { fontSize: '18px' },
-                            [theme.fn.smallerThan('lg')]: { fontSize: '16px' },
+                            [theme.fn.largerThan('xl')]: { fontSize: '18px' },
+                            [theme.fn.smallerThan('xl')]: { fontSize: '16px' },
                             [theme.fn.smallerThan('md')]: { fontSize: '15px' },
                             color: theme.colors.gray[6],
 
