@@ -1,9 +1,11 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { MantineProvider, ColorSchemeProvider, ColorScheme, Container } from '@mantine/core';
+import { MantineProvider, ColorSchemeProvider, ColorScheme, Space } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import GlobalStyles from 'styles/GlobalStyles';
+import { useState } from 'react';
+import Player from 'components/Player';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -18,6 +20,9 @@ export default function App(props: AppProps) {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 
   useHotkeys([['mod + D', () => toggleColorScheme()]]);
+
+  const [opened, setOpened] = useState<boolean>(false);
+  useHotkeys([['mod + shift + L', () => setOpened((o) => !o)]]);
 
   return (
     <>
@@ -55,6 +60,7 @@ export default function App(props: AppProps) {
         >
           <GlobalStyles />
           <Component {...pageProps} />
+          <Player opened={opened} setOpened={setOpened} />
         </MantineProvider>
       </ColorSchemeProvider>
     </>
