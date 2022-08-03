@@ -3,7 +3,6 @@ import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 import { useEffect, useState } from "react";
 import { useMDXComponent } from 'next-contentlayer/hooks'
-import { ContentHeader } from 'lib/getTableOfContents'
 
 import { Prism } from '@mantine/prism';
 import { Space, Center, Grid, Image } from '@mantine/core';
@@ -26,6 +25,12 @@ const myMdxComponents = {
     JsIcon,
     TsIcon,
     NpmIcon,
+}
+
+type ContentHeader = {
+    label: string
+    link: string
+    order: number
 }
 
 const PostLayout = ({ post }: { post: Post }) => {

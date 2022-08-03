@@ -76,8 +76,21 @@ const GlobalStyles = () => {
                         theme.colorScheme === 'light'
                             ? theme.colors.dark[2]
                             : theme.colors[theme.primaryColor][3],
-                }
-
+                },
+                'h2,h3': {
+                    a: {
+                        ':before': {
+                            content: '"#"',
+                            float: 'left',
+                            paddingRight: '8px',
+                            marginLeft: '-20px',
+                            visibility: 'hidden',
+                        },
+                    },
+                    '&:hover a:before': {
+                        visibility: 'visible'
+                    }
+                },
             })}
         />
     );
