@@ -130,7 +130,7 @@ const PostLayout = ({ post }: { post: Post }) => {
                     description: `${post.description}`,
                     images: [
                         {
-                            url: '/assets/site/search-light.png',
+                            url: '/assets/site/home-light.png',
                             alt: 'posts page',
                             type: 'image/png',
                         },

@@ -35,7 +35,7 @@ const TagsLayout = ({ posts, matchedPosts }: Props) => {
                     description: `Posts about #${query.slug}`,
                     images: [
                         {
-                            url: '/assets/site/search-light.png',
+                            url: '/assets/site/home-light.png',
                             alt: 'tag page',
                             type: 'image/png',
                         },

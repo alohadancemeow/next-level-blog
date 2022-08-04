@@ -37,10 +37,10 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
                 openGraph={{
                     url: `${siteMetadata.siteAddess}/posts`,
                     title: `Posts | ${siteMetadata.title}`,
-                    description: `All posts from ${siteMetadata.title}`,
+                    description: `All posts from ${siteMetadata.title} blog`,
                     images: [
                         {
-                            url: '/assets/site/search-light.png',
+                            url: '/assets/site/home-light.png',
                             alt: 'posts page',
                             type: 'image/png',
                         },

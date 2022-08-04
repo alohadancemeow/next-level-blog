@@ -15,7 +15,7 @@ const Notes = (props: Props) => {
                 openGraph={{
                     url: `${siteMetadata.siteAddess}/notes`,
                     title: `Notes | ${siteMetadata.title}`,
-                    description: `ALl my notes are here ✌️`,
+                    description: `I put all my notes, shortcuts, and quotes in here. ✌️`,
                     images: [
                         {
                             url: '/assets/site/notes-light.png',

@@ -3,7 +3,7 @@
 export const siteMetadata = {
     homeTitle: 'Personal Home',
     title: "alohadancemeow",
-    description: "Hi there! 👋 I'm Hai [はい] aka : alohadancemeow ✌️",
+    description: "alohadancemeow | A blog for documenting my learning, and sharing my knowledge. ✌️",
     siteAddess: "https://exampleblog.com",
     author: "alohadancemeow",
     twitter: '@3rd_rabbitGo'
