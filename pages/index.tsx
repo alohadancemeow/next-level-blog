@@ -15,14 +15,14 @@ const Home: NextPage = () => {
           title: `${siteMetadata.title}`,
           description: `${siteMetadata.description}`,
           images: [
-            // {
-            //   url: '/assets/site/home-light.svg',
-            //   width: 800,
-            //   height: 600,
-            //   alt: 'personal home',
-            //   type: 'image/svg',
-            // },
-            { url: '/assets/site/home-light.svg' },
+            {
+              url: '/assets/site/home-light.svg',
+              width: 800,
+              height: 600,
+              alt: 'personal home',
+              type: 'image/svg',
+            },
+            // { url: '/assets/site/home-light.svg' },
           ],
           site_name: `${siteMetadata.title}`,
         }}

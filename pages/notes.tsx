@@ -17,14 +17,14 @@ const Notes = (props: Props) => {
                     title: `Notes | ${siteMetadata.title}`,
                     description: `ALl my notes are here ✌️`,
                     images: [
-                        // {
-                        //     url: '/assets/site/notes-light.png',
-                        //     width: 800,
-                        //     height: 600,
-                        //     alt: 'notes page',
-                        //     type: 'image/png',
-                        // },
-                        { url: '/assets/site/notes-light.svg' },
+                        {
+                            url: '/assets/site/notes-light.svg',
+                            width: 800,
+                            height: 600,
+                            alt: 'notes page',
+                            type: 'image/svg',
+                        },
+                        // { url: '/assets/site/notes-light.svg' },
                     ],
                     site_name: `${siteMetadata.title}`,
                 }}
