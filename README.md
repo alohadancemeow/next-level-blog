@@ -36,4 +36,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 - [alohadancemeow](https://next-level-blog.vercel.app/) v.1.0 :v:
 
-![image](/public/assets/site/post-light.png)
+![image](/public/assets/site/home-light.jpg)
+*- Image for og:image (SEO)*
