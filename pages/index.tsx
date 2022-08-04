@@ -1,106 +1,47 @@
 import type { NextPage } from 'next'
-import NextImage from 'next/image'
-import Link from 'next/link';
-import { Container, Text, UnstyledButton, Divider, Grid, Space, Stack, Title, Box, Center, Kbd, useMantineColorScheme } from '@mantine/core';
-
+import HomePage from 'components/HomePage';
+import { NextSeo } from 'next-seo';
+import { siteMetadata } from 'site/siteMatedata';
 
 const Home: NextPage = () => {
-
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-
   return (
-    <Container>
-      <Center
-        style={{
-          width: '100%',
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'flex-start',
-          alignItems: 'center'
-
-        }} >
-        <Stack style={{ margin: '0 auto', paddingLeft: '10px' }}>
-          <Box>
-            <NextImage
-              layout='fixed'
-              src="/image3.gif"
-              alt="image"
-              width={200}
-              height={200}
-
-              style={{
-                borderRadius: '100px',
-              }}
-            />
-          </Box>
-
-          <Box>
-            <Title order={1}>Personal Home</Title>
-            <Space h="xs" />
-            <Text color="gray">Hi there! 👋 I&apos;m Hai [はい] aka : alohadancemeow ✌️</Text>
-          </Box>
-
-          <Divider my="xs" variant="solid" />
-          <Space h="sm" />
-
-          <Box style={{ width: '70%' }}>
-            <Grid grow>
-              <Grid.Col span={6}>
-                <Link href="/" passHref>
-                  <UnstyledButton component='a'>📌 About Me</UnstyledButton>
-                </Link>
-              </Grid.Col>
-              <Grid.Col span={6}>
-                <Link href="/posts" passHref>
-                  <UnstyledButton component='a'>📖 Posts</UnstyledButton>
-                </Link>
-              </Grid.Col>
-              <Grid.Col span={6}>
-                <Link href="/" passHref>
-                  <UnstyledButton component='a'>📚 Projects</UnstyledButton>
-                </Link>
-              </Grid.Col>
-              <Grid.Col span={6}>
-                <Link href="/notes" passHref>
-                  <UnstyledButton component='a'>📝 Notes</UnstyledButton>
-                </Link>
-              </Grid.Col>
-            </Grid>
-          </Box>
-
-          <Space h="sm" />
-
-          <Divider
-            my="lg"
-            variant="solid"
-            labelPosition="left"
-            label={
-              <UnstyledButton
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  // fontWeight: '500'
-                }}
-                onClick={() => toggleColorScheme()}
-              >
-                <span style={{ fontSize: '20px' }}>
-                  {colorScheme === 'dark' ? '🌙' : '🌤️'}
-                </span>
-                <Box ml={5} mr={10}>Switch Mode</Box>
-                <Kbd>⌘</Kbd>
-                <span style={{ margin: '0 5px' }}>+</span>
-                <Kbd>D</Kbd>
-                <span style={{ margin: '0 10px' }}>/</span>
-                <Kbd>Ctrl</Kbd>
-                <span style={{ margin: '0 5px' }}>+</span>
-                <Kbd>D</Kbd>
-              </UnstyledButton>
-            }
-          />
-        </Stack>
-      </Center>
-    </Container>
+    <>
+      <NextSeo
+        title={`${siteMetadata.homeTitle} | ${siteMetadata.title}`}
+        description={siteMetadata.description}
+        canonical={siteMetadata.siteAddess}
+        openGraph={{
+          url: `${siteMetadata.siteAddess}`,
+          title: `${siteMetadata.title}`,
+          description: `${siteMetadata.description}`,
+          images: [
+            {
+              url: '/assets/site/home-light.png',
+              width: 800,
+              height: 600,
+              alt: 'personal home',
+              type: 'image/png',
+            },
+            // {
+            //   url: 'https://www.example.ie/og-image-02.jpg',
+            //   width: 900,
+            //   height: 800,
+            //   alt: 'Og Image Alt Second',
+            //   type: 'image/jpeg',
+            // },
+            // { url: 'https://www.example.ie/og-image-03.jpg' },
+            // { url: 'https://www.example.ie/og-image-04.jpg' },
+          ],
+          site_name: `${siteMetadata.title}`,
+        }}
+        twitter={{
+          handle: `${siteMetadata.twitter}`,
+          site: `${siteMetadata.twitter}`,
+          cardType: 'summary_large_image',
+        }}
+      />
+      <HomePage />
+    </>
   )
 }
 

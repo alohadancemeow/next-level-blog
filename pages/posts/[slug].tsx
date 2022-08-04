@@ -17,6 +17,10 @@ import Comments from "components/Comments";
 import Breadcrumbs from "components/Breadcrumbs";
 import ScrollToTop from "components/ScrollToTop";
 
+import { NextSeo } from 'next-seo';
+import { siteMetadata } from 'site/siteMatedata';
+import { useRouter } from "next/router";
+
 const myMdxComponents = {
     CodeBox,
     Space,
@@ -35,6 +39,7 @@ type ContentHeader = {
 }
 
 const PostLayout = ({ post }: { post: Post }) => {
+    const { asPath } = useRouter()
 
     const MDXContent = useMDXComponent(post.body.code)
 
@@ -114,19 +119,48 @@ const PostLayout = ({ post }: { post: Post }) => {
 
 
     return (
-        <Layout title={post.title}>
-            <div
-                style={{
-                    height: '100%',
-                    padding: '0'
+        <>
+            <NextSeo
+                title={`${post.title} | ${siteMetadata.title}`}
+                description={post.description}
+                canonical={siteMetadata.siteAddess}
+                openGraph={{
+                    url: `${siteMetadata.siteAddess}${asPath}`,
+                    title: `${post.title} | ${siteMetadata.title}`,
+                    description: `${post.description}`,
+                    images: [
+                        // {
+                        //     url: '/assets/site/home-light.png',
+                        //     width: 800,
+                        //     height: 600,
+                        //     alt: 'personal home',
+                        //     type: 'image/png',
+                        // },
+                        { url: 'https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' },
+                    ],
+                    site_name: `${siteMetadata.title}`,
                 }}
-            >
-                <ContentTitle />
-                <ContentBody />
-                <ScrollToTop />
+                twitter={{
+                    handle: `${siteMetadata.twitter}`,
+                    site: `${siteMetadata.twitter}`,
+                    cardType: 'summary_large_image',
+                }}
+            />
 
-            </div>
-        </Layout>
+            <Layout title={post.title}>
+                <div
+                    style={{
+                        height: '100%',
+                        padding: '0'
+                    }}
+                >
+                    <ContentTitle />
+                    <ContentBody />
+                    <ScrollToTop />
+
+                </div>
+            </Layout>
+        </>
     );
 };
 

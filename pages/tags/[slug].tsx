@@ -11,6 +11,9 @@ import PageLayout from 'components/PageLayout'
 import Spotlight from 'components/Spotlight'
 import SearchPost from 'components/SearchPost'
 
+import { NextSeo } from 'next-seo';
+import { siteMetadata } from 'site/siteMatedata';
+
 type Props = {
     posts: Post[],
     matchedPosts: Post[]
@@ -19,26 +22,56 @@ type Props = {
 const TagsLayout = ({ posts, matchedPosts }: Props) => {
 
     const { query, asPath } = useRouter()
+    console.log(query);
+
 
     return (
-        <Spotlight data={posts}>
-            <Layout title={asPath}>
-                <PageLayout>
-                    <Menu title={`#${query.slug}`} />
-                    <SearchPost />
-                    <Space h={'xs'} />
+        <>
+            <NextSeo
+                title={`Tags: ${query.slug} | ${siteMetadata.title}`}
+                description={`Posts about ${query.slug}`}
+                canonical={siteMetadata.siteAddess}
+                openGraph={{
+                    url: `${siteMetadata.siteAddess}${asPath}`,
+                    title: `${query.slug} | ${siteMetadata.title}`,
+                    description: `Posts about ${query.slug}`,
+                    images: [
+                        // {
+                        //     url: '/assets/site/home-light.png',
+                        //     width: 800,
+                        //     height: 600,
+                        //     alt: 'personal home',
+                        //     type: 'image/png',
+                        // },
+                        { url: 'https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' },
+                    ],
+                    site_name: `${siteMetadata.title}`,
+                }}
+                twitter={{
+                    handle: `${siteMetadata.twitter}`,
+                    site: `${siteMetadata.twitter}`,
+                    cardType: 'summary_large_image',
+                }}
+            />
+            <Spotlight data={posts}>
+                <Layout title={`Tags: ${query.slug}`}>
+                    <PageLayout>
+                        <Menu title={`#${query.slug}`} />
+                        <SearchPost />
+                        <Space h={'xs'} />
 
-                    <Grid gutter="lg">
-                        {matchedPosts.map((item, idx) => (
-                            <Grid.Col key={idx} xs={6} md={4}>
-                                <PostCard post={item} />
-                            </Grid.Col>
-                        ))}
-                    </Grid>
+                        <Grid gutter="lg">
+                            {matchedPosts.map((item, idx) => (
+                                <Grid.Col key={idx} xs={6} md={4}>
+                                    <PostCard post={item} />
+                                </Grid.Col>
+                            ))}
+                        </Grid>
 
-                </PageLayout>
-            </Layout>
-        </Spotlight>
+                    </PageLayout>
+                </Layout>
+            </Spotlight>
+        </>
     );
 };
 
