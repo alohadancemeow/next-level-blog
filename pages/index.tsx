@@ -16,11 +16,11 @@ const Home: NextPage = () => {
           description: `${siteMetadata.description}`,
           images: [
             {
-              url: '/assets/site/home-light.jpg',
+              url: '/assets/site/home-light.png',
               width: 800,
               height: 600,
               alt: 'personal home',
-              type: 'image/jpg',
+              type: 'image/png',
             },
             // { url: '/assets/site/home-light.svg' },
           ],
