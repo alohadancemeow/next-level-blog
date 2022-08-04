@@ -33,8 +33,8 @@ const TagsLayout = ({ posts, matchedPosts }: Props) => {
                 canonical={siteMetadata.siteAddess}
                 openGraph={{
                     url: `${siteMetadata.siteAddess}${asPath}`,
-                    title: `${query.slug} | ${siteMetadata.title}`,
-                    description: `Posts about ${query.slug}`,
+                    title: `#${query.slug} | ${siteMetadata.title}`,
+                    description: `Posts about #${query.slug}`,
                     images: [
                         // {
                         //     url: '/assets/site/home-light.png',
@@ -43,7 +43,8 @@ const TagsLayout = ({ posts, matchedPosts }: Props) => {
                         //     alt: 'personal home',
                         //     type: 'image/png',
                         // },
-                        { url: 'https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' },
+                        // { url: 'https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' },
+                        { url: '/assets/site/tag-light.svg' },
                     ],
                     site_name: `${siteMetadata.title}`,
                 }}

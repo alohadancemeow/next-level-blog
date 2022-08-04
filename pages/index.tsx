@@ -15,22 +15,14 @@ const Home: NextPage = () => {
           title: `${siteMetadata.title}`,
           description: `${siteMetadata.description}`,
           images: [
-            {
-              url: '/assets/site/home-light.png',
-              width: 800,
-              height: 600,
-              alt: 'personal home',
-              type: 'image/png',
-            },
             // {
-            //   url: 'https://www.example.ie/og-image-02.jpg',
-            //   width: 900,
-            //   height: 800,
-            //   alt: 'Og Image Alt Second',
-            //   type: 'image/jpeg',
+            //   url: '/assets/site/home-light.svg',
+            //   width: 800,
+            //   height: 600,
+            //   alt: 'personal home',
+            //   type: 'image/svg',
             // },
-            // { url: 'https://www.example.ie/og-image-03.jpg' },
-            // { url: 'https://www.example.ie/og-image-04.jpg' },
+            { url: '/assets/site/home-light.svg' },
           ],
           site_name: `${siteMetadata.title}`,
         }}
