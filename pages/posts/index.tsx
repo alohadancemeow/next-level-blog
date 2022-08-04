@@ -40,11 +40,11 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
                     description: `All posts from ${siteMetadata.title}`,
                     images: [
                         {
-                            url: '/assets/site/posts-light.svg',
+                            url: '/assets/site/posts-light.jpg',
                             width: 800,
                             height: 600,
                             alt: 'posts page',
-                            type: 'image/svg',
+                            type: 'image/jpg',
                         },
                         // { url: 'https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' },
                     ],
