@@ -16,10 +16,6 @@ export const Player: React.FC<Props> = ({ opened, setOpened }) => {
             name: 'Who Really Knows',
             src: '/assets/who-really-knows.mp3'
         },
-        {
-            name: 'Will You Miss Me?',
-            src: '/assets/will-you-miss-me.mp3'
-        },
     ];
 
     const [trackIndex, setTrackIndex] = useState(0);
@@ -45,10 +41,11 @@ export const Player: React.FC<Props> = ({ opened, setOpened }) => {
                             borderRadius: "5px",
                             backgroundColor: 'transparent',
                             margin: '0 auto',
-                            width: '60%'
+                            width: '60%',
                         }}
                         autoPlay
-                        // layout="stacked-reverse"
+                        loop
+                        // layout="horizontal"
                         src={musicTracks[trackIndex].src}
                         // onPlay={(e) => console.log("onPlay")}
                         showSkipControls={true}
