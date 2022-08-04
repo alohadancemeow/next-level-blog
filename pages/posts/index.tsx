@@ -1,5 +1,5 @@
-import { GetStaticProps, NextPage } from 'next'
 import React from 'react'
+import { GetStaticProps, NextPage } from 'next'
 import { compareDesc } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 
@@ -10,9 +10,11 @@ import Menu from 'components/Menu'
 import TagsBanner from 'components/TagsBanner'
 import Layout from 'components/Layout'
 import PageLayout from 'components/PageLayout'
-
 import Spotlight from 'components/Spotlight';
 import SearchPost from 'components/SearchPost'
+
+import { NextSeo } from 'next-seo';
+import { siteMetadata } from 'site/siteMatedata'
 
 type Tags = {
     [key: string]: number
@@ -27,26 +29,53 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
     // console.log(tags);
 
     return (
-        <Spotlight data={posts}>
-            <Layout title='Posts'>
-                <PageLayout>
-                    <Menu title='alohadancemeow blog' />
-                    <SearchPost />
-                    <TagsBanner {...tags} />
+        <>
+            <NextSeo
+                title={`Posts | ${siteMetadata.title}`}
+                description={`All posts from ${siteMetadata.title}`}
+                canonical={siteMetadata.siteAddess}
+                openGraph={{
+                    url: `${siteMetadata.siteAddess}/posts`,
+                    title: `Posts | ${siteMetadata.title}`,
+                    description: `All posts from ${siteMetadata.title} blog`,
+                    images: [
+                        {
+                            url: '/assets/site/home-light.png',
+                            alt: 'posts page',
+                            type: 'image/png',
+                        },
+                        // { url: 'https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' },
+                    ],
+                    site_name: `${siteMetadata.title}`,
+                }}
+                twitter={{
+                    handle: `${siteMetadata.twitter}`,
+                    site: `${siteMetadata.twitter}`,
+                    cardType: 'summary_large_image',
+                }}
+            />
 
-                    <Space h="xs" />
+            <Spotlight data={posts}>
+                <Layout title='Posts'>
+                    <PageLayout>
+                        <Menu title='alohadancemeow blog' />
+                        <SearchPost />
+                        <TagsBanner {...tags} />
 
-                    <Grid gutter="lg">
-                        {posts.map((item, idx) => (
-                            <Grid.Col key={idx} xs={6} md={4}>
-                                <PostCard post={item} />
-                            </Grid.Col>
-                        ))}
-                    </Grid>
+                        <Space h="xs" />
 
-                </PageLayout>
-            </Layout>
-        </Spotlight>
+                        <Grid gutter="lg">
+                            {posts.map((item, idx) => (
+                                <Grid.Col key={idx} xs={6} md={4}>
+                                    <PostCard post={item} />
+                                </Grid.Col>
+                            ))}
+                        </Grid>
+
+                    </PageLayout>
+                </Layout>
+            </Spotlight>
+        </>
     )
 }
 
