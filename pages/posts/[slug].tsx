@@ -130,9 +130,7 @@ const PostLayout = ({ post }: { post: Post }) => {
                     description: `${post.description}`,
                     images: [
                         {
-                            url: '/assets/site/post-light.png',
-                            // width: 800,
-                            // height: 600,
+                            url: '/assets/site/search-light.png',
                             alt: 'posts page',
                             type: 'image/png',
                         },

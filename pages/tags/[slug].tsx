@@ -22,8 +22,6 @@ type Props = {
 const TagsLayout = ({ posts, matchedPosts }: Props) => {
 
     const { query, asPath } = useRouter()
-    console.log(query);
-
 
     return (
         <>
@@ -37,9 +35,7 @@ const TagsLayout = ({ posts, matchedPosts }: Props) => {
                     description: `Posts about #${query.slug}`,
                     images: [
                         {
-                            url: '/assets/site/tag-light.png',
-                            // width: 800,
-                            // height: 600,
+                            url: '/assets/site/search-light.png',
                             alt: 'tag page',
                             type: 'image/png',
                         },
