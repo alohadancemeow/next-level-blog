@@ -18,7 +18,7 @@ const Notes = (props: Props) => {
                     description: `ALl my notes are here ✌️`,
                     images: [
                         {
-                            url: '/assets/site/notes-light.png',
+                            url: '/assets/site/notes-dark.png',
                             width: 800,
                             height: 600,
                             alt: 'notes page',

@@ -16,7 +16,7 @@ const Home: NextPage = () => {
           description: `${siteMetadata.description}`,
           images: [
             {
-              url: '/assets/site/home-light.png',
+              url: '/assets/site/home-dark.png',
               width: 800,
               height: 600,
               alt: 'personal home',
