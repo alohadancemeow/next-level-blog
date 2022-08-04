@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         canonical={siteMetadata.siteAddess}
         openGraph={{
           url: `${siteMetadata.siteAddess}`,
-          title: `${siteMetadata.title}`,
+          title: `${siteMetadata.homeTitle} | ${siteMetadata.title}`,
           description: `${siteMetadata.description}`,
           images: [
             {
