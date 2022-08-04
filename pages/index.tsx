@@ -37,7 +37,7 @@ const Home: NextPage = () => {
           <Box>
             <Title order={1}>Personal Home</Title>
             <Space h="xs" />
-            <Text color="gray">Hi there! 👋 I'm Hai [はい] aka : alohadancemeow ✌️</Text>
+            <Text color="gray">Hi there! 👋 I&apos;m Hai [はい] aka : alohadancemeow ✌️</Text>
           </Box>
 
           <Divider my="xs" variant="solid" />
