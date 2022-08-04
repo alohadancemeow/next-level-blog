@@ -1,9 +1,11 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { MantineProvider, ColorSchemeProvider, ColorScheme, Container } from '@mantine/core';
+import { MantineProvider, ColorSchemeProvider, ColorScheme, Space } from '@mantine/core';
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import GlobalStyles from 'styles/GlobalStyles';
+import { useState } from 'react';
+import Player from 'components/Player';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -19,11 +21,15 @@ export default function App(props: AppProps) {
 
   useHotkeys([['mod + D', () => toggleColorScheme()]]);
 
+  const [opened, setOpened] = useState<boolean>(false);
+  useHotkeys([['mod + shift + L', () => setOpened((o) => !o)]]);
+
   return (
     <>
       <Head>
         <title>Personal Home</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <link rel="icon" href="/astonished.svg" />
       </Head>
 
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
@@ -55,6 +61,7 @@ export default function App(props: AppProps) {
         >
           <GlobalStyles />
           <Component {...pageProps} />
+          <Player opened={opened} setOpened={setOpened} />
         </MantineProvider>
       </ColorSchemeProvider>
     </>

@@ -77,6 +77,40 @@ const notes = (props: Props) => {
                                 />
                             </Box>
                         </li>
+                        <Space h={'lg'} />
+                        <li>
+                            <Box sx={(theme) => ({
+                                [theme.fn.smallerThan('xs')]: { fontSize: '15px' },
+                            })}
+                            >
+                                <span>🎵 Play/Stop the music (<em>Global</em>) :</span>
+                                <Divider
+                                    size={'xs'}
+                                    variant="solid"
+                                    labelPosition={'left'}
+                                    label={
+                                        <Box style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center'
+                                        }}>
+                                            <Box ml={5} mr={10}>Using</Box>
+                                            <Kbd>⌘</Kbd>
+                                            <span style={{ margin: '0 5px' }}>+</span>
+                                            <Kbd>Shift</Kbd>
+                                            <span style={{ margin: '0 5px' }}>+</span>
+                                            <Kbd>L</Kbd>
+                                            <span style={{ margin: '0 10px' }}>/</span>
+                                            <Kbd>Ctrl</Kbd>
+                                            <span style={{ margin: '0 5px' }}>+</span>
+                                            <Kbd>Shift</Kbd>
+                                            <span style={{ margin: '0 5px' }}>+</span>
+                                            <Kbd>L</Kbd>
+                                        </Box>
+                                    }
+                                />
+                            </Box>
+                        </li>
                     </ul>
 
                     <Space h={'xl'} />

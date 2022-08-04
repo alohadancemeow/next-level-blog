@@ -30,6 +30,7 @@
     "date-fns": "^2.28.0",
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.2",
+    "react-h5-audio-player": "^3.8.4",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-code-titles": "^1.1.0",
     "rehype-highlight": "^5.0.2",
