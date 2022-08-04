@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## :wave: Hi there !
 
-**alohadancemoew** : A blog for documenting my learning, and sharing my knowlage. :v:
+**alohadancemoew** : A blog for documenting my learning, and sharing my knowledge. :v:
 
 - Start developing:
 
@@ -34,7 +34,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## :frog: Live site:
 
-- [alohadancemeow](https://next-level-blog.vercel.app/) v.1.0 :v:
+- [alohadancemeow](https://next-level-blog.vercel.app/) :v:
 
 ![image](/public/assets/site/home-light.jpg)
 *- Image for og:image (SEO)*
