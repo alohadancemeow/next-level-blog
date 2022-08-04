@@ -17,8 +17,8 @@ const Home: NextPage = () => {
           images: [
             {
               url: '/assets/site/home-dark.png',
-              width: 800,
-              height: 600,
+              // width: 800,
+              // height: 600,
               alt: 'personal home',
               type: 'image/png',
             },

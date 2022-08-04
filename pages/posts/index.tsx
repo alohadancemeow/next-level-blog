@@ -41,8 +41,8 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
                     images: [
                         {
                             url: '/assets/site/posts-dark.png',
-                            width: 800,
-                            height: 600,
+                            // width: 800,
+                            // height: 600,
                             alt: 'posts page',
                             type: 'image/png',
                         },

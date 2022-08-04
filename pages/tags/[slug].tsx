@@ -38,8 +38,8 @@ const TagsLayout = ({ posts, matchedPosts }: Props) => {
                     images: [
                         {
                             url: '/assets/site/tag-dark.png',
-                            width: 800,
-                            height: 600,
+                            // width: 800,
+                            // height: 600,
                             alt: 'tag page',
                             type: 'image/png',
                         },

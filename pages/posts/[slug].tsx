@@ -131,8 +131,8 @@ const PostLayout = ({ post }: { post: Post }) => {
                     images: [
                         {
                             url: '/assets/site/post-dark.png',
-                            width: 800,
-                            height: 600,
+                            // width: 800,
+                            // height: 600,
                             alt: 'posts page',
                             type: 'image/png',
                         },

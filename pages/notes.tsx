@@ -19,8 +19,8 @@ const Notes = (props: Props) => {
                     images: [
                         {
                             url: '/assets/site/notes-dark.png',
-                            width: 800,
-                            height: 600,
+                            // width: 800,
+                            // height: 600,
                             alt: 'notes page',
                             type: 'image/png',
                         },
