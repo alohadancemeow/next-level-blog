@@ -18,11 +18,11 @@ const Notes = (props: Props) => {
                     description: `ALl my notes are here ✌️`,
                     images: [
                         {
-                            url: '/assets/site/notes-light.jpg',
+                            url: '/assets/site/notes-light.png',
                             width: 800,
                             height: 600,
                             alt: 'notes page',
-                            type: 'image/jpg',
+                            type: 'image/png',
                         },
                         // { url: '/assets/site/notes-light.svg' },
                     ],
