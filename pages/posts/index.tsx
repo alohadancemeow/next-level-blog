@@ -25,7 +25,7 @@ type Props = {
     tags: Tags
 }
 
-const PostsPage: NextPage<Props> = React.memo(({ posts, tags }) => {
+const PostsPage: NextPage<Props> = ({ posts, tags }) => {
 
     return (
         <>
@@ -54,29 +54,33 @@ const PostsPage: NextPage<Props> = React.memo(({ posts, tags }) => {
                 }}
             />
 
-            <Spotlight data={posts}>
-                <Layout title='Posts'>
-                    <PageLayout>
-                        <Menu title='alohadancemeow blog' />
-                        <SearchPost />
-                        <TagsBanner {...tags} />
-
-                        <Space h="xs" />
-
-                        <Grid gutter="lg">
-                            {posts.map((item, idx) => (
-                                <Grid.Col key={idx} xs={6} md={4}>
-                                    <PostCard post={item} />
-                                </Grid.Col>
-                            ))}
-                        </Grid>
-
-                    </PageLayout>
-                </Layout>
-            </Spotlight>
+            <Contents posts={posts} tags={tags} />
         </>
     )
-})
+}
+
+const Contents = React.memo(({ posts, tags }: Props) => (
+    <Spotlight data={posts}>
+        <Layout title='Posts'>
+            <PageLayout>
+                <Menu title='alohadancemeow blog' />
+                <SearchPost />
+                <TagsBanner {...tags} />
+
+                <Space h="xs" />
+
+                <Grid gutter="lg">
+                    {posts.map((item, idx) => (
+                        <Grid.Col key={idx} xs={6} md={4}>
+                            <PostCard post={item} />
+                        </Grid.Col>
+                    ))}
+                </Grid>
+
+            </PageLayout>
+        </Layout>
+    </Spotlight>
+))
 
 export default PostsPage
 

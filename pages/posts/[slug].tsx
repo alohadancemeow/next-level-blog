@@ -1,5 +1,5 @@
 import React from "react";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 import { useEffect, useState } from "react";
@@ -39,85 +39,8 @@ type ContentHeader = {
     order: number
 }
 
-const PostLayout = React.memo(({ post }: { post: Post }) => {
+const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
     const { asPath } = useRouter()
-
-    const MDXContent = useMDXComponent(post.body.code)
-
-    // new way to get element's headings
-    const [headings, setHeadings] = useState<ContentHeader[]>()
-
-    useEffect(() => {
-        const elements = Array.from(document.querySelectorAll('h2,h3'))
-            .filter(el => el.id)
-            .map(el => ({
-                label: el.textContent || '',
-                link: el.id,
-                order: Number(el.tagName.substring(1)) - 1
-            }))
-        setHeadings(elements)
-    }, [])
-
-
-    // # Title of contents
-    const ContentTitle = () => (
-        <Center style={{
-            display: "flex",
-            flexDirection: 'column',
-            gap: 5,
-        }}>
-            <time dateTime={post.date}>
-                {format(parseISO(post.date), "LLLL d, yyyy")}
-            </time>
-            <Header title={post.title} />
-            <Tags tags={post.tags} />
-            <Space h="xs" />
-            <Breadcrumbs />
-            <Space h="xs" />
-        </Center>
-    )
-
-    // Body of contents
-    const ContentBody = () => (
-        <div
-            style={{
-                width: '90%',
-                margin: '0 auto',
-            }}
-        >
-            <Grid gutter={50}>
-                <Grid.Col lg={3}
-                    sx={(theme) => ({
-                        [theme.fn.smallerThan('lg')]: { display: 'none' },
-                    })}
-                />
-
-                <Grid.Col md={8} lg={6}
-                    sx={(theme) => ({
-                        [theme.fn.smallerThan('md')]: { padding: '0 6rem' },
-                        [theme.fn.smallerThan('xs')]: { padding: '0 2.5rem', fontSize: '15px' },
-                    })}
-                >
-                    <article>
-                        <MDXContent components={myMdxComponents} />
-                    </article>
-                    <Space h={'xl'} />
-                    <Space h={'xl'} />
-                    <Comments />
-
-                </Grid.Col>
-
-                <Grid.Col md={4} lg={3}
-                    sx={(theme) => ({
-                        [theme.fn.smallerThan('md')]: { display: 'none' },
-                    })}
-                >
-                    {headings && <TableOfContents links={headings} />}
-                </Grid.Col>
-            </Grid>
-        </div>
-    )
-
 
     return (
         <>
@@ -153,17 +76,102 @@ const PostLayout = React.memo(({ post }: { post: Post }) => {
                         padding: '0'
                     }}
                 >
-                    <ContentTitle />
-                    <ContentBody />
+                    <ContentTitle {...post} />
+                    <ContentBody {...post} />
                     <ScrollToTop />
 
                 </div>
             </Layout>
         </>
     );
-})
+}
 
 export default PostLayout;
+
+const MemoizedComments = React.memo(Comments)
+
+// # Title of contents
+const ContentTitle = React.memo(({ ...post }: Post) => {
+    return (
+        <Center style={{
+            display: "flex",
+            flexDirection: 'column',
+            gap: 5,
+        }}>
+            <time dateTime={post.date}>
+                {format(parseISO(post.date), "LLLL d, yyyy")}
+            </time>
+            <Header title={post.title} />
+            <Tags tags={post.tags} />
+            <Space h="xs" />
+            <Breadcrumbs />
+            <Space h="xs" />
+        </Center>
+    )
+})
+
+
+// Body of contents
+const ContentBody = React.memo(({ ...post }: Post) => {
+
+    const MDXContent = useMDXComponent(post.body.code)
+
+    // get element's headings
+    const [headings, setHeadings] = useState<ContentHeader[]>()
+
+    useEffect(() => {
+        const elements = Array.from(document.querySelectorAll('h2,h3'))
+            .filter(el => el.id)
+            .map(el => ({
+                label: el.textContent || '',
+                link: el.id,
+                order: Number(el.tagName.substring(1)) - 1
+            }))
+        setHeadings(elements)
+    }, [])
+
+
+    return (
+        <div
+            style={{
+                width: '90%',
+                margin: '0 auto',
+            }}
+        >
+            <Grid gutter={50}>
+                <Grid.Col lg={3}
+                    sx={(theme) => ({
+                        [theme.fn.smallerThan('lg')]: { display: 'none' },
+                    })}
+                />
+
+                <Grid.Col md={8} lg={6}
+                    sx={(theme) => ({
+                        [theme.fn.smallerThan('md')]: { padding: '0 6rem' },
+                        [theme.fn.smallerThan('xs')]: { padding: '0 2.5rem', fontSize: '15px' },
+                    })}
+                >
+                    <article>
+                        <MDXContent components={myMdxComponents} />
+                    </article>
+                    <Space h={'xl'} />
+                    <Space h={'xl'} />
+                    <MemoizedComments />
+
+                </Grid.Col>
+
+                <Grid.Col md={4} lg={3}
+                    sx={(theme) => ({
+                        [theme.fn.smallerThan('md')]: { display: 'none' },
+                    })}
+                >
+                    {headings && <TableOfContents links={headings} />}
+                </Grid.Col>
+            </Grid>
+        </div>
+    )
+})
+
 
 
 export const getStaticPaths: GetStaticPaths = () => {
