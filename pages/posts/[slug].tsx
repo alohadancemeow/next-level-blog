@@ -91,7 +91,7 @@ export default PostLayout;
 const MemoizedComments = React.memo(Comments)
 
 // # Title of contents
-const ContentTitle = React.memo(({ ...post }: Post) => {
+const ContentTitle: React.FC<Post> = React.memo(({ ...post }) => {
     return (
         <Center style={{
             display: "flex",
@@ -112,7 +112,7 @@ const ContentTitle = React.memo(({ ...post }: Post) => {
 
 
 // Body of contents
-const ContentBody = React.memo(({ ...post }: Post) => {
+const ContentBody: React.FC<Post> = React.memo(({ ...post }) => {
 
     const MDXContent = useMDXComponent(post.body.code)
 

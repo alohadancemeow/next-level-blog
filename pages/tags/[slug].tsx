@@ -61,7 +61,7 @@ const TagsLayout: NextPage<Props> = ({ posts, matchedPosts }: Props) => {
 }
 
 
-const Contents = React.memo(({ matchedPosts, posts }: Props) => {
+const Contents: React.FC<Props> = React.memo(({ matchedPosts, posts }) => {
     const { query } = useRouter()
 
     return (

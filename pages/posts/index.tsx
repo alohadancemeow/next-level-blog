@@ -59,7 +59,7 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
     )
 }
 
-const Contents = React.memo(({ posts, tags }: Props) => (
+const Contents: React.FC<Props> = React.memo(({ posts, tags }) => (
     <Spotlight data={posts}>
         <Layout title='Posts'>
             <PageLayout>
