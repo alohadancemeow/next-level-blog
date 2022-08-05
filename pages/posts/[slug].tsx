@@ -1,3 +1,4 @@
+import React from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
@@ -38,7 +39,7 @@ type ContentHeader = {
     order: number
 }
 
-const PostLayout = ({ post }: { post: Post }) => {
+const PostLayout = React.memo(({ post }: { post: Post }) => {
     const { asPath } = useRouter()
 
     const MDXContent = useMDXComponent(post.body.code)
@@ -160,7 +161,7 @@ const PostLayout = ({ post }: { post: Post }) => {
             </Layout>
         </>
     );
-};
+})
 
 export default PostLayout;
 

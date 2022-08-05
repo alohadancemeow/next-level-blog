@@ -1,3 +1,4 @@
+import React from "react";
 import { allPosts, Post } from "contentlayer/generated";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
@@ -19,7 +20,7 @@ type Props = {
     matchedPosts: Post[]
 }
 
-const TagsLayout = ({ posts, matchedPosts }: Props) => {
+const TagsLayout = React.memo(({ posts, matchedPosts }: Props) => {
 
     const { query, asPath } = useRouter()
 
@@ -69,7 +70,7 @@ const TagsLayout = ({ posts, matchedPosts }: Props) => {
             </Spotlight>
         </>
     );
-};
+})
 
 export default TagsLayout;
 

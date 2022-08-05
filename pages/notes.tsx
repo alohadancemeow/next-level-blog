@@ -5,6 +5,8 @@ import { siteMetadata } from 'site/siteMatedata';
 
 type Props = {}
 
+const MemoizedNotes = React.memo(NotesPage)
+
 const Notes = (props: Props) => {
     return (
         <>
@@ -32,7 +34,7 @@ const Notes = (props: Props) => {
                     cardType: 'summary_large_image',
                 }}
             />
-            <NotesPage />
+            <MemoizedNotes />
         </>
     )
 }

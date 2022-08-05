@@ -25,8 +25,7 @@ type Props = {
     tags: Tags
 }
 
-const PostsPage: NextPage<Props> = ({ posts, tags }) => {
-    // console.log(tags);
+const PostsPage: NextPage<Props> = React.memo(({ posts, tags }) => {
 
     return (
         <>
@@ -77,7 +76,7 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
             </Spotlight>
         </>
     )
-}
+})
 
 export default PostsPage
 
