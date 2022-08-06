@@ -3,8 +3,8 @@
 export const siteMetadata = {
     homeTitle: 'Personal Home',
     title: "alohadancemeow",
-    description: "alohadancemeow | A blog for documenting my learning, and sharing my knowledge. ✌️",
-    siteAddess: "https://exampleblog.com",
+    description: "A blog for documenting my learning, sharing my knowledge, and improving my writing skills. ✌️",
+    siteAddess: "https://alohadancemeow.dev",
     author: "alohadancemeow",
     twitter: '@3rd_rabbitGo'
 };

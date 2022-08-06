@@ -40,10 +40,10 @@ const PostCard = ({ post }: Props) => {
 
                     <Card.Section>
                         <Image
-                            src="https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
-                            // src='/image2.jpg'
-                            height={160}
-                            alt="No way!"
+                            // src="https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+                            src={post.image}
+                            height={180}
+                            alt="post image"
                         />
                     </Card.Section>
 
