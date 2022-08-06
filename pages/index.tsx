@@ -2,8 +2,12 @@ import type { NextPage } from 'next'
 import HomePage from 'components/HomePage';
 import { NextSeo } from 'next-seo';
 import { siteMetadata } from 'site/siteMatedata';
+import React from 'react';
+
+const MemoizedHome = React.memo(HomePage)
 
 const Home: NextPage = () => {
+
   return (
     <>
       <NextSeo
@@ -16,7 +20,7 @@ const Home: NextPage = () => {
           description: `${siteMetadata.description}`,
           images: [
             {
-              url: '/assets/site/home-light.png',
+              url: '/assets/site/og-home.png',
               // width: 800,
               // height: 600,
               alt: 'personal home',
@@ -32,7 +36,9 @@ const Home: NextPage = () => {
           cardType: 'summary_large_image',
         }}
       />
-      <HomePage />
+
+      <MemoizedHome />
+
     </>
   )
 }

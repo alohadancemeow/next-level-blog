@@ -1,4 +1,5 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import React from "react";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 import { useEffect, useState } from "react";
@@ -38,28 +39,52 @@ type ContentHeader = {
     order: number
 }
 
-const PostLayout = ({ post }: { post: Post }) => {
+const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
     const { asPath } = useRouter()
 
-    const MDXContent = useMDXComponent(post.body.code)
+    return (
+        <>
+            <NextSeo
+                title={`${post.title} | ${siteMetadata.title}`}
+                description={post.description}
+                canonical={siteMetadata.siteAddess}
+                openGraph={{
+                    url: `${siteMetadata.siteAddess}${asPath}`,
+                    title: `${post.title} | ${siteMetadata.title}`,
+                    description: `${post.description}`,
+                    site_name: `${siteMetadata.title}`,
+                }}
+                twitter={{
+                    handle: `${siteMetadata.twitter}`,
+                    site: `${siteMetadata.twitter}`,
+                    cardType: 'summary_large_image',
+                }}
+            />
 
-    // new way to get element's headings
-    const [headings, setHeadings] = useState<ContentHeader[]>()
+            <Layout title={post.title}>
+                <div
+                    style={{
+                        height: '100%',
+                        padding: '0'
+                    }}
+                >
+                    <ContentTitle {...post} />
+                    <ContentBody {...post} />
+                    <ScrollToTop />
 
-    useEffect(() => {
-        const elements = Array.from(document.querySelectorAll('h2,h3'))
-            .filter(el => el.id)
-            .map(el => ({
-                label: el.textContent || '',
-                link: el.id,
-                order: Number(el.tagName.substring(1)) - 1
-            }))
-        setHeadings(elements)
-    }, [])
+                </div>
+            </Layout>
+        </>
+    );
+}
 
+export default PostLayout;
 
-    // # Title of contents
-    const ContentTitle = () => (
+const MemoizedComments = React.memo(Comments)
+
+// # Title of contents
+const ContentTitle: React.FC<Post> = React.memo(({ ...post }) => {
+    return (
         <Center style={{
             display: "flex",
             flexDirection: 'column',
@@ -75,9 +100,30 @@ const PostLayout = ({ post }: { post: Post }) => {
             <Space h="xs" />
         </Center>
     )
+})
 
-    // Body of contents
-    const ContentBody = () => (
+
+// Body of contents
+const ContentBody: React.FC<Post> = React.memo(({ ...post }) => {
+
+    const MDXContent = useMDXComponent(post.body.code)
+
+    // get element's headings
+    const [headings, setHeadings] = useState<ContentHeader[]>()
+
+    useEffect(() => {
+        const elements = Array.from(document.querySelectorAll('h2,h3'))
+            .filter(el => el.id)
+            .map(el => ({
+                label: el.textContent || '',
+                link: el.id,
+                order: Number(el.tagName.substring(1)) - 1
+            }))
+        setHeadings(elements)
+    }, [])
+
+
+    return (
         <div
             style={{
                 width: '90%',
@@ -102,7 +148,7 @@ const PostLayout = ({ post }: { post: Post }) => {
                     </article>
                     <Space h={'xl'} />
                     <Space h={'xl'} />
-                    <Comments />
+                    <MemoizedComments />
 
                 </Grid.Col>
 
@@ -116,53 +162,8 @@ const PostLayout = ({ post }: { post: Post }) => {
             </Grid>
         </div>
     )
+})
 
-
-    return (
-        <>
-            <NextSeo
-                title={`${post.title} | ${siteMetadata.title}`}
-                description={post.description}
-                canonical={siteMetadata.siteAddess}
-                openGraph={{
-                    url: `${siteMetadata.siteAddess}${asPath}`,
-                    title: `${post.title} | ${siteMetadata.title}`,
-                    description: `${post.description}`,
-                    images: [
-                        {
-                            url: '/assets/site/home-light.png',
-                            alt: 'posts page',
-                            type: 'image/png',
-                        },
-                        // { url: 'https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' },
-                    ],
-                    site_name: `${siteMetadata.title}`,
-                }}
-                twitter={{
-                    handle: `${siteMetadata.twitter}`,
-                    site: `${siteMetadata.twitter}`,
-                    cardType: 'summary_large_image',
-                }}
-            />
-
-            <Layout title={post.title}>
-                <div
-                    style={{
-                        height: '100%',
-                        padding: '0'
-                    }}
-                >
-                    <ContentTitle />
-                    <ContentBody />
-                    <ScrollToTop />
-
-                </div>
-            </Layout>
-        </>
-    );
-};
-
-export default PostLayout;
 
 
 export const getStaticPaths: GetStaticPaths = () => {

@@ -1,5 +1,6 @@
+import React from "react";
 import { allPosts, Post } from "contentlayer/generated";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { compareDesc } from "date-fns";
 
@@ -19,7 +20,7 @@ type Props = {
     matchedPosts: Post[]
 }
 
-const TagsLayout = ({ posts, matchedPosts }: Props) => {
+const TagsLayout: NextPage<Props> = ({ posts, matchedPosts }: Props) => {
 
     const { query, asPath } = useRouter()
 
@@ -35,7 +36,7 @@ const TagsLayout = ({ posts, matchedPosts }: Props) => {
                     description: `Posts about #${query.slug}`,
                     images: [
                         {
-                            url: '/assets/site/home-light.png',
+                            url: '/assets/site/og-tags.png',
                             alt: 'tag page',
                             type: 'image/png',
                         },
@@ -49,29 +50,44 @@ const TagsLayout = ({ posts, matchedPosts }: Props) => {
                     cardType: 'summary_large_image',
                 }}
             />
-            <Spotlight data={posts}>
-                <Layout title={`Tags: ${query.slug}`}>
-                    <PageLayout>
-                        <Menu title={`#${query.slug}`} />
-                        <SearchPost />
-                        <Space h={'xs'} />
 
-                        <Grid gutter="lg">
-                            {matchedPosts.map((item, idx) => (
-                                <Grid.Col key={idx} xs={6} md={4}>
-                                    <PostCard post={item} />
-                                </Grid.Col>
-                            ))}
-                        </Grid>
+            <Contents
+                matchedPosts={matchedPosts}
+                posts={posts}
+            />
 
-                    </PageLayout>
-                </Layout>
-            </Spotlight>
         </>
     );
-};
+}
+
+
+const Contents: React.FC<Props> = React.memo(({ matchedPosts, posts }) => {
+    const { query } = useRouter()
+
+    return (
+        <Spotlight data={posts}>
+            <Layout title={`Tags: ${query.slug}`}>
+                <PageLayout>
+                    <Menu title={`#${query.slug}`} />
+                    <SearchPost />
+                    <Space h={'xs'} />
+
+                    <Grid gutter="lg">
+                        {matchedPosts.map((item, idx) => (
+                            <Grid.Col key={idx} xs={6} md={4}>
+                                <PostCard post={item} />
+                            </Grid.Col>
+                        ))}
+                    </Grid>
+
+                </PageLayout>
+            </Layout>
+        </Spotlight>
+    )
+})
 
 export default TagsLayout;
+
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const paths: string[] = []

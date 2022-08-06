@@ -26,7 +26,6 @@ type Props = {
 }
 
 const PostsPage: NextPage<Props> = ({ posts, tags }) => {
-    // console.log(tags);
 
     return (
         <>
@@ -40,7 +39,7 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
                     description: `All posts from ${siteMetadata.title} blog`,
                     images: [
                         {
-                            url: '/assets/site/home-light.png',
+                            url: '/assets/site/og-posts.png',
                             alt: 'posts page',
                             type: 'image/png',
                         },
@@ -55,29 +54,33 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
                 }}
             />
 
-            <Spotlight data={posts}>
-                <Layout title='Posts'>
-                    <PageLayout>
-                        <Menu title='alohadancemeow blog' />
-                        <SearchPost />
-                        <TagsBanner {...tags} />
-
-                        <Space h="xs" />
-
-                        <Grid gutter="lg">
-                            {posts.map((item, idx) => (
-                                <Grid.Col key={idx} xs={6} md={4}>
-                                    <PostCard post={item} />
-                                </Grid.Col>
-                            ))}
-                        </Grid>
-
-                    </PageLayout>
-                </Layout>
-            </Spotlight>
+            <Contents posts={posts} tags={tags} />
         </>
     )
 }
+
+const Contents: React.FC<Props> = React.memo(({ posts, tags }) => (
+    <Spotlight data={posts}>
+        <Layout title='Posts'>
+            <PageLayout>
+                <Menu title='alohadancemeow blog' />
+                <SearchPost />
+                <TagsBanner {...tags} />
+
+                <Space h="xs" />
+
+                <Grid gutter="lg">
+                    {posts.map((item, idx) => (
+                        <Grid.Col key={idx} xs={6} md={4}>
+                            <PostCard post={item} />
+                        </Grid.Col>
+                    ))}
+                </Grid>
+
+            </PageLayout>
+        </Layout>
+    </Spotlight>
+))
 
 export default PostsPage
 

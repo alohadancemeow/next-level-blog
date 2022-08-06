@@ -27,7 +27,7 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>Personal Home</title>
+        {/* <title>Personal Home</title> */}
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="icon" href="/astonished.svg" />
       </Head>
