@@ -13,7 +13,12 @@ const NotesPage = (props: Props) => {
             <PageLayout>
                 <Menu title='Notes' />
                 <Space h={'lg'} />
-                <Container size={'sm'}>
+                <Container
+                    size={'sm'}
+                    sx={(theme) => ({
+                        [theme.fn.smallerThan('xs')]: { margin: '0 -2rem' },
+                    })}
+                >
                     <ul>
                         <li>
                             <Box sx={(theme) => ({
@@ -29,7 +34,8 @@ const NotesPage = (props: Props) => {
                                         <Box style={{
                                             display: 'flex',
                                             justifyContent: 'center',
-                                            alignItems: 'center'
+                                            alignItems: 'center',
+                                            flexWrap: 'wrap'
                                         }}
                                         >
                                             <Box ml={5} mr={10}>Using</Box>
@@ -61,7 +67,8 @@ const NotesPage = (props: Props) => {
                                         <Box style={{
                                             display: 'flex',
                                             justifyContent: 'center',
-                                            alignItems: 'center'
+                                            alignItems: 'center',
+                                            flexWrap: 'wrap'
                                         }}>
                                             <Box ml={5} mr={10}>Using</Box>
                                             <Kbd>⌘</Kbd>
@@ -91,7 +98,8 @@ const NotesPage = (props: Props) => {
                                         <Box style={{
                                             display: 'flex',
                                             justifyContent: 'center',
-                                            alignItems: 'center'
+                                            alignItems: 'center',
+                                            flexWrap: 'wrap'
                                         }}>
                                             <Box ml={5} mr={10}>Using</Box>
                                             <Kbd>⌘</Kbd>
@@ -116,7 +124,14 @@ const NotesPage = (props: Props) => {
                     <Blockquote
                         cite="– Forrest Gump"
                         color="orange"
-                        sx={{ borderLeft: 'none' }}
+                        // sx={{ borderLeft: 'none' }}
+                        sx={(theme) => ({
+                            border: 'none',
+                            [theme.fn.smallerThan('xs')]: {
+                                fontSize: '15px',
+                                flexWrap: 'wrap'
+                            },
+                        })}
                     >
                         Life is like an npm install – you never know what you are going to get.
                     </Blockquote>
