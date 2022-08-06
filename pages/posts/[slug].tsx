@@ -52,14 +52,6 @@ const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
                     url: `${siteMetadata.siteAddess}${asPath}`,
                     title: `${post.title} | ${siteMetadata.title}`,
                     description: `${post.description}`,
-                    images: [
-                        {
-                            url: '/assets/site/home-light.png',
-                            alt: 'posts page',
-                            type: 'image/png',
-                        },
-                        // { url: 'https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' },
-                    ],
                     site_name: `${siteMetadata.title}`,
                 }}
                 twitter={{

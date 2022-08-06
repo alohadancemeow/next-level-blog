@@ -39,7 +39,7 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
                     description: `All posts from ${siteMetadata.title} blog`,
                     images: [
                         {
-                            url: '/assets/site/home-light.png',
+                            url: '/assets/site/og-posts.png',
                             alt: 'posts page',
                             type: 'image/png',
                         },

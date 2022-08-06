@@ -36,7 +36,7 @@ const TagsLayout: NextPage<Props> = ({ posts, matchedPosts }: Props) => {
                     description: `Posts about #${query.slug}`,
                     images: [
                         {
-                            url: '/assets/site/home-light.png',
+                            url: '/assets/site/og-tags.png',
                             alt: 'tag page',
                             type: 'image/png',
                         },
