@@ -53,6 +53,13 @@ const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
                     title: `${post.title} | ${siteMetadata.title}`,
                     description: `${post.description}`,
                     site_name: `${siteMetadata.title}`,
+                    images: [
+                        {
+                            url: `${post.image}`,
+                            alt: `${post.title} cover-image`,
+                            type: 'image/png',
+                        },
+                    ],
                 }}
                 twitter={{
                     handle: `${siteMetadata.twitter}`,
