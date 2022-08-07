@@ -29,9 +29,9 @@ const TagsLayout: NextPage<Props> = ({ posts, matchedPosts }: Props) => {
             <NextSeo
                 title={`Tags: ${query.slug} | ${siteMetadata.title}`}
                 description={`Posts about ${query.slug}`}
-                canonical={siteMetadata.siteAddess}
+                canonical={siteMetadata.siteAddress}
                 openGraph={{
-                    url: `${siteMetadata.siteAddess}${asPath}`,
+                    url: `${siteMetadata.siteAddress}${asPath}`,
                     title: `#${query.slug} | ${siteMetadata.title}`,
                     description: `Posts about #${query.slug}`,
                     images: [

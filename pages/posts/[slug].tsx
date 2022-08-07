@@ -47,9 +47,9 @@ const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
             <NextSeo
                 title={`${post.title} | ${siteMetadata.title}`}
                 description={post.description}
-                canonical={siteMetadata.siteAddess}
+                canonical={siteMetadata.siteAddress}
                 openGraph={{
-                    url: `${siteMetadata.siteAddess}${asPath}`,
+                    url: `${siteMetadata.siteAddress}${asPath}`,
                     title: `${post.title} | ${siteMetadata.title}`,
                     description: `${post.description}`,
                     site_name: `${siteMetadata.title}`,

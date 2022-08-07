@@ -13,9 +13,9 @@ const Notes = (props: Props) => {
             <NextSeo
                 title={`Notes | ${siteMetadata.title}`}
                 description={`ALl my notes are here ✌️`}
-                canonical={siteMetadata.siteAddess}
+                canonical={siteMetadata.siteAddress}
                 openGraph={{
-                    url: `${siteMetadata.siteAddess}/notes`,
+                    url: `${siteMetadata.siteAddress}/notes`,
                     title: `Notes | ${siteMetadata.title}`,
                     description: `I put all my notes, shortcuts, and quotes in here. ✌️`,
                     images: [

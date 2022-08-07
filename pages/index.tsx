@@ -13,9 +13,9 @@ const Home: NextPage = () => {
       <NextSeo
         title={`${siteMetadata.homeTitle} | ${siteMetadata.title}`}
         description={siteMetadata.description}
-        canonical={siteMetadata.siteAddess}
+        canonical={siteMetadata.siteAddress}
         openGraph={{
-          url: `${siteMetadata.siteAddess}`,
+          url: `${siteMetadata.siteAddress}`,
           title: `${siteMetadata.homeTitle} | ${siteMetadata.title}`,
           description: `${siteMetadata.description}`,
           images: [

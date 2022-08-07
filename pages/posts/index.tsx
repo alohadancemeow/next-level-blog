@@ -32,9 +32,9 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
             <NextSeo
                 title={`Posts | ${siteMetadata.title}`}
                 description={`All posts from ${siteMetadata.title}`}
-                canonical={siteMetadata.siteAddess}
+                canonical={siteMetadata.siteAddress}
                 openGraph={{
-                    url: `${siteMetadata.siteAddess}/posts`,
+                    url: `${siteMetadata.siteAddress}/posts`,
                     title: `Posts | ${siteMetadata.title}`,
                     description: `All posts from ${siteMetadata.title} blog`,
                     images: [
