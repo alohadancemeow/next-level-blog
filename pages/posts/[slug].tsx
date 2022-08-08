@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useMDXComponent } from 'next-contentlayer/hooks'
 
 import { Prism } from '@mantine/prism';
-import { Space, Center, Grid, Image } from '@mantine/core';
+import { Space, Center, Grid, Image, AspectRatio } from '@mantine/core';
 
 import Tags from "components/Tags";
 import Layout from "components/Layout";
@@ -31,6 +31,7 @@ const myMdxComponents = {
     JsIcon,
     TsIcon,
     NpmIcon,
+    AspectRatio,
 }
 
 type ContentHeader = {
