@@ -3,7 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 import { compareDesc, format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 
-import { Space, Grid, Timeline, Text } from "@mantine/core";
+import { Space, Grid, Timeline, Text, Highlight } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 
 import PostCard from "components/PostCard";
@@ -104,7 +104,11 @@ const Contents: React.FC<ContentProps> = React.memo(
                   {`${Object.keys(tags).length}`} tags in alohadancemeow posts
                 </Text>
                 <Space h="md" />
-                <TagsBanner tags={tags} setFilteredByTag={setFilteredByTag} />
+                <TagsBanner
+                  tags={tags}
+                  setFilteredByTag={setFilteredByTag}
+                  filteredByTag={filteredByTag}
+                />
                 <Space h="lg" />
               </Timeline.Item>
 
@@ -112,11 +116,18 @@ const Contents: React.FC<ContentProps> = React.memo(
                 bullet={"#"}
                 // lineVariant="dashed"
                 title={
-                  postByTag.length !== 0
-                    ? `HERE'S ALL POSTS ABOUT "${String(
+                  postByTag.length !== 0 ? (
+                    <Highlight
+                      highlightColor="orange"
+                      highlight={`${Object.keys(filteredByTag)}`}
+                    >
+                      {`HERE'S ALL POSTS ABOUT " ${String(
                         Object.keys(filteredByTag)
-                      ).toLocaleUpperCase()}"`
-                    : `HERE'S ALL POSTS`
+                      ).toLocaleUpperCase()} "`}
+                    </Highlight>
+                  ) : (
+                    `HERE'S ALL POSTS`
+                  )
                 }
               >
                 <Text color="dimmed" size="xs" mt={4}>

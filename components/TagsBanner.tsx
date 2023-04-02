@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { Box } from "@mantine/core";
 
 import { Tags } from "pages/posts";
@@ -7,9 +6,10 @@ import { Tags } from "pages/posts";
 type Props = {
   tags: Tags;
   setFilteredByTag: React.Dispatch<React.SetStateAction<Tags>>;
+  filteredByTag: Tags;
 };
 
-const Tags = ({ tags, setFilteredByTag }: Props) => {
+const Tags = ({ tags, setFilteredByTag, filteredByTag }: Props) => {
   return (
     <div
       style={{
@@ -20,10 +20,6 @@ const Tags = ({ tags, setFilteredByTag }: Props) => {
       }}
     >
       {Object.keys(tags).map((tag, i) => (
-        // <Link
-        // key={i}
-        //  href={`/tags/${tag.split(" ").join("-")}`}
-        //  >
         <Box
           key={i}
           component="a"
@@ -36,7 +32,12 @@ const Tags = ({ tags, setFilteredByTag }: Props) => {
             // [theme.fn.largerThan('xl')]: { fontSize: '18px' },
             // [theme.fn.smallerThan('xl')]: { fontSize: '16px' },
             // [theme.fn.smallerThan('md')]: { fontSize: '15px' },
-            color: theme.colors.gray[6],
+            // color: theme.colors.gray[6],
+
+            color:
+              Object.keys(filteredByTag)[0] === tag
+                ? theme.colors[theme.primaryColor][3]
+                : theme.colors.gray[6],
 
             "&:hover": {
               color:
@@ -48,10 +49,7 @@ const Tags = ({ tags, setFilteredByTag }: Props) => {
           onClick={() => setFilteredByTag({ [tag]: tags[tag] })}
         >
           <span>{`#${tag}`}</span>
-          {""}
-          {/* <span>({tags[tag]})</span> */}
         </Box>
-        // </Link>
       ))}
     </div>
   );
