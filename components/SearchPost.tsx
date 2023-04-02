@@ -1,4 +1,3 @@
-import React from "react";
 import { Divider, UnstyledButton, Box, Kbd } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 import { openSpotlight } from "@mantine/spotlight";
@@ -7,6 +6,13 @@ type Props = {};
 
 const SearchPost = (props: Props) => {
   return (
+    // <div
+    //   style={{
+    //     position: "sticky",
+    //     top: 10,
+    //     zIndex: '9'
+    //   }}
+    // >
     <Divider
       // size="sm"
       my="xs"
@@ -36,6 +42,7 @@ const SearchPost = (props: Props) => {
         </UnstyledButton>
       }
     />
+    // </div>
   );
 };
 

@@ -5,6 +5,7 @@ import { allPosts, Post } from "contentlayer/generated";
 
 import { Space, Grid, Timeline, Text, Highlight } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
+import { Books, Hash, SignRight } from "tabler-icons-react";
 
 import PostCard from "components/PostCard";
 import Menu from "components/Menu";
@@ -99,7 +100,10 @@ const Contents: React.FC<ContentProps> = React.memo(
               lineWidth={2}
               sx={{ padding: "0" }}
             >
-              <Timeline.Item bullet={"#"} title="CHOOSE YOUR CONTENT">
+              <Timeline.Item
+                bullet={<Hash size={16} />}
+                title="CHOOSE YOUR CONTENT"
+              >
                 <Text color="dimmed" size="xs" mt={4}>
                   {`${Object.keys(tags).length}`} tags in alohadancemeow posts
                 </Text>
@@ -113,7 +117,7 @@ const Contents: React.FC<ContentProps> = React.memo(
               </Timeline.Item>
 
               <Timeline.Item
-                bullet={"#"}
+                bullet={<Books size={16} />}
                 // lineVariant="dashed"
                 title={
                   postByTag.length !== 0 ? (
@@ -159,7 +163,7 @@ const Contents: React.FC<ContentProps> = React.memo(
 
               <Timeline.Item
                 title="END OF CONTENT"
-                bullet={"#"}
+                bullet={<SignRight size={16} />}
                 lineVariant="dashed"
               >
                 <Text color="dimmed" size="sm">
