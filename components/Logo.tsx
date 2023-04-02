@@ -43,7 +43,7 @@ const Logo = () => {
             inline
             style={{
                 display: 'flex',
-                margin: '2rem 0',
+                margin: '2rem 0 1rem',
             }}
         >
             <IconLogo />

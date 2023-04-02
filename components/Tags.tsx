@@ -23,7 +23,7 @@ const Tags = ({ tags }: Props) => {
         flexWrap: "wrap",
         gap: 5,
         alignItems: "center",
-        marginTop: "15px",
+        marginTop: "10px",
         fontSize: "12px",
       }}
     >
