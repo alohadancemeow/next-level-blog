@@ -16,7 +16,7 @@ const PostCard = ({ post }: Props) => {
         <Card
           component="a"
           shadow="sm"
-          p="xl"
+          p="md"
           radius={"sm"}
           style={{ height: "450px" }}
           sx={(theme) => ({
