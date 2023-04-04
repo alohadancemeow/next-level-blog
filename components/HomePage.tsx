@@ -35,7 +35,8 @@ const HomePage: React.FC = (props: Props) => {
         <Stack style={{ margin: "0 auto", paddingLeft: "10px" }}>
           <Box>
             <NextImage
-              layout="fixed"
+              // layout="fixed"
+              priority={true}
               src="/image3.gif"
               alt="image"
               width={200}
