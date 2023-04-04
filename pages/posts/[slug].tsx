@@ -12,8 +12,8 @@ import {
   Grid,
   Image,
   AspectRatio,
-  Box,
   Text,
+  Box,
 } from "@mantine/core";
 
 import Tags from "components/Tags";
@@ -29,6 +29,7 @@ import ScrollToTop from "components/ScrollToTop";
 import { NextSeo } from "next-seo";
 import { siteMetadata } from "site/siteMatedata";
 import { useRouter } from "next/router";
+import Share from "components/Share";
 
 const myMdxComponents = {
   CodeBox,
@@ -49,7 +50,7 @@ type ContentHeader = {
 };
 
 const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
-  const { asPath } = useRouter();
+  const router = useRouter();
 
   return (
     <>
@@ -58,7 +59,7 @@ const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
         description={post.description}
         canonical={siteMetadata.siteAddress}
         openGraph={{
-          url: `${siteMetadata.siteAddress}${asPath}`,
+          url: `${siteMetadata.siteAddress}${router.asPath}`,
           title: `${post.title} | ${siteMetadata.title}`,
           description: `${post.description}`,
           site_name: `${siteMetadata.title}`,
@@ -82,7 +83,7 @@ const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
           style={{
             height: "100%",
             padding: "0",
-            marginTop: '20px'
+            marginTop: "20px",
           }}
         >
           <ContentTitle {...post} />
@@ -151,7 +152,9 @@ const ContentBody: React.FC<Post> = React.memo(({ ...post }) => {
           sx={(theme) => ({
             [theme.fn.smallerThan("lg")]: { display: "none" },
           })}
-        />
+        >
+          <Share postLink={(siteMetadata.siteAddress + post.url) as string} />
+        </Grid.Col>
 
         <Grid.Col
           md={8}

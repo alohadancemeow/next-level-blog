@@ -167,9 +167,9 @@ const Contents: React.FC<ContentProps> = React.memo(
                 lineVariant="dashed"
               >
                 <Text color="dimmed" size="sm">
-                  You&apos;ve submitted a pull request {""}
+                  That&apos;s all posts for you, {""}
                   <Text
-                    variant="link"
+                    // variant="gradient"
                     component="span"
                     inherit
                     onClick={() => {
@@ -177,6 +177,7 @@ const Contents: React.FC<ContentProps> = React.memo(
                       if (scroll.y > 0) scrollTo({ y: 0 });
                     }}
                     sx={{
+                      color: "orange",
                       cursor: "pointer",
                       "&:hover": {
                         textDecoration: "none",

@@ -4,12 +4,11 @@ import {
   MantineProvider,
   ColorSchemeProvider,
   ColorScheme,
-  Space,
 } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
-import GlobalStyles from "styles/GlobalStyles";
 import { useState } from "react";
+import GlobalStyles from "styles/GlobalStyles";
 import Player from "components/Player";
 
 export default function App(props: AppProps) {
@@ -51,26 +50,27 @@ export default function App(props: AppProps) {
             /** Put your mantine theme override here */
             colorScheme: colorScheme,
             primaryColor: "orange",
-            fontFamily: ["'JetBrains Mono', 'Bai Jamjuree'"],
+            // fontFamily: ["'JetBrains Mono', 'Bai Jamjuree'"],
+            fontFamily: "'JetBrains Mono', 'Bai Jamjuree'",
 
             headings: {
               fontFamily: "JetBrains Mono",
               fontWeight: "500",
               sizes: {
                 h2: {
-                  fontSize: 24,
+                  fontSize: "24px",
                 },
                 h3: {
-                  fontSize: 18,
+                  fontSize: "18px",
                 },
               },
             },
             breakpoints: {
-              xs: 500,
-              sm: 800,
-              md: 1000,
-              lg: 1200,
-              xl: 1400,
+              xs: "500",
+              sm: "800",
+              md: "1000",
+              lg: "1200",
+              xl: "1400",
             },
           }}
         >

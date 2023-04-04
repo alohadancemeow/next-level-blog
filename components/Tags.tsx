@@ -1,7 +1,6 @@
 import Link from "next/link";
-import React from "react";
 
-import { Box } from "@mantine/core";
+import { Box, Text } from "@mantine/core";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -23,22 +22,23 @@ const Tags = ({ tags }: Props) => {
         flexWrap: "wrap",
         gap: 5,
         alignItems: "center",
-        marginTop: "10px",
+        marginTop: "5px",
         fontSize: "12px",
       }}
     >
       {postTags &&
         postTags.map((tag, idx) => (
           <div key={idx}>
-            <Link href={`/tags/${tag.split(" ").join("-")}`}>
-              <a
+            <Link href={`/tags/${tag.split(" ").join("-")}`} legacyBehavior>
+              <Text
+                component="a"
                 style={{
                   textDecoration: "none",
                   color: "grey",
                 }}
               >
                 {`#${tag}`}
-              </a>
+              </Text>
             </Link>
           </div>
         ))}

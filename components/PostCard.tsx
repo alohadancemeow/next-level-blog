@@ -12,7 +12,7 @@ type Props = {
 const PostCard = ({ post }: Props) => {
   return (
     <div>
-      <Link href={post.url}>
+      <Link href={post.url} legacyBehavior>
         <Card
           component="a"
           shadow="sm"

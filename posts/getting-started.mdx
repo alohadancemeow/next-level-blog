@@ -6,29 +6,33 @@ description: "Getting started with mdx and Mantine compenents."
 image: "/assets/posts/og-getting-started.png"
 ---
 
-
 ## Intro 👋
 
 Getting started with mdx and Mantine compenents.
 
-<Space h={'sm'} />
+<Space h={"sm"} />
 
-## 📌 Headings 
+## 📌 Headings
 
-# H1 
+# H1
+
 ## H2
+
 ### H3
+
 #### H4
+
 ##### H5
+
 ###### H6
 
-<Space h={'sm'} />
+<Space h={"sm"} />
 
 ## 📌 Texts
 
 **bold text**
 
-*italicized text*
+_italicized text_
 
 > blockquote
 
@@ -38,7 +42,7 @@ Getting started with mdx and Mantine compenents.
 
 **`strong text with code`**
 
-<Space h={'sm'} />
+<Space h={"sm"} />
 
 ## 📌 Lists
 
@@ -54,24 +58,20 @@ Getting started with mdx and Mantine compenents.
 - Second item
 - Third item
 
-<Space h={'sm'} />
+<Space h={"sm"} />
 
 ## 📌 Image by Mantine
 
-<Image
-    src="/image.jpg"
-    height={420}
-    alt="No way!"
-/>
+<Image src="/image.jpg" height={420} alt="No way!" />
 
-<Space h={'md'} />
+<Space h={"md"} />
 
 ## 📌 Code by Mantine Prism
 
 ### 📝 Without tab
 
-<Prism language='tsx' colorScheme='dark'>
-    {`
+<Prism language="tsx" color="dark">
+  {`
 import type { NextPage } from 'next'
 const App: NextPage = () => {
     return (
@@ -86,14 +86,12 @@ export default App
 
 ### 📝 With tab
 
-<Prism.Tabs>
-    <Prism.Tab
-        colorScheme='dark'
-        label="App.tsx"
-        language="tsx"
-        icon={<TsIcon />}
-        >
-{`
+<Prism.Tabs defaultValue="App.tsx">
+  <Prism.Tab color="dark" value="App.tsx" icon={<TsIcon />}>
+    App.tsx
+  </Prism.Tab>
+  <Prism.Panel language="tsx" value="App.tsx">
+    {`
 import type { NextPage } from 'next'
 const App: NextPage = () => {
     return (
@@ -104,7 +102,7 @@ const App: NextPage = () => {
     }
 export default App
 `}
-    </Prism.Tab>
+  </Prism.Panel>
 </Prism.Tabs>
 
 ### 📝 With multiple tabs
