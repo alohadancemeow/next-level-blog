@@ -25,11 +25,11 @@ import { CSSIcon, JsIcon, TsIcon, NpmIcon } from "components/Post/SvgIcons";
 import Comments from "components/Comments";
 import Breadcrumbs from "components/Breadcrumbs";
 import ScrollToTop from "components/ScrollToTop";
+import Share from "components/Share";
 
 import { NextSeo } from "next-seo";
 import { siteMetadata } from "site/siteMatedata";
 import { useRouter } from "next/router";
-import Share from "components/Share";
 
 const myMdxComponents = {
   CodeBox,
@@ -153,7 +153,9 @@ const ContentBody: React.FC<Post> = React.memo(({ ...post }) => {
             [theme.fn.smallerThan("lg")]: { display: "none" },
           })}
         >
-          <Share postLink={(siteMetadata.siteAddress + post.url) as string} />
+          {post && (
+            <Share postLink={(siteMetadata.siteAddress + post.url) as string} />
+          )}
         </Grid.Col>
 
         <Grid.Col

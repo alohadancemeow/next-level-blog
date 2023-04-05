@@ -1,17 +1,21 @@
 import { ActionIcon, Box, Center, Divider, Text } from "@mantine/core";
-import React from "react";
 import { BrandFacebook, BrandTwitter } from "tabler-icons-react";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { useEffect, useState } from "react";
 
 type Props = {
   postLink: string;
 };
 
 const Share = ({ postLink }: Props) => {
-  console.log(postLink);
+  const [link, setLink] = useState<string>("");
 
+  useEffect(() => {
+    if (postLink) setLink(postLink);
+  }, [link]);
   return (
     <Center
-      mt={16}
+      mt={18}
       sx={{
         position: "sticky",
         top: "5%",
@@ -23,7 +27,9 @@ const Share = ({ postLink }: Props) => {
           flexDirection: "column",
         }}
       >
-        <Text>Share</Text>
+        <Text tt="uppercase" c="dimmed">
+          Share
+        </Text>
         <Box
           sx={(theme) => ({
             width: "2px",
@@ -44,6 +50,7 @@ const Share = ({ postLink }: Props) => {
           }}
         >
           <ActionIcon
+            component="div"
             color="orange"
             size="lg"
             radius="sm"
@@ -55,7 +62,14 @@ const Share = ({ postLink }: Props) => {
                   : theme.colors[theme.primaryColor][5],
             })}
           >
-            <BrandFacebook size={18} />
+            <FacebookShareButton
+              quote="alohadancemeow"
+              hashtag="#alohadancemeow"
+              url={link}
+              style={{ display: "grid", placeItems: "center" }}
+            >
+              <BrandFacebook size={18} />
+            </FacebookShareButton>
           </ActionIcon>
         </Box>
         <Box
@@ -63,9 +77,11 @@ const Share = ({ postLink }: Props) => {
             display: "grid",
             placeItems: "center",
             marginBottom: "15px",
+            alignItems: "center",
           }}
         >
           <ActionIcon
+            component="div"
             color="orange"
             size="lg"
             radius="sm"
@@ -77,7 +93,15 @@ const Share = ({ postLink }: Props) => {
                   : theme.colors[theme.primaryColor][5],
             })}
           >
-            <BrandTwitter size={18} />
+            <TwitterShareButton
+              url={link}
+              title="New post, let's explore"
+              // via={'alohadancemeow.com'}
+              hashtags={["#alohadancemeow"]}
+              style={{ display: "grid", placeItems: "center" }}
+            >
+              <BrandTwitter size={18} />
+            </TwitterShareButton>
           </ActionIcon>
         </Box>
       </Box>
