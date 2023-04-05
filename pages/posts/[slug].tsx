@@ -4,6 +4,7 @@ import { format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 import { useEffect, useState } from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
+import Link from "next/link";
 
 import { Prism } from "@mantine/prism";
 import {
@@ -30,6 +31,7 @@ import Share from "components/Share";
 import { NextSeo } from "next-seo";
 import { siteMetadata } from "site/siteMatedata";
 import { useRouter } from "next/router";
+import MorePost from "components/MorePost";
 
 const myMdxComponents = {
   CodeBox,
@@ -88,6 +90,7 @@ const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
         >
           <ContentTitle {...post} />
           <ContentBody {...post} />
+
           <ScrollToTop />
         </div>
       </Layout>
@@ -172,6 +175,45 @@ const ContentBody: React.FC<Post> = React.memo(({ ...post }) => {
           <article>
             <MDXContent components={myMdxComponents} />
           </article>
+          <Space h={"xl"} />
+          {/* # Note More post */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Text> More in : </Text>
+            {post.tags.map((tag, i) => (
+              <Link
+                key={i}
+                href={`/tags/${tag.split(" ").join("-")}`}
+                legacyBehavior
+              >
+                <Text
+                  component="a"
+                  sx={{
+                    textDecoration: "none",
+                    // color: "grey",
+                    paddingInlineStart: "8px",
+                  }}
+                >
+                  {`#${tag}`}
+                </Text>
+              </Link>
+            ))}
+          </Box>
+
+          <Grid gutter="sm">
+            {Array(3)
+              .fill(null)
+              .map((p) => (
+                <Grid.Col xs={6} md={4}>
+                  <MorePost {...post} />
+                </Grid.Col>
+              ))}
+          </Grid>
+
           <Space h={"xl"} />
           <Space h={"xl"} />
           <MemoizedComments />
