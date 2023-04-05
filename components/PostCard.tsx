@@ -12,9 +12,9 @@ type Props = {
 const PostCard = ({ post }: Props) => {
   return (
     <div>
-      <Link href={post.url} legacyBehavior>
+      <Link href={post.url} legacyBehavior passHref>
         <Card
-          component="a"
+          component="div"
           shadow="sm"
           p="md"
           radius={"sm"}
@@ -27,6 +27,7 @@ const PostCard = ({ post }: Props) => {
                   : theme.colors.orange[2],
               transform: "translateY(-8px)",
               transition: "ease .3s",
+              cursor: "pointer",
             },
           })}
         >
