@@ -1,6 +1,7 @@
 import React from 'react'
 import { useWindowScroll } from '@mantine/hooks';
 import { Affix, Button, Transition } from '@mantine/core';
+import { ArrowUpCircle } from 'tabler-icons-react';
 
 type Props = {}
 
@@ -19,7 +20,7 @@ const ScrollToTop = (props: Props) => {
                 <Transition transition="slide-up" mounted={scroll.y > 0}>
                     {(transitionStyles) => (
                         <Button
-                            leftIcon={'🍉'}
+                            leftIcon={<ArrowUpCircle size={20} />}
                             style={transitionStyles}
                             onClick={() => scrollTo({ y: 0 })}
                             sx={(theme) => ({

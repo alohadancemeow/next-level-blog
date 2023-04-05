@@ -15,15 +15,17 @@ const PostCard = ({ post }: Props) => {
       <Link href={post.url} legacyBehavior passHref>
         <Card
           component="div"
-          shadow="sm"
+          shadow="md"
           p="md"
           radius={"sm"}
           style={{ height: "450px" }}
           sx={(theme) => ({
+            backgroundColor:
+              theme.colorScheme === "dark" ? theme.colors.dark[5] : "none",
             "&:hover": {
               backgroundColor:
                 theme.colorScheme === "dark"
-                  ? theme.colors.dark[5]
+                  ? theme.colors.dark[4]
                   : theme.colors.orange[2],
               transform: "translateY(-8px)",
               transition: "ease .3s",

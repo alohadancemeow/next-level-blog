@@ -11,7 +11,8 @@ const GlobalStyles = () => {
         body: {
           ...theme.fn.fontStyles(),
           backgroundColor:
-            theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+            // theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+            theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
           color:
             theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black,
           // color: theme.colorScheme === 'dark' ? theme.white : theme.black,
@@ -65,7 +66,7 @@ const GlobalStyles = () => {
               : theme.colors[theme.black],
           backgroundColor:
             theme.colorScheme === "dark"
-              ? theme.colors.dark[7]
+              ? theme.colors.dark[6]
               : theme.colors.gray[0],
           borderLeft: `4px solid ${theme.colors[theme.primaryColor][7]}`,
         },
