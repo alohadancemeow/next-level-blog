@@ -1,6 +1,6 @@
 import React from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { format, parseISO } from "date-fns";
+import { compareDesc, format, parseISO } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
 import { useEffect, useState } from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
@@ -51,7 +51,12 @@ type ContentHeader = {
   order: number;
 };
 
-const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
+export type Props = {
+  post: Post;
+  matchedPosts: Post[];
+};
+
+const PostLayout: NextPage<Props> = ({ post, matchedPosts }) => {
   const router = useRouter();
 
   return (
@@ -88,8 +93,8 @@ const PostLayout: NextPage<{ post: Post }> = ({ post }) => {
             marginTop: "20px",
           }}
         >
-          <ContentTitle {...post} />
-          <ContentBody {...post} />
+          <ContentTitle post={post} />
+          <ContentBody post={post} matchedPosts={matchedPosts} />
 
           <ScrollToTop />
         </div>
@@ -103,7 +108,7 @@ export default PostLayout;
 const MemoizedComments = React.memo(Comments);
 
 // # Title of contents
-const ContentTitle: React.FC<Post> = React.memo(({ ...post }) => {
+const ContentTitle: React.FC<Pick<Props, "post">> = React.memo(({ post }) => {
   return (
     <Center
       style={{
@@ -125,7 +130,7 @@ const ContentTitle: React.FC<Post> = React.memo(({ ...post }) => {
 });
 
 // Body of contents
-const ContentBody: React.FC<Post> = React.memo(({ ...post }) => {
+const ContentBody: React.FC<Props> = React.memo(({ post, matchedPosts }) => {
   const MDXContent = useMDXComponent(post.body.code);
 
   // get element's headings
@@ -205,13 +210,11 @@ const ContentBody: React.FC<Post> = React.memo(({ ...post }) => {
           </Box>
 
           <Grid gutter="sm">
-            {Array(3)
-              .fill(null)
-              .map((p) => (
-                <Grid.Col xs={6} md={4}>
-                  <MorePost {...post} />
-                </Grid.Col>
-              ))}
+            {matchedPosts.map((post) => (
+              <Grid.Col key={post._id} xs={6} md={4}>
+                <MorePost {...post} />
+              </Grid.Col>
+            ))}
           </Grid>
 
           <Space h={"xl"} />
@@ -242,12 +245,30 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps = ({ params }) => {
+  // # Get a post that it's path = slug
   const post = allPosts.find(
     (post) => post._raw.flattenedPath === params!.slug
   );
+
+  const postTags = post && post.tags;
+
+  // # Sorting all posts by date
+  const posts: Post[] = allPosts.sort((a, b) => {
+    return compareDesc(new Date(a.date), new Date(b.date));
+  });
+
+  // # Get posts that matched with tag,
+  // and that it's path  !== params!.slug
+  const matchedPosts = posts.filter(
+    (post) =>
+      post.tags.find((p) => postTags?.includes(p)) &&
+      post._raw.flattenedPath !== params!.slug
+  );
+
   return {
     props: {
       post,
+      matchedPosts: matchedPosts.slice(0, 3),
     },
   };
 };
