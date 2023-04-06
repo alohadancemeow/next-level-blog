@@ -3,9 +3,14 @@ import { Post } from "contentlayer/generated";
 import { Box, Card, Image, Tooltip } from "@mantine/core";
 import Link from "next/link";
 
+import { useViewportSize } from "@mantine/hooks";
+
 const MorePost: React.FC<Post> = ({ ...post }) => {
+  const { width } = useViewportSize();
+
   return (
     <Tooltip
+      disabled={width < 1000}
       label={post.title}
       // color="orange"
       position="bottom"
