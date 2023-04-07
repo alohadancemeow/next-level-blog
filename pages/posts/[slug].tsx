@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { compareDesc } from "date-fns";
 import { allPosts, Post } from "contentlayer/generated";
@@ -16,8 +17,29 @@ export type Props = {
   matchedPosts: Post[];
 };
 
+export type ContentHeader = {
+  label: string;
+  link: string;
+  order: number;
+};
+
 const PostLayout: NextPage<Props> = ({ post, matchedPosts }) => {
   const router = useRouter();
+
+  // get element's headings,
+  // every time when post changed
+  const [headings, setHeadings] = useState<ContentHeader[]>();
+
+  useEffect(() => {
+    const elements = Array.from(document.querySelectorAll("h2,h3"))
+      .filter((el) => el.id)
+      .map((el) => ({
+        label: el.textContent || "",
+        link: el.id,
+        order: Number(el.tagName.substring(1)) - 1,
+      }));
+    setHeadings(elements);
+  }, [post]);
 
   return (
     <>
@@ -54,7 +76,11 @@ const PostLayout: NextPage<Props> = ({ post, matchedPosts }) => {
           }}
         >
           <ContentTitle post={post} />
-          <ContentBody post={post} matchedPosts={matchedPosts} />
+          <ContentBody
+            post={post}
+            matchedPosts={matchedPosts}
+            headings={headings}
+          />
 
           <ScrollToTop />
         </div>
