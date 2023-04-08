@@ -12,8 +12,8 @@ const Menu = ({ title }: Props) => {
     return (
         <Container
             style={{
-                marginTop: '-10px',
-                marginBottom: '5px'
+                // marginTop: '-10px',
+                // marginBottom: '5px'
             }}
         >
             <Header title={title} />

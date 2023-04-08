@@ -1,52 +1,46 @@
-import React from 'react'
-import { Prism } from '@mantine/prism';
+import { Prism } from "@mantine/prism";
 
-import { CSSIcon, JsIcon, TsIcon, NpmIcon } from './SvgIcons'
+import { CSSIcon, JsIcon, TsIcon, NpmIcon } from "./SvgIcons";
 
 type Props = {
-    code?: string
-}
+  code?: string;
+};
 
 const Code = ({ code }: Props) => {
-    return (
-        <Prism.Tabs>
-            <Prism.Tab
-                colorScheme='dark'
-                label="component.tsx"
-                language="tsx"
-                icon={<TsIcon />}
-            >
-                {code || demoCode}
-            </Prism.Tab>
-            <Prism.Tab
-                colorScheme='dark'
-                label="App.jsx"
-                language="tsx"
-                icon={<JsIcon />}
-            >
-                {jsDemo}
-            </Prism.Tab>
-            <Prism.Tab
-                colorScheme='dark'
-                label="global.css"
-                language="css"
-                icon={<CSSIcon />}
-            >
-                {cssDemo}
-            </Prism.Tab>
-            <Prism.Tab
-                colorScheme='dark'
-                label="npm"
-                language="bash"
-                icon={<NpmIcon />}
-            >
-                {npmCode}
-            </Prism.Tab>
-        </Prism.Tabs>
-    )
-}
+  return (
+    <Prism.Tabs defaultValue="component.tsx">
+      <Prism.TabsList>
+        <Prism.Tab color="dark" value="component.tsx" icon={<TsIcon />}>
+          Component.tsx
+        </Prism.Tab>
+        <Prism.Tab color="dark" value="App.jsx" icon={<JsIcon />}>
+          App.jsx
+        </Prism.Tab>
+        <Prism.Tab color="dark" value="global.css" icon={<CSSIcon />}>
+          global.css
+        </Prism.Tab>
+        <Prism.Tab color="dark" value="npm" icon={<NpmIcon />}>
+          npm
+        </Prism.Tab>
+      </Prism.TabsList>
 
-export default Code
+      <Prism.Panel language="tsx" value="component.tsx">
+        {code || demoCode}
+      </Prism.Panel>
+      <Prism.Panel language="jsx" value="App.jsx">
+        {jsDemo}
+      </Prism.Panel>
+      <Prism.Panel language="css" value="global.css">
+        {cssDemo}
+      </Prism.Panel>
+      <Prism.Panel language="bash" value="npm">
+        {npmCode}
+      </Prism.Panel>
+    </Prism.Tabs>
+  );
+};
+
+export default Code;
 
 const demoCode = `
 import { Button } from '@mantine/core';
@@ -73,7 +67,7 @@ a {
   box-sizing: border-box;
 }
 
-`
+`;
 const jsDemo = `
 import React, { useState } from 'react' 
 
@@ -94,10 +88,10 @@ const PageA  = ({ state }) => {
         //TODO: do something.
     )
 }
-`
+`;
 
 const npmCode = `
 npx create-next-app my-app
 cd my-app
 npm run dev
-`
+`;
