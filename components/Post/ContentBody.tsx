@@ -1,6 +1,5 @@
 import React from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
-import { siteMetadata } from "site/siteMatedata";
 import Link from "next/link";
 
 import { CSSIcon, JsIcon, TsIcon, NpmIcon } from "components/Post/SvgIcons";
@@ -29,10 +28,11 @@ const myMdxComponents = {
 
 interface ContentProps extends Props {
   headings: ContentHeader[] | undefined;
+  link: string;
 }
 
 const ContentBody: React.FC<ContentProps> = React.memo(
-  ({ post, matchedPosts, headings }) => {
+  ({ post, matchedPosts, headings, link }) => {
     const MDXContent = useMDXComponent(post.body.code);
 
     return (
@@ -49,11 +49,7 @@ const ContentBody: React.FC<ContentProps> = React.memo(
               [theme.fn.smallerThan("lg")]: { display: "none" },
             })}
           >
-            {post && (
-              <Share
-                postLink={(siteMetadata.siteAddress + post.url) as string}
-              />
-            )}
+            {post && <Share postLink={link} />}
           </Grid.Col>
 
           <Grid.Col

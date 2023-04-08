@@ -80,6 +80,7 @@ const PostLayout: NextPage<Props> = ({ post, matchedPosts }) => {
             post={post}
             matchedPosts={matchedPosts}
             headings={headings}
+            link={(siteMetadata.siteAddress + post.url) as string}
           />
 
           <ScrollToTop />

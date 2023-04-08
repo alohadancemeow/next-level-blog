@@ -1,18 +1,12 @@
-import { ActionIcon, Box, Center, Divider, Text } from "@mantine/core";
+import { ActionIcon, Box, Center, Text } from "@mantine/core";
 import { BrandFacebook, BrandTwitter } from "tabler-icons-react";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
-import { useEffect, useState } from "react";
 
 type Props = {
   postLink: string;
 };
 
 const Share = ({ postLink }: Props) => {
-  const [link, setLink] = useState<string>("");
-
-  useEffect(() => {
-    if (postLink) setLink(postLink);
-  }, [link]);
   return (
     <Center
       mt={18}
@@ -65,7 +59,7 @@ const Share = ({ postLink }: Props) => {
             <FacebookShareButton
               quote="alohadancemeow"
               hashtag="#alohadancemeow"
-              url={link}
+              url={postLink}
               style={{ display: "grid", placeItems: "center" }}
             >
               <BrandFacebook size={18} />
@@ -94,7 +88,7 @@ const Share = ({ postLink }: Props) => {
             })}
           >
             <TwitterShareButton
-              url={link}
+              url={postLink}
               title="New post, let's explore"
               // via={'alohadancemeow.com'}
               hashtags={["#alohadancemeow"]}
