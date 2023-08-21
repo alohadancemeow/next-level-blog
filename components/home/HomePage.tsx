@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import NextImage from "next/image";
 import Link from "next/link";
 import {
@@ -78,8 +79,8 @@ const HomePage: React.FC = (props: Props) => {
                 </Link>
               </Grid.Col>
               <Grid.Col span={6}>
-                <Link href="/notes" passHref legacyBehavior>
-                  <UnstyledButton component="a">📝 Notes</UnstyledButton>
+                <Link href="/note" passHref legacyBehavior>
+                  <UnstyledButton component="a">📝 Note</UnstyledButton>
                 </Link>
               </Grid.Col>
             </Grid>

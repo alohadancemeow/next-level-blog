@@ -1,20 +1,21 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { compareDesc } from "date-fns";
-import { allPosts, Post } from "contentlayer/generated";
 
 import { NextSeo } from "next-seo";
-import { siteMetadata } from "site/siteMatedata";
+import { siteMetadata } from "@/site/siteMatedata";
 import { useRouter } from "next/router";
 
-import Layout from "components/Layout";
-import ScrollToTop from "components/ScrollToTop";
-import ContentTitle from "components/Post/ContentTitle";
-import ContentBody from "components/Post/ContentBody";
+import Layout from "@/components/Layout";
+import ScrollToTop from "@/components/ScrollToTop";
+import ContentTitle from "@/components/Post/ContentTitle";
+import ContentBody from "@/components/Post/ContentBody";
 
 export type Props = {
-  post: Post;
-  matchedPosts: Post[];
+  post: any;
+  matchedPosts: any[];
 };
 
 export type ContentHeader = {
@@ -91,40 +92,3 @@ const PostLayout: NextPage<Props> = ({ post, matchedPosts }) => {
 };
 
 export default PostLayout;
-
-export const getStaticPaths: GetStaticPaths = () => {
-  const paths: string[] = allPosts.map((post) => post.url);
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = ({ params }) => {
-  // # Get a post that it's path = slug
-  const post = allPosts.find(
-    (post) => post._raw.flattenedPath === params!.slug
-  );
-
-  const postTags = post && post.tags;
-
-  // # Sorting all posts by date
-  const posts: Post[] = allPosts.sort((a, b) => {
-    return compareDesc(new Date(a.date), new Date(b.date));
-  });
-
-  // # Get posts that matched with tag,
-  // and that it's path  !== params!.slug
-  const matchedPosts = posts.filter(
-    (post) =>
-      post.tags.find((p) => postTags?.includes(p)) &&
-      post._raw.flattenedPath !== params!.slug
-  );
-
-  return {
-    props: {
-      post,
-      matchedPosts: matchedPosts.slice(0, 3),
-    },
-  };
-};

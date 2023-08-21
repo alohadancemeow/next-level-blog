@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Link from "next/link";

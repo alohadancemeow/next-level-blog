@@ -1,30 +1,31 @@
+"use client";
+
 import React, { useState } from "react";
 import { GetStaticProps, NextPage } from "next";
 import { compareDesc, format, parseISO } from "date-fns";
-import { allPosts, Post } from "contentlayer/generated";
 
 import { Space, Grid, Timeline, Text, Highlight } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import { Books, Hash, SignRight } from "tabler-icons-react";
 
-import PostCard from "components/PostCard";
-import Menu from "components/Menu";
-import TagsBanner from "components/TagsBanner";
-import Layout from "components/Layout";
-import PageLayout from "components/PageLayout";
-import Spotlight from "components/Spotlight";
-import SearchPost from "components/SearchPost";
+import PostCard from "@/components/PostCard";
+import Menu from "@/components/Menu";
+import TagsBanner from "@/components/TagsBanner";
+import Layout from "@/components/Layout";
+import PageLayout from "@/components/PageLayout";
+import Spotlight from "@/components/Spotlight";
+import SearchPost from "@/components/SearchPost";
 
 import { NextSeo } from "next-seo";
-import { siteMetadata } from "site/siteMatedata";
+import { siteMetadata } from "@/site/siteMatedata";
 
 export type Tags = {
   [key: string]: number;
 };
 
 type Props = {
-  posts: Post[];
-  tags: Tags;
+  posts: any[];
+  tags: any;
 };
 
 const PostsPage: NextPage<Props> = ({ posts, tags }) => {
@@ -77,7 +78,7 @@ const PostsPage: NextPage<Props> = ({ posts, tags }) => {
 };
 
 interface ContentProps extends Props {
-  postByTag: Post[];
+  postByTag: any[];
   filteredByTag: Tags;
   setFilteredByTag: React.Dispatch<React.SetStateAction<Tags>>;
 }
@@ -189,7 +190,10 @@ const Contents: React.FC<ContentProps> = React.memo(
                 </Text>
                 <Text size="xs" mt={4}>
                   Last updated on{" "}
-                  {`${format(parseISO(posts[0].date), "LLLL d, yyyy")}`}
+                  {`${format(
+                    parseISO(posts[0]?.date ?? "2023-07-27T17:12:00.000Z"),
+                    "LLLL d, yyyy"
+                  )}`}
                 </Text>
               </Timeline.Item>
             </Timeline>
@@ -203,29 +207,29 @@ const Contents: React.FC<ContentProps> = React.memo(
 
 export default PostsPage;
 
-export const getStaticProps: GetStaticProps = async () => {
-  // Get all posts,
-  // Sorting the posts by date.
-  const posts: Post[] = allPosts.sort((a, b) => {
-    return compareDesc(new Date(a.date), new Date(b.date));
-  });
+// export const getStaticProps: GetStaticProps = async () => {
+//   // Get all posts,
+//   // Sorting the posts by date.
+//   const posts: Post[] = allPosts.sort((a, b) => {
+//     return compareDesc(new Date(a.date), new Date(b.date));
+//   });
 
-  // Get all tags
-  const tags: Tags = {};
-  allPosts.map((post) =>
-    post.tags.map((tag) => {
-      if (!tags[tag]) {
-        tags[tag] = 1;
-      } else {
-        tags[tag] += 1;
-      }
-    })
-  );
+//   // Get all tags
+//   const tags: Tags = {};
+//   allPosts.map((post) =>
+//     post.tags.map((tag) => {
+//       if (!tags[tag]) {
+//         tags[tag] = 1;
+//       } else {
+//         tags[tag] += 1;
+//       }
+//     })
+//   );
 
-  return {
-    props: {
-      posts,
-      tags,
-    },
-  };
-};
+//   return {
+//     props: {
+//       posts,
+//       tags,
+//     },
+//   };
+// };

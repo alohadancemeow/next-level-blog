@@ -1,11 +1,12 @@
+"use client";
+
 import { SpotlightProvider } from "@mantine/spotlight";
-import { Post } from "contentlayer/generated";
 import { ReactNode } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type Props = {
   children: ReactNode;
-  data: Post[];
+  data: any[];
 };
 
 const Spotlight = ({ children, data }: Props) => {

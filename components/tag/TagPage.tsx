@@ -1,27 +1,28 @@
+"use client";
+
 import React from "react";
-import { allPosts, Post } from "contentlayer/generated";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { compareDesc } from "date-fns";
 
 import { Space, Grid, UnstyledButton, Divider, Box, Text } from "@mantine/core";
-import PostCard from "components/PostCard";
-import Layout from "components/Layout";
-import Menu from "components/Menu";
-import PageLayout from "components/PageLayout";
-import Spotlight from "components/Spotlight";
+import PostCard from "@/components/PostCard";
+import Layout from "@/components/Layout";
+import Menu from "@/components/Menu";
+import PageLayout from "@/components/PageLayout";
+import Spotlight from "@/components/Spotlight";
 // import SearchPost from "components/SearchPost";
 
 import { NextSeo } from "next-seo";
-import { siteMetadata } from "site/siteMatedata";
+import { siteMetadata } from "@/site/siteMatedata";
 import { ArrowBigLeftLine } from "tabler-icons-react";
 
 type Props = {
-  posts: Post[];
-  matchedPosts: Post[];
+  posts: any[];
+  matchedPosts: any[];
 };
 
-const TagsLayout: NextPage<Props> = ({ posts, matchedPosts }: Props) => {
+const TagPage: NextPage<Props> = ({ posts, matchedPosts }: Props) => {
   const { query, asPath } = useRouter();
 
   return (
@@ -102,42 +103,4 @@ const Contents: React.FC<Props> = React.memo(({ matchedPosts, posts }) => {
   );
 });
 
-export default TagsLayout;
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths: string[] = [];
-
-  allPosts.forEach((post) =>
-    post.tags.forEach((tag) => paths.push(`/tags/${tag.split(" ").join("-")}`))
-  );
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const matchedPosts: Post[] = [];
-
-  // Get all posts,
-  // Sorting the posts by date.
-  const posts: Post[] = allPosts.sort((a, b) => {
-    return compareDesc(new Date(a.date), new Date(b.date));
-  });
-
-  // Get posts that matched with tag
-  allPosts.forEach((post) =>
-    post.tags.forEach((tag) => {
-      if (tag.split(" ").join("-") === params!.slug) {
-        matchedPosts.push(post);
-      }
-    })
-  );
-
-  return {
-    props: {
-      posts,
-      matchedPosts,
-    },
-  };
-};
+export default TagPage;
