@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { GetStaticProps, NextPage } from "next";
-import { compareDesc, format, parseISO } from "date-fns";
+import React, { useMemo, useEffect } from "react";
+import { NextPage } from "next";
+import { format, parseISO } from "date-fns";
 
 import { Space, Grid, Timeline, Text, Highlight } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
@@ -16,220 +16,141 @@ import PageLayout from "@/components/PageLayout";
 import Spotlight from "@/components/Spotlight";
 import SearchPost from "@/components/SearchPost";
 
-import { NextSeo } from "next-seo";
-import { siteMetadata } from "@/site/siteMatedata";
-
-export type Tags = {
-  [key: string]: number;
-};
+import { notFound } from "next/navigation";
+import { PageData, Tags } from "@/types";
+import useFilterPostByTag from "@/hooks/useFilterPostByTag";
 
 type Props = {
-  posts: any[];
-  tags: any;
+  posts: PageData[];
+  tags: Tags;
 };
 
 const PostsPage: NextPage<Props> = ({ posts, tags }) => {
-  const [filteredByTag, setFilteredByTag] = useState<Tags>({
-    "": 0,
-  });
+  const [scroll, scrollTo] = useWindowScroll();
+  const { tagname, setTagname } = useFilterPostByTag();
 
-  const filteredByTagKey = Object.keys(filteredByTag);
+  const filteredPosts = useMemo(() => {
+    const post =
+      (posts &&
+        posts.filter((post: PageData) =>
+          post.tags?.some((t: any) => t?.name === tagname)
+        )) ??
+      [];
 
-  const postByTag = posts.filter((post) =>
-    post.tags.some((t) => t === filteredByTagKey[0])
-  );
+    return post;
+  }, [tagname, posts]);
+
+  useEffect(() => {
+    setTagname("");
+  }, []);
+
+  if (!posts) return notFound();
 
   return (
-    <>
-      <NextSeo
-        title={`Posts | ${siteMetadata.title}`}
-        description={`All posts from ${siteMetadata.title}`}
-        canonical={siteMetadata.siteAddress}
-        openGraph={{
-          url: `${siteMetadata.siteAddress}/posts`,
-          title: `Posts | ${siteMetadata.title}`,
-          description: `All posts from ${siteMetadata.title} blog`,
-          images: [
-            {
-              url: "/assets/site/og-posts.png",
-              alt: "posts page",
-              type: "image/png",
-            },
-            // { url: 'https://images.unsplash.com/photo-1472437774355-71ab6752b434?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80' },
-          ],
-          site_name: `${siteMetadata.title}`,
-        }}
-        twitter={{
-          handle: `${siteMetadata.twitter}`,
-          site: `${siteMetadata.twitter}`,
-          cardType: "summary_large_image",
-        }}
-      />
+    <Spotlight data={posts}>
+      <Layout title="Posts">
+        <PageLayout>
+          <Menu title="alohadancemeow posts" />
+          <SearchPost />
 
-      <Contents
-        posts={posts}
-        tags={tags}
-        filteredByTag={filteredByTag}
-        setFilteredByTag={setFilteredByTag}
-        postByTag={postByTag}
-      />
-    </>
+          <Space h="md" />
+
+          <Timeline
+            // active={2}
+            bulletSize={24}
+            lineWidth={2}
+            sx={{ padding: "0" }}
+          >
+            <Timeline.Item
+              bullet={<Hash size={16} />}
+              title="CHOOSE YOUR CONTENT"
+            >
+              <Text color="dimmed" size="xs" mt={4}>
+                {`${Object.keys(tags).length}`} tags in alohadancemeow posts
+              </Text>
+              <Space h="md" />
+              <TagsBanner tags={tags} />
+              <Space h="lg" />
+            </Timeline.Item>
+
+            <Timeline.Item
+              bullet={<Books size={16} />}
+              // lineVariant="dashed"
+              title={
+                filteredPosts.length !== 0 ? (
+                  <Highlight highlightColor="orange" highlight={`${tagname}`}>
+                    {`HERE'S ALL POSTS ABOUT " ${tagname.toLocaleUpperCase()} "`}
+                  </Highlight>
+                ) : (
+                  `HERE'S ALL POSTS`
+                )
+              }
+            >
+              <Text color="dimmed" size="xs" mt={4}>
+                {`Found ${
+                  filteredPosts.length === 0
+                    ? posts.length
+                    : filteredPosts.length
+                } results`}
+              </Text>
+              <Space h="xl" />
+
+              <Grid gutter="lg">
+                {filteredPosts.length === 0
+                  ? posts.map((item) => (
+                      <Grid.Col key={item.id} xs={6} md={4}>
+                        <PostCard post={item} />
+                      </Grid.Col>
+                    ))
+                  : filteredPosts.map((item) => (
+                      <Grid.Col key={item.id} xs={6} md={4}>
+                        <PostCard post={item} />
+                      </Grid.Col>
+                    ))}
+              </Grid>
+              <Space h="xl" />
+            </Timeline.Item>
+
+            <Timeline.Item
+              title="END OF CONTENT"
+              bullet={<SignRight size={16} />}
+              lineVariant="dashed"
+            >
+              <Text color="dimmed" size="sm">
+                That&apos;s all posts for you, {""}
+                <Text
+                  // variant="gradient"
+                  component="span"
+                  inherit
+                  onClick={() => {
+                    setTagname("");
+                    if (scroll.y > 0) scrollTo({ y: 0 });
+                  }}
+                  sx={{
+                    color: "orange",
+                    cursor: "pointer",
+                    "&:hover": {
+                      textDecoration: "none",
+                    },
+                  }}
+                >
+                  Clear filter and back to top ({`#${posts.length}`})
+                </Text>
+              </Text>
+              <Text size="xs" mt={4}>
+                Last updated on{" "}
+                {`${format(
+                  parseISO(posts[0]?.lastUpdated ?? "2023-07-27T17:12:00.000Z"),
+                  "LLLL d, yyyy"
+                )}`}
+              </Text>
+            </Timeline.Item>
+          </Timeline>
+          <Space h="lg" />
+        </PageLayout>
+      </Layout>
+    </Spotlight>
   );
 };
 
-interface ContentProps extends Props {
-  postByTag: any[];
-  filteredByTag: Tags;
-  setFilteredByTag: React.Dispatch<React.SetStateAction<Tags>>;
-}
-
-const Contents: React.FC<ContentProps> = React.memo(
-  ({ posts, tags, filteredByTag, setFilteredByTag, postByTag }) => {
-    const [scroll, scrollTo] = useWindowScroll();
-    return (
-      <Spotlight data={posts}>
-        <Layout title="Posts">
-          <PageLayout>
-            <Menu title="alohadancemeow posts" />
-            <SearchPost />
-
-            <Space h="md" />
-
-            <Timeline
-              active={2}
-              bulletSize={24}
-              lineWidth={2}
-              sx={{ padding: "0" }}
-            >
-              <Timeline.Item
-                bullet={<Hash size={16} />}
-                title="CHOOSE YOUR CONTENT"
-              >
-                <Text color="dimmed" size="xs" mt={4}>
-                  {`${Object.keys(tags).length}`} tags in alohadancemeow posts
-                </Text>
-                <Space h="md" />
-                <TagsBanner
-                  tags={tags}
-                  setFilteredByTag={setFilteredByTag}
-                  filteredByTag={filteredByTag}
-                />
-                <Space h="lg" />
-              </Timeline.Item>
-
-              <Timeline.Item
-                bullet={<Books size={16} />}
-                // lineVariant="dashed"
-                title={
-                  postByTag.length !== 0 ? (
-                    <Highlight
-                      highlightColor="orange"
-                      highlight={`${Object.keys(filteredByTag)}`}
-                    >
-                      {`HERE'S ALL POSTS ABOUT " ${String(
-                        Object.keys(filteredByTag)
-                      ).toLocaleUpperCase()} "`}
-                    </Highlight>
-                  ) : (
-                    `HERE'S ALL POSTS`
-                  )
-                }
-              >
-                <Text color="dimmed" size="xs" mt={4}>
-                  About{" "}
-                  {`${
-                    postByTag.length === 0
-                      ? posts.length
-                      : Object.values(filteredByTag)
-                  }`}{" "}
-                  results
-                </Text>
-                <Space h="xl" />
-
-                <Grid gutter="lg">
-                  {postByTag.length === 0
-                    ? posts.map((item, idx) => (
-                        <Grid.Col key={idx} xs={6} md={4}>
-                          <PostCard post={item} />
-                        </Grid.Col>
-                      ))
-                    : postByTag.map((item, idx) => (
-                        <Grid.Col key={idx} xs={6} md={4}>
-                          <PostCard post={item} />
-                        </Grid.Col>
-                      ))}
-                </Grid>
-                <Space h="xl" />
-              </Timeline.Item>
-
-              <Timeline.Item
-                title="END OF CONTENT"
-                bullet={<SignRight size={16} />}
-                lineVariant="dashed"
-              >
-                <Text color="dimmed" size="sm">
-                  That&apos;s all posts for you, {""}
-                  <Text
-                    // variant="gradient"
-                    component="span"
-                    inherit
-                    onClick={() => {
-                      setFilteredByTag({ [""]: 0 });
-                      if (scroll.y > 0) scrollTo({ y: 0 });
-                    }}
-                    sx={{
-                      color: "orange",
-                      cursor: "pointer",
-                      "&:hover": {
-                        textDecoration: "none",
-                      },
-                    }}
-                  >
-                    Clear filter and back to top ({`#${posts.length}`})
-                  </Text>
-                </Text>
-                <Text size="xs" mt={4}>
-                  Last updated on{" "}
-                  {`${format(
-                    parseISO(posts[0]?.date ?? "2023-07-27T17:12:00.000Z"),
-                    "LLLL d, yyyy"
-                  )}`}
-                </Text>
-              </Timeline.Item>
-            </Timeline>
-            <Space h="lg" />
-          </PageLayout>
-        </Layout>
-      </Spotlight>
-    );
-  }
-);
-
 export default PostsPage;
-
-// export const getStaticProps: GetStaticProps = async () => {
-//   // Get all posts,
-//   // Sorting the posts by date.
-//   const posts: Post[] = allPosts.sort((a, b) => {
-//     return compareDesc(new Date(a.date), new Date(b.date));
-//   });
-
-//   // Get all tags
-//   const tags: Tags = {};
-//   allPosts.map((post) =>
-//     post.tags.map((tag) => {
-//       if (!tags[tag]) {
-//         tags[tag] = 1;
-//       } else {
-//         tags[tag] += 1;
-//       }
-//     })
-//   );
-
-//   return {
-//     props: {
-//       posts,
-//       tags,
-//     },
-//   };
-// };

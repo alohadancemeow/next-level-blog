@@ -1,19 +1,16 @@
+"use client";
+
 import Link from "next/link";
 
 import { Box, Text } from "@mantine/core";
-import { useState } from "react";
-import { useEffect } from "react";
+import { PostTag } from "@/types";
 
 type Props = {
   tags: string[];
 };
 
 const Tags = ({ tags }: Props) => {
-  const [postTags, setPostTags] = useState<string[]>();
-
-  useEffect(() => {
-    if (tags) setPostTags(tags);
-  }, [tags]);
+  const allTags = Object(tags) as PostTag[];
 
   return (
     <Box
@@ -26,10 +23,10 @@ const Tags = ({ tags }: Props) => {
         fontSize: "12px",
       }}
     >
-      {postTags &&
-        postTags.map((tag, idx) => (
+      {allTags &&
+        allTags.map((tag, idx) => (
           <div key={idx}>
-            <Link href={`/tags/${tag.split(" ").join("-")}`} legacyBehavior>
+            <Link href={`/tags/${tag.name}`} legacyBehavior>
               <Text
                 component="a"
                 style={{
@@ -37,7 +34,7 @@ const Tags = ({ tags }: Props) => {
                   color: "grey",
                 }}
               >
-                {`#${tag}`}
+                {`#${tag.name}`}
               </Text>
             </Link>
           </div>

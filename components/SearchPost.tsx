@@ -1,3 +1,5 @@
+"use client";
+
 import { Divider, UnstyledButton, Box, Kbd } from "@mantine/core";
 import { Search } from "tabler-icons-react";
 import { openSpotlight } from "@mantine/spotlight";

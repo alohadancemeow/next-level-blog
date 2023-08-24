@@ -1,18 +1,20 @@
-import { Post } from "contentlayer/generated";
-import { format, parseISO } from "date-fns";
+"use client";
+
 import Link from "next/link";
+import { format, parseISO } from "date-fns";
 
 import { Card, Image, Text } from "@mantine/core";
 import Tags from "./Tags";
+import { PageData } from "@/types";
 
 type Props = {
-  post: Post;
+  post: PageData;
 };
 
 const PostCard = ({ post }: Props) => {
   return (
     <div>
-      <Link href={post.url} legacyBehavior passHref>
+      <Link href={post.id} legacyBehavior passHref>
         <Card
           component="div"
           shadow="md"
@@ -34,20 +36,20 @@ const PostCard = ({ post }: Props) => {
           })}
         >
           <Text size="xs" mb={"xs"}>
-            <time dateTime={post.date}>
-              🪶 {format(parseISO(post.date), "LLLL d, yyyy")}
+            <time dateTime={post.createdTime}>
+              🪶 {format(parseISO(post.createdTime), "LLLL d, yyyy")}
             </time>
           </Text>
 
           <Card.Section>
-            <Image src={post.image} height={180} alt="post image" />
+            <Image src={post.coverImage} height={180} alt="post image" />
           </Card.Section>
 
           <Tags tags={post.tags} />
           <Text weight={500} size="lg" mt={"sm"}>
             {post.title}
           </Text>
-          <Text mt="xs" color="dimmed" size="sm">
+          <Text mt="xs" color="dimmed" size="sm" className="line-clamp-3">
             {post.description}
           </Text>
         </Card>

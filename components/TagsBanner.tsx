@@ -1,15 +1,33 @@
-import React from "react";
-import { Box } from "@mantine/core";
+"use client";
 
-import { Tags } from "pages/posts";
+import { useCallback, useRef } from "react";
+import { Box } from "@mantine/core";
+import { Tags } from "@/types";
+import useFilterPostByTag from "@/hooks/useFilterPostByTag";
 
 type Props = {
   tags: Tags;
-  setFilteredByTag: React.Dispatch<React.SetStateAction<Tags>>;
-  filteredByTag: Tags;
 };
 
-const Tags = ({ tags, setFilteredByTag, filteredByTag }: Props) => {
+const Tags = ({ tags }: Props) => {
+  const chipRef = useRef<null | HTMLAnchorElement>(null);
+  const { setTagname, tagname } = useFilterPostByTag();
+
+  const toggle = useCallback(
+    (tag: [string, number]) => {
+      if (!chipRef.current) return null;
+
+      if (!chipRef.current?.title || chipRef.current?.title !== tag[0]) {
+        setTagname(tag[0]);
+        chipRef.current.title = tag[0];
+      } else {
+        setTagname("");
+        chipRef.current.title = "";
+      }
+    },
+    [setTagname, chipRef]
+  );
+
   return (
     <div
       style={{
@@ -19,9 +37,10 @@ const Tags = ({ tags, setFilteredByTag, filteredByTag }: Props) => {
         // justifyContent: 'center',
       }}
     >
-      {Object.keys(tags).map((tag, i) => (
+      {Object.entries(tags).map((tag, i) => (
         <Box
           key={i}
+          ref={chipRef}
           component="a"
           style={{
             // padding: '2px 5px',
@@ -34,11 +53,12 @@ const Tags = ({ tags, setFilteredByTag, filteredByTag }: Props) => {
             // [theme.fn.smallerThan('md')]: { fontSize: '15px' },
             // color: theme.colors.gray[6],
 
-            color:
-              Object.keys(filteredByTag)[0] === tag
-                ? theme.colors[theme.primaryColor][3]
-                : theme.colors.gray[6],
+            // color:
+            //   chipRef.current?.title === tag[0]
+            //     ? theme.colors[theme.primaryColor][3]
+            //     : theme.colors.gray[6],
 
+            color: theme.colors.gray[6],
             "&:hover": {
               color:
                 theme.colorScheme === "dark"
@@ -46,9 +66,9 @@ const Tags = ({ tags, setFilteredByTag, filteredByTag }: Props) => {
                   : theme.black,
             },
           })}
-          onClick={() => setFilteredByTag({ [tag]: tags[tag] })}
+          onClick={() => toggle(tag)}
         >
-          <span>{`#${tag}`}</span>
+          <span>{`#${tag[0]}(${tag[1]})`}</span>
         </Box>
       ))}
     </div>
