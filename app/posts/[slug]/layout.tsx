@@ -36,6 +36,7 @@ const layout = async ({ children, params }: Props) => {
         <ContentTitle postData={postData} />
         <ContentBody
           posts={posts}
+          toc={toc}
           //   matchedPosts={matchedPosts}
           //   headings={headings}
           //   link={(siteMetadata.siteAddress + post.url) as string}

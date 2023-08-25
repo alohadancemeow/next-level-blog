@@ -47,11 +47,7 @@ const Content = ({ recordMap, rootPageId }: Props) => {
   const { colorScheme } = useMantineColorScheme();
 
   const isDark = colorScheme === "dark";
-
-  // console.log(colorScheme, "colorScheme");
-
-  // console.log(recordMap.block, "recordMap");
-
+  
   const myTweet = () => tweetId && <Tweet id={tweetId} />;
 
   if (!recordMap) return notFound();
@@ -91,6 +87,7 @@ const Content = ({ recordMap, rootPageId }: Props) => {
       prose-blockquote:border-amber-700
       [&>div>a>div>*]:text-white
       [&>*]:text-white
+      [&>div>*]:text-white
       [&>div>a>div>div>*]:text-gray-500
       [&>div>a]:border-amber-700
       `

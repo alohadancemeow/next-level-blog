@@ -37,9 +37,12 @@ const myMdxComponents = {
 type Props = {
   posts: PageData[];
   children: React.ReactNode;
+  toc?: any[];
 };
 
-const ContentBody = ({ posts, children }: Props) => {
+const ContentBody = ({ posts, children, toc }: Props) => {
+  // console.log(toc, "toc");
+
   if (!posts.length) return notFound();
 
   return (
