@@ -1,30 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { compareDesc } from "date-fns";
 
-import { NextSeo } from "next-seo";
-import { siteMetadata } from "@/site/siteMatedata";
 import { useRouter } from "next/router";
 
 import Layout from "@/components/Layout";
 import ScrollToTop from "@/components/ScrollToTop";
 import ContentTitle from "@/components/Post/ContentTitle";
 import ContentBody from "@/components/Post/ContentBody";
+import { ContentHeader } from "@/types";
 
-export type Props = {
+type Props = {
   post: any;
   matchedPosts: any[];
 };
 
-export type ContentHeader = {
-  label: string;
-  link: string;
-  order: number;
-};
-
-const PostLayout: NextPage<Props> = ({ post, matchedPosts }) => {
+const PostLayout = ({ post, matchedPosts }: Props) => {
   const router = useRouter();
 
   // get element's headings,
@@ -42,53 +33,7 @@ const PostLayout: NextPage<Props> = ({ post, matchedPosts }) => {
     setHeadings(elements);
   }, [post]);
 
-  return (
-    <>
-      <NextSeo
-        title={`${post.title} | ${siteMetadata.title}`}
-        description={post.description}
-        canonical={siteMetadata.siteAddress}
-        openGraph={{
-          url: `${siteMetadata.siteAddress}${router.asPath}`,
-          title: `${post.title} | ${siteMetadata.title}`,
-          description: `${post.description}`,
-          site_name: `${siteMetadata.title}`,
-          images: [
-            {
-              url: `${post.image}`,
-              alt: `${post.title} cover-image`,
-              type: "image/png",
-            },
-          ],
-        }}
-        twitter={{
-          handle: `${siteMetadata.twitter}`,
-          site: `${siteMetadata.twitter}`,
-          cardType: "summary_large_image",
-        }}
-      />
-
-      <Layout title={post.title}>
-        <div
-          style={{
-            height: "100%",
-            padding: "0",
-            marginTop: "20px",
-          }}
-        >
-          <ContentTitle post={post} />
-          <ContentBody
-            post={post}
-            matchedPosts={matchedPosts}
-            headings={headings}
-            link={(siteMetadata.siteAddress + post.url) as string}
-          />
-
-          <ScrollToTop />
-        </div>
-      </Layout>
-    </>
-  );
+  return <div>post page</div>;
 };
 
 export default PostLayout;

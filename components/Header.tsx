@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import { Title } from "@mantine/core";
 
 type Props = {

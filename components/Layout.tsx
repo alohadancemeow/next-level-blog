@@ -28,6 +28,7 @@ const Layout = ({ children, title }: Props) => {
           justifyContent: "space-between",
           padding: "0px",
         }}
+        className="relative"
       >
         <Box>
           <Logo />

@@ -20,3 +20,9 @@ export type PostTag = {
 export type Tags = {
   [key: string]: number;
 };
+
+export type ContentHeader = {
+  label: string;
+  link: string;
+  order: number;
+};
