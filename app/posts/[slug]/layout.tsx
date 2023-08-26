@@ -20,7 +20,7 @@ const layout = async ({ children, params }: Props) => {
   const id = params.slug;
   const posts = await getPosts();
   const postData = await getPostById(id);
-  const toc = await getToc(id);
+  // const toc = await getToc(id);
 
   if (!postData) return notFound();
   return (
@@ -35,11 +35,9 @@ const layout = async ({ children, params }: Props) => {
       >
         <ContentTitle postData={postData} />
         <ContentBody
-          posts={posts}
-          toc={toc}
-          //   matchedPosts={matchedPosts}
-          //   headings={headings}
-          //   link={(siteMetadata.siteAddress + post.url) as string}
+          posts={posts.slice(0, 3)}
+          // toc={toc}
+          postData={postData}
         >
           <div>{children}</div>
         </ContentBody>

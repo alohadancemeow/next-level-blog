@@ -1,12 +1,20 @@
-import React from "react";
-import { Post } from "contentlayer/generated";
-import { Box, Card, Image, Tooltip } from "@mantine/core";
+"use cleint";
+
 import Link from "next/link";
+import { Box, Card, Image, Tooltip } from "@mantine/core";
 
 import { useViewportSize } from "@mantine/hooks";
+import { PageData } from "@/types";
+import { notFound } from "next/navigation";
 
-const MorePost: React.FC<Post> = ({ ...post }) => {
+type Props = {
+  post: PageData;
+};
+
+const MorePost = ({ post }: Props) => {
   const { width } = useViewportSize();
+
+  if (!post) return notFound();
 
   return (
     <Tooltip
@@ -26,7 +34,7 @@ const MorePost: React.FC<Post> = ({ ...post }) => {
       })}
     >
       <Box>
-        <Link href={post.url} legacyBehavior passHref>
+        <Link href={`/posts/${post.id}`} legacyBehavior passHref>
           <Card
             component="div"
             shadow="md"
@@ -50,7 +58,7 @@ const MorePost: React.FC<Post> = ({ ...post }) => {
           >
             <Card.Section>
               <Card.Section>
-                <Image src={post.image} height={120} alt="post image" />
+                <Image src={post.coverImage} height={120} alt="post image" />
               </Card.Section>
             </Card.Section>
           </Card>

@@ -1,3 +1,5 @@
+"use client";
+
 import { ActionIcon, Box, Center, Text } from "@mantine/core";
 import { BrandFacebook, BrandTwitter } from "tabler-icons-react";
 import { FacebookShareButton, TwitterShareButton } from "react-share";

@@ -1,49 +1,26 @@
 "use client";
 
-import React from "react";
-import { useMDXComponent } from "next-contentlayer/hooks";
 import Link from "next/link";
+import { Space, Grid, Text, Box } from "@mantine/core";
 
-import { CSSIcon, JsIcon, TsIcon, NpmIcon } from "@/components/Post/SvgIcons";
-import { Prism } from "@mantine/prism";
-import { Space, Grid, Image, AspectRatio, Text, Box } from "@mantine/core";
-
-import CodeBox from "@/components/Post/Code";
-import TableOfContents from "@/components/TableOfContents";
 import MorePost from "@/components/MorePost";
 import Comments from "./Comments";
 import Share from "@/components/Share";
-import { PageData } from "@/types";
 
+import { PageData, PostTag } from "@/types";
 import { notFound } from "next/navigation";
-
-const myMdxComponents = {
-  CodeBox,
-  Space,
-  Prism,
-  Image,
-  CSSIcon,
-  JsIcon,
-  TsIcon,
-  NpmIcon,
-  AspectRatio,
-};
-
-// interface ContentProps extends Props {
-//   headings: ContentHeader[] | undefined;
-//   link: string;
-// }
+import { siteMetadata } from "@/site/siteMatedata";
 
 type Props = {
   posts: PageData[];
+  postData: PageData;
   children: React.ReactNode;
-  toc?: any[];
 };
 
-const ContentBody = ({ posts, children, toc }: Props) => {
-  // console.log(toc, "toc");
+const ContentBody = ({ posts, children, postData }: Props) => {
+  const tags = Object(postData.tags) as PostTag[];
 
-  if (!posts.length) return notFound();
+  if (!posts.length && !postData) return notFound();
 
   return (
     <div
@@ -52,14 +29,18 @@ const ContentBody = ({ posts, children, toc }: Props) => {
         margin: "0 auto",
       }}
     >
-      <Grid gutter={50}>
+      <Grid gutter={50} mt={3}>
         <Grid.Col
           lg={3}
           sx={(theme) => ({
             [theme.fn.smallerThan("lg")]: { display: "none" },
           })}
         >
-          {/* {post && <Share postLink={link} />} */}
+          {postData && (
+            <Share
+              postLink={`${siteMetadata.siteAddress}/posts/${postData.id}`}
+            />
+          )}
         </Grid.Col>
 
         <Grid.Col
@@ -73,7 +54,7 @@ const ContentBody = ({ posts, children, toc }: Props) => {
             },
           })}
         >
-          <div className="prose">{children}</div>
+          <div className="mx-auto prose">{children}</div>
 
           <Space h={"xl"} />
           <Box
@@ -83,33 +64,28 @@ const ContentBody = ({ posts, children, toc }: Props) => {
             }}
           >
             <Text> More in : </Text>
-            {/* {post.tags.map((tag, i) => (
-              <Link
-                key={i}
-                href={`/tags/${tag.split(" ").join("-")}`}
-                legacyBehavior
-              >
+            {tags.map((tag, i) => (
+              <Link key={i} href={`/tags/${tag.name}`} legacyBehavior>
                 <Text
                   component="a"
                   sx={{
                     textDecoration: "none",
-                    // color: "grey",
+                    // color: `${tag.color ?? "gray"}`,
                     paddingInlineStart: "8px",
                   }}
                 >
-                  {`#${tag}`}
+                  {`#${tag.name}`}
                 </Text>
               </Link>
-            ))} */}
+            ))}
           </Box>
 
           <Grid gutter="sm">
-            more posts
-            {/* {matchedPosts.map((post) => (
-              <Grid.Col key={post._id} xs={6} md={4}>
-                <MorePost {...post} />
+            {posts.map((post) => (
+              <Grid.Col key={post.id} xs={6} md={4}>
+                <MorePost post={post} />
               </Grid.Col>
-            ))} */}
+            ))}
           </Grid>
 
           <Space h={"xl"} />

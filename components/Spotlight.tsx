@@ -19,7 +19,7 @@ const Spotlight = ({ children, data }: Props) => {
         id: post.id,
         title: `📝 ${post.title}`,
         description: post.description,
-        onTrigger: () => router.push(post.id),
+        onTrigger: () => router.push(`/posts/${post.id}`),
         new: false,
       }))}
       searchPlaceholder="🪶 Search for posts..."
@@ -27,7 +27,7 @@ const Spotlight = ({ children, data }: Props) => {
       shortcut="mod + S"
       limit={5}
       highlightQuery
-        // transitionProps={{ duration: 300, transition: "slide-down" }}
+      // transitionProps={{ duration: 300, transition: "slide-down" }}
     >
       {children}
     </SpotlightProvider>
