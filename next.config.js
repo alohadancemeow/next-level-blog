@@ -6,7 +6,8 @@ const nextConfig = {
     mdxRs: true,
   },
   images: {
-    domains: ['www.notion.so', 'images.unsplash.com', 's3.us-west-2.amazonaws.com']
+    domains: ['www.notion.so', 'images.unsplash.com', 's3.us-west-2.amazonaws.com'],
+    unoptimized: true
   }
 }
 
