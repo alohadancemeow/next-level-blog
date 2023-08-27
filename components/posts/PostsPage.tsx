@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useMemo, useEffect } from "react";
-import { NextPage } from "next";
+import React, { useEffect } from "react";
 import { format, parseISO } from "date-fns";
 
 import { Space, Grid, Timeline, Text, Highlight } from "@mantine/core";
@@ -18,27 +17,19 @@ import SearchPost from "@/components/SearchPost";
 
 import { notFound } from "next/navigation";
 import { PageData, Tags } from "@/types";
+
 import useFilterPostByTag from "@/hooks/useFilterPostByTag";
+import useGetPostsByTag from "@/hooks/useGetPostsByTag";
 
 type Props = {
   posts: PageData[];
   tags: Tags;
 };
 
-const PostsPage: NextPage<Props> = ({ posts, tags }) => {
+const PostsPage = ({ posts, tags }: Props) => {
   const [scroll, scrollTo] = useWindowScroll();
   const { tagname, setTagname } = useFilterPostByTag();
-
-  const filteredPosts = useMemo(() => {
-    const post =
-      (posts &&
-        posts.filter((post: PageData) =>
-          post.tags?.some((t: any) => t?.name === tagname)
-        )) ??
-      [];
-
-    return post;
-  }, [tagname, posts]);
+  const { filteredPosts } = useGetPostsByTag({ posts, tagname });
 
   useEffect(() => {
     setTagname("");

@@ -1,50 +1,35 @@
+import { getPosts } from "@/lib/notion";
+import { Metadata, ResolvingMetadata } from "next";
+import { siteMetadata } from "@/site/siteMatedata";
+
 import TagPage from "@/components/tag/TagPage";
+import { defaultImage } from "@/site/data";
 
-type Props = {};
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const previousImages = (await parent)?.openGraph?.images || [];
 
-const Tag = (props: Props) => {
-  const posts = [];
-  const matchedPosts = [];
+  return {
+    title: `${siteMetadata.title} — ${params.slug}`,
+    description: `Posts about ${params.slug}`,
+    openGraph: {
+      images: [defaultImage, ...previousImages],
+    },
+  };
+}
 
-  return <TagPage posts={posts} matchedPosts={matchedPosts} />;
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+const Tag = async ({ params }: Props) => {
+  const posts = await getPosts();
+
+  return <TagPage posts={posts} tagname={params.slug} />;
 };
 
 export default Tag;
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//     const paths: string[] = [];
-
-//     allPosts.forEach((post) =>
-//       post.tags.forEach((tag) => paths.push(`/tags/${tag.split(" ").join("-")}`))
-//     );
-//     return {
-//       paths,
-//       fallback: false,
-//     };
-//   };
-
-//   export const getStaticProps: GetStaticProps = async ({ params }) => {
-//     const matchedPosts: Post[] = [];
-
-//     // Get all posts,
-//     // Sorting the posts by date.
-//     const posts: Post[] = allPosts.sort((a, b) => {
-//       return compareDesc(new Date(a.date), new Date(b.date));
-//     });
-
-//     // Get posts that matched with tag
-//     allPosts.forEach((post) =>
-//       post.tags.forEach((tag) => {
-//         if (tag.split(" ").join("-") === params!.slug) {
-//           matchedPosts.push(post);
-//         }
-//       })
-//     );
-
-//     return {
-//       props: {
-//         posts,
-//         matchedPosts,
-//       },
-//     };
-//   };
