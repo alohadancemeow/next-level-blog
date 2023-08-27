@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Center, Text } from "@mantine/core";
+import { siteMetadata } from "@/site/siteMatedata";
 
 const IconLogo = () => (
   <Link href="/" legacyBehavior>
@@ -12,7 +15,7 @@ const IconLogo = () => (
       }}
     >
       <span style={{ fontSize: "20px" }}>✌️</span>
-      <Text style={{ fontWeight: "bold" }}>alohadancemeow</Text>
+      <Text style={{ fontWeight: "bold" }}>{siteMetadata.title}</Text>
     </Text>
   </Link>
 );

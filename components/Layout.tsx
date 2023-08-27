@@ -1,7 +1,6 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import Head from "next/head";
 import { Box } from "@mantine/core";
 
 import Logo from "./Logo";
@@ -10,26 +9,12 @@ import ThemeMode from "./ThemeMode";
 
 type Props = {
   children: ReactNode;
-  title: string;
 };
 
-const Layout = ({ children, title }: Props) => {
+const Layout = ({ children }: Props) => {
   return (
     <div>
-      <Head>
-        <title>{`${title} | alohadancemeow`}</title>
-      </Head>
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: "0px",
-        }}
-        className="relative"
-      >
+      <div className="relative flex flex-col justify-between w-full h-full p-0">
         <Box>
           <Logo />
           <ThemeMode />

@@ -17,7 +17,7 @@ const layout = async ({ children, params }: Props) => {
 
   return (
     <Spotlight data={posts}>
-      <Layout title={`Tags: ${params.slug}`}>
+      <Layout>
         <PageLayout>
           <Menu title={`# ${params.slug}`} />
           {/* <SearchPost /> */}

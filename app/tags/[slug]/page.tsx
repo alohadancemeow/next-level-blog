@@ -3,7 +3,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import { siteMetadata } from "@/site/siteMatedata";
 
 import TagPage from "@/components/tag/TagPage";
-import { defaultImage } from "@/site/data";
+import { ogTagImage } from "@/site/data";
 
 export async function generateMetadata(
   { params }: Props,
@@ -15,7 +15,7 @@ export async function generateMetadata(
     title: `${siteMetadata.title} — ${params.slug}`,
     description: `Posts about ${params.slug}`,
     openGraph: {
-      images: [defaultImage, ...previousImages],
+      images: [ogTagImage, ...previousImages],
     },
   };
 }

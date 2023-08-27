@@ -1,3 +1,6 @@
+"use client";
+
+import { siteMetadata } from "@/site/siteMatedata";
 import { Center, Text } from "@mantine/core";
 
 type Props = {};
@@ -9,11 +12,11 @@ const Footer = (props: Props) => {
         <Text>Made with 🧡 </Text>
         <Text
           component="a"
-          href="https://github.com/alohadancemeow"
+          href={`${siteMetadata.github}`}
           target={"_blank"}
           referrerPolicy="no-referrer"
         >
-          alohadancemeow
+          {siteMetadata.title}
         </Text>
       </Center>
     </div>

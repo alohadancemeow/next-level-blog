@@ -17,6 +17,8 @@
     "@mantine/next": "^6.0.19",
     "@mantine/prism": "^6.0.19",
     "@mantine/spotlight": "^6.0.19",
+    "@mdx-js/loader": "^2.3.0",
+    "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.4.19",
     "@notionhq/client": "^2.2.11",
     "autoprefixer": "^10.4.15",

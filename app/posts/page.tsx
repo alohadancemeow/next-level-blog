@@ -4,10 +4,14 @@ import { getPosts } from "@/lib/notion";
 
 import PostsPage from "@/components/posts/PostsPage";
 import { siteMetadata } from "@/site/siteMatedata";
+import { ogPoststImage } from "@/site/data";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Posts`,
   description: `All posts from ${siteMetadata.title}`,
+  openGraph: {
+    images: [ogPoststImage],
+  },
 };
 
 type Props = {};

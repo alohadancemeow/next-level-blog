@@ -39,7 +39,7 @@ const PostsPage = ({ posts, tags }: Props) => {
 
   return (
     <Spotlight data={posts}>
-      <Layout title="Posts">
+      <Layout>
         <PageLayout>
           <Menu title="alohadancemeow posts" />
           <SearchPost />

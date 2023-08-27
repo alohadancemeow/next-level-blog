@@ -24,7 +24,7 @@ const layout = async ({ children, params }: Props) => {
 
   if (!postData) return notFound();
   return (
-    <Layout title={postData.title ?? "Post title"}>
+    <Layout>
       <div
         style={{
           height: "100%",
