@@ -47,7 +47,7 @@ const Content = ({ recordMap, rootPageId }: Props) => {
   const { colorScheme } = useMantineColorScheme();
 
   const isDark = colorScheme === "dark";
-  
+
   const myTweet = () => tweetId && <Tweet id={tweetId} />;
 
   if (!recordMap) return notFound();
@@ -72,26 +72,30 @@ const Content = ({ recordMap, rootPageId }: Props) => {
         Pdf,
         Tweet: myTweet,
       }}
-      className={`
-      ${jetBrains_mono.className}
-      w-full
-      prose-ol:m-0 
-      prose-ul:m-0 
-      prose-li:m-0 
-      prose 
-      prose-a:no-underline 
-      prose-img:m-0
-      ${
-        isDark &&
-        `
-      prose-blockquote:border-amber-700
-      [&>div>a>div>*]:text-white
-      [&>*]:text-white
-      [&>div>*]:text-white
-      [&>div>a>div>div>*]:text-gray-500
-      [&>div>a]:border-amber-700
-      `
-      }
+      // className={`
+      // ${jetBrains_mono.className}
+      // w-full
+      // prose-ol:m-0
+      // prose-ul:m-0
+      // prose-li:m-0
+      // prose
+      // prose-a:no-underline
+      // prose-img:m-0
+      // ${
+      //   isDark &&
+      //   `
+      // prose-blockquote:border-amber-700
+      // [&>div>a>div>*]:text-white
+      // [&>*]:text-white
+      // [&>div>*]:text-white
+      // [&>div>a>div>div>*]:text-gray-500
+      // [&>div>a]:border-amber-700
+      // `
+      // }
+      // `}
+      className={` 
+      ${jetBrains_mono.className} 
+      ${isDark && "[&>div>a]:border-amber-700"}
       `}
     />
   );
