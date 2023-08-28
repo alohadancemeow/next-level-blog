@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 
-import Layout from "@/components/Layout";
+import Layout from "@/components//layout/Layout";
 import ScrollToTop from "@/components/ScrollToTop";
 import ContentTitle from "@/components/Post/ContentTitle";
 import ContentBody from "@/components/Post/ContentBody";

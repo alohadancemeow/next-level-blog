@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Breadcrumbs as MantineBreadcrumbs,
   Anchor,

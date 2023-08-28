@@ -7,13 +7,13 @@ import { Space, Grid, Timeline, Text, Highlight } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import { Books, Hash, SignRight } from "tabler-icons-react";
 
-import PostCard from "@/components/PostCard";
-import Menu from "@/components/Menu";
-import TagsBanner from "@/components/TagsBanner";
-import Layout from "@/components/Layout";
-import PageLayout from "@/components/PageLayout";
+import PostCard from "@/components/posts/PostCard";
+import Menu from "@/components/layout/Menu";
+import TagsBanner from "@/components/posts/TagsBanner";
+import Layout from "@/components/layout/Layout";
+import PageLayout from "@/components/layout/PageLayout";
 import Spotlight from "@/components/Spotlight";
-import SearchPost from "@/components/SearchPost";
+import SearchPost from "@/components/posts/SearchPost";
 
 import { notFound } from "next/navigation";
 import { PageData, Tags } from "@/types";

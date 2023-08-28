@@ -5,9 +5,9 @@ import { format, parseISO } from "date-fns";
 
 import { Center, Space } from "@mantine/core";
 
-import Breadcrumbs from "@/components/Breadcrumbs";
-import Header from "@/components/Header";
-import Tags from "@/components/Tags";
+import Breadcrumbs from "@/components/Post/Breadcrumbs";
+import Header from "@/components/layout/Header";
+import Tags from "@/components/posts/Tags";
 
 import { PageData } from "@/types";
 import { notFound } from "next/navigation";

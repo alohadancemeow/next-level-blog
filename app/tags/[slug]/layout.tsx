@@ -1,7 +1,7 @@
 import { getPosts } from "@/lib/notion";
-import Layout from "@/components/Layout";
-import Menu from "@/components/Menu";
-import PageLayout from "@/components/PageLayout";
+import Layout from "@/components/layout/Layout";
+import Menu from "@/components/layout/Menu";
+import PageLayout from "@/components/layout/PageLayout";
 import Spotlight from "@/components/Spotlight";
 import BackToPosts from "@/components/tag/BackToPosts";
 

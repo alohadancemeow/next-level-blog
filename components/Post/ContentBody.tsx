@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { Space, Grid, Text, Box } from "@mantine/core";
 
-import MorePost from "@/components/MorePost";
+import MorePost from "@/components/Post/MorePost";
 import Comments from "./Comments";
-import Share from "@/components/Share";
+import Share from "@/components/Post/Share";
 
 import { PageData, PostTag } from "@/types";
 import { notFound } from "next/navigation";

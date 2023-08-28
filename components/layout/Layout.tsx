@@ -5,7 +5,7 @@ import { Box } from "@mantine/core";
 
 import Logo from "./Logo";
 import Footer from "./Footer";
-import ThemeMode from "./ThemeMode";
+import ThemeMode from "@/components/ThemeMode";
 
 type Props = {
   children: ReactNode;
