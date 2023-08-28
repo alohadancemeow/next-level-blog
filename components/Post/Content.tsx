@@ -7,7 +7,6 @@ import { notFound } from "next/navigation";
 import useGetTweetId from "@/hooks/useGetTweetId";
 
 import { jetBrains_mono } from "@/app/fonts";
-import { useMantineColorScheme } from "@mantine/core";
 
 // # Expensive components
 const Code = dynamic(() =>
@@ -44,9 +43,6 @@ type Props = {
 
 const Content = ({ recordMap, rootPageId }: Props) => {
   const { tweetId } = useGetTweetId({ recordMap });
-  const { colorScheme } = useMantineColorScheme();
-
-  const isDark = colorScheme === "dark";
 
   const myTweet = () => tweetId && <Tweet id={tweetId} />;
 
@@ -72,30 +68,20 @@ const Content = ({ recordMap, rootPageId }: Props) => {
         Pdf,
         Tweet: myTweet,
       }}
-      // className={`
-      // ${jetBrains_mono.className}
-      // w-full
-      // prose-ol:m-0
-      // prose-ul:m-0
-      // prose-li:m-0
-      // prose
-      // prose-a:no-underline
-      // prose-img:m-0
-      // ${
-      //   isDark &&
-      //   `
-      // prose-blockquote:border-amber-700
-      // [&>div>a>div>*]:text-white
-      // [&>*]:text-white
-      // [&>div>*]:text-white
-      // [&>div>a>div>div>*]:text-gray-500
-      // [&>div>a]:border-amber-700
-      // `
-      // }
-      // `}
-      className={` 
+      className={`
       ${jetBrains_mono.className} 
-      ${isDark && "[&>div>a]:border-amber-700"}
+      w-full
+      prose-ol:m-0 
+      prose-ul:m-0 
+      prose-li:m-0 
+      prose 
+      dark:prose-invert 
+      prose-a:no-underline 
+      prose-img:m-0
+      dark:prose-blockquote:border-amber-700
+      dark:[&>div>a>div>*]:text-white
+      dark:[&>div>a>div>div>*]:text-gray-500
+      dark:prose-a:border-amber-700
       `}
     />
   );

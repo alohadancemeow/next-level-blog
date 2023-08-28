@@ -8,7 +8,9 @@ type Props = {
 
 const Code = ({ code }: Props) => {
   return (
-    <Prism.Tabs defaultValue="component.tsx">
+    <Prism.Tabs defaultValue="component.tsx" sx={{
+      width: '100%'
+    }}>
       <Prism.TabsList>
         <Prism.Tab color="dark" value="component.tsx" icon={<TsIcon />}>
           Component.tsx

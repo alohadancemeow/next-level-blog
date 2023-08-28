@@ -10,6 +10,7 @@ import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 import React, { useState } from "react";
 import GlobalStyles from "@/styles/GlobalStyles";
 import Player from "@/components/Player";
+import ThemeCheck from "@/components/ThemeCheck";
 
 type Props = {
   children: React.ReactNode;
@@ -67,7 +68,7 @@ export default function MantineProviders({ children }: Props) {
         }}
       >
         <GlobalStyles />
-        {children}
+        <ThemeCheck>{children}</ThemeCheck>
         <Player opened={opened} setOpened={setOpened} />
       </MantineProvider>
     </ColorSchemeProvider>

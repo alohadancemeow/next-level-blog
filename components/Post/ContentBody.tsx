@@ -54,7 +54,7 @@ const ContentBody = ({ posts, children, postData }: Props) => {
             },
           })}
         >
-          <div className="mx-auto">{children}</div>
+          <div className="mx-auto mb-8">{children}</div>
 
           <Space h={"xl"} />
           <Box

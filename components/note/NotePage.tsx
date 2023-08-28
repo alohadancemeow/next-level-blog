@@ -31,7 +31,7 @@ const NotePage = (props: Props) => {
             quote="Life is like an npm install – you never know what you are going to get."
           />
           <Space h={"lg"} />
-          <div className="flex flex-col gap-4 m-auto mx-4 prose md:mx-auto dark:prose-invert">
+          <div className="flex flex-col w-full gap-4 m-auto my-5 prose md:mx-0 dark:prose-invert">
             <FirstContent />
           </div>
           <Space h={"lg"} />
