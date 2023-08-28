@@ -6,7 +6,7 @@ import { ExtendedRecordMap } from "notion-types";
 import { notFound } from "next/navigation";
 import useGetTweetId from "@/hooks/useGetTweetId";
 
-import { jetBrains_mono } from "@/app/fonts";
+import { bai_jamjuree, jetBrains_mono } from "@/app/fonts";
 
 // # Expensive components
 const Code = dynamic(() =>
@@ -69,15 +69,16 @@ const Content = ({ recordMap, rootPageId }: Props) => {
         Tweet: myTweet,
       }}
       className={`
-      ${jetBrains_mono.className} 
+      ${bai_jamjuree.className}
       w-full
       prose-ol:m-0 
       prose-ul:m-0 
       prose-li:m-0 
-      prose 
+      prose
       dark:prose-invert
       prose-a:no-underline 
       prose-img:m-0
+      prose-blockquote:border-amber-500
       dark:prose-blockquote:border-amber-700
       dark:[&>div>a>div>*]:text-white
       dark:[&>div>a>div>div>*]:text-gray-500

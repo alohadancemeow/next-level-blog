@@ -22,7 +22,7 @@ const CustomBlockquote = ({ cite, quote }: Props) => {
         borderColor:
           theme.colorScheme === "light"
             ? theme.colors[theme.primaryColor][4]
-            : theme.colors[theme.primaryColor][6],
+            : theme.colors[theme.primaryColor][7],
       })}
     >
       {quote}

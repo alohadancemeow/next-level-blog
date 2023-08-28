@@ -27,8 +27,8 @@ const NotePage = (props: Props) => {
           <Shortcuts />
           <Space h={"xl"} />
           <CustomBlockquote
-            cite="Forrest Gump"
-            quote="Life is like an npm install – you never know what you are going to get."
+            cite="3rd rabbit The caffeine-driven man"
+            quote="The only way to gain knowledge is to be aware of everything around you. ✌️"
           />
           <Space h={"lg"} />
           <div
@@ -39,7 +39,8 @@ const NotePage = (props: Props) => {
             m-auto 
             my-5 
             md:mx-0 
-            prose 
+            prose
+            prose-ul:list-square
             w-full
             prose-ol:m-0 
             prose-ul:m-0 
@@ -48,8 +49,8 @@ const NotePage = (props: Props) => {
             prose-img:m-0
             dark:prose-invert 
             prose-blockquote:border-amber-500
-            dark:prose-a:border-amber-700
             dark:prose-blockquote:border-amber-700
+            dark:prose-a:border-amber-700
             dark:[&>div>a>div>*]:text-white
             dark:[&>div>a>div>div>*]:text-gray-500
             "
