@@ -75,7 +75,7 @@ const Content = ({ recordMap, rootPageId }: Props) => {
       prose-ul:m-0 
       prose-li:m-0 
       prose 
-      dark:prose-invert 
+      dark:prose-invert
       prose-a:no-underline 
       prose-img:m-0
       dark:prose-blockquote:border-amber-700
