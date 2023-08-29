@@ -6,12 +6,10 @@ import { Box, Text } from "@mantine/core";
 import { PostTag } from "@/types";
 
 type Props = {
-  tags: string[];
+  tags: PostTag[];
 };
 
 const Tags = ({ tags }: Props) => {
-  const allTags = Object(tags) as PostTag[];
-
   return (
     <Box
       style={{
@@ -23,8 +21,8 @@ const Tags = ({ tags }: Props) => {
         fontSize: "12px",
       }}
     >
-      {allTags &&
-        allTags.map((tag, idx) => (
+      {tags &&
+        tags.map((tag, idx) => (
           <div key={idx}>
             <Link href={`/tags/${tag.name}`} legacyBehavior>
               <Text

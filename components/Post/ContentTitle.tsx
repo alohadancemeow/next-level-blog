@@ -27,9 +27,16 @@ const ContentTitle = ({ postData }: Props) => {
         gap: 5,
       }}
     >
-      {postData && (
+      {postData.lastUpdated ? (
+        <time dateTime={postData.lastUpdated} style={{ fontSize: "15px" }}>
+          {`Last updated: ${format(
+            parseISO(postData.lastUpdated),
+            "LLLL d, yyyy"
+          )}`}
+        </time>
+      ) : (
         <time dateTime={postData.createdTime} style={{ fontSize: "15px" }}>
-          {format(parseISO(postData.createdTime), "LLLL d, yyyy")}
+          {`${format(parseISO(postData.createdTime), "LLLL d, yyyy")}`}
         </time>
       )}
       <Header title={postData.title} />
