@@ -8,5 +8,7 @@ export const siteMetadata = {
   author: "alohadancemeow",
   twitter: "@3rd_rabbitGo",
   github: "https://github.com/alohadancemeow",
-  keywords: ["alohadancemeow", "blog"],
+  githubRepo: "https://github.com/alohadancemeow/next-level-blog",
+  keywords: ["alohadancemeow", "blog", "React", "Next", "Node", "Reading"],
+  version: "v0.1.2",
 };
