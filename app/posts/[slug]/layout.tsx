@@ -35,7 +35,7 @@ const layout = async ({ children, params }: Props) => {
       >
         <ContentTitle postData={postData} />
         <ContentBody
-          posts={posts.slice(0, 3)}
+          posts={posts}
           // toc={toc}
           postData={postData}
         >

@@ -21,8 +21,6 @@ const ThemeCheck = ({ children }: Props) => {
 
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
   const checkTheme = () => {
-    console.log(colorScheme === "dark", "theme in fn");
-
     if (
       colorScheme === "dark" ||
       (!("theme" in localStorage) &&

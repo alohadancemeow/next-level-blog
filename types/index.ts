@@ -7,7 +7,7 @@ export interface PageData {
   lastUpdated: string;
   authorId: string;
   lastEditedBy: string;
-  tags: string[];
+  tags: PostTag[];
   icon: string;
 }
 

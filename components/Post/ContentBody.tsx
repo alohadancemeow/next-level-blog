@@ -1,15 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Space, Grid, Text, Box } from "@mantine/core";
+import { Space, Grid, Text, Box, Center, Divider } from "@mantine/core";
 
 import MorePost from "@/components/Post/MorePost";
 import Comments from "./Comments";
 import Share from "@/components/Post/Share";
 
-import { PageData, PostTag } from "@/types";
+import { PageData } from "@/types";
 import { notFound } from "next/navigation";
 import { siteMetadata } from "@/site/siteMatedata";
+import useGetRelatedPost from "@/hooks/useGetRelatedPost";
 
 type Props = {
   posts: PageData[];
@@ -18,22 +19,29 @@ type Props = {
 };
 
 const ContentBody = ({ posts, children, postData }: Props) => {
-  const tags = Object(postData.tags) as PostTag[];
+  const { relatedPosts } = useGetRelatedPost({
+    posts,
+    postTags: postData.tags,
+    postId: postData.id,
+  });
+
+  // console.log(relatedPosts, "relatedPosts");
 
   if (!posts.length && !postData) return notFound();
 
   return (
     <div
       style={{
-        width: "90%",
+        width: "100%",
         margin: "0 auto",
       }}
     >
       <Grid gutter={50} mt={3}>
         <Grid.Col
           lg={3}
+          md={2}
           sx={(theme) => ({
-            [theme.fn.smallerThan("lg")]: { display: "none" },
+            [theme.fn.smallerThan("md")]: { display: "none" },
           })}
         >
           {postData && (
@@ -57,6 +65,7 @@ const ContentBody = ({ posts, children, postData }: Props) => {
           <div className="mx-auto mb-8">{children}</div>
 
           <Space h={"xl"} />
+
           <Box
             sx={{
               display: "flex",
@@ -64,7 +73,7 @@ const ContentBody = ({ posts, children, postData }: Props) => {
             }}
           >
             <Text> More in : </Text>
-            {tags.map((tag, i) => (
+            {postData.tags.map((tag, i) => (
               <Link key={i} href={`/tags/${tag.name}`} legacyBehavior>
                 <Text
                   component="a"
@@ -80,22 +89,30 @@ const ContentBody = ({ posts, children, postData }: Props) => {
             ))}
           </Box>
 
-          <Grid gutter="sm">
-            {posts.map((post) => (
-              <Grid.Col key={post.id} xs={6} md={4}>
-                <MorePost post={post} />
-              </Grid.Col>
-            ))}
-          </Grid>
+          {relatedPosts.length !== 0 ? (
+            <Grid gutter="sm">
+              {relatedPosts.map((post) => (
+                <Grid.Col key={post.id} xs={6} md={4}>
+                  <MorePost post={post} />
+                </Grid.Col>
+              ))}
+            </Grid>
+          ) : (
+            <Center mt={30}>
+              <Text>No post matched... 😕</Text>
+            </Center>
+          )}
 
           <Space h={"xl"} />
           <Space h={"xl"} />
+          <Space h={"md"} />
+          <Divider />
           <Space h={"xl"} />
           <Comments />
         </Grid.Col>
 
         <Grid.Col
-          md={4}
+          md={2}
           lg={3}
           sx={(theme) => ({
             [theme.fn.smallerThan("md")]: { display: "none" },

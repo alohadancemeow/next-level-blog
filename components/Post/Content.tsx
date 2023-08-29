@@ -69,7 +69,7 @@ const Content = ({ recordMap, rootPageId }: Props) => {
         Tweet: myTweet,
       }}
       className={`
-      ${bai_jamjuree.className}
+      ${jetBrains_mono.className}
       w-full
       prose-ol:m-0 
       prose-ul:m-0 
