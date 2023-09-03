@@ -16,7 +16,7 @@ import MantineProviders from "@/providers/MantineProviders";
 import ClientComponent from "@/components/ClientComponent";
 
 export const metadata: Metadata = {
-  title: siteMetadata.title,
+  title: `${siteMetadata.title} — ${siteMetadata.homeTitle}`,
   description: siteMetadata.description,
   keywords: siteMetadata.keywords,
   openGraph: {

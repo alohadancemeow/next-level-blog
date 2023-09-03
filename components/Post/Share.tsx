@@ -4,6 +4,8 @@ import { ActionIcon, Box, Center, Text } from "@mantine/core";
 import { BrandFacebook, BrandTwitter } from "tabler-icons-react";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
 
+import { TwitterIcon, FacebookIcon } from "../Icons";
+
 type Props = {
   postLink: string;
 };
@@ -65,6 +67,7 @@ const Share = ({ postLink }: Props) => {
               style={{ display: "grid", placeItems: "center" }}
             >
               <BrandFacebook size={18} />
+              {/* <FacebookIcon /> */}
             </FacebookShareButton>
           </ActionIcon>
         </Box>
@@ -96,7 +99,8 @@ const Share = ({ postLink }: Props) => {
               hashtags={["#alohadancemeow"]}
               style={{ display: "grid", placeItems: "center" }}
             >
-              <BrandTwitter size={18} />
+              {/* <BrandTwitter size={18} /> */}
+              <TwitterIcon />
             </TwitterShareButton>
           </ActionIcon>
         </Box>

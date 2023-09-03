@@ -6,6 +6,7 @@ import { format, parseISO } from "date-fns";
 import { Card, Image, Text } from "@mantine/core";
 import Tags from "./Tags";
 import { PageData } from "@/types";
+import { SmallFeatherIcon } from "../Icons";
 
 type Props = {
   post: PageData;
@@ -37,7 +38,10 @@ const PostCard = ({ post }: Props) => {
         >
           <Text size="xs" mb={"xs"}>
             <time dateTime={post.createdTime}>
-              🪶 {format(parseISO(post.createdTime), "LLLL d, yyyy")}
+              <div className="flex gap-2">
+                <SmallFeatherIcon />
+                {format(parseISO(post.createdTime), "LLLL d, yyyy")}
+              </div>
             </time>
           </Text>
 
