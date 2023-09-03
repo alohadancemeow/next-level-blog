@@ -1,7 +1,7 @@
 import { Metadata, ResolvingMetadata } from "next";
 
-import api from "@/lib/notion-api";
 import { getPostById } from "@/actions/getPostById";
+import { getPageContent } from "@/lib/notion";
 import { PostTag } from "@/types";
 import { siteMetadata } from "@/site/siteMatedata";
 import Content from "@/components/Post/Content";
@@ -40,9 +40,9 @@ export async function generateMetadata(
 }
 
 const Post = async ({ params }: Props) => {
-  const recordMap = await api.getPage(params.slug);
+  const recordMap = await getPageContent(params.slug);
 
-  return <Content recordMap={recordMap} />;
+  return recordMap && <Content recordMap={recordMap} />;
 };
 
 export default Post;
