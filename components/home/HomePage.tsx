@@ -17,6 +17,8 @@ import {
   useMantineColorScheme,
 } from "@mantine/core";
 
+import { Navigations } from "@/site/data";
+
 type Props = {};
 
 const HomePage: React.FC = (props: Props) => {
@@ -63,26 +65,13 @@ const HomePage: React.FC = (props: Props) => {
 
           <Box style={{ width: "70%" }}>
             <Grid grow>
-              <Grid.Col span={6}>
-                <Link href="/" passHref legacyBehavior>
-                  <UnstyledButton component="a">📌 About Me</UnstyledButton>
-                </Link>
-              </Grid.Col>
-              <Grid.Col span={6}>
-                <Link href="/posts" passHref legacyBehavior>
-                  <UnstyledButton component="a">📖 Posts</UnstyledButton>
-                </Link>
-              </Grid.Col>
-              <Grid.Col span={6}>
-                <Link href="/" passHref legacyBehavior>
-                  <UnstyledButton component="a">📚 Projects</UnstyledButton>
-                </Link>
-              </Grid.Col>
-              <Grid.Col span={6}>
-                <Link href="/note" passHref legacyBehavior>
-                  <UnstyledButton component="a">📝 Note</UnstyledButton>
-                </Link>
-              </Grid.Col>
+              {Navigations.map(({ name, href, id }) => (
+                <Grid.Col span={6} key={id}>
+                  <Link href={href} passHref legacyBehavior>
+                    <UnstyledButton component="a">{name}</UnstyledButton>
+                  </Link>
+                </Grid.Col>
+              ))}
             </Grid>
           </Box>
 
