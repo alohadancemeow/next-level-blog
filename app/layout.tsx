@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { jetBrains_mono } from "./fonts";
 import { siteMetadata } from "@/site/siteMatedata";
+import { ogHomeImage } from "@/site/data";
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   description: siteMetadata.description,
   keywords: siteMetadata.keywords,
   openGraph: {
-    // images: [defaultImage],
+    images: [ogHomeImage],
     type: "website",
   },
 };
