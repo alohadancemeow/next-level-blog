@@ -34,7 +34,7 @@ const Modal = dynamic(
 );
 
 const Tweet = dynamic(() => import("./TweetBox"));
-const CodeBox = dynamic(() => import("./Code"));
+// const CodeBox = dynamic(() => import("./Code"));
 
 type Props = {
   recordMap: ExtendedRecordMap;
@@ -61,7 +61,7 @@ const Content = ({ recordMap, rootPageId }: Props) => {
       // pageCover={<></>}
       // pageTitle
       components={{
-        Code: CodeBox,
+        Code,
         // Collection,
         Equation,
         Modal,
