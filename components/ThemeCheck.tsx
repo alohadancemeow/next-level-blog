@@ -35,7 +35,7 @@ const ThemeCheck = ({ children }: Props) => {
   useEffect(() => {
     setMounted(true);
     checkTheme();
-  }, [colorScheme]);
+  }, [colorScheme, checkTheme]);
 
   if (!mounted) return null;
 

@@ -33,7 +33,7 @@ const PostsPage = ({ posts, tags }: Props) => {
 
   useEffect(() => {
     setTagname("");
-  }, []);
+  }, [setTagname]);
 
   if (!posts) return notFound();
 
