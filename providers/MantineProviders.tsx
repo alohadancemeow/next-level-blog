@@ -29,7 +29,7 @@ export default function MantineProviders({ children }: Props) {
   useHotkeys([["mod + D", () => toggleColorScheme()]]);
 
   const [opened, setOpened] = useState<boolean>(false);
-  useHotkeys([["mod + shift + L", () => setOpened((o) => !o)]]);
+  useHotkeys([["mod + shift + P", () => setOpened((o) => !o)]]);
 
   return (
     <ColorSchemeProvider

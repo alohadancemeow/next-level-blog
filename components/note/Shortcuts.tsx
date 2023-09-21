@@ -113,13 +113,13 @@ const Shortcuts = (props: Props) => {
                 <span style={{ margin: "0 5px" }}>+</span>
                 <Kbd>Shift</Kbd>
                 <span style={{ margin: "0 5px" }}>+</span>
-                <Kbd>L</Kbd>
+                <Kbd>P</Kbd>
                 <span style={{ margin: "0 10px" }}>/</span>
                 <Kbd>Ctrl</Kbd>
                 <span style={{ margin: "0 5px" }}>+</span>
                 <Kbd>Shift</Kbd>
                 <span style={{ margin: "0 5px" }}>+</span>
-                <Kbd>L</Kbd>
+                <Kbd>P</Kbd>
               </Box>
             }
           />
