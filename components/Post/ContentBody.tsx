@@ -1,126 +1,128 @@
-import React from "react";
-import { useMDXComponent } from "next-contentlayer/hooks";
+"use client";
+
 import Link from "next/link";
+import { Space, Grid, Text, Box, Center, Divider } from "@mantine/core";
 
-import { CSSIcon, JsIcon, TsIcon, NpmIcon } from "components/Post/SvgIcons";
-import { Prism } from "@mantine/prism";
-import { Space, Grid, Image, AspectRatio, Text, Box } from "@mantine/core";
-
-import CodeBox from "components/Post/Code";
-import TableOfContents from "components/TableOfContents";
-import MorePost from "components/MorePost";
+import MorePost from "@/components/Post/MorePost";
 import Comments from "./Comments";
-import Share from "components/Share";
+import Share from "@/components/Post/Share";
 
-import { ContentHeader, Props } from "pages/posts/[slug]";
+import { PageData } from "@/types";
+import { notFound } from "next/navigation";
+import { siteMetadata } from "@/site/siteMatedata";
+import useGetRelatedPost from "@/hooks/useGetRelatedPost";
 
-const myMdxComponents = {
-  CodeBox,
-  Space,
-  Prism,
-  Image,
-  CSSIcon,
-  JsIcon,
-  TsIcon,
-  NpmIcon,
-  AspectRatio,
+type Props = {
+  posts: PageData[];
+  postData: PageData;
+  children: React.ReactNode;
 };
 
-interface ContentProps extends Props {
-  headings: ContentHeader[] | undefined;
-  link: string;
-}
+const ContentBody = ({ posts, children, postData }: Props) => {
+  const { relatedPosts } = useGetRelatedPost({
+    posts,
+    postTags: postData.tags,
+    postId: postData.id,
+  });
 
-const ContentBody: React.FC<ContentProps> = React.memo(
-  ({ post, matchedPosts, headings, link }) => {
-    const MDXContent = useMDXComponent(post.body.code);
+  // console.log(relatedPosts, "relatedPosts");
 
-    return (
-      <div
-        style={{
-          width: "90%",
-          margin: "0 auto",
-        }}
-      >
-        <Grid gutter={50}>
-          <Grid.Col
-            lg={3}
-            sx={(theme) => ({
-              [theme.fn.smallerThan("lg")]: { display: "none" },
-            })}
+  if (!posts.length && !postData) return notFound();
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        margin: "0 auto",
+      }}
+    >
+      <Grid gutter={50} mt={3}>
+        <Grid.Col
+          lg={3}
+          md={2}
+          sx={(theme) => ({
+            [theme.fn.smallerThan("md")]: { display: "none" },
+          })}
+        >
+          {postData && (
+            <Share
+              postLink={`${siteMetadata.siteAddress}/posts/${postData.id}`}
+            />
+          )}
+        </Grid.Col>
+
+        <Grid.Col
+          md={8}
+          lg={6}
+          sx={(theme) => ({
+            [theme.fn.smallerThan("md")]: { padding: "0 6rem" },
+            [theme.fn.smallerThan("xs")]: {
+              padding: "0 2.5rem",
+              fontSize: "15px",
+            },
+          })}
+        >
+          <div className="mx-auto mb-8">{children}</div>
+
+          <Space h={"xl"} />
+
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
-            {post && <Share postLink={link} />}
-          </Grid.Col>
-
-          <Grid.Col
-            md={8}
-            lg={6}
-            sx={(theme) => ({
-              [theme.fn.smallerThan("md")]: { padding: "0 6rem" },
-              [theme.fn.smallerThan("xs")]: {
-                padding: "0 2.5rem",
-                fontSize: "15px",
-              },
-            })}
-          >
-            <article>
-              <MDXContent components={myMdxComponents} />
-            </article>
-            <Space h={"xl"} />
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Text> More in : </Text>
-              {post.tags.map((tag, i) => (
-                <Link
-                  key={i}
-                  href={`/tags/${tag.split(" ").join("-")}`}
-                  legacyBehavior
+            <Text> More in : </Text>
+            {postData.tags.map((tag, i) => (
+              <Link key={i} href={`/tags/${tag.name}`} legacyBehavior>
+                <Text
+                  component="a"
+                  sx={{
+                    textDecoration: "none",
+                    // color: `${tag.color ?? "gray"}`,
+                    paddingInlineStart: "8px",
+                  }}
                 >
-                  <Text
-                    component="a"
-                    sx={{
-                      textDecoration: "none",
-                      // color: "grey",
-                      paddingInlineStart: "8px",
-                    }}
-                  >
-                    {`#${tag}`}
-                  </Text>
-                </Link>
-              ))}
-            </Box>
+                  {`#${tag.name}`}
+                </Text>
+              </Link>
+            ))}
+          </Box>
 
+          {relatedPosts.length !== 0 ? (
             <Grid gutter="sm">
-              {matchedPosts.map((post) => (
-                <Grid.Col key={post._id} xs={6} md={4}>
-                  <MorePost {...post} />
+              {relatedPosts.map((post) => (
+                <Grid.Col key={post.id} xs={6} md={4}>
+                  <MorePost post={post} />
                 </Grid.Col>
               ))}
             </Grid>
+          ) : (
+            <Center mt={30}>
+              <Text>No post matched... 😕</Text>
+            </Center>
+          )}
 
-            <Space h={"xl"} />
-            <Space h={"xl"} />
-            <Space h={"xl"} />
-            <Comments />
-          </Grid.Col>
+          <Space h={"xl"} />
+          <Space h={"xl"} />
+          <Space h={"md"} />
+          <Divider />
+          <Space h={"xl"} />
+          <Comments />
+        </Grid.Col>
 
-          <Grid.Col
-            md={4}
-            lg={3}
-            sx={(theme) => ({
-              [theme.fn.smallerThan("md")]: { display: "none" },
-            })}
-          >
-            {headings && <TableOfContents links={headings} />}
-          </Grid.Col>
-        </Grid>
-      </div>
-    );
-  }
-);
+        <Grid.Col
+          md={2}
+          lg={3}
+          sx={(theme) => ({
+            [theme.fn.smallerThan("md")]: { display: "none" },
+          })}
+        >
+          {/* {headings && <TableOfContents links={headings} />} */}
+        </Grid.Col>
+      </Grid>
+    </div>
+  );
+};
 
 export default ContentBody;

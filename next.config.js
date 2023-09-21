@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
-const { withContentlayer } = require('next-contentlayer')
-
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  optimizeFonts: false,
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  experimental: {
+    serverActions: true,
+    mdxRs: true,
+  },
+  images: {
+    domains: ['www.notion.so', 'images.unsplash.com', 's3.us-west-2.amazonaws.com'],
+    unoptimized: true
+  }
 }
 
-module.exports = withContentlayer({
-  nextConfig
-})
+const withMDX = require('@next/mdx')()
+module.exports = withMDX(nextConfig)

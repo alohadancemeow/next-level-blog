@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { createStyles, Box, Text, Group } from "@mantine/core";
 import { ListSearch } from "tabler-icons-react";

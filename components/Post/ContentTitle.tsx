@@ -1,15 +1,24 @@
+"use client";
+
 import React from "react";
 import { format, parseISO } from "date-fns";
 
 import { Center, Space } from "@mantine/core";
 
-import Breadcrumbs from "components/Breadcrumbs";
-import Header from "components/Header";
-import Tags from "components/Tags";
+import Breadcrumbs from "@/components/Post/Breadcrumbs";
+import Header from "@/components/layout/Header";
+import Tags from "@/components/posts/Tags";
 
-import { Props } from "pages/posts/[slug]";
+import { PageData } from "@/types";
+import { notFound } from "next/navigation";
 
-const ContentTitle: React.FC<Pick<Props, "post">> = React.memo(({ post }) => {
+type Props = {
+  postData: PageData;
+};
+
+const ContentTitle = ({ postData }: Props) => {
+  if (!postData) return notFound();
+
   return (
     <Center
       style={{
@@ -18,18 +27,25 @@ const ContentTitle: React.FC<Pick<Props, "post">> = React.memo(({ post }) => {
         gap: 5,
       }}
     >
-      {post && (
-        <time dateTime={post.date} style={{ fontSize: "15px" }}>
-          {format(parseISO(post.date), "LLLL d, yyyy")}
+      {postData.lastUpdated ? (
+        <time dateTime={postData.lastUpdated} style={{ fontSize: "15px" }}>
+          {`Last updated: ${format(
+            parseISO(postData.lastUpdated),
+            "LLLL d, yyyy"
+          )}`}
+        </time>
+      ) : (
+        <time dateTime={postData.createdTime} style={{ fontSize: "15px" }}>
+          {`${format(parseISO(postData.createdTime), "LLLL d, yyyy")}`}
         </time>
       )}
-      <Header title={post.title} />
-      <Tags tags={post.tags} />
+      <Header title={postData.title} />
+      <Tags tags={postData.tags} />
       <Space h="xs" />
       <Breadcrumbs />
       <Space h="sm" />
     </Center>
   );
-});
+};
 
 export default ContentTitle;

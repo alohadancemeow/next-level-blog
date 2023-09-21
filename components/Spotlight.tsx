@@ -1,25 +1,25 @@
+"use client";
+
 import { SpotlightProvider } from "@mantine/spotlight";
-import { Post } from "contentlayer/generated";
 import { ReactNode } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { PageData } from "@/types";
 
 type Props = {
   children: ReactNode;
-  data: Post[];
+  data: PageData[];
 };
 
 const Spotlight = ({ children, data }: Props) => {
-  // console.log('data', data);
-
   const router = useRouter();
 
   return (
     <SpotlightProvider
       actions={data.map((post) => ({
-        id: post._id,
+        id: post.id,
         title: `📝 ${post.title}`,
         description: post.description,
-        onTrigger: () => router.push(post.url),
+        onTrigger: () => router.push(`/posts/${post.id}`),
         new: false,
       }))}
       searchPlaceholder="🪶 Search for posts..."
@@ -27,7 +27,7 @@ const Spotlight = ({ children, data }: Props) => {
       shortcut="mod + S"
       limit={5}
       highlightQuery
-      //   transitionProps={{ duration: 300, transition: "slide-down" }}
+      // transitionProps={{ duration: 300, transition: "slide-down" }}
     >
       {children}
     </SpotlightProvider>
