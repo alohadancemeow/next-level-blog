@@ -21,6 +21,7 @@
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.4.19",
     "@notionhq/client": "^2.2.11",
+    "@vercel/analytics": "^1.0.2",
     "autoprefixer": "^10.4.15",
     "next": "^13.4.19",
     "notion-client": "^6.16.0",
