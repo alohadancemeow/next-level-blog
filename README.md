@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## :wave: Hi there !
 
-**alohadancemoew** : A blog for documenting my learning, and sharing my knowledge. :v:
+**alohadancemoew** : A personal blog for documenting my learning, and sharing my knowledge. :v:
 
 - Start developing:
 
@@ -21,11 +21,11 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 To learn more, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Contentlayer](https://www.contentlayer.dev/) - Content made easy for developers.
 - [Mantine](https://mantine.dev/) - A fully featured React components library.
 - [MDX](https://mdxjs.com/) - Markdown for the component era.
 - [Giscus](https://giscus.app/) - A comments system powered by GitHub Discussions. 
-- [Next SEO](https://github.com/garmeeh/next-seo) - A plugin that makes managing your SEO easier in Next.js projects.
+- [Notion API](https://developers.notion.com/) - Connect Notion pages and databases to the tools you use every day, creating powerful workflows.
+- [react-notion-x](https://github.com/NotionX/react-notion-x) - Fast and accurate React renderer for Notion. TS batteries included.
 
 ## :rocket: Deploy on Vercel
 
@@ -36,5 +36,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 - [alohadancemeow](https://next-level-blog.vercel.app/) :v:
 
-![image](/public/assets/site/home-light.jpg)
-*- Image for og:image (SEO)*
+![image](/public/assets/og-home.png)
+
