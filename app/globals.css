@@ -4,10 +4,14 @@
 
 /* Customize notion styles */
 
-/* .react-tweet-theme {
+.react-tweet-theme {
   --tweet-bg-color: rgb(255, 255, 255);
   --tweet-bg-color-hover: rgb(248, 242, 234);
-} */
+}
+
+div[class*="tweet-container_"] {
+  background-color: transparent !important;
+}
 
 .notion-asset-wrapper-tweet > div > div {
   max-width: 100% !important;
@@ -38,3 +42,17 @@ pre[class*="language-"] {
 .notion-inline-code {
   color: #eb5757 !important;
 }
+
+/* notion-link */
+.notion-link {
+  color: rgb(255, 192, 120) !important;
+}
+
+.notion-bookmark-title,
+.notion-bookmark-description {
+  color: rgb(107 114 128) !important;
+}
+
+/* .prose :where(a):not(:where([class~=not-prose] *)) {
+  @apply 
+} */
