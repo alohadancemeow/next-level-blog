@@ -1,8 +1,8 @@
-import React from "react";
+import { cache } from "react";
 import { PageData } from "@/types";
 import { getPosts } from "@/lib/notion";
 
-export const getPostById = React.cache(async (postId: string) => {
+export const getPostById = cache(async (postId: string) => {
   const posts = await getPosts();
 
   try {

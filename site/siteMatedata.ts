@@ -1,6 +1,7 @@
 // set site metadata here
 
 export const siteMetadata = {
+  metadataBase: new URL("https://alohadancemeow.com"),
   homeTitle: "Personal Home",
   title: "alohadancemeow",
   description: "บล็อกเกอร์น่ะมีเยอะแล้ว นับฉันเข้าไปอีกสักคนจะเป็นอะไรไป ✌️",

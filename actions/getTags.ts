@@ -1,7 +1,7 @@
-import React from "react";
+import { cache } from "react";
 import { PageData, Tags } from "@/types";
 
-export const getTags = React.cache((posts: PageData[]) => {
+export const getTags = cache((posts: PageData[]) => {
   // Get all tags
   const allTags: Tags = {};
 

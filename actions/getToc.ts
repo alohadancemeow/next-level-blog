@@ -1,7 +1,7 @@
-import React from "react";
+import { cache } from "react";
 import api from "@/lib/notion-api";
 
-export const getToc = React.cache(async (pageId: string) => {
+export const getToc = cache(async (pageId: string) => {
   const recordMap = await api.getPage(pageId);
   const blocks = Object.entries(recordMap.block).flat();
 

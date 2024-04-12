@@ -4,7 +4,7 @@ import { jetBrains_mono } from "./fonts";
 import { siteMetadata } from "@/site/siteMatedata";
 import { ogHomeImage } from "@/site/data";
 
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
@@ -19,6 +19,7 @@ import MantineProviders from "@/providers/MantineProviders";
 import ClientComponent from "@/components/ClientComponent";
 
 export const metadata: Metadata = {
+  metadataBase: siteMetadata.metadataBase,
   title: `${siteMetadata.title} — ${siteMetadata.homeTitle}`,
   description: siteMetadata.description,
   keywords: siteMetadata.keywords,
