@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
-
-import { Space, Timeline } from "@mantine/core";
+import { Divider, Space, Timeline } from "@mantine/core";
 import { Books, Hash, SignRight } from "tabler-icons-react";
 
 import Menu from "@/components/layout/Menu";
@@ -13,9 +11,6 @@ import SearchPost from "@/components/posts/SearchPost";
 
 import { notFound } from "next/navigation";
 import { PageData, TagType } from "@/types";
-
-import useFilterPostByTag from "@/hooks/useFilterPostByTag";
-import useGetPostsByTag from "@/hooks/useGetPostsByTag";
 
 import TagSection from "./contents/tag-section";
 import Section from "./contents/section";
@@ -28,15 +23,7 @@ type Props = {
 };
 
 const PostsPage = ({ posts, tags }: Props) => {
-  const { tagname, setTagname } = useFilterPostByTag();
-  const { filteredPosts } = useGetPostsByTag({ posts, tagname });
-
   const { categories } = getCategory(posts);
-  console.log(categories, "categories");
-
-  useEffect(() => {
-    setTagname("");
-  }, [setTagname]);
 
   if (!posts) return notFound();
 
@@ -50,7 +37,7 @@ const PostsPage = ({ posts, tags }: Props) => {
           <Space h="md" />
 
           <Timeline
-            // active={2}
+            // active={0}
             bulletSize={24}
             lineWidth={2}
             sx={{ padding: "0" }}
@@ -59,9 +46,14 @@ const PostsPage = ({ posts, tags }: Props) => {
               bullet={<Hash size={16} />}
               title="CHOOSE YOUR CONTENT"
             >
-              <TagSection tags={tags} />
+              <TagSection tags={tags} categories={categories} />
             </Timeline.Item>
+          </Timeline>
 
+          <Divider />
+          <Space h="sm" />
+
+          <Timeline bulletSize={24} lineWidth={2} sx={{ padding: "0" }}>
             <Timeline.Item
               bullet={<Books size={16} />}
               // lineVariant="dashed"
@@ -97,7 +89,7 @@ const PostsPage = ({ posts, tags }: Props) => {
               bullet={<SignRight size={16} />}
               lineVariant="dashed"
             >
-              <EndSection setTagname={setTagname} posts={posts} />
+              <EndSection posts={posts} />
             </Timeline.Item>
           </Timeline>
           <Space h="lg" />

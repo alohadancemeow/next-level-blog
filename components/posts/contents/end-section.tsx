@@ -6,11 +6,10 @@ import { useWindowScroll } from "@mantine/hooks";
 import { PageData } from "@/types";
 
 type Props = {
-  setTagname: (name: string) => void;
   posts: PageData[];
 };
 
-const EndSection = ({ setTagname, posts }: Props) => {
+const EndSection = ({ posts }: Props) => {
   const [scroll, scrollTo] = useWindowScroll();
 
   return (
@@ -22,7 +21,6 @@ const EndSection = ({ setTagname, posts }: Props) => {
           component="span"
           inherit
           onClick={() => {
-            setTagname("");
             if (scroll.y > 0) scrollTo({ y: 0 });
           }}
           sx={{
@@ -33,7 +31,7 @@ const EndSection = ({ setTagname, posts }: Props) => {
             },
           }}
         >
-          Clear filter and back to top ({`#${posts.length}`})
+          Back to top ({`#${posts.length}`})
         </Text>
       </Text>
       <Text size="xs" mt={4}>

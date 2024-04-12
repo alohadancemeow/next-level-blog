@@ -9,7 +9,7 @@ export const getPostCategory = cache(async (postCategory: string) => {
       (post) => post.category === postCategory
     )!;
 
-    return filteredPosts;
+    return filteredPosts.slice(0, 6);
   } catch (error) {
     console.log(error, "error at getPostByCategory");
   }
