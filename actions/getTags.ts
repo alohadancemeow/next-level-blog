@@ -1,9 +1,9 @@
 import { cache } from "react";
-import { PageData, Tags } from "@/types";
+import { PageData, TagType } from "@/types";
 
 export const getTags = cache((posts: PageData[]) => {
   // Get all tags
-  const allTags: Tags = {};
+  const allTags: TagType = {};
 
   posts &&
     posts.map((post: PageData) =>

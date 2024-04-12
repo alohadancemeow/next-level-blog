@@ -1,35 +1,38 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { format, parseISO } from "date-fns";
 
-import { Space, Grid, Timeline, Text, Highlight } from "@mantine/core";
-import { useWindowScroll } from "@mantine/hooks";
+import { Space, Timeline } from "@mantine/core";
 import { Books, Hash, SignRight } from "tabler-icons-react";
 
-import PostCard from "@/components/posts/PostCard";
 import Menu from "@/components/layout/Menu";
-import TagsBanner from "@/components/posts/TagsBanner";
 import Layout from "@/components/layout/Layout";
 import PageLayout from "@/components/layout/PageLayout";
 import Spotlight from "@/components/Spotlight";
 import SearchPost from "@/components/posts/SearchPost";
 
 import { notFound } from "next/navigation";
-import { PageData, Tags } from "@/types";
+import { PageData, TagType } from "@/types";
 
 import useFilterPostByTag from "@/hooks/useFilterPostByTag";
 import useGetPostsByTag from "@/hooks/useGetPostsByTag";
 
+import TagSection from "./contents/tag-section";
+import Section from "./contents/section";
+import EndSection from "./contents/end-section";
+import { getCategory } from "@/actions/getCategory";
+
 type Props = {
   posts: PageData[];
-  tags: Tags;
+  tags: TagType;
 };
 
 const PostsPage = ({ posts, tags }: Props) => {
-  const [scroll, scrollTo] = useWindowScroll();
   const { tagname, setTagname } = useFilterPostByTag();
   const { filteredPosts } = useGetPostsByTag({ posts, tagname });
+
+  const { categories } = getCategory(posts);
+  console.log(categories, "categories");
 
   useEffect(() => {
     setTagname("");
@@ -56,50 +59,37 @@ const PostsPage = ({ posts, tags }: Props) => {
               bullet={<Hash size={16} />}
               title="CHOOSE YOUR CONTENT"
             >
-              <Text color="dimmed" size="xs" mt={4}>
-                {`${Object.keys(tags).length}`} tags in alohadancemeow posts
-              </Text>
-              <Space h="md" />
-              <TagsBanner tags={tags} />
-              <Space h="lg" />
+              <TagSection tags={tags} />
             </Timeline.Item>
 
             <Timeline.Item
               bullet={<Books size={16} />}
               // lineVariant="dashed"
               title={
-                filteredPosts.length !== 0 ? (
-                  <Highlight highlightColor="orange" highlight={`${tagname}`}>
-                    {`HERE'S ALL POSTS ABOUT " ${tagname.toLocaleUpperCase()} "`}
-                  </Highlight>
-                ) : (
-                  `HERE'S ALL POSTS`
-                )
+                // filteredPosts.length !== 0 ? (
+                //   <Highlight highlightColor="orange" highlight={`${tagname}`}>
+                //     {`HERE'S ALL POSTS ABOUT " ${tagname.toLocaleUpperCase()} "`}
+                //   </Highlight>
+                // ) : (
+                //   `HERE'S ALL POSTS`
+                // )
+                // "TODAY-I-LEARNED"
+                categories[2].toUpperCase()
               }
             >
-              <Text color="dimmed" size="xs" mt={4}>
-                {`Found ${
-                  filteredPosts.length === 0
-                    ? posts.length
-                    : filteredPosts.length
-                } results`}
-              </Text>
-              <Space h="xl" />
-
-              <Grid gutter="lg">
-                {filteredPosts.length === 0
-                  ? posts.map((item) => (
-                      <Grid.Col key={item.id} xs={6} md={4}>
-                        <PostCard post={item} />
-                      </Grid.Col>
-                    ))
-                  : filteredPosts.map((item) => (
-                      <Grid.Col key={item.id} xs={6} md={4}>
-                        <PostCard post={item} />
-                      </Grid.Col>
-                    ))}
-              </Grid>
-              <Space h="xl" />
+              <Section categoryName={categories[2]} />
+            </Timeline.Item>
+            <Timeline.Item
+              bullet={<Books size={16} />}
+              title={categories[1].toUpperCase()}
+            >
+              <Section categoryName={categories[1]} />
+            </Timeline.Item>
+            <Timeline.Item
+              bullet={<Books size={16} />}
+              title={categories[0].toUpperCase()}
+            >
+              <Section categoryName={categories[0]} />
             </Timeline.Item>
 
             <Timeline.Item
@@ -107,34 +97,7 @@ const PostsPage = ({ posts, tags }: Props) => {
               bullet={<SignRight size={16} />}
               lineVariant="dashed"
             >
-              <Text color="dimmed" size="sm">
-                That&apos;s all posts for you, {""}
-                <Text
-                  // variant="gradient"
-                  component="span"
-                  inherit
-                  onClick={() => {
-                    setTagname("");
-                    if (scroll.y > 0) scrollTo({ y: 0 });
-                  }}
-                  sx={{
-                    color: "orange",
-                    cursor: "pointer",
-                    "&:hover": {
-                      textDecoration: "none",
-                    },
-                  }}
-                >
-                  Clear filter and back to top ({`#${posts.length}`})
-                </Text>
-              </Text>
-              <Text size="xs" mt={4}>
-                Last updated on{" "}
-                {`${format(
-                  parseISO(posts[0]?.lastUpdated ?? "2023-07-27T17:12:00.000Z"),
-                  "LLLL d, yyyy"
-                )}`}
-              </Text>
+              <EndSection setTagname={setTagname} posts={posts} />
             </Timeline.Item>
           </Timeline>
           <Space h="lg" />

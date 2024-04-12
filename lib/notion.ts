@@ -42,6 +42,7 @@ export const getPosts = cache(async () => {
         authorId: page?.created_by?.id,
         lastEditedBy: page?.last_edited_by?.id,
         icon: page?.icon?.emoji,
+        category: page?.properties?.Category?.select?.name,
       };
 
       return post;

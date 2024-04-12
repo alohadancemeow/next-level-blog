@@ -18,6 +18,7 @@ export const getPostById = cache(async (postId: string) => {
       authorId: post.authorId,
       lastEditedBy: post.lastEditedBy,
       icon: post.icon,
+      category: post.category,
     };
 
     return newPost;
