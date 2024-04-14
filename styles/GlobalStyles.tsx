@@ -49,6 +49,7 @@ const GlobalStyles = () => {
         li: {
           fontSize: "16px",
           marginBottom: "4px",
+          fontFamily: "'JetBrains Mono', 'Bai Jamjuree'",
         },
         p: {
           marginBottom: "16px",
