@@ -11,16 +11,16 @@ type Props = {
 const AboutPage = ({ children }: Props) => {
   return (
     <>
-      <Space h={"lg"} />
+      <Space h={"sm"} />
       <Container
         size={"sm"}
         sx={(theme) => ({
           [theme.fn.smallerThan("xs")]: { margin: "0 -2rem" },
         })}
       >
-        <Space h={"lg"} />
-        <Space h={"lg"} />
-        <Divider />
+        {/* <Space h={"lg"} /> */}
+        {/* <Space h={"lg"} /> */}
+        {/* <Divider /> */}
         <ContentWrapper>{children}</ContentWrapper>
         <Space h={"lg"} />
         <Divider />
