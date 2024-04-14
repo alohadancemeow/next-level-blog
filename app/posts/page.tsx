@@ -1,10 +1,13 @@
 import { Metadata } from "next";
-import { getTags } from "@/actions/getTags";
 import { getPosts } from "@/lib/notion";
+import { getTags } from "@/actions/getTags";
+import { getCategory } from "@/actions/getCategory";
 
-import PostsPage from "@/components/posts/PostsPage";
 import { siteMetadata } from "@/site/siteMatedata";
 import { ogPoststImage } from "@/site/data";
+
+import PostsPage from "@/components/posts/PostsPageLayout";
+import TimelineContent from "@/components/posts/contents/TimelineContent";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Posts`,
@@ -20,7 +23,13 @@ const Posts = async (props: Props) => {
   const posts = await getPosts();
   const tags = posts && getTags(posts);
 
-  return <PostsPage posts={posts} tags={tags} />;
+  const { categories } = getCategory(posts);
+
+  return (
+    <PostsPage posts={posts} tags={tags} categoryCount={categories.length}>
+      <TimelineContent categories={categories} posts={posts} />
+    </PostsPage>
+  );
 };
 
 export default Posts;

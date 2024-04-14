@@ -22,6 +22,8 @@ const Header = ({ title }: Props) => {
           theme.colorScheme === "dark"
             ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
             : theme.colors[theme.primaryColor][5],
+
+        borderRadius: "3px",
       })}
     >
       {title}

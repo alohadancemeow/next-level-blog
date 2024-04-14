@@ -42,6 +42,7 @@ export const getPosts = cache(async () => {
         authorId: page?.created_by?.id,
         lastEditedBy: page?.last_edited_by?.id,
         icon: page?.icon?.emoji,
+        category: page?.properties?.Category?.select?.name,
       };
 
       return post;
@@ -53,6 +54,45 @@ export const getPosts = cache(async () => {
     throw new Error();
   }
 });
+
+export const getPostsByCategory = async (
+  categoryName: string,
+  limit: number,
+  page: number
+) => {
+  try {
+    const response = await notion.databases.query({
+      database_id: process.env.NOTION_DATABASE_ID as string,
+      filter: {
+        and: [
+          {
+            property: "Category",
+            select: {
+              equals: categoryName,
+            },
+          },
+          {
+            property: "Status",
+            status: {
+              equals: "Done",
+            },
+          },
+        ],
+      },
+      sorts: [
+        {
+          timestamp: "created_time",
+          direction: "descending",
+        },
+      ],
+    });
+
+    return response.results.slice((page - 1) * limit, page * limit);
+  } catch (error) {
+    // console.log(error);
+    throw new Error();
+  }
+};
 
 export const getUser = cache(async (userId: string) => {
   const response = await notion.users.retrieve({ user_id: userId });

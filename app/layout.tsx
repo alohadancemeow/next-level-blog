@@ -4,7 +4,8 @@ import { jetBrains_mono } from "./fonts";
 import { siteMetadata } from "@/site/siteMatedata";
 import { ogHomeImage } from "@/site/data";
 
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
@@ -17,8 +18,10 @@ import "katex/dist/katex.min.css";
 
 import MantineProviders from "@/providers/MantineProviders";
 import ClientComponent from "@/components/ClientComponent";
+import { QueryProvider } from "@/components/providers/query-provider";
 
 export const metadata: Metadata = {
+  metadataBase: siteMetadata.metadataBase,
   title: `${siteMetadata.title} — ${siteMetadata.homeTitle}`,
   description: siteMetadata.description,
   keywords: siteMetadata.keywords,
@@ -33,9 +36,12 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     <html lang="en" className="scroll-smooth">
       <body className={`${jetBrains_mono.className} relative`}>
         <ClientComponent>
-          <MantineProviders>{children}</MantineProviders>
+          <MantineProviders>
+            <QueryProvider>{children}</QueryProvider>
+          </MantineProviders>
         </ClientComponent>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

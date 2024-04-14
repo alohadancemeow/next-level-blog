@@ -1,6 +1,7 @@
 // set site metadata here
 
 export const siteMetadata = {
+  metadataBase: new URL("https://alohadancemeow.com"),
   homeTitle: "Personal Home",
   title: "alohadancemeow",
   description: "บล็อกเกอร์น่ะมีเยอะแล้ว นับฉันเข้าไปอีกสักคนจะเป็นอะไรไป ✌️",
@@ -10,5 +11,5 @@ export const siteMetadata = {
   github: "https://github.com/alohadancemeow",
   githubRepo: "https://github.com/alohadancemeow/next-level-blog",
   keywords: ["alohadancemeow", "blog", "React", "Next", "Node", "Reading"],
-  version: "v0.1.2",
+  version: "v0.1.3",
 };

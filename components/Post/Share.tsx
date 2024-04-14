@@ -61,7 +61,7 @@ const Share = ({ postLink }: Props) => {
             })}
           >
             <FacebookShareButton
-              quote="alohadancemeow"
+              // quote="alohadancemeow"
               hashtag="#alohadancemeow"
               url={postLink}
               style={{ display: "grid", placeItems: "center" }}

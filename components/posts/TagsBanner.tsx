@@ -2,31 +2,35 @@
 
 import { useCallback, useRef } from "react";
 import { Box } from "@mantine/core";
-import { Tags } from "@/types";
-import useFilterPostByTag from "@/hooks/useFilterPostByTag";
+import { TagType } from "@/types";
+
+// import useFilterPostByTag from "@/hooks/useFilterPostByTag";
+import { useRouter } from "next/navigation";
 
 type Props = {
-  tags: Tags;
+  tags: TagType;
 };
 
-const Tags = ({ tags }: Props) => {
+const TagsBanner = ({ tags }: Props) => {
   const chipRef = useRef<null | HTMLAnchorElement>(null);
-  const { setTagname, tagname } = useFilterPostByTag();
+  // const { setTagname, tagname } = useFilterPostByTag();
 
-  const toggle = useCallback(
-    (tag: [string, number]) => {
-      if (!chipRef.current) return null;
+  const router = useRouter();
 
-      if (!chipRef.current?.title || chipRef.current?.title !== tag[0]) {
-        setTagname(tag[0]);
-        chipRef.current.title = tag[0];
-      } else {
-        setTagname("");
-        chipRef.current.title = "";
-      }
-    },
-    [setTagname, chipRef]
-  );
+  // const toggle = useCallback(
+  //   (tag: [string, number]) => {
+  //     if (!chipRef.current) return null;
+
+  //     if (!chipRef.current?.title || chipRef.current?.title !== tag[0]) {
+  //       setTagname(tag[0]);
+  //       chipRef.current.title = tag[0];
+  //     } else {
+  //       setTagname("");
+  //       chipRef.current.title = "";
+  //     }
+  //   },
+  //   [setTagname, chipRef]
+  // );
 
   return (
     <div
@@ -66,7 +70,7 @@ const Tags = ({ tags }: Props) => {
                   : theme.black,
             },
           })}
-          onClick={() => toggle(tag)}
+          onClick={() => router.push(`/tags/${tag[0]}`)}
         >
           <span>{`#${tag[0]}(${tag[1]})`}</span>
         </Box>
@@ -75,4 +79,4 @@ const Tags = ({ tags }: Props) => {
   );
 };
 
-export default Tags;
+export default TagsBanner;

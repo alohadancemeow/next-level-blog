@@ -9,6 +9,7 @@ export interface PageData {
   lastEditedBy: string;
   tags: PostTag[];
   icon: string;
+  category: string;
 }
 
 export type PostTag = {
@@ -17,7 +18,7 @@ export type PostTag = {
   color: string;
 };
 
-export type Tags = {
+export type TagType = {
   [key: string]: number;
 };
 
