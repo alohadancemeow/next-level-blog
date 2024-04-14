@@ -5,6 +5,7 @@ import { siteMetadata } from "@/site/siteMatedata";
 import { ogHomeImage } from "@/site/data";
 
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // core styles shared by all of react-notion-x (required)
 import "react-notion-x/src/styles.css";
@@ -40,6 +41,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           </MantineProviders>
         </ClientComponent>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
