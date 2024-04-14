@@ -1,27 +1,34 @@
 "use client";
 
-import { useState } from "react";
 import { Button, Center, useMantineColorScheme } from "@mantine/core";
 import { RocketIcon } from "./Icons";
 
 type Props = {
   categoryName: string;
+  isFetchingNextPage: boolean;
+  loadNextPost: () => void;
+  postCount: number;
 };
 
-const LoadButton = ({ categoryName }: Props) => {
-  const [isLoading, setLoading] = useState(false);
+const LoadButton = ({
+  categoryName,
+  isFetchingNextPage,
+  loadNextPost,
+  postCount,
+}: Props) => {
   const { colorScheme } = useMantineColorScheme();
 
   return (
     <Center my={10} pb={5}>
       <Button
-        leftIcon={<RocketIcon />}
+        // leftIcon={<RocketIcon />}
         variant="light"
         color={colorScheme === "dark" ? "gray" : "orange"}
-        onClick={() => setLoading(!isLoading)}
-        loading={isLoading}
+        onClick={loadNextPost}
+        loading={isFetchingNextPage}
+        disabled={isFetchingNextPage}
       >
-        {`More in: ${categoryName}`}
+        {`#${postCount} More in: ${categoryName} `}
       </Button>
     </Center>
   );

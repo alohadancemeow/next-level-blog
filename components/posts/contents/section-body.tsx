@@ -6,13 +6,14 @@ import { PageData } from "@/types";
 
 type Props = {
   posts: PageData[];
+  description: string;
 };
 
-const SectionBody = ({ posts }: Props) => {
+const SectionBody = ({ posts, description }: Props) => {
   return (
     <div>
       <Text color="dimmed" size="xs" mt={4}>
-        {`Found ${posts.length} results`}
+        {`${description}`}
       </Text>
       <Space h="xl" />
       <Grid gutter="lg">

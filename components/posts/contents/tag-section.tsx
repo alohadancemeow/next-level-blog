@@ -6,14 +6,14 @@ import TagsBanner from "@/components/posts/TagsBanner";
 
 type Props = {
   tags: TagType;
-  categories: string[];
+  categoryCount: number;
 };
 
-const TagSection = ({ tags, categories }: Props) => {
+const TagSection = ({ tags, categoryCount }: Props) => {
   return (
     <div>
       <Text color="dimmed" size="xs" mt={4}>
-        {`${categories.length} categories, ${Object.keys(tags).length}`} tags in
+        {`${categoryCount} categories, ${Object.keys(tags).length}`} tags in
         alohadancemeow posts
       </Text>
       <Space h="md" />

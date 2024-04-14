@@ -17,6 +17,7 @@ import "katex/dist/katex.min.css";
 
 import MantineProviders from "@/providers/MantineProviders";
 import ClientComponent from "@/components/ClientComponent";
+import { QueryProvider } from "@/components/providers/query-provider";
 
 export const metadata: Metadata = {
   metadataBase: siteMetadata.metadataBase,
@@ -34,7 +35,9 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     <html lang="en" className="scroll-smooth">
       <body className={`${jetBrains_mono.className} relative`}>
         <ClientComponent>
-          <MantineProviders>{children}</MantineProviders>
+          <MantineProviders>
+            <QueryProvider>{children}</QueryProvider>
+          </MantineProviders>
         </ClientComponent>
         <Analytics />
       </body>
