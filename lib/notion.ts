@@ -7,43 +7,56 @@ import api from "./notion-api";
 import { revalidatePath } from "next/cache";
 import { postMapping } from "./helpers";
 
+type NotionQueryParams = {
+  filter: any;
+  sorts: any[];
+};
+
+const queryNotionDatabase = async (queryParams: NotionQueryParams) => {
+  try {
+    const response = await notion.databases.query({
+      database_id: process.env.NOTION_DATABASE_ID as string,
+      ...queryParams,
+    });
+
+    return response.results;
+  } catch (error) {
+    throw new Error("Failed to query Notion database");
+  }
+};
+
 /**
  * get all published posts in notion
  * @returnsType: PageData[]
  */
 export const getAllPosts = cache(async () => {
-  try {
-    const response = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID as string,
-      filter: {
-        property: "Status",
-        status: {
-          equals: "Done",
-        },
+  const queryParams: NotionQueryParams = {
+    filter: {
+      property: "Status",
+      status: {
+        equals: "Done",
       },
-      sorts: [
-        {
-          timestamp: "created_time",
-          direction: "descending",
-        },
-      ],
-    });
+    },
+    sorts: [
+      {
+        timestamp: "created_time",
+        direction: "descending",
+      },
+    ],
+  };
 
-    if (!response.results.length) return [];
+  const results = await queryNotionDatabase(queryParams);
+  if (!results.length) return [];
 
-    const pageData = postMapping(response.results);
+  const pageData = postMapping(results);
 
-    revalidatePath("/posts", "page");
+  revalidatePath("/posts", "page");
 
-    return pageData;
-  } catch (error) {
-    // console.log(error);
-    throw new Error();
-  }
+  return pageData;
 });
 
 /**
- * get posts by category that definded in notion
+ * get posts by category that defined in notion
  * @params categoryName, limit, page
  * @returnsType PageData[]
  */
@@ -52,42 +65,37 @@ export const getPostsByCategory = async (
   limit: number,
   page: number
 ) => {
-  try {
-    const response = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID as string,
-      filter: {
-        and: [
-          {
-            property: "Category",
-            select: {
-              equals: categoryName,
-            },
-          },
-          {
-            property: "Status",
-            status: {
-              equals: "Done",
-            },
-          },
-        ],
-      },
-      sorts: [
+  const queryParams: NotionQueryParams = {
+    filter: {
+      and: [
         {
-          timestamp: "created_time",
-          direction: "descending",
+          property: "Category",
+          select: {
+            equals: categoryName,
+          },
+        },
+        {
+          property: "Status",
+          status: {
+            equals: "Done",
+          },
         },
       ],
-    });
+    },
+    sorts: [
+      {
+        timestamp: "created_time",
+        direction: "descending",
+      },
+    ],
+  };
 
-    const pageData = postMapping(
-      response.results.slice((page - 1) * limit, page * limit)
-    );
+  const results = await queryNotionDatabase(queryParams);
+  if (!results.length) return [];
 
-    return pageData;
-  } catch (error) {
-    // console.log(error);
-    throw new Error();
-  }
+  const pageData = postMapping(results.slice((page - 1) * limit, page * limit));
+
+  return pageData;
 };
 
 // export const getUser = cache(async (userId: string) => {
@@ -100,19 +108,7 @@ export const getPage = cache(async (pageId: string) => {
   return response;
 });
 
-// export const getPageContent = cache(async (slug: string) => {
-//   try {
-//     if (!slug) return null;
-
-//     const recordMap = await api.getPage(slug);
-//     return recordMap;
-//   } catch (error) {
-//     // console.log(error);
-//     throw new Error();
-//   }
-// });
-
-// ***---- using react-notion-x for rendering content ----***
+// <---- # using react-notion-x for rendering content ---->
 
 type PageContentFetcher = (slug: string) => Promise<any>;
 

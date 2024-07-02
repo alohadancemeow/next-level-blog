@@ -12,6 +12,7 @@ import TagSection from "./contents/tag-section";
 
 import { PageData } from "@/types";
 import { getCategory, getTags } from "@/lib/helpers";
+import Loader from "../Loader";
 
 type Props = {
   children: React.ReactNode;
@@ -19,7 +20,7 @@ type Props = {
 };
 
 const PostsPageLayout = ({ children, posts }: Props) => {
-  // if (!posts) return null;
+  if (!posts) return <Loader />;
 
   const tags = getTags(posts);
   const categoryCount = getCategory(posts).length;
