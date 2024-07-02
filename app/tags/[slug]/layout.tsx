@@ -1,4 +1,4 @@
-import { getPosts } from "@/lib/notion";
+import { getAllPosts } from "@/lib/notion";
 import Layout from "@/components/layout/Layout";
 import Menu from "@/components/layout/Menu";
 import PageLayout from "@/components/layout/PageLayout";
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const layout = async ({ children, params }: Props) => {
-  const posts = await getPosts();
+  const posts = await getAllPosts();
 
   return (
     <Spotlight data={posts}>

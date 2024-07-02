@@ -1,11 +1,13 @@
 import { useCallback } from "react";
 import { PageData } from "@/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { fetchPostsByCategory } from "@/actions/fetchPostByCategory";
+import { getPostsByCategory } from "@/lib/notion";
 
 interface Props {
   categoryName: string;
 }
+
+const limit = 6;
 
 const useFetchPosts = ({ categoryName }: Props) => {
   const { data, hasNextPage, isFetchingNextPage, fetchNextPage } =
@@ -14,8 +16,9 @@ const useFetchPosts = ({ categoryName }: Props) => {
       initialPageParam: 1,
 
       queryFn: async ({ pageParam }) => {
-        return (await fetchPostsByCategory(
+        return (await getPostsByCategory(
           categoryName,
+          limit,
           pageParam
         )) as PageData[];
       },

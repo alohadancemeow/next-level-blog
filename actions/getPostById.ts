@@ -1,9 +1,9 @@
 import { cache } from "react";
 import { PageData } from "@/types";
-import { getPosts } from "@/lib/notion";
+import { getAllPosts } from "@/lib/notion";
 
 export const getPostById = cache(async (postId: string) => {
-  const posts = await getPosts();
+  const posts = await getAllPosts();
 
   try {
     const post = posts.find((post) => post.id === postId)!;

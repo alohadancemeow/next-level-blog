@@ -19,11 +19,10 @@ const TimelineContent = ({ categories, posts }: Props) => {
         {/* --- TODOY-I-LEARNED --- */}
         <Timeline.Item
           bullet={<Books size={16} />}
-          title={categories[2].toUpperCase()}
+          title={categories[0].toUpperCase()}
         >
-          {/* <Section categoryName={categories[2]} /> */}
           <Section
-            categoryName={categories[2]}
+            categoryName={categories[0]}
             description="Sharing tidbits of wisdom I picked up today, maybe something you'll find useful too."
           />
         </Timeline.Item>
@@ -42,10 +41,10 @@ const TimelineContent = ({ categories, posts }: Props) => {
         {/* --- NO-WORK-TODAY --- */}
         <Timeline.Item
           bullet={<Books size={16} />}
-          title={categories[0].toUpperCase()}
+          title={categories[2].toUpperCase()}
         >
           <Section
-            categoryName={categories[0]}
+            categoryName={categories[2]}
             description="Recommending random entertainment gems – movies, anime, manga, and all things fun for a day off."
           />
         </Timeline.Item>

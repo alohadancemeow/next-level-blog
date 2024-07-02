@@ -1,13 +1,12 @@
-import React from "react";
 import Layout from "@/components/layout/Layout";
 import ContentTitle from "@/components/Post/ContentTitle";
 import ScrollToTop from "@/components/ScrollToTop";
 
-import { getPosts } from "@/lib/notion";
+import { getAllPosts } from "@/lib/notion";
 import { getPostById } from "@/actions/getPostById";
-import { getToc } from "@/actions/getToc";
-import { notFound } from "next/navigation";
+// import { getToc } from "@/actions/getToc";
 import ContentBody from "@/components/Post/ContentBody";
+import Loader from "@/components/Loader";
 
 type Props = {
   children: React.ReactNode;
@@ -18,11 +17,12 @@ type Props = {
 
 const layout = async ({ children, params }: Props) => {
   const id = params.slug;
-  const posts = await getPosts();
+  const posts = await getAllPosts();
   const postData = await getPostById(id);
   // const toc = await getToc(id);
 
-  if (!postData) return notFound();
+  if (!postData) return <Loader />;
+
   return (
     <Layout>
       <div

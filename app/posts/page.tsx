@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getPosts } from "@/lib/notion";
+import { getAllPosts } from "@/lib/notion";
 import { getTags } from "@/actions/getTags";
 import { getCategory } from "@/actions/getCategory";
 
@@ -8,6 +8,8 @@ import { ogPoststImage } from "@/site/data";
 
 import PostsPage from "@/components/posts/PostsPageLayout";
 import TimelineContent from "@/components/posts/contents/TimelineContent";
+import { Suspense } from "react";
+import Loader from "@/components/Loader";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Posts`,
@@ -20,15 +22,16 @@ export const metadata: Metadata = {
 type Props = {};
 
 const Posts = async (props: Props) => {
-  const posts = await getPosts();
+  const posts = await getAllPosts();
   const tags = posts && getTags(posts);
-
   const { categories } = getCategory(posts);
 
   return (
-    <PostsPage posts={posts} tags={tags} categoryCount={categories.length}>
-      <TimelineContent categories={categories} posts={posts} />
-    </PostsPage>
+    <Suspense fallback={<Loader />}>
+      <PostsPage posts={posts} tags={tags} categoryCount={categories.length}>
+        <TimelineContent categories={categories} posts={posts} />
+      </PostsPage>
+    </Suspense>
   );
 };
 

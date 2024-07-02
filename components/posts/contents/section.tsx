@@ -1,6 +1,10 @@
+"use client";
+
 import useFetchPosts from "@/hooks/useFetchPosts";
 import SectionBody from "./section-body";
 import LoadButton from "@/components/LoadButton";
+import { Suspense } from "react";
+import Loader from "@/components/Loader";
 
 type Props = {
   categoryName: string;
@@ -16,7 +20,7 @@ const Section = ({ categoryName, description }: Props) => {
   if (!posts || !posts.length) return null;
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <SectionBody posts={posts} description={description} />
       {hasNextPage && (
         <LoadButton
@@ -26,7 +30,7 @@ const Section = ({ categoryName, description }: Props) => {
           postCount={posts.length}
         />
       )}
-    </>
+    </Suspense>
   );
 };
 
