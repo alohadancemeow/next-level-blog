@@ -8,8 +8,6 @@ import { ogPoststImage } from "@/site/data";
 
 import PostsPage from "@/components/posts/PostsPageLayout";
 import TimelineContent from "@/components/posts/contents/TimelineContent";
-import { Suspense } from "react";
-import Loader from "@/components/Loader";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Posts`,
@@ -27,11 +25,9 @@ const Posts = async (props: Props) => {
   const { categories } = getCategory(posts);
 
   return (
-    <Suspense fallback={<Loader />}>
-      <PostsPage posts={posts} tags={tags} categoryCount={categories.length}>
-        <TimelineContent categories={categories} posts={posts} />
-      </PostsPage>
-    </Suspense>
+    <PostsPage posts={posts} tags={tags} categoryCount={categories.length}>
+      <TimelineContent categories={categories} posts={posts} />
+    </PostsPage>
   );
 };
 
