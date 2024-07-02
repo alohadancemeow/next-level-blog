@@ -10,18 +10,19 @@ import Spotlight from "@/components/Spotlight";
 import SearchPost from "@/components/posts/SearchPost";
 import TagSection from "./contents/tag-section";
 
-import { PageData, TagType } from "@/types";
-
+import { PageData } from "@/types";
+import { getCategory, getTags } from "@/lib/helpers";
 
 type Props = {
   children: React.ReactNode;
   posts: PageData[];
-  tags: TagType;
-  categoryCount: number;
 };
 
-const PostsPageLayout = ({ children, posts, tags, categoryCount }: Props) => {
+const PostsPageLayout = ({ children, posts }: Props) => {
   // if (!posts) return null;
+
+  const tags = getTags(posts);
+  const categoryCount = getCategory(posts).length;
 
   return (
     <Spotlight data={posts}>

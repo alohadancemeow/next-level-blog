@@ -1,5 +1,5 @@
 import { defaultImage } from "@/site/data";
-import { PageData } from "@/types";
+import { PageData, TagType } from "@/types";
 
 export const postMapping = (data: any[]) => {
   if (!data.length) return [];
@@ -24,4 +24,34 @@ export const postMapping = (data: any[]) => {
 
     return post;
   });
+};
+
+// Get all tags
+export const getTags = (posts: PageData[]) => {
+  const allTags: TagType = {};
+
+  posts &&
+    posts.map((post: PageData) =>
+      post.tags?.map((tag: any) => {
+        if (!allTags[tag.name]) {
+          allTags[tag.name] = 1;
+        } else {
+          allTags[tag.name] += 1;
+        }
+      })
+    );
+
+  return allTags;
+};
+
+// get unique category
+export const getCategory = (posts: PageData[]) => {
+  let categories = new Set<string>();
+
+  posts &&
+    posts.map((post: PageData) => {
+      categories.add(post.category);
+    });
+
+  return Array.from(categories);
 };

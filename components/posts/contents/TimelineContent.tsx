@@ -6,13 +6,15 @@ import EndSection from "./end-section";
 import Section from "./section";
 
 import { PageData } from "@/types";
+import { getCategory } from "@/lib/helpers";
 
 type Props = {
-  categories: string[];
   posts: PageData[];
 };
 
-const TimelineContent = ({ categories, posts }: Props) => {
+const TimelineContent = ({ posts }: Props) => {
+  const categories = getCategory(posts);
+
   return (
     <>
       <Timeline bulletSize={24} lineWidth={2} sx={{ padding: "0" }}>
