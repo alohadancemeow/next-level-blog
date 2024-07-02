@@ -23,8 +23,6 @@ const queryNotionDatabase = async (queryParams: NotionQueryParams) => {
   const cachedData = await kv.get(cacheKey);
   const cachedHash = await kv.get(`${cacheKey}-hash`);
 
-  console.log(cachedData, "cachedData");
-
   try {
     const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID as string,

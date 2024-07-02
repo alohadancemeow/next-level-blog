@@ -20,27 +20,41 @@ const ScrollToTop = (props: Props) => {
       >
         <Transition transition="slide-up" mounted={scroll.y > 0}>
           {(transitionStyles) => (
-            <Box
-              component="button"
-              // leftIcon={<ArrowUpCircle size={20} />}
-              onClick={() => scrollTo({ y: 0 })}
+            // <Box
+            //   component="button"
+            //   // leftIcon={<ArrowUpCircle size={20} />}
+            //   onClick={() => scrollTo({ y: 0 })}
+            //   style={transitionStyles}
+            //   sx={(theme) => ({
+            //     backgroundColor:
+            //       theme.colorScheme === "dark"
+            //         ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
+            //         : theme.colors[theme.primaryColor][5],
+
+            //     // borderRadius: "50%",
+            //     // padding: 12,
+            //   })}
+            // >
+            //   <ArrowUpCircle
+            //     size={20}
+            //     // color="black"
+            //     className="text-black transition duration-300 ease-in-out hover:scale-150 dark:text-white"
+            //   />
+            // </Box>
+
+            <Button
+              leftIcon={<ArrowUpCircle size={20} />}
               style={transitionStyles}
+              onClick={() => scrollTo({ y: 0 })}
               sx={(theme) => ({
                 backgroundColor:
                   theme.colorScheme === "dark"
                     ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
                     : theme.colors[theme.primaryColor][5],
-
-                borderRadius: "50%",
-                padding: 12,
               })}
             >
-              <ArrowUpCircle
-                size={20}
-                // color="black"
-                className="text-black transition duration-300 ease-in-out hover:scale-150 dark:text-white"
-              />
-            </Box>
+              Back to top
+            </Button>
           )}
         </Transition>
       </Affix>
