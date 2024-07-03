@@ -18,6 +18,7 @@ import {
 } from "@mantine/core";
 
 import { Navigations } from "@/site/data";
+import FeedbackComponent from "./Feedback";
 
 type Props = {};
 
@@ -113,6 +114,8 @@ const HomePage: React.FC = (props: Props) => {
               </UnstyledButton>
             }
           />
+
+          <FeedbackComponent />
         </Stack>
       </Center>
     </Container>

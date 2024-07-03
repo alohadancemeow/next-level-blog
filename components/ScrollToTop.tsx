@@ -12,7 +12,7 @@ const ScrollToTop = (props: Props) => {
   return (
     <>
       <Affix
-        position={{ bottom: rem(30), right: rem(40) }}
+        position={{ bottom: rem(30), right: rem(20) }}
         sx={(theme) => ({
           [theme.fn.smallerThan("md")]: { display: "none" },
           borderRadius: "3px",
@@ -43,6 +43,7 @@ const ScrollToTop = (props: Props) => {
             // </Box>
 
             <Button
+              px={10}
               leftIcon={<ArrowUpCircle size={20} />}
               style={transitionStyles}
               onClick={() => scrollTo({ y: 0 })}
