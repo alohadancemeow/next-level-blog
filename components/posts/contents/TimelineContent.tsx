@@ -6,24 +6,25 @@ import EndSection from "./end-section";
 import Section from "./section";
 
 import { PageData } from "@/types";
+import { getCategory } from "@/lib/helpers";
 
 type Props = {
-  categories: string[];
   posts: PageData[];
 };
 
-const TimelineContent = ({ categories, posts }: Props) => {
+const TimelineContent = ({ posts }: Props) => {
+  const categories = getCategory(posts);
+
   return (
     <>
       <Timeline bulletSize={24} lineWidth={2} sx={{ padding: "0" }}>
         {/* --- TODOY-I-LEARNED --- */}
         <Timeline.Item
           bullet={<Books size={16} />}
-          title={categories[2].toUpperCase()}
+          title={categories[0].toUpperCase()}
         >
-          {/* <Section categoryName={categories[2]} /> */}
           <Section
-            categoryName={categories[2]}
+            categoryName={categories[0]}
             description="Sharing tidbits of wisdom I picked up today, maybe something you'll find useful too."
           />
         </Timeline.Item>
@@ -42,10 +43,10 @@ const TimelineContent = ({ categories, posts }: Props) => {
         {/* --- NO-WORK-TODAY --- */}
         <Timeline.Item
           bullet={<Books size={16} />}
-          title={categories[0].toUpperCase()}
+          title={categories[2].toUpperCase()}
         >
           <Section
-            categoryName={categories[0]}
+            categoryName={categories[2]}
             description="Recommending random entertainment gems – movies, anime, manga, and all things fun for a day off."
           />
         </Timeline.Item>

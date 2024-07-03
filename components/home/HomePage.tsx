@@ -1,6 +1,6 @@
 "use client";
 
-import NextImage from "next/image";
+// import NextImage from "next/image";
 import Link from "next/link";
 import {
   Container,
@@ -18,6 +18,7 @@ import {
 } from "@mantine/core";
 
 import { Navigations } from "@/site/data";
+import FeedbackComponent from "./Feedback";
 
 type Props = {};
 
@@ -37,7 +38,7 @@ const HomePage: React.FC = (props: Props) => {
       >
         <Stack style={{ margin: "0 auto", paddingLeft: "10px" }}>
           <Box>
-            <NextImage
+            {/* <NextImage
               // layout="fixed"
               priority={true}
               src="/image3.gif"
@@ -47,6 +48,12 @@ const HomePage: React.FC = (props: Props) => {
               style={{
                 borderRadius: "100px",
               }}
+            /> */}
+
+            <img
+              src="/image3.gif"
+              alt="profile-image"
+              className="rounded-full w-48 h-48"
             />
           </Box>
 
@@ -107,6 +114,8 @@ const HomePage: React.FC = (props: Props) => {
               </UnstyledButton>
             }
           />
+
+          <FeedbackComponent />
         </Stack>
       </Center>
     </Container>

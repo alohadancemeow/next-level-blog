@@ -4,7 +4,7 @@ import { ogNoteImage } from "@/site/data";
 
 import NotePage from "@/components/note/NotePage";
 import Content from "@/components/Post/Content";
-import { getPageContent } from "@/lib/notion";
+import { getNotePageContent } from "@/lib/notion";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Notes`,
@@ -17,9 +17,7 @@ export const metadata: Metadata = {
 type Props = {};
 
 const Note = async (props: Props) => {
-  const recordMap = await getPageContent(
-    process.env.NOTION_NOTE_PAGE_ID as string
-  );
+  const recordMap = await getNotePageContent();
 
   return <NotePage>{recordMap && <Content recordMap={recordMap} />}</NotePage>;
 };

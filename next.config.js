@@ -8,7 +8,10 @@ const nextConfig = {
   images: {
     domains: ['www.notion.so', 'images.unsplash.com', 's3.us-west-2.amazonaws.com'],
     unoptimized: true
-  }
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 }
 
 const withMDX = require('@next/mdx')()

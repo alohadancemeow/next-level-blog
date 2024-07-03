@@ -3,116 +3,170 @@
 import { cache } from "react";
 import { notion } from "./notion-client";
 import api from "./notion-api";
+import crypto from "crypto";
+import { kv } from "@vercel/kv";
 
-import { PageData } from "@/types";
-import { defaultImage } from "@/site/data";
+import { revalidatePath } from "next/cache";
+import { postMapping } from "./helpers";
 
-export const getPosts = cache(async () => {
+type NotionQueryParams = {
+  filter: any;
+  sorts: any[];
+};
+
+const hashData = (data: any) => {
+  return crypto.createHash("sha256").update(JSON.stringify(data)).digest("hex");
+};
+
+const queryNotionDatabase = async (queryParams: NotionQueryParams) => {
+  const cacheKey = `queryCache-${hashData(queryParams)}`;
+  const cachedData = await kv.get(cacheKey);
+  const cachedHash = await kv.get(`${cacheKey}-hash`);
+
   try {
     const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID as string,
-      filter: {
-        property: "Status",
-        status: {
-          equals: "Done",
-        },
-      },
-      sorts: [
-        {
-          timestamp: "created_time",
-          direction: "descending",
-        },
-      ],
+      ...queryParams,
     });
 
-    if (!response.results.length) return [];
+    const newHash = hashData(response.results);
 
-    const pageData: PageData[] = response.results.map((page: any) => {
-      const post: PageData = {
-        id: page?.id,
-        title: page?.properties?.Name?.title[0]?.plain_text ?? "title",
-        createdTime: page?.created_time ?? "2023-07-27T17:12:00.000Z",
-        lastUpdated: page?.last_edited_time ?? "2023-07-27T17:12:00.000Z",
-        tags: page?.properties?.Tags?.multi_select ?? [],
-        description:
-          page?.properties?.Description?.rich_text[0]?.plain_text ??
-          `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit, voluptatum nesciunt assumenda accusamus eius rem?`,
-        coverImage:
-          page?.cover?.external?.url ?? page?.cover?.file?.url ?? defaultImage,
-        authorId: page?.created_by?.id,
-        lastEditedBy: page?.last_edited_by?.id,
-        icon: page?.icon?.emoji,
-        category: page?.properties?.Category?.select?.name,
-      };
+    if (cachedHash === newHash) {
+      console.log("Returning cached data");
+      return JSON.parse(cachedData as any);
+    }
 
-      return post;
-    });
+    // If the data has changed, update the cache
+    await kv.set(cacheKey, JSON.stringify(response.results), { ex: 60 * 60 }); // Cache for 1 hour
+    await kv.set(`${cacheKey}-hash`, newHash, { ex: 60 * 60 }); // Cache for 1 hour
 
-    return pageData;
+    return response.results;
   } catch (error) {
-    // console.log(error);
-    throw new Error();
+    throw new Error("Failed to query Notion database");
   }
+};
+
+/**
+ * get all published posts in notion
+ * @returnsType: PageData[]
+ */
+export const getAllPosts = cache(async () => {
+  const queryParams: NotionQueryParams = {
+    filter: {
+      property: "Status",
+      status: {
+        equals: "Done",
+      },
+    },
+    sorts: [
+      {
+        timestamp: "created_time",
+        direction: "descending",
+      },
+    ],
+  };
+
+  const results = await queryNotionDatabase(queryParams);
+  if (!results.length) return [];
+
+  const pageData = postMapping(results);
+
+  revalidatePath("/posts", "page");
+
+  return pageData;
 });
 
+/**
+ * get posts by category that defined in notion
+ * @params categoryName, limit, page
+ * @returnsType PageData[]
+ */
 export const getPostsByCategory = async (
   categoryName: string,
   limit: number,
   page: number
 ) => {
-  try {
-    const response = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID as string,
-      filter: {
-        and: [
-          {
-            property: "Category",
-            select: {
-              equals: categoryName,
-            },
-          },
-          {
-            property: "Status",
-            status: {
-              equals: "Done",
-            },
-          },
-        ],
-      },
-      sorts: [
+  const queryParams: NotionQueryParams = {
+    filter: {
+      and: [
         {
-          timestamp: "created_time",
-          direction: "descending",
+          property: "Category",
+          select: {
+            equals: categoryName,
+          },
+        },
+        {
+          property: "Status",
+          status: {
+            equals: "Done",
+          },
         },
       ],
-    });
+    },
+    sorts: [
+      {
+        timestamp: "created_time",
+        direction: "descending",
+      },
+    ],
+  };
 
-    return response.results.slice((page - 1) * limit, page * limit);
-  } catch (error) {
-    // console.log(error);
-    throw new Error();
-  }
+  const results = await queryNotionDatabase(queryParams);
+  if (!results.length) return [];
+
+  const pageData = postMapping(results.slice((page - 1) * limit, page * limit));
+
+  return pageData;
 };
 
-export const getUser = cache(async (userId: string) => {
-  const response = await notion.users.retrieve({ user_id: userId });
-  return response;
-});
+// export const getUser = cache(async (userId: string) => {
+//   const response = await notion.users.retrieve({ user_id: userId });
+//   return response;
+// });
 
 export const getPage = cache(async (pageId: string) => {
   const response = await notion.pages.retrieve({ page_id: pageId });
   return response;
 });
 
-// # Using unoffial api
-export const getPageContent = cache(async (slug: string) => {
-  try {
-    if (!slug) return null;
+// <---- # using react-notion-x for rendering content ---->
 
-    const recordMap = await api.getPage(slug);
+type PageContentFetcher = (slug: string) => Promise<any>;
+
+/**
+ * @author unoffial api (react-notion-x)
+ * @param pageId (notion-post-ID)
+ * @returnsType ExtendedRecordMap
+ */
+const fetchPageContent: PageContentFetcher = cache(async (pageId: string) => {
+  try {
+    if (!pageId) return null;
+    const recordMap = await api.getPage(pageId);
     return recordMap;
   } catch (error) {
-    // console.log(error);
-    throw new Error();
+    throw new Error("Failed to fetch page content");
   }
 });
+
+export const getPageContent = (slug: string) => fetchPageContent(slug);
+
+export const getAboutPageContent = () => {
+  const aboutPageId = process.env.NOTION_ABOUT_PAGE_ID as string;
+  revalidatePath("/about", "page");
+
+  return fetchPageContent(aboutPageId);
+};
+
+export const getNotePageContent = () => {
+  const notePageId = process.env.NOTION_NOTE_PAGE_ID as string;
+  revalidatePath("/note", "page");
+
+  return fetchPageContent(notePageId);
+};
+
+export const getProjectPageContent = () => {
+  const projectPageId = process.env.NOTION_PROJECT_PAGE_ID as string;
+  revalidatePath("/project", "page");
+
+  return fetchPageContent(projectPageId);
+};

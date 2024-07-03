@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocalStorage } from "@mantine/hooks";
 import { ColorScheme } from "@mantine/core";
 
@@ -20,7 +20,7 @@ const ThemeCheck = ({ children }: Props) => {
   });
 
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-  const checkTheme = () => {
+  const checkTheme = useCallback(() => {
     if (
       colorScheme === "dark" ||
       (!("theme" in localStorage) &&
@@ -30,7 +30,7 @@ const ThemeCheck = ({ children }: Props) => {
     } else {
       document.documentElement.classList.remove("dark");
     }
-  };
+  }, [colorScheme]);
 
   useEffect(() => {
     setMounted(true);

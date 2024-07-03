@@ -1,4 +1,4 @@
-import { getPosts } from "@/lib/notion";
+import { getAllPosts } from "@/lib/notion";
 import { Metadata, ResolvingMetadata } from "next";
 import { siteMetadata } from "@/site/siteMatedata";
 
@@ -27,7 +27,7 @@ type Props = {
 };
 
 const Tag = async ({ params }: Props) => {
-  const posts = await getPosts();
+  const posts = await getAllPosts();
 
   return <TagPage posts={posts} tagname={params.slug} />;
 };
