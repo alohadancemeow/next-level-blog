@@ -1,4 +1,7 @@
-import "./globals.css";
+import "@mantine/core/styles.css";
+import "@/styles/globals.css";
+import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
+
 import type { Metadata } from "next";
 import { jetBrains_mono } from "./fonts";
 import { siteMetadata } from "@/site/siteMatedata";
@@ -33,7 +36,10 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" {...mantineHtmlProps}>
+      <head>
+        <ColorSchemeScript defaultColorScheme="auto" />
+      </head>
       <body className={`${jetBrains_mono.className} relative`}>
         <ClientComponent>
           <MantineProviders>

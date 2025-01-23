@@ -11,5 +11,6 @@ export const siteMetadata = {
   github: "https://github.com/alohadancemeow",
   githubRepo: "https://github.com/alohadancemeow/next-level-blog",
   keywords: ["alohadancemeow", "blog", "React", "Next", "Node", "Reading"],
+  feedbackUrl: "https://alohadancemeow.featurebase.app",
   version: "v0.1.4",
 };

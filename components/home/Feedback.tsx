@@ -1,45 +1,56 @@
 "use client";
 
-import { ActionIcon, Box, Center, Tooltip } from "@mantine/core";
+import {
+  ActionIcon,
+  Box,
+  Center,
+  Tooltip,
+  useMantineColorScheme,
+} from "@mantine/core";
 import { SmallFeatherIcon } from "../Icons";
 import { useViewportSize } from "@mantine/hooks";
+import { siteMetadata } from "@/site/siteMatedata";
 
 const FeedbackComponent = () => {
   const { width } = useViewportSize();
+  const { colorScheme } = useMantineColorScheme();
+
+  const bgColor =
+    colorScheme === "dark"
+      ? "var(--mantine-primary-color-9)"
+      : "var(--mantine-primary-color-5)";
+
+  if (width < 500) {
+    return null;
+  }
 
   return (
     <Tooltip
-      disabled={width < 500}
-      label={"Give feedback!"}
-      // color="orange"
+      label="Give feedback!"
       position="bottom"
       withArrow
-      // arrowPosition="center"
       transitionProps={{ transition: "slide-up", duration: 300 }}
-      sx={(theme) => ({
+      style={{
         color: "white",
-        backgroundColor:
-          theme.colorScheme === "dark"
-            ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-            : theme.colors[theme.primaryColor][5],
-      })}
+        backgroundColor: bgColor,
+      }}
     >
       <Center
         mt={18}
-        sx={{
+        style={{
           position: "absolute",
           bottom: "2%",
           right: "6%",
         }}
       >
         <Box
-          sx={{
+          style={{
             display: "flex",
             flexDirection: "row",
           }}
         >
           <Box
-            sx={{
+            style={{
               display: "grid",
               placeItems: "center",
               marginBottom: "15px",
@@ -47,22 +58,19 @@ const FeedbackComponent = () => {
           >
             <ActionIcon
               component="div"
-              color="orange"
+              // color="orange"
               size="lg"
               radius="sm"
-              variant="filled"
-              sx={(theme) => ({
-                background: "none",
-                borderColor:
-                  theme.colorScheme === "dark"
-                    ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-                    : theme.colors[theme.primaryColor][5],
-              })}
+              variant="subtle"
+              style={{
+                // background: "none",
+                borderColor: bgColor,
+              }}
             >
               <div className="text-xl">
                 <a
                   data-featurebase-link
-                  href="https://alohadancemeow.featurebase.app"
+                  href={`${siteMetadata.feedbackUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -71,20 +79,14 @@ const FeedbackComponent = () => {
               </div>
             </ActionIcon>
             <Box
-              sx={(theme) => ({
+              style={{
                 width: "2px",
                 height: "30px",
                 padding: "0",
                 margin: "15px auto",
-                backgroundColor:
-                  theme.colorScheme === "dark"
-                    ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-                    : theme.colors[theme.primaryColor][5],
-              })}
+                backgroundColor: bgColor,
+              }}
             ></Box>
-            {/* <Text tt="uppercase" c="dimmed">
-            Give Feedback
-          </Text> */}
           </Box>
         </Box>
       </Center>

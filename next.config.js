@@ -4,6 +4,7 @@ const nextConfig = {
   experimental: {
     // serverActions: true,
     mdxRs: true,
+    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
   images: {
     domains: ['www.notion.so', 'images.unsplash.com', 's3.us-west-2.amazonaws.com'],

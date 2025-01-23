@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
-import { useLocalStorage } from "@mantine/hooks";
-import { ColorScheme } from "@mantine/core";
+import { useCallback, useEffect, useState } from "react";
+import { useHotkeys, useLocalStorage } from "@mantine/hooks";
+import { MantineColorScheme, useMantineColorScheme } from "@mantine/core";
 
 type Props = {
   children: React.ReactNode;
@@ -15,9 +15,12 @@ type Props = {
 const ThemeCheck = ({ children }: Props) => {
   const [mounted, setMounted] = useState(false);
 
-  const [colorScheme] = useLocalStorage<ColorScheme>({
+  const { toggleColorScheme } = useMantineColorScheme();
+  const [colorScheme] = useLocalStorage<MantineColorScheme>({
     key: "mantine-color-scheme",
   });
+
+  useHotkeys([["ctrl+D", () => toggleColorScheme()]]);
 
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
   const checkTheme = useCallback(() => {

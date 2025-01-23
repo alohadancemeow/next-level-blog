@@ -60,14 +60,12 @@ const HomePage: React.FC = (props: Props) => {
           <Box>
             <Title order={1}>Personal Home</Title>
             <Space h="xs" />
-            <Text
-            //  color="gray"
-            >
+            <Text>
               Hi there! 👋 I&apos;m Hai [はい] aka : alohadancemeow ✌️
             </Text>
           </Box>
 
-          <Divider my="xs" variant="solid" />
+          <Divider my="xs" size="xs" variant="solid" />
           <Space h="sm" />
 
           <Box style={{ width: "70%" }}>
@@ -94,7 +92,6 @@ const HomePage: React.FC = (props: Props) => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  // fontWeight: '500'
                 }}
                 onClick={() => toggleColorScheme()}
               >
@@ -114,7 +111,6 @@ const HomePage: React.FC = (props: Props) => {
               </UnstyledButton>
             }
           />
-
           <FeedbackComponent />
         </Stack>
       </Center>

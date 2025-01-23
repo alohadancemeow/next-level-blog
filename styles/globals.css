@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/* Customize Mantine styles */
+
+:root {
+  color-scheme: var(--mantine-color-scheme);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: "border-box";
+  /* color: light-dark(var(--mantine-color-dark-0), var(--mantine-color-black)); */
+  /* color: theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black; */
+}
+
+body {
+  font-family: var(--mantine-font-family);
+  background-color: light-dark(
+    var(--mantine-color-gray-0),
+    var(--mantine-color-dark-6)
+  );
+  /* color: light-dark(var(--mantine-color-dark-0), var(--mantine-color-black)); */
+  padding: 0;
+  margin: 0;
+  line-height: 1.75;
+  font-weight: "400";
+  font-size: "16px";
+  overflow-x: "hidden";
+
+  -webkit-font-smoothing: var(--mantine-webkit-font-smoothing);
+  -moz-osx-font-smoothing: var(--mantine-moz-font-smoothing);
+}
+
+div {
+  font-family: var(--mantine-font-family);
+}
+
+code {
+  font-family: var(--mantine-font-family-monospace);
+  font-size: "14px";
+  padding: "4px";
+  background-color: light-dark(
+    var(--mantine-color-grey-9),
+    var(--mantine-color-gray-1)
+  );
+}
+
+ul {
+  margin-bottom: "16px";
+  padding-left: "24px";
+  list-style: "square";
+}
+
+li {
+  font-size: "16px";
+  margin-bottom: "4px";
+  font-family: var(--mantine-font-family);
+}
+p {
+  margin-bottom: "16px";
+}
+a {
+  cursor: "pointer";
+  text-decoration: "none";
+  color: light-dark(
+    var(--mantine-primary-color-5),
+    var(--mantine-primary-color-7)
+  );
+}
+blockquote {
+  margin: "10px";
+  padding: "0 15px";
+  color: light-dark(
+    var(--mantine-primary-color-4),
+    var(--mantine-primary-color-6)
+  );
+  background-color: light-dark(
+    var(--mantine-color-dark-6),
+    var(--mantine-color-grey-0)
+  );
+
+  border-left: 4px solid var(--mantine-primary-color-7);
+
+  & > div {
+    color: light-dark(
+      var(--mantine-color-dark-2),
+      var(--mantine-primary-color-3)
+    );
+  }
+}
+em {
+  color: light-dark(
+    var(--mantine-color-dark-2),
+    var(--mantine-primary-color-3)
+  );
+}
+
+strong {
+  font-weight: 600;
+  color: light-dark(
+    var(--mantine-primary-color-7),
+    var(--mantine-primary-color-5)
+  );
+}
+
+.mantine-Divider-label {
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+}
+
+/* h2,
+   h3{
+     a {
+       :before {
+         content: '"#"';
+         float: "left";
+         padding-right: "8px";
+         margin-left: "-20px";
+         visibility: "hidden";
+       };
+     }
+
+     &:hover,
+     a:before {
+       visibility: "visible";
+     }
+   } */
+
+/* Customize notion styles */
+
+.react-tweet-theme {
+  --tweet-bg-color: rgb(255, 255, 255);
+  --tweet-bg-color-hover: rgb(248, 242, 234);
+}
+
+div[class*="tweet-container_"] {
+  background-color: transparent !important;
+}
+
+.notion-asset-wrapper-tweet > div > div {
+  max-width: 100% !important;
+}
+
+.notion,
+.notion-page > * {
+  list-style: square !important;
+}
+
+.notion-code > code[class*="language-"],
+pre[class*="language-"] {
+  font-family: "JetBrains Mono", sans-serif !important;
+}
+
+pre[class*="language-"] {
+  padding: 1.5em !important;
+}
+
+.token > .token,
+.maybe-class-name,
+.imports,
+.parameter,
+.property-access {
+  color: white !important;
+}
+
+.notion-inline-code {
+  color: #eb5757 !important;
+}
+
+/* notion-link */
+.notion-link {
+  color: rgb(255, 192, 120) !important;
+}
+
+.notion-bookmark-title,
+.notion-bookmark-description {
+  color: rgb(107 114 128) !important;
+}
+
+/* .prose :where(a):not(:where([class~=not-prose] *)) {
+  @apply 
+} */
