@@ -20,9 +20,7 @@ import {
 import { Navigations } from "@/site/data";
 import FeedbackComponent from "./Feedback";
 
-type Props = {};
-
-const HomePage: React.FC = (props: Props) => {
+const HomePage: React.FC = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (

@@ -148,23 +148,23 @@ const fetchPageContent: PageContentFetcher = cache(async (pageId: string) => {
   }
 });
 
-export const getPageContent = (slug: string) => fetchPageContent(slug);
+export const getPageContent = async (slug: string) => fetchPageContent(slug);
 
-export const getAboutPageContent = () => {
+export const getAboutPageContent = async () => {
   const aboutPageId = process.env.NOTION_ABOUT_PAGE_ID as string;
   revalidatePath("/about", "page");
 
   return fetchPageContent(aboutPageId);
 };
 
-export const getNotePageContent = () => {
+export const getNotePageContent = async () => {
   const notePageId = process.env.NOTION_NOTE_PAGE_ID as string;
   revalidatePath("/note", "page");
 
   return fetchPageContent(notePageId);
 };
 
-export const getProjectPageContent = () => {
+export const getProjectPageContent = async () => {
   const projectPageId = process.env.NOTION_PROJECT_PAGE_ID as string;
   revalidatePath("/project", "page");
 

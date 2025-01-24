@@ -1,7 +1,7 @@
 "use client";
 
 import classes from "./404.module.css";
-import { Container, Title, Text, Button, Group, rem } from "@mantine/core";
+import { Container, Title, Text, Button, Group, Center } from "@mantine/core";
 import { Illustration } from "./404-Image";
 import { useRouter } from "next/navigation";
 
@@ -13,7 +13,9 @@ const NotFoundPage = () => {
       <div className={classes.inner}>
         <Illustration className={classes.image} />
         <div className={classes.content}>
-          <Title className={classes.title}>Nothing to see here</Title>
+          <Center>
+            <Title className={classes.title}>Nothing to see here</Title>
+          </Center>
           <Text
             color="dimmed"
             size="lg"

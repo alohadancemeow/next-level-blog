@@ -1,26 +1,33 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Customize Mantine styles */
+/** Customize Mantine styles
+ * see: https://mantine.dev/styles/css-variables-list/#light-only
+*/
 
 :root {
+  --bg-dark-color: rgb(37, 38, 43);
+  --bg-light-color: var(--mantine-color-gray-0);
+
   color-scheme: var(--mantine-color-scheme);
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: "border-box";
+  /* @apply box-border; */
+  box-sizing: border-box;
   /* color: light-dark(var(--mantine-color-dark-0), var(--mantine-color-black)); */
   /* color: theme.colorScheme === "dark" ? theme.colors.dark[0] : theme.black; */
 }
 
 body {
   font-family: var(--mantine-font-family);
-  background-color: light-dark(
-    var(--mantine-color-gray-0),
-    var(--mantine-color-dark-6)
-  );
+  background-color: light-dark(var(--bg-light-color), var(--bg-dark-color));
+
   /* color: light-dark(var(--mantine-color-dark-0), var(--mantine-color-black)); */
+
   padding: 0;
   margin: 0;
   line-height: 1.75;
@@ -32,9 +39,9 @@ body {
   -moz-osx-font-smoothing: var(--mantine-moz-font-smoothing);
 }
 
-div {
+/* div {
   font-family: var(--mantine-font-family);
-}
+} */
 
 code {
   font-family: var(--mantine-font-family-monospace);
@@ -57,9 +64,11 @@ li {
   margin-bottom: "4px";
   font-family: var(--mantine-font-family);
 }
+
 p {
   margin-bottom: "16px";
 }
+
 a {
   cursor: "pointer";
   text-decoration: "none";
@@ -68,6 +77,7 @@ a {
     var(--mantine-primary-color-7)
   );
 }
+
 blockquote {
   margin: "10px";
   padding: "0 15px";
@@ -105,8 +115,14 @@ strong {
 }
 
 .mantine-Divider-label {
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  color: var(--mantine-color-black);
 }
+[data-mantine-color-scheme="dark"] .mantine-Divider-label {
+  color: var(--mantine-color-white);
+}
+/* .mantine-Divider-label {
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+} */
 
 /* h2,
    h3{
@@ -126,57 +142,3 @@ strong {
      }
    } */
 
-/* Customize notion styles */
-
-.react-tweet-theme {
-  --tweet-bg-color: rgb(255, 255, 255);
-  --tweet-bg-color-hover: rgb(248, 242, 234);
-}
-
-div[class*="tweet-container_"] {
-  background-color: transparent !important;
-}
-
-.notion-asset-wrapper-tweet > div > div {
-  max-width: 100% !important;
-}
-
-.notion,
-.notion-page > * {
-  list-style: square !important;
-}
-
-.notion-code > code[class*="language-"],
-pre[class*="language-"] {
-  font-family: "JetBrains Mono", sans-serif !important;
-}
-
-pre[class*="language-"] {
-  padding: 1.5em !important;
-}
-
-.token > .token,
-.maybe-class-name,
-.imports,
-.parameter,
-.property-access {
-  color: white !important;
-}
-
-.notion-inline-code {
-  color: #eb5757 !important;
-}
-
-/* notion-link */
-.notion-link {
-  color: rgb(255, 192, 120) !important;
-}
-
-.notion-bookmark-title,
-.notion-bookmark-description {
-  color: rgb(107 114 128) !important;
-}
-
-/* .prose :where(a):not(:where([class~=not-prose] *)) {
-  @apply 
-} */

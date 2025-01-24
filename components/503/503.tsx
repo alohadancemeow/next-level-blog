@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, Title, Text, Button, Group } from "@mantine/core";
+import { Container, Title, Text, Button, Group, Center } from "@mantine/core";
 import { Illustration } from "./503-Image";
 import classes from "./503.module.css";
 
@@ -15,7 +15,11 @@ const ServerErrorPage = ({ reset }: Props) => {
         <div className={classes.inner}>
           <Illustration className={classes.image} />
           <div className={classes.content}>
-            <Title className={classes.title}>All of our servers are busy</Title>
+            <Center>
+              <Title className={classes.title}>
+                All of our servers are busy
+              </Title>
+            </Center>
             <Text
               size="lg"
               ta="center"

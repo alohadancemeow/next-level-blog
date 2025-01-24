@@ -1,8 +1,6 @@
 import HomePage from "@/components/home/HomePage";
 
-type Props = {};
-
-const Home = async (props: Props) => {
+const Home = async () => {
   return <HomePage />;
 };
 

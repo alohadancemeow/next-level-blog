@@ -17,8 +17,8 @@ const FeedbackComponent = () => {
 
   const bgColor =
     colorScheme === "dark"
-      ? "var(--mantine-primary-color-9)"
-      : "var(--mantine-primary-color-5)";
+      ? "var(--mantine-color-orange-light)"
+      : "var(--mantine-color-orange-5)";
 
   if (width < 500) {
     return null;
@@ -58,12 +58,11 @@ const FeedbackComponent = () => {
           >
             <ActionIcon
               component="div"
-              // color="orange"
               size="lg"
               radius="sm"
               variant="subtle"
               style={{
-                // background: "none",
+                background: "none",
                 borderColor: bgColor,
               }}
             >
@@ -73,6 +72,9 @@ const FeedbackComponent = () => {
                   href={`${siteMetadata.feedbackUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  style={{
+                    color: "var(--mantine-primary-color-contrast)",
+                  }}
                 >
                   <SmallFeatherIcon />
                 </a>
