@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { siteMetadata } from "@/site/siteMatedata";
 import { ogNoteImage } from "@/site/data";
 
-import NotePage from "@/components/note/NotePage";
+import NotePage from "./components/NotePage";
 import Content from "@/components/Post/Content";
 import { getNotePageContent } from "@/actions/notion-x";
 

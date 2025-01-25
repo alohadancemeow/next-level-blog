@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
-import { Container, Divider, Space } from "@mantine/core";
-import ContentWrapper from "../ContentWrapper";
+import { Container, Space } from "@mantine/core";
+import ContentWrapper from "@/components/ContentWrapper";
 import ProjectItem from "./ProjectItem";
 
 type Props = {
@@ -15,20 +14,15 @@ const ProjectPage = ({ children }: Props) => {
       <Space h={"sm"} />
       <Container
         size={"sm"}
-        sx={(theme) => ({
-          [theme.fn.smallerThan("xs")]: { margin: "0 -2rem" },
+        styles={(theme) => ({
+          [theme.breakpoints.xs]: { margin: "0 -2rem" },
         })}
       >
-        {/* <Space h={"lg"} />
-        <Space h={"lg"} /> */}
-
-        {/* <Divider /> */}
         <ContentWrapper>
           {children}
           <ProjectItem />
         </ContentWrapper>
         <Space h={"lg"} />
-        {/* <Divider /> */}
         <Space h={"lg"} />
       </Container>
     </>

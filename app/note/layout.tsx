@@ -6,7 +6,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Layout>
       <PageLayout>
-        <Menu title="Projects" />
+        <Menu title="Liberation Notes" />
         {children}
       </PageLayout>
     </Layout>
