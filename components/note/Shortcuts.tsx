@@ -2,15 +2,13 @@
 
 import { Box, Divider, Kbd, Space } from "@mantine/core";
 
-type Props = {};
-
-const Shortcuts = (props: Props) => {
+const Shortcuts = () => {
   return (
     <ul>
       <li>
         <Box
-          sx={(theme) => ({
-            [theme.fn.smallerThan("xs")]: { fontSize: "15px" },
+          style={(theme) => ({
+            [theme.breakpoints.xs]: { fontSize: "15px" },
           })}
         >
           <span>
@@ -48,8 +46,8 @@ const Shortcuts = (props: Props) => {
       <Space h={"lg"} />
       <li>
         <Box
-          sx={(theme) => ({
-            [theme.fn.smallerThan("xs")]: { fontSize: "15px" },
+          style={(theme) => ({
+            [theme.breakpoints.xs]: { fontSize: "15px" },
           })}
         >
           <span>
@@ -86,8 +84,8 @@ const Shortcuts = (props: Props) => {
       <Space h={"lg"} />
       <li>
         <Box
-          sx={(theme) => ({
-            [theme.fn.smallerThan("xs")]: { fontSize: "15px" },
+          style={(theme) => ({
+            [theme.breakpoints.xs]: { fontSize: "15px" },
           })}
         >
           <span>

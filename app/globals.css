@@ -39,9 +39,9 @@ body {
   -moz-osx-font-smoothing: var(--mantine-moz-font-smoothing);
 }
 
-/* div {
+div {
   font-family: var(--mantine-font-family);
-} */
+}
 
 code {
   font-family: var(--mantine-font-family-monospace);
@@ -56,7 +56,7 @@ code {
 ul {
   margin-bottom: "16px";
   padding-left: "24px";
-  list-style: "square";
+  list-style-type: square;
 }
 
 li {
@@ -141,4 +141,3 @@ strong {
        visibility: "visible";
      }
    } */
-

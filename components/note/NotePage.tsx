@@ -23,8 +23,8 @@ const NotePage = ({ children }: Props) => {
         <Space h={"lg"} />
         <Container
           size={"sm"}
-          sx={(theme) => ({
-            [theme.fn.smallerThan("xs")]: { margin: "0 -2rem" },
+          styles={(theme) => ({
+            [theme.breakpoints.xs]: { margin: "0 -2rem" },
           })}
         >
           <Shortcuts />
@@ -39,7 +39,7 @@ const NotePage = ({ children }: Props) => {
           <Divider />
 
           <ContentWrapper>
-            {/* <FirstContent /> */}
+            <FirstContent />
             {children}
           </ContentWrapper>
 
