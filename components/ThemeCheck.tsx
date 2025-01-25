@@ -4,15 +4,11 @@ import { useCallback, useEffect, useState } from "react";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 import { MantineColorScheme, useMantineColorScheme } from "@mantine/core";
 
-type Props = {
-  children: React.ReactNode;
-};
-
 /**
  * get dark theme form Mantine colorScheme,
  * then apply 'dark' to taildwind
  */
-const ThemeCheck = ({ children }: Props) => {
+const ThemeCheck = ({ children }: { children: React.ReactNode }) => {
   const [mounted, setMounted] = useState(false);
 
   const { toggleColorScheme } = useMantineColorScheme();

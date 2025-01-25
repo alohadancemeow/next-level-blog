@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/notion";
+import { getAllPosts } from "@/actions/notion";
 import Layout from "@/components/layout/Layout";
 import Menu from "@/components/layout/Menu";
 import PageLayout from "@/components/layout/PageLayout";

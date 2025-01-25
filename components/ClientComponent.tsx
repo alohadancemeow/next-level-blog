@@ -1,12 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-const ClientComponent = ({ children }: Props) => {
+const ClientComponent = ({ children }: { children: React.ReactNode }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

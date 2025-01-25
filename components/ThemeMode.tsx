@@ -13,8 +13,10 @@ const ThemeMode = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
-    <Group position="center" my="md">
+    <Group justify="center" my="md">
       <SegmentedControl
+        size="xs"
+        style={{ fontSize: "14px" }}
         value={colorScheme}
         onChange={() => toggleColorScheme()}
         data={[
@@ -22,7 +24,7 @@ const ThemeMode = () => {
             value: "light",
             label: (
               <Center>
-                <Sun size={16} />
+                <Sun size={14} />
                 <Box ml={10}>Light</Box>
               </Center>
             ),
@@ -31,7 +33,7 @@ const ThemeMode = () => {
             value: "dark",
             label: (
               <Center>
-                <Moon size={16} />
+                <Moon size={14} />
                 <Box ml={10}>Dark</Box>
               </Center>
             ),

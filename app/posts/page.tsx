@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getAllPosts } from "@/lib/notion";
+import { getAllPosts } from "@/actions/notion";
 
 import { siteMetadata } from "@/site/siteMatedata";
 import { ogPoststImage } from "@/site/data";

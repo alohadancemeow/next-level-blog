@@ -6,7 +6,7 @@ import EndSection from "./end-section";
 import Section from "./section";
 
 import { PageData } from "@/types";
-import { getCategory } from "@/lib/helpers";
+import { getCategory } from "@/helpers/get-all-tags";
 
 type Props = {
   posts: PageData[];

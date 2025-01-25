@@ -3,9 +3,7 @@
 import { siteMetadata } from "@/site/siteMatedata";
 import { Center, Text } from "@mantine/core";
 
-type Props = {};
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <div style={{ margin: "2rem 0" }}>
       <Center style={{ fontWeight: "500", gap: "5px" }}>

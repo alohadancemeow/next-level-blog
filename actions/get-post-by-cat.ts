@@ -1,4 +1,4 @@
-import { getPostsByCategory } from "@/lib/notion";
+import { getPostsByCategory } from "@/actions/notion";
 
 const limit = 6;
 

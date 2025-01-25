@@ -13,6 +13,7 @@ const IconLogo = () => (
         display: "inline-flex",
         gap: "10px",
         alignItems: "center",
+        cursor: "pointer",
       }}
     >
       <span style={{ fontSize: "20px" }}>

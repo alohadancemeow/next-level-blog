@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { PageData } from "@/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { fetchPostsByCategory } from "@/actions/fetchPostByCategory";
+import { fetchPostsByCategory } from "@/actions/get-post-by-cat";
 
 interface Props {
   categoryName: string;

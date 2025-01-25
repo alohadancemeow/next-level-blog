@@ -11,7 +11,7 @@ import SearchPost from "@/components/posts/SearchPost";
 import TagSection from "./contents/tag-section";
 
 import { PageData } from "@/types";
-import { getCategory, getTags } from "@/lib/helpers";
+import { getCategory, getTags } from "@/helpers/get-all-tags";
 import Loader from "../Loader";
 
 type Props = {

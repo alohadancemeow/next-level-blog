@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import { siteMetadata } from "@/site/siteMatedata";
 import { ogNoteImage } from "@/site/data";
 
-import AboutPage from "@/components/about/AboutPage";
+import AboutPage from "@/app/about/components/AboutPage";
 import Content from "@/components/Post/Content";
-import { getAboutPageContent } from "@/lib/notion";
+import { getAboutPageContent } from "@/actions/notion-x";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — About me`,
@@ -14,9 +14,7 @@ export const metadata: Metadata = {
   },
 };
 
-type Props = {};
-
-const About = async (props: Props) => {
+const About = async () => {
   const recordMap = await getAboutPageContent();
 
   return (

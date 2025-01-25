@@ -4,7 +4,7 @@ import { ogNoteImage } from "@/site/data";
 
 import ProjectPage from "@/components/projects/ProjectPage";
 import Content from "@/components/Post/Content";
-import { getProjectPageContent } from "@/lib/notion";
+import { getProjectPageContent } from "@/actions/notion";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Projects`,

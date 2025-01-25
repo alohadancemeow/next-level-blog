@@ -1,19 +1,11 @@
 "use client";
 
-import ReactLoading from "react-loading";
-import { useMantineColorScheme } from "@mantine/core";
+import { Loader as MtLoader } from "@mantine/core";
 
-type Props = {};
-
-const Loader = (props: Props) => {
-  const { colorScheme } = useMantineColorScheme();
-
+const Loader = () => {
   return (
     <div className="flex items-center justify-center w-full h-screen">
-      <ReactLoading
-        type="cubes"
-        color={colorScheme === "dark" ? "#a33705" : "#ff922b"}
-      />
+      <MtLoader color="orange" size="xl" type="dots" />
     </div>
   );
 };

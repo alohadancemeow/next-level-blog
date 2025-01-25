@@ -1,7 +1,7 @@
 import { Metadata, ResolvingMetadata } from "next";
 
-import { getPostById } from "@/actions/getPostById";
-import { getPageContent } from "@/lib/notion";
+import { getPostById } from "@/actions/get-post-by-id";
+import { getPageContent } from "@/actions/notion";
 import { PostTag } from "@/types";
 import { siteMetadata } from "@/site/siteMatedata";
 import Content from "@/components/Post/Content";

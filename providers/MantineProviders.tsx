@@ -8,11 +8,11 @@ import Player from "@/components/Player";
 import ThemeCheck from "@/components/ThemeCheck";
 import { theme } from "@/styles/theme";
 
-type Props = {
+export default function MantineProviders({
+  children,
+}: {
   children: React.ReactNode;
-};
-
-export default function MantineProviders({ children }: Props) {
+}) {
   const [opened, setOpened] = useState<boolean>(false);
 
   // get color scheme manager from local storage

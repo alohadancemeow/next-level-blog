@@ -1,13 +1,8 @@
 "use client";
 
-import React, { ReactNode } from "react";
 import { Container, Center, Stack } from "@mantine/core";
 
-type Props = {
-  children: ReactNode;
-};
-
-const PageLayout = ({ children }: Props) => {
+const PageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Container>
       <Center

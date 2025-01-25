@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/notion";
+import { getAllPosts } from "@/actions/notion";
 import { Metadata, ResolvingMetadata } from "next";
 import { siteMetadata } from "@/site/siteMatedata";
 

@@ -2,8 +2,8 @@ import Layout from "@/components/layout/Layout";
 import ContentTitle from "@/components/Post/ContentTitle";
 import ScrollToTop from "@/components/ScrollToTop";
 
-import { getAllPosts } from "@/lib/notion";
-import { getPostById } from "@/actions/getPostById";
+import { getAllPosts } from "@/actions/notion";
+import { getPostById } from "@/actions/get-post-by-id";
 // import { getToc } from "@/actions/getToc";
 import ContentBody from "@/components/Post/ContentBody";
 import Loader from "@/components/Loader";
