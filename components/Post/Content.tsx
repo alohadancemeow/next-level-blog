@@ -5,6 +5,7 @@ import { NotionRenderer } from "react-notion-x";
 import { ExtendedRecordMap } from "notion-types";
 import { notFound } from "next/navigation";
 import useGetTweetId from "@/hooks/useGetTweetId";
+import { jetBrains_mono } from "@/app/fonts";
 
 // # Expensive components
 const Code = dynamic(() =>
@@ -70,6 +71,22 @@ const Content = ({ recordMap }: Props) => {
         Pdf,
         Tweet: myTweet,
       }}
+      className={`
+        ${jetBrains_mono.className}
+        w-full
+        prose-ol:m-0 
+        prose-ul:m-0 
+        prose-li:m-0 
+        prose
+        dark:prose-invert
+        prose-a:no-underline 
+        prose-img:m-0
+        prose-blockquote:border-amber-500
+        dark:prose-blockquote:border-amber-700
+        dark:[&>div>a>div>*]:text-white
+        dark:[&>div>a>div>div>*]:text-gray-500
+        dark:prose-a:border-amber-700
+        `}
     />
   );
 };

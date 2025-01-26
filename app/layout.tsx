@@ -1,6 +1,8 @@
 import "@mantine/core/styles.css";
-import '@mantine/spotlight/styles.css';
+import "@mantine/spotlight/styles.css";
 import "./globals.css";
+import "@/styles/notion-custom.css";
+
 import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 
 import type { Metadata } from "next";
