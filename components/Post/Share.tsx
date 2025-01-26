@@ -1,10 +1,9 @@
 "use client";
 
 import { ActionIcon, Box, Center, Text } from "@mantine/core";
-import { BrandFacebook, BrandTwitter } from "tabler-icons-react";
+import { BrandFacebook } from "tabler-icons-react";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
-
-import { TwitterIcon, FacebookIcon } from "../Icons";
+import { TwitterIcon } from "../Icons";
 
 type Props = {
   postLink: string;
@@ -12,100 +11,57 @@ type Props = {
 
 const Share = ({ postLink }: Props) => {
   return (
-    <Center
-      mt={18}
-      sx={{
-        position: "sticky",
-        top: "5%",
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <Text tt="uppercase" c="dimmed">
-          Share
-        </Text>
-        <Box
-          sx={(theme) => ({
-            width: "2px",
-            height: "80px",
-            padding: "0",
-            margin: "15px auto",
-            backgroundColor:
-              theme.colorScheme === "dark"
-                ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-                : theme.colors[theme.primaryColor][5],
-          })}
-        ></Box>
-        <Box
-          sx={{
-            display: "grid",
-            placeItems: "center",
-            marginBottom: "15px",
-          }}
-        >
-          <ActionIcon
-            component="div"
-            color="orange"
-            size="lg"
-            radius="sm"
-            variant="filled"
-            sx={(theme) => ({
-              backgroundColor:
-                theme.colorScheme === "dark"
-                  ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-                  : theme.colors[theme.primaryColor][5],
-            })}
-          >
-            <FacebookShareButton
-              // quote="alohadancemeow"
-              hashtag="#alohadancemeow"
-              url={postLink}
-              style={{ display: "grid", placeItems: "center" }}
+    <div className=" hidden absolute md:flex md:left-[-35px] lg:left-[-50px]">
+      <Center>
+        <Box className="flex flex-col mt-2">
+          <Text tt="uppercase" c="dimmed">
+            Share
+          </Text>
+          <div className="bg-orange-500 dark:bg-amber-900 my-3 p-0 h-20 w-[2px] mx-auto " />
+          <Box className="flex justify-center items-center mb-3">
+            <ActionIcon
+              component="div"
+              color="orange"
+              size="lg"
+              radius="sm"
+              variant="filled"
+              className="bg-orange-500 dark:bg-amber-900"
             >
-              <BrandFacebook size={18} />
-              {/* <FacebookIcon /> */}
-            </FacebookShareButton>
-          </ActionIcon>
-        </Box>
-        <Box
-          sx={{
-            display: "grid",
-            placeItems: "center",
-            marginBottom: "15px",
-            alignItems: "center",
-          }}
-        >
-          <ActionIcon
-            component="div"
-            color="orange"
-            size="lg"
-            radius="sm"
-            variant="filled"
-            sx={(theme) => ({
-              backgroundColor:
-                theme.colorScheme === "dark"
-                  ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-                  : theme.colors[theme.primaryColor][5],
-            })}
-          >
-            <TwitterShareButton
-              url={postLink}
-              title="New post, let's explore"
-              // via={'alohadancemeow.com'}
-              hashtags={["#alohadancemeow"]}
-              style={{ display: "grid", placeItems: "center" }}
+              <FacebookShareButton
+                // quote="alohadancemeow"
+                hashtag="#alohadancemeow"
+                url={postLink}
+                style={{ display: "grid", placeItems: "center" }}
+              >
+                <BrandFacebook size={18} className="dark:text-white" />
+                {/* <FacebookIcon /> */}
+              </FacebookShareButton>
+            </ActionIcon>
+          </Box>
+          <Box className="flex justify-center items-center mb-3">
+            <ActionIcon
+              component="div"
+              color="orange"
+              size="lg"
+              radius="sm"
+              variant="filled"
+              className="bg-orange-500 dark:bg-amber-900"
             >
-              {/* <BrandTwitter size={18} /> */}
-              <TwitterIcon />
-            </TwitterShareButton>
-          </ActionIcon>
+              <TwitterShareButton
+                url={postLink}
+                title="New post, let's explore"
+                // via={'alohadancemeow.com'}
+                hashtags={["#alohadancemeow"]}
+                style={{ display: "grid", placeItems: "center" }}
+              >
+                {/* <BrandTwitter size={18} /> */}
+                <TwitterIcon />
+              </TwitterShareButton>
+            </ActionIcon>
+          </Box>
         </Box>
-      </Box>
-    </Center>
+      </Center>
+    </div>
   );
 };
 

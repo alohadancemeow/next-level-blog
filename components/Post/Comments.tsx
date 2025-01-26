@@ -1,18 +1,10 @@
-'use client'
+"use client";
 
-import React, { useEffect, useState } from "react";
 import Giscus from "@giscus/react";
-import { ColorScheme, useMantineColorScheme } from "@mantine/core";
+import { useMantineColorScheme } from "@mantine/core";
 
-type Props = {};
-
-const Comments = React.memo((props: Props) => {
+const Comments = () => {
   const { colorScheme } = useMantineColorScheme();
-  const [theme, setTheme] = useState<ColorScheme>();
-
-  useEffect(() => {
-    colorScheme && setTheme(colorScheme);
-  }, [colorScheme]);
 
   return (
     <Giscus
@@ -27,11 +19,11 @@ const Comments = React.memo((props: Props) => {
       reactionsEnabled="1"
       emitMetadata="0"
       inputPosition="bottom"
-      theme={theme === "dark" ? "transparent_dark" : "light"}
+      theme={colorScheme === "dark" ? "transparent_dark" : "light"}
       lang="en"
       loading="lazy"
     />
   );
-});
+};
 
 export default Comments;

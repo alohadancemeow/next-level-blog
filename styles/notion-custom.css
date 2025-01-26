@@ -14,8 +14,10 @@ div[class*="tweet-container_"] {
 }
 
 .notion,
-.notion-page > * {
-  list-style: square !important;
+.notion-page,
+.notion-table-of-contents > * {
+  color: inherit !important;
+  list-style-type: square !important;
 }
 
 .notion-code > code[class*="language-"],

@@ -30,6 +30,7 @@ const TagItem = ({ tags }: Props) => {
                 style={{
                   textDecoration: "none",
                   color: "grey",
+                  cursor: "pointer",
                 }}
               >
                 {`#${tag.name}`}

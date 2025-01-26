@@ -1,61 +1,40 @@
 "use client";
 
 import { useWindowScroll } from "@mantine/hooks";
-import { Affix, Box, Button, Transition, rem } from "@mantine/core";
+import { ActionIcon, Affix, Box, Text, Transition } from "@mantine/core";
 import { ArrowUpCircle } from "tabler-icons-react";
 
-type Props = {};
-
-const ScrollToTop = (props: Props) => {
+const ScrollToTop = () => {
   const [scroll, scrollTo] = useWindowScroll();
 
   return (
     <>
-      <Affix
-        position={{ bottom: rem(30), right: rem(20) }}
-        sx={(theme) => ({
-          [theme.fn.smallerThan("md")]: { display: "none" },
-          borderRadius: "3px",
-        })}
-      >
+      <Affix className="hidden md:flex md:right-[35px] lg:right-[50px] md:bottom-10">
         <Transition transition="slide-up" mounted={scroll.y > 0}>
           {(transitionStyles) => (
-            // <Box
-            //   component="button"
-            //   // leftIcon={<ArrowUpCircle size={20} />}
-            //   onClick={() => scrollTo({ y: 0 })}
-            //   style={transitionStyles}
-            //   sx={(theme) => ({
-            //     backgroundColor:
-            //       theme.colorScheme === "dark"
-            //         ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-            //         : theme.colors[theme.primaryColor][5],
-
-            //     // borderRadius: "50%",
-            //     // padding: 12,
-            //   })}
-            // >
-            //   <ArrowUpCircle
-            //     size={20}
-            //     // color="black"
-            //     className="text-black transition duration-300 ease-in-out hover:scale-150 dark:text-white"
-            //   />
-            // </Box>
-
-            <Button
-              px={10}
-              leftIcon={<ArrowUpCircle size={20} />}
-              style={transitionStyles}
-              onClick={() => scrollTo({ y: 0 })}
-              sx={(theme) => ({
-                backgroundColor:
-                  theme.colorScheme === "dark"
-                    ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-                    : theme.colors[theme.primaryColor][5],
-              })}
-            >
-              Back to top
-            </Button>
+            <Box className="flex flex-col mt-2">
+              <Text tt="uppercase" c="dimmed">
+                Top
+              </Text>
+              <div className="bg-orange-500 dark:bg-amber-900 my-3 p-0 h-20 w-[2px] mx-auto " />
+              <Box className="flex justify-center items-center mb-3">
+                <ActionIcon
+                  component="div"
+                  color="orange"
+                  size="lg"
+                  radius="sm"
+                  variant="filled"
+                  className="bg-orange-500 dark:bg-amber-900"
+                  style={transitionStyles}
+                  onClick={() => scrollTo({ y: 0 })}
+                >
+                  <ArrowUpCircle
+                    size={20}
+                    className="text-black dark:text-white"
+                  />
+                </ActionIcon>
+              </Box>
+            </Box>
           )}
         </Transition>
       </Affix>
