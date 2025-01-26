@@ -1,11 +1,11 @@
 "use client";
 
 import { Grid, Space, Text } from "@mantine/core";
-import PostCard from "@/components/posts/PostCard";
-import { PageData } from "@/types";
+import PostCard from "@/app/posts/components/PostCard";
+import { PageDataSchemaType } from "@/types";
 
 type Props = {
-  posts: PageData[];
+  posts: PageDataSchemaType[];
   description: string;
 };
 
@@ -19,12 +19,12 @@ const SectionBody = ({ posts, description }: Props) => {
       <Grid gutter="lg">
         {posts.length === 0
           ? posts.map((item) => (
-              <Grid.Col key={item.id} xs={6} md={4}>
+              <Grid.Col key={item.id} span={{ base: 12, md: 6, xs: 3 }}>
                 <PostCard post={item} />
               </Grid.Col>
             ))
           : posts.map((item) => (
-              <Grid.Col key={item.id} xs={6} md={4}>
+              <Grid.Col key={item.id} span={{ base: 12, md: 6, xs: 3 }}>
                 <PostCard post={item} />
               </Grid.Col>
             ))}

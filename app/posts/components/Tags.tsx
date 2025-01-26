@@ -3,10 +3,10 @@
 import Link from "next/link";
 
 import { Box, Text } from "@mantine/core";
-import { PostTag } from "@/types";
+import { TagSchemaType } from "@/types";
 
 type Props = {
-  tags: PostTag[];
+  tags: TagSchemaType[];
 };
 
 const Tags = ({ tags }: Props) => {

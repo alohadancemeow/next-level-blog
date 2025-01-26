@@ -72,7 +72,7 @@ export const getAllPosts = cache(async () => {
   if (!results.length) return [];
 
   const pageData = postMapping(results);
-  revalidatePath("/posts", "page");
+  // revalidatePath("/posts", "page");
 
   return pageData;
 });

@@ -3,10 +3,10 @@
 import { format, parseISO } from "date-fns";
 import { Text } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
-import { PageData } from "@/types";
+import { PageDataSchemaType } from "@/types";
 
 type Props = {
-  posts: PageData[];
+  posts: PageDataSchemaType[];
 };
 
 const EndSection = ({ posts }: Props) => {
@@ -23,7 +23,7 @@ const EndSection = ({ posts }: Props) => {
           onClick={() => {
             if (scroll.y > 0) scrollTo({ y: 0 });
           }}
-          sx={{
+          style={{
             color: "orange",
             cursor: "pointer",
             "&:hover": {

@@ -7,7 +7,7 @@ import { Center, Space } from "@mantine/core";
 
 import Breadcrumbs from "@/components/Post/Breadcrumbs";
 import Header from "@/components/layout/Header";
-import Tags from "@/components/posts/Tags";
+import Tags from "@/app/posts/components/Tags";
 
 import { PageData } from "@/types";
 import { notFound } from "next/navigation";

@@ -1,19 +1,21 @@
 "use client";
 
 import { useCallback, useRef } from "react";
-import { Box } from "@mantine/core";
-import { TagType } from "@/types";
+import { Box, useMantineColorScheme } from "@mantine/core";
+import { TagSchemaType } from "@/types";
 
 // import useFilterPostByTag from "@/hooks/useFilterPostByTag";
 import { useRouter } from "next/navigation";
 
 type Props = {
-  tags: TagType;
+  tags: TagSchemaType;
 };
 
 const TagsBanner = ({ tags }: Props) => {
   const chipRef = useRef<null | HTMLAnchorElement>(null);
   // const { setTagname, tagname } = useFilterPostByTag();
+
+  const { colorScheme } = useMantineColorScheme();
 
   const router = useRouter();
 
@@ -46,12 +48,15 @@ const TagsBanner = ({ tags }: Props) => {
           key={i}
           ref={chipRef}
           component="a"
-          style={{
-            // padding: '2px 5px',
+          // style={{
+          //   // padding: '2px 5px',
+          //   fontWeight: "500",
+          //   fontSize: "15px",
+          // }}
+          style={(theme) => ({
             fontWeight: "500",
             fontSize: "15px",
-          }}
-          sx={(theme) => ({
+
             // [theme.fn.largerThan('xl')]: { fontSize: '18px' },
             // [theme.fn.smallerThan('xl')]: { fontSize: '16px' },
             // [theme.fn.smallerThan('md')]: { fontSize: '15px' },
@@ -65,7 +70,7 @@ const TagsBanner = ({ tags }: Props) => {
             color: theme.colors.gray[6],
             "&:hover": {
               color:
-                theme.colorScheme === "dark"
+                colorScheme === "dark"
                   ? theme.colors[theme.primaryColor][3]
                   : theme.black,
             },

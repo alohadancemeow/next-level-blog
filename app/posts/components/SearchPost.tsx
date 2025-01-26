@@ -1,12 +1,10 @@
 "use client";
 
 import { Divider, UnstyledButton, Box, Kbd } from "@mantine/core";
-import { Search } from "tabler-icons-react";
 import { openSpotlight } from "@mantine/spotlight";
+import { Search } from "tabler-icons-react";
 
-type Props = {};
-
-const SearchPost = (props: Props) => {
+const SearchPost = () => {
   return (
     // <div
     //   style={{
@@ -36,11 +34,11 @@ const SearchPost = (props: Props) => {
           </Box>
           <Kbd>⌘</Kbd>
           <span style={{ margin: "0 5px" }}>+</span>
-          <Kbd>S</Kbd>
+          <Kbd>K</Kbd>
           <span style={{ margin: "0 10px" }}>/</span>
           <Kbd>Ctrl</Kbd>
           <span style={{ margin: "0 5px" }}>+</span>
-          <Kbd>S</Kbd>
+          <Kbd>K</Kbd>
         </UnstyledButton>
       }
     />

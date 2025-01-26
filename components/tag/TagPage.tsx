@@ -1,7 +1,7 @@
 "use client";
 
 import { Grid } from "@mantine/core";
-import PostCard from "@/components/posts/PostCard";
+import PostCard from "@/app/posts/components/PostCard";
 import { notFound } from "next/navigation";
 import { PageData } from "@/types";
 import useGetPostsByTag from "@/hooks/useGetPostsByTag";

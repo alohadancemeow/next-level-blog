@@ -7,16 +7,17 @@ import Menu from "@/components/layout/Menu";
 import Layout from "@/components/layout/Layout";
 import PageLayout from "@/components/layout/PageLayout";
 import Spotlight from "@/components/Spotlight";
-import SearchPost from "@/components/posts/SearchPost";
+import SearchPost from "@/app/posts/components/SearchPost";
 import TagSection from "./contents/tag-section";
+import Loader from "../../../components/Loader";
 
-import { PageData } from "@/types";
-import { getCategory, getTags } from "@/helpers/get-all-tags";
-import Loader from "../Loader";
+import { PageDataSchemaType } from "@/types";
+import { getTags } from "@/helpers/get-all-tags";
+import { getCategory } from "@/helpers/get-unique-category";
 
 type Props = {
   children: React.ReactNode;
-  posts: PageData[];
+  posts: PageDataSchemaType[];
 };
 
 const PostsPageLayout = ({ children, posts }: Props) => {
@@ -26,7 +27,8 @@ const PostsPageLayout = ({ children, posts }: Props) => {
   const categoryCount = getCategory(posts).length;
 
   return (
-    <Spotlight data={posts}>
+    <>
+      <Spotlight data={posts} />
       <Layout>
         <PageLayout>
           <Menu title="alohadancemeow posts" />
@@ -38,7 +40,7 @@ const PostsPageLayout = ({ children, posts }: Props) => {
             // active={0}
             bulletSize={24}
             lineWidth={2}
-            sx={{ padding: "0" }}
+            style={{ padding: "0" }}
           >
             <Timeline.Item
               bullet={<Hash size={16} />}
@@ -54,7 +56,7 @@ const PostsPageLayout = ({ children, posts }: Props) => {
           <Space h="lg" />
         </PageLayout>
       </Layout>
-    </Spotlight>
+    </>
   );
 };
 

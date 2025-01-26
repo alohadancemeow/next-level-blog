@@ -1,11 +1,11 @@
 "use client";
 
 import { Space, Text } from "@mantine/core";
-import { TagType } from "@/types";
-import TagsBanner from "@/components/posts/TagsBanner";
+import { TagSchemaType } from "@/types";
+import TagsBanner from "@/app/posts/components/TagsBanner";
 
 type Props = {
-  tags: TagType;
+  tags: TagSchemaType;
   categoryCount: number;
 };
 

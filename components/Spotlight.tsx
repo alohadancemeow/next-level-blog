@@ -1,37 +1,76 @@
 "use client";
 
-import { SpotlightProvider } from "@mantine/spotlight";
-import { ReactNode } from "react";
+import {
+  Spotlight as MantineSpotlight,
+  SpotlightActionData,
+  SpotlightActionGroupData,
+} from "@mantine/spotlight";
 import { useRouter } from "next/navigation";
-import { PageData } from "@/types";
+import { PageDataSchemaType } from "@/types";
+import {
+  IconHome,
+  // IconDashboard,
+  IconFileText,
+} from "@tabler/icons-react";
 
 type Props = {
-  children: ReactNode;
-  data: PageData[];
+  data: PageDataSchemaType[];
 };
 
-const Spotlight = ({ children, data }: Props) => {
+const CustomSpotlight = ({ data }: Props) => {
   const router = useRouter();
 
-  return (
-    <SpotlightProvider
-      actions={data.map((post) => ({
+  const actions: (SpotlightActionGroupData | SpotlightActionData)[] = [
+    {
+      group: "Pages",
+      actions: [
+        {
+          id: "home",
+          label: "Home",
+          description: "Get to home page",
+          onClick: () => router.push(`/`),
+          leftSection: <IconHome size={24} stroke={1.5} />,
+        },
+        // {
+        //   id: "dashboard",
+        //   label: "Dashboard",
+        //   description: "Get full information about current system status",
+        //   onClick: () => console.log("Dashboard"),
+        //   leftSection: <IconDashboard size={24} stroke={1.5} />,
+        // },
+        {
+          id: "note",
+          label: "Note",
+          description: "Visit note to lean more about all features",
+          onClick: () => router.push(`/notes`),
+          leftSection: <IconFileText size={24} stroke={1.5} />,
+        },
+      ],
+    },
+    {
+      group: "New Posts",
+      actions: data.map((post) => ({
         id: post.id,
-        title: `📝 ${post.title}`,
+        label: `📝 ${post.title}`,
         description: post.description,
-        onTrigger: () => router.push(`/posts/${post.id}`),
-        new: false,
-      }))}
-      searchPlaceholder="🪶 Search for posts..."
-      nothingFoundMessage="🤔 Nothing found..."
-      shortcut="mod + S"
-      limit={5}
+        onClick: () => router.push(`/posts/${post.id}`),
+      })),
+    },
+  ];
+
+  return (
+    <MantineSpotlight
+      actions={actions}
+      searchProps={{
+        placeholder: "🪶 Search for posts...",
+      }}
+      nothingFound="🤔 Nothing found..."
+      shortcut="mod + K"
+      limit={7}
       highlightQuery
       // transitionProps={{ duration: 300, transition: "slide-down" }}
-    >
-      {children}
-    </SpotlightProvider>
+    />
   );
 };
 
-export default Spotlight;
+export default CustomSpotlight;

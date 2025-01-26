@@ -5,11 +5,11 @@ import { Books, SignRight } from "tabler-icons-react";
 import EndSection from "./end-section";
 import Section from "./section";
 
-import { PageData } from "@/types";
-import { getCategory } from "@/helpers/get-all-tags";
+import { PageDataSchemaType } from "@/types";
+import { getCategory } from "@/helpers/get-unique-category";
 
 type Props = {
-  posts: PageData[];
+  posts: PageDataSchemaType[];
 };
 
 const TimelineContent = ({ posts }: Props) => {
@@ -17,7 +17,7 @@ const TimelineContent = ({ posts }: Props) => {
 
   return (
     <>
-      <Timeline bulletSize={24} lineWidth={2} sx={{ padding: "0" }}>
+      <Timeline bulletSize={24} lineWidth={2} style={{ padding: "0" }}>
         {/* --- TODOY-I-LEARNED --- */}
         <Timeline.Item
           bullet={<Books size={16} />}
