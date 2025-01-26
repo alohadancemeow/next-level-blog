@@ -3,7 +3,7 @@
 import { Timeline } from "@mantine/core";
 import { Books, SignRight } from "tabler-icons-react";
 import EndSection from "./end-section";
-import Section from "./section";
+import PostGrid from "./post-grid";
 
 import { PageDataSchemaType } from "@/types";
 import { getCategory } from "@/helpers/get-unique-category";
@@ -23,7 +23,7 @@ const TimelineContent = ({ posts }: Props) => {
           bullet={<Books size={16} />}
           title={categories[0].toUpperCase()}
         >
-          <Section
+          <PostGrid
             categoryName={categories[0]}
             description="Sharing tidbits of wisdom I picked up today, maybe something you'll find useful too."
           />
@@ -34,7 +34,7 @@ const TimelineContent = ({ posts }: Props) => {
           bullet={<Books size={16} />}
           title={categories[1].toUpperCase()}
         >
-          <Section
+          <PostGrid
             categoryName={categories[1]}
             description="Diving into the books I've devoured lately, sharing the highlights and insights."
           />
@@ -45,7 +45,7 @@ const TimelineContent = ({ posts }: Props) => {
           bullet={<Books size={16} />}
           title={categories[2].toUpperCase()}
         >
-          <Section
+          <PostGrid
             categoryName={categories[2]}
             description="Recommending random entertainment gems – movies, anime, manga, and all things fun for a day off."
           />

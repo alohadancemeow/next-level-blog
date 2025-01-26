@@ -1,13 +1,12 @@
 "use client";
 
-import { Grid } from "@mantine/core";
 import PostCard from "@/app/posts/components/PostCard";
 import { notFound } from "next/navigation";
-import { PageData } from "@/types";
+import { PageDataSchemaType } from "@/types";
 import useGetPostsByTag from "@/hooks/useGetPostsByTag";
 
 type Props = {
-  posts: PageData[];
+  posts: PageDataSchemaType[];
   tagname: string;
 };
 
@@ -17,13 +16,11 @@ const TagPage = ({ posts, tagname }: Props) => {
   if (!filteredPosts.length) return notFound();
 
   return (
-    <Grid gutter="lg">
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
       {filteredPosts.map((post) => (
-        <Grid.Col key={post.id} xs={6} md={4}>
-          <PostCard post={post} />
-        </Grid.Col>
+        <PostCard key={post.id} post={post} />
       ))}
-    </Grid>
+    </div>
   );
 };
 

@@ -8,17 +8,17 @@ import { getPostById } from "@/actions/get-post-by-id";
 import ContentBody from "@/components/Post/ContentBody";
 import Loader from "@/components/Loader";
 
+type Params = Promise<{ slug: string }>;
+
 type Props = {
   children: React.ReactNode;
-  params: {
-    slug: string;
-  };
+  params: Params;
 };
 
 const layout = async ({ children, params }: Props) => {
-  const id = params.slug;
+  const { slug } = await params;
   const posts = await getAllPosts();
-  const postData = await getPostById(id);
+  const postData = await getPostById(slug);
   // const toc = await getToc(id);
 
   if (!postData) return <Loader />;

@@ -12,7 +12,7 @@ type Props = {
 const TagSection = ({ tags, categoryCount }: Props) => {
   return (
     <div>
-      <Text color="dimmed" size="xs" mt={4}>
+      <Text c="dimmed" size="xs" mt={4}>
         {`${categoryCount} categories, ${Object.keys(tags).length}`} tags in
         alohadancemeow posts
       </Text>

@@ -71,11 +71,11 @@ const Shortcuts = () => {
                 </Box>
                 <Kbd>⌘</Kbd>
                 <span style={{ margin: "0 5px" }}>+</span>
-                <Kbd>S</Kbd>
+                <Kbd>K</Kbd>
                 <span style={{ margin: "0 10px" }}>/</span>
                 <Kbd>Ctrl</Kbd>
                 <span style={{ margin: "0 5px" }}>+</span>
-                <Kbd>S</Kbd>
+                <Kbd>K</Kbd>
               </Box>
             }
           />

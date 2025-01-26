@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { format, parseISO } from "date-fns";
 
-import { Card, Image, Text, useMantineColorScheme } from "@mantine/core";
-import Tags from "./Tags";
+import { Card, Image, Text } from "@mantine/core";
+import TagItem from "./TagItem";
 import { PageDataSchemaType } from "@/types";
 import { SmallFeatherIcon } from "@/components/Icons";
 
@@ -13,8 +13,6 @@ type Props = {
 };
 
 const PostCard = ({ post }: Props) => {
-  const { colorScheme } = useMantineColorScheme();
-
   return (
     <div>
       <Link href={`/posts/${post.id}`} legacyBehavior passHref>
@@ -23,27 +21,13 @@ const PostCard = ({ post }: Props) => {
           shadow="md"
           p="md"
           radius={"sm"}
-          style={{ height: "450px" }}
-          styles={(theme) => ({
-            root: {
-              backgroundColor:
-                colorScheme === "dark" ? theme.colors.dark[5] : "none",
-              "&:hover": {
-                backgroundColor:
-                  colorScheme === "dark"
-                    ? theme.colors.dark[4]
-                    : theme.colors.orange[2],
-                transform: "translateY(-8px)",
-                transition: "ease .3s",
-                cursor: "pointer",
-              },
-            },
-          })}
+          className={
+            "md:h-[420px] hover:bg-orange-200 dark:hover:bg-neutral-700 shadow-md  cursor-pointer hover:translate-y-[-8px] transition-transform ease-in-out duration-300"
+          }
         >
-          {/* <Text size="xs" mb={"xs"}> */}
           <div>
             <time dateTime={post.createdTime}>
-              <div className="flex gap-2">
+              <div className="flex gap-2 mb-1">
                 <SmallFeatherIcon />
                 {format(parseISO(post.createdTime), "LLLL d, yyyy")}
               </div>
@@ -54,11 +38,11 @@ const PostCard = ({ post }: Props) => {
             <Image src={post.coverImage} height={180} alt="post image" />
           </Card.Section>
 
-          <Tags tags={post.tags} />
+          <TagItem tags={post.tags} />
           <Text style={{ fontWeight: 500 }} size="lg" mt={"sm"}>
             {post.title}
           </Text>
-          <Text mt="xs" color="dimmed" size="sm" className="line-clamp-3">
+          <Text mt="xs" c="dimmed" size="sm" className="line-clamp-3">
             {post.description}
           </Text>
         </Card>

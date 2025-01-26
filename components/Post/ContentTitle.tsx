@@ -7,13 +7,13 @@ import { Center, Space } from "@mantine/core";
 
 import Breadcrumbs from "@/components/Post/Breadcrumbs";
 import Header from "@/components/layout/Header";
-import Tags from "@/app/posts/components/Tags";
+import TagItem from "@/app/posts/components/TagItem";
 
-import { PageData } from "@/types";
+import { PageDataSchemaType } from "@/types";
 import { notFound } from "next/navigation";
 
 type Props = {
-  postData: PageData;
+  postData: PageDataSchemaType;
 };
 
 const ContentTitle = ({ postData }: Props) => {
@@ -40,7 +40,7 @@ const ContentTitle = ({ postData }: Props) => {
         </time>
       )}
       <Header title={postData.title} />
-      <Tags tags={postData.tags} />
+      <TagItem tags={postData.tags} />
       <Space h="xs" />
       <Breadcrumbs />
       <Space h="sm" />

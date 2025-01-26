@@ -42,7 +42,7 @@ const CustomSpotlight = ({ data }: Props) => {
           id: "note",
           label: "Note",
           description: "Visit note to lean more about all features",
-          onClick: () => router.push(`/notes`),
+          onClick: () => router.push(`/note`),
           leftSection: <IconFileText size={24} stroke={1.5} />,
         },
       ],

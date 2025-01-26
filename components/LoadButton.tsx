@@ -1,7 +1,6 @@
 "use client";
 
 import { Button, Center, useMantineColorScheme } from "@mantine/core";
-import { RocketIcon } from "./Icons";
 
 type Props = {
   categoryName: string;
@@ -21,12 +20,12 @@ const LoadButton = ({
   return (
     <Center my={10} pb={5}>
       <Button
-        // leftIcon={<RocketIcon />}
         variant="light"
         color={colorScheme === "dark" ? "gray" : "orange"}
         onClick={loadNextPost}
         loading={isFetchingNextPage}
         disabled={isFetchingNextPage}
+        className="dark:hover:bg-amber-900 hover:bg-orange-200"
       >
         {`#${postCount} More in: ${categoryName} `}
       </Button>

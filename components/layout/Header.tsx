@@ -1,33 +1,12 @@
-"use client";
-
-import { Title, useMantineColorScheme } from "@mantine/core";
-
 type Props = {
   title: string;
 };
 
 const Header = ({ title }: Props) => {
-  const { colorScheme } = useMantineColorScheme();
-
   return (
-    <Title
-      styles={(theme) => ({
-        root: {
-          fontSize: "25px",
-          [theme.breakpoints.xs]: { fontSize: "12px" },
-          color:
-            theme.colors[theme.primaryColor][colorScheme === "dark" ? 2 : 0],
-          backgroundColor:
-            colorScheme === "dark"
-              ? theme.colors.orange[9]
-              : theme.colors[theme.primaryColor][5],
-          borderRadius: "3px",
-          padding: "5px 10px",
-        },
-      })}
-    >
+    <div className="text-xs sm:text-3xl text-white bg-orange-400 py-1 px-2 rounded-sm dark:bg-amber-900 dark:text-orange-200 ">
       {title}
-    </Title>
+    </div>
   );
 };
 

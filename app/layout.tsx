@@ -20,7 +20,7 @@ import "prismjs/themes/prism-tomorrow.css";
 // used for rendering equations (optional)
 import "katex/dist/katex.min.css";
 
-import MantineProviders from "@/providers/MantineProviders";
+import MantineProviders from "@/components/providers/MantineProviders";
 import ClientComponent from "@/components/ClientComponent";
 import { QueryProvider } from "@/components/providers/query-provider";
 

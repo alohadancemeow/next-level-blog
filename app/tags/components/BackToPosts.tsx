@@ -4,9 +4,7 @@ import { Box, Divider, Space, Text, UnstyledButton } from "@mantine/core";
 import { ArrowBigLeftLine } from "tabler-icons-react";
 import { useRouter } from "next/navigation";
 
-type Props = {};
-
-const BackToPosts = (props: Props) => {
+const BackToPosts = () => {
   const router = useRouter();
 
   return (

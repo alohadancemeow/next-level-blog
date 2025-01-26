@@ -1,17 +1,18 @@
 "use client";
 
 import useFetchPosts from "@/hooks/useFetchPosts";
-import SectionBody from "./section-body";
+import GridItem from "./grid-item";
 import LoadButton from "@/components/LoadButton";
 import { Suspense } from "react";
 import Loader from "@/components/Loader";
+import { Text, Space } from "@mantine/core";
 
 type Props = {
   categoryName: string;
   description: string;
 };
 
-const Section = ({ categoryName, description }: Props) => {
+const PostGrid = ({ categoryName, description }: Props) => {
   const { posts, loadNextPost, isFetchingNextPage, hasNextPage } =
     useFetchPosts({ categoryName });
 
@@ -21,7 +22,12 @@ const Section = ({ categoryName, description }: Props) => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <SectionBody posts={posts} description={description} />
+      <Text c="dimmed" size="xs" mt={4}>
+        {`${description}`}
+      </Text>
+      <Space h="xl" />
+      <GridItem posts={posts} />
+      <Space h="xl" />
       {hasNextPage && (
         <LoadButton
           categoryName={categoryName}
@@ -34,4 +40,4 @@ const Section = ({ categoryName, description }: Props) => {
   );
 };
 
-export default Section;
+export default PostGrid;

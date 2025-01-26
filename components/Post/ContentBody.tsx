@@ -7,15 +7,15 @@ import MorePost from "@/components/Post/MorePost";
 import Comments from "./Comments";
 import Share from "@/components/Post/Share";
 
-import { PageData } from "@/types";
+import { PageDataSchemaType } from "@/types";
 import { siteMetadata } from "@/site/siteMatedata";
 import useGetRelatedPost from "@/hooks/useGetRelatedPost";
 import Loader from "../Loader";
 import { Suspense } from "react";
 
 type Props = {
-  posts: PageData[];
-  postData: PageData;
+  posts: PageDataSchemaType[];
+  postData: PageDataSchemaType;
   children: React.ReactNode;
 };
 
@@ -38,10 +38,9 @@ const ContentBody = ({ posts, children, postData }: Props) => {
       >
         <Grid gutter={50} mt={3}>
           <Grid.Col
-            lg={3}
-            md={2}
-            sx={(theme) => ({
-              [theme.fn.smallerThan("md")]: { display: "none" },
+            span={{ base: 12, md: 6, lg: 3 }}
+            style={(theme) => ({
+              [theme.breakpoints.md]: { display: "none" },
             })}
           >
             {postData && (
@@ -52,11 +51,10 @@ const ContentBody = ({ posts, children, postData }: Props) => {
           </Grid.Col>
 
           <Grid.Col
-            md={8}
-            lg={6}
-            sx={(theme) => ({
-              [theme.fn.smallerThan("md")]: { padding: "0 6rem" },
-              [theme.fn.smallerThan("xs")]: {
+            span={{ base: 12, md: 6, lg: 3 }}
+            style={(theme) => ({
+              [theme.breakpoints.md]: { padding: "0 6rem" },
+              [theme.breakpoints.xs]: {
                 padding: "0 2.5rem",
                 fontSize: "15px",
               },
@@ -67,7 +65,7 @@ const ContentBody = ({ posts, children, postData }: Props) => {
             <Space h={"xl"} />
 
             <Box
-              sx={{
+              style={{
                 display: "flex",
                 justifyContent: "center",
               }}
@@ -77,7 +75,7 @@ const ContentBody = ({ posts, children, postData }: Props) => {
                 <Link key={i} href={`/tags/${tag.name}`} legacyBehavior>
                   <Text
                     component="a"
-                    sx={{
+                    style={{
                       textDecoration: "none",
                       // color: `${tag.color ?? "gray"}`,
                       paddingInlineStart: "8px",
@@ -92,7 +90,7 @@ const ContentBody = ({ posts, children, postData }: Props) => {
             {relatedPosts.length !== 0 ? (
               <Grid gutter="sm">
                 {relatedPosts.map((post) => (
-                  <Grid.Col key={post.id} xs={6} md={4}>
+                  <Grid.Col key={post.id} span={{ md: 4, xs: 6 }}>
                     <MorePost post={post} />
                   </Grid.Col>
                 ))}
@@ -112,10 +110,9 @@ const ContentBody = ({ posts, children, postData }: Props) => {
           </Grid.Col>
 
           <Grid.Col
-            md={2}
-            lg={3}
-            sx={(theme) => ({
-              [theme.fn.smallerThan("md")]: { display: "none" },
+            span={{ md: 2, lg: 3 }}
+            style={(theme) => ({
+              [theme.breakpoints.md]: { display: "none" },
             })}
           >
             {/* {headings && <TableOfContents links={headings} />} */}

@@ -3,13 +3,13 @@
 import Link from "next/link";
 
 import { Box, Text } from "@mantine/core";
-import { TagSchemaType } from "@/types";
+import { PostTagSchemaType } from "@/types";
 
 type Props = {
-  tags: TagSchemaType[];
+  tags: PostTagSchemaType[];
 };
 
-const Tags = ({ tags }: Props) => {
+const TagItem = ({ tags }: Props) => {
   return (
     <Box
       style={{
@@ -41,4 +41,4 @@ const Tags = ({ tags }: Props) => {
   );
 };
 
-export default Tags;
+export default TagItem;

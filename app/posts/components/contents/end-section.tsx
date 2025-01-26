@@ -14,7 +14,7 @@ const EndSection = ({ posts }: Props) => {
 
   return (
     <div>
-      <Text color="dimmed" size="sm">
+      <Text c="dimmed" size="sm">
         That&apos;s all posts for you, {""}
         <Text
           // variant="gradient"

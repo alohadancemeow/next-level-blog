@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const PostSchema = z.object({
+const PostTagSchema = z.object({
   id: z.string(),
   name: z.string(),
   color: z.string(),
@@ -23,13 +23,13 @@ export const PageDataSchema = z.object({
   lastUpdated: z.string(),
   authorId: z.string(),
   lastEditedBy: z.string(),
-  tags: z.array(PostSchema),
+  tags: z.array(PostTagSchema),
   icon: z.string(),
   category: z.string(),
 });
 
 // Export the types
-export type PostSchemaType = z.infer<typeof PostSchema>;
+export type PostTagSchemaType = z.infer<typeof PostTagSchema>;
 export type TagSchemaType = z.infer<typeof TagSchema>;
 export type ContentHeaderSchemaType = z.infer<typeof ContentHeaderSchema>;
 export type PageDataSchemaType = z.infer<typeof PageDataSchema>;
