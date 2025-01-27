@@ -45,6 +45,9 @@ pre[class*="language-"] {
 .notion-link {
   color: rgb(255, 192, 120) !important;
 }
+.notion-h-title {
+  font-family: var(--mantine-font-family);
+}
 
 .notion-bookmark-title,
 .notion-bookmark-description {

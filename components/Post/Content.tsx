@@ -77,7 +77,9 @@ const Content = ({ recordMap }: Props) => {
         prose-ol:m-0 
         prose-ul:m-0 
         prose-li:m-0 
+        prose-li:p-0 
         prose
+        prose-ul:list-square
         dark:prose-invert
         prose-a:no-underline 
         prose-img:m-0
