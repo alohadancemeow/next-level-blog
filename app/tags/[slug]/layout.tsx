@@ -1,7 +1,7 @@
 import Layout from "@/components/layout/Layout";
 import Menu from "@/components/layout/Menu";
 import PageLayout from "@/components/layout/PageLayout";
-import Spotlight from "@/components/Spotlight";
+import Spotlight from "@/components/common/Spotlight";
 import BackToPosts from "@/app/tags/components/BackToPosts";
 import { getAllPosts } from "@/actions/notion";
 

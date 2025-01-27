@@ -2,7 +2,7 @@
 
 import { format, parseISO } from "date-fns";
 import { Center, Space } from "@mantine/core";
-import Breadcrumbs from "@/components/Post/Breadcrumbs";
+import Breadcrumbs from "@/components/contents/Breadcrumbs";
 import Header from "@/components/layout/Header";
 import TagItem from "@/app/posts/components/TagItem";
 import { PageDataSchemaType } from "@/types";

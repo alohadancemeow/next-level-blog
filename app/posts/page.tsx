@@ -7,7 +7,7 @@ import { ogPoststImage } from "@/site/data";
 import PostsPageLayout from "@/app/posts/components/PostsPageLayout";
 import TimelineContent from "@/app/posts/components/contents/TimelineContent";
 import { Suspense } from "react";
-import Loader from "@/components/Loader";
+import Loader from "@/components/common/Loader";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Posts`,

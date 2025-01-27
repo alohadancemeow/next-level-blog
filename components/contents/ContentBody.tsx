@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { Space, Box, Divider } from "@mantine/core";
 import { PageDataSchemaType } from "@/types";
-import Loader from "../Loader";
+import Loader from "../common/Loader";
 import RelatedPosts from "./RelatedPosts";
 import Comments from "./Comments";
 

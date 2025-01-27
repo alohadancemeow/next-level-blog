@@ -3,7 +3,7 @@
 import { ActionIcon, Box, Center, Text } from "@mantine/core";
 import { BrandFacebook } from "tabler-icons-react";
 import { FacebookShareButton, TwitterShareButton } from "react-share";
-import { TwitterIcon } from "../Icons";
+import { TwitterIcon } from "../icons/Icons";
 
 type Props = {
   postLink: string;

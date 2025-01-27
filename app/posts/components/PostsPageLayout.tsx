@@ -6,10 +6,10 @@ import { Hash } from "tabler-icons-react";
 import Menu from "@/components/layout/Menu";
 import Layout from "@/components/layout/Layout";
 import PageLayout from "@/components/layout/PageLayout";
-import Spotlight from "@/components/Spotlight";
+import Spotlight from "@/components/common/Spotlight";
 import SearchPost from "@/app/posts/components/SearchPost";
 import TagSection from "./contents/tag-section";
-import Loader from "../../../components/Loader";
+import Loader from "../../../components/common/Loader";
 
 import { PageDataSchemaType } from "@/types";
 import { getTags } from "@/helpers/get-all-tags";

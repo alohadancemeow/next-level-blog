@@ -2,9 +2,9 @@
 
 import useFetchPosts from "@/hooks/useFetchPosts";
 import GridItem from "./grid-item";
-import LoadButton from "@/components/LoadButton";
+import LoadButton from "@/components/common/LoadButton";
 import { Suspense } from "react";
-import Loader from "@/components/Loader";
+import Loader from "@/components/common/Loader";
 import { Text, Space } from "@mantine/core";
 
 type Props = {

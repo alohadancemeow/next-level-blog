@@ -6,7 +6,7 @@ import { format, parseISO } from "date-fns";
 import { Card, Image, Text } from "@mantine/core";
 import TagItem from "./TagItem";
 import { PageDataSchemaType } from "@/types";
-import { SmallFeatherIcon } from "@/components/Icons";
+import { SmallFeatherIcon } from "@/components/icons/Icons";
 
 type Props = {
   post: PageDataSchemaType;

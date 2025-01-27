@@ -7,7 +7,7 @@ import {
   Tooltip,
   useMantineColorScheme,
 } from "@mantine/core";
-import { SmallFeatherIcon } from "../Icons";
+import { SmallFeatherIcon } from "@/components/icons/Icons";
 import { useViewportSize } from "@mantine/hooks";
 import { siteMetadata } from "@/site/siteMatedata";
 

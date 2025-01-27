@@ -23,7 +23,7 @@ import "prismjs/themes/prism-tomorrow.css";
 import "katex/dist/katex.min.css";
 
 import MantineProviders from "@/components/providers/MantineProviders";
-import ClientComponent from "@/components/ClientComponent";
+import ClientComponent from "@/components/common/ClientComponent";
 import { QueryProvider } from "@/components/providers/query-provider";
 
 export const metadata: Metadata = {

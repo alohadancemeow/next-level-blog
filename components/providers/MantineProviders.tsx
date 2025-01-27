@@ -4,8 +4,8 @@ import { useState } from "react";
 import { MantineProvider, localStorageColorSchemeManager } from "@mantine/core";
 import { useHotkeys } from "@mantine/hooks";
 
-import Player from "@/components/Player";
-import ThemeCheck from "@/components/ThemeCheck";
+import Player from "@/components/common/Player";
+import ThemeCheck from "@/components/common/ThemeCheck";
 import { theme } from "@/styles/theme";
 
 export default function MantineProviders({

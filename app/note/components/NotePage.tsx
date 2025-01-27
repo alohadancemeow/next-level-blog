@@ -5,7 +5,7 @@ import Shortcuts from "./Shortcuts";
 import CustomBlockquote from "./CustomBlockquote";
 
 import FirstContent from "../contents/content-1.mdx";
-import ContentWrapper from "@/components/ContentWrapper";
+import ContentWrapper from "@/components/contents/ContentWrapper";
 
 type Props = {
   children: React.ReactNode;

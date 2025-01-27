@@ -1,7 +1,7 @@
 "use client";
 
 import { Container, Space } from "@mantine/core";
-import ContentWrapper from "@/components/ContentWrapper";
+import ContentWrapper from "@/components/contents/ContentWrapper";
 import ProjectItem from "./ProjectItem";
 
 type Props = {

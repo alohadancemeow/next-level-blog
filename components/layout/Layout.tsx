@@ -3,7 +3,7 @@
 import { Box } from "@mantine/core";
 import Logo from "./Logo";
 import Footer from "./Footer";
-import ThemeMode from "@/components/ThemeMode";
+import ThemeMode from "@/components/common/ThemeMode";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

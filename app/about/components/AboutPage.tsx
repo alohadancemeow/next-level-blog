@@ -1,7 +1,7 @@
 "use client";
 
 import { Container, Divider, Space } from "@mantine/core";
-import ContentWrapper from "@/components/ContentWrapper";
+import ContentWrapper from "@/components/contents/ContentWrapper";
 
 const AboutPage = ({ children }: { children: React.ReactNode }) => {
   return (

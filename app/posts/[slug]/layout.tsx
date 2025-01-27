@@ -1,15 +1,15 @@
 import Layout from "@/components/layout/Layout";
-import ContentTitle from "@/components/Post/ContentTitle";
-import ScrollToTop from "@/components/ScrollToTop";
+import ContentTitle from "@/components/contents/ContentTitle";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
 import { getAllPosts } from "@/actions/notion";
 import { getPostById } from "@/actions/get-post-by-id";
 // import { getToc } from "@/actions/getToc";
-import ContentBody from "@/components/Post/ContentBody";
-import Loader from "@/components/Loader";
+import ContentBody from "@/components/contents/ContentBody";
+import Loader from "@/components/common/Loader";
 import PageLayout from "@/components/layout/PageLayout";
 import { siteMetadata } from "@/site/siteMatedata";
-import Share from "@/components/Post/Share";
+import Share from "@/components/contents/Share";
 
 type Params = Promise<{ slug: string }>;
 

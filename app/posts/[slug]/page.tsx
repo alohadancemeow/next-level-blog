@@ -3,7 +3,7 @@ import { getPostById } from "@/actions/get-post-by-id";
 import { getPageContent } from "@/actions/notion-x";
 import { TagSchemaType } from "@/types";
 import { siteMetadata } from "@/site/siteMatedata";
-import Content from "@/components/Post/Content";
+import Content from "@/components/contents/Content";
 
 type Params = Promise<{ slug: string }>;
 

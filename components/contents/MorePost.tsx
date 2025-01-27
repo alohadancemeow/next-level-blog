@@ -1,11 +1,17 @@
 "use cleint";
 
 import Link from "next/link";
-import { Box, Card, Image, Tooltip } from "@mantine/core";
+import {
+  Box,
+  Card,
+  Image,
+  Tooltip,
+  useMantineColorScheme,
+} from "@mantine/core";
 
 import { useViewportSize } from "@mantine/hooks";
 import { PageDataSchemaType } from "@/types";
-import Loader from "../Loader";
+import Loader from "../common/Loader";
 
 type Props = {
   post: PageDataSchemaType;
@@ -13,6 +19,12 @@ type Props = {
 
 const MorePost = ({ post }: Props) => {
   const { width } = useViewportSize();
+  const { colorScheme } = useMantineColorScheme();
+
+  const bgColor =
+    colorScheme === "dark"
+      ? "var(--mantine-color-orange-light)"
+      : "var(--mantine-color-orange-5)";
 
   if (!post) return <Loader />;
 
@@ -25,6 +37,10 @@ const MorePost = ({ post }: Props) => {
       withArrow
       arrowPosition="center"
       transitionProps={{ transition: "slide-up", duration: 300 }}
+      style={{
+        color: "white",
+        backgroundColor: bgColor,
+      }}
     >
       <Box>
         <Link href={`/posts/${post.id}`} legacyBehavior passHref>

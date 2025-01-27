@@ -2,7 +2,7 @@
 
 import classes from "./item.module.css";
 import { Accordion, Button, Center, Space } from "@mantine/core";
-import { RocketIcon } from "@/components/Icons";
+import { RocketIcon } from "@/components/icons/Icons";
 
 const groceries = [
   {

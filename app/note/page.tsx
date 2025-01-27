@@ -3,7 +3,7 @@ import { siteMetadata } from "@/site/siteMatedata";
 import { ogNoteImage } from "@/site/data";
 
 import NotePage from "./components/NotePage";
-import Content from "@/components/Post/Content";
+import Content from "@/components/contents/Content";
 import { getNotePageContent } from "@/actions/notion-x";
 
 export const metadata: Metadata = {

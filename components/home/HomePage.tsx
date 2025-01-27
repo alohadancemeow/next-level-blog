@@ -1,6 +1,5 @@
 "use client";
 
-// import NextImage from "next/image";
 import Link from "next/link";
 import {
   Container,
@@ -15,6 +14,7 @@ import {
   Center,
   Kbd,
   useMantineColorScheme,
+  Image,
 } from "@mantine/core";
 
 import { Navigations } from "@/site/data";
@@ -36,19 +36,7 @@ const HomePage: React.FC = () => {
       >
         <Stack style={{ margin: "0 auto", paddingLeft: "10px" }}>
           <Box>
-            {/* <NextImage
-              // layout="fixed"
-              priority={true}
-              src="/image3.gif"
-              alt="image"
-              width={200}
-              height={200}
-              style={{
-                borderRadius: "100px",
-              }}
-            /> */}
-
-            <img
+            <Image
               src="/image3.gif"
               alt="profile-image"
               className="rounded-full w-48 h-48"

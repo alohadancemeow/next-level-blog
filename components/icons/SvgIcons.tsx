@@ -69,6 +69,7 @@ export const NpmIcon = (props: React.ComponentProps<"svg">) => {
       xmlns="http://www.w3.org/2000/svg"
       width="14"
       height="14"
+      {...props}
     >
       <path d="M0 256V0h256v256z" fill="#C12127" />
       <path d="M48 48h160v160h-32V80h-48v128H48z" fill="#FFF" />
