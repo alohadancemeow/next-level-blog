@@ -1,6 +1,6 @@
 "use client";
 
-import useGetRelatedPost from "@/hooks/useGetRelatedPost";
+import useGetRelatedPosts from "@/hooks/use-get-related-posts";
 import { PageDataSchemaType } from "@/types";
 import { Center, Text } from "@mantine/core";
 import MorePost from "./MorePost";
@@ -11,7 +11,7 @@ type Props = {
 };
 
 const RelatedPosts = ({ postData, posts }: Props) => {
-  const { relatedPosts } = useGetRelatedPost({
+  const { relatedPosts } = useGetRelatedPosts({
     posts,
     postTags: postData.tags,
     postId: postData.id,

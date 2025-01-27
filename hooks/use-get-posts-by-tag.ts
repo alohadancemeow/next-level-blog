@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { PageData } from "@/types";
+import { PageDataSchemaType } from "@/types";
 
 type Props = {
-  posts: PageData[];
+  posts: PageDataSchemaType[];
   tagname: string;
 };
 
@@ -10,7 +10,7 @@ const useGetPostsByTag = ({ posts, tagname }: Props) => {
   const filteredPosts = useMemo(() => {
     const post =
       (posts &&
-        posts.filter((post: PageData) =>
+        posts.filter((post: PageDataSchemaType) =>
           post.tags?.some((t: any) => t?.name === tagname)
         )) ??
       [];

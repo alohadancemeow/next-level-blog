@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { NotionRenderer } from "react-notion-x";
 import { ExtendedRecordMap } from "notion-types";
 import { notFound } from "next/navigation";
-import useGetTweetId from "@/hooks/useGetTweetId";
+import useGetTweetId from "@/hooks/use-get-tweet-id";
 import { jetBrains_mono } from "@/app/fonts";
 
 // # Expensive components

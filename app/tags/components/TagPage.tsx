@@ -3,7 +3,7 @@
 import PostCard from "@/app/posts/components/PostCard";
 import { notFound } from "next/navigation";
 import { PageDataSchemaType } from "@/types";
-import useGetPostsByTag from "@/hooks/useGetPostsByTag";
+import useGetPostsByTag from "@/hooks/use-get-posts-by-tag";
 
 type Props = {
   posts: PageDataSchemaType[];

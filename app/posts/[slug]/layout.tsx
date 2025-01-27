@@ -4,7 +4,6 @@ import ScrollToTop from "@/components/common/ScrollToTop";
 
 import { getAllPosts } from "@/actions/notion";
 import { getPostById } from "@/actions/get-post-by-id";
-// import { getToc } from "@/actions/getToc";
 import ContentBody from "@/components/contents/ContentBody";
 import Loader from "@/components/common/Loader";
 import PageLayout from "@/components/layout/PageLayout";
@@ -22,7 +21,6 @@ const layout = async ({ children, params }: Props) => {
   const { slug } = await params;
   const posts = await getAllPosts();
   const postData = await getPostById(slug);
-  // const toc = await getToc(id);
 
   if (!postData) return <Loader />;
 
@@ -38,11 +36,7 @@ const layout = async ({ children, params }: Props) => {
               />
             )}
           </div>
-          <ContentBody
-            posts={posts}
-            // toc={toc}
-            postData={postData}
-          >
+          <ContentBody posts={posts} postData={postData}>
             <div>{children}</div>
           </ContentBody>
 

@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { PageData } from "@/types";
+import { PageDataSchemaType } from "@/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchPostsByCategory } from "@/actions/get-post-by-cat";
 
@@ -17,7 +17,7 @@ const useFetchPosts = ({ categoryName }: Props) => {
         return (await fetchPostsByCategory(
           categoryName,
           pageParam
-        )) as PageData[];
+        )) as PageDataSchemaType[];
       },
 
       getNextPageParam(lastPage, allPages) {
@@ -43,7 +43,7 @@ const useFetchPosts = ({ categoryName }: Props) => {
     if (hasNextPage && !isFetchingNextPage) {
       await fetchNextPage();
     }
-  }, [hasNextPage, isFetchingNextPage]);
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return { posts, loadNextPost, isFetchingNextPage, hasNextPage };
 };

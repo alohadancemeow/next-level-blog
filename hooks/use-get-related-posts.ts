@@ -1,13 +1,13 @@
 import { useMemo } from "react";
-import { PageData, PostTag } from "@/types";
+import { PageDataSchemaType, PostTagSchemaType } from "@/types";
 
 type Props = {
   postId: string;
-  posts: PageData[];
-  postTags: PostTag[];
+  posts: PageDataSchemaType[];
+  postTags: PostTagSchemaType[];
 };
 
-const useGetRelatedPost = ({ postId, posts, postTags }: Props) => {
+const useGetRelatedPosts = ({ postId, posts, postTags }: Props) => {
   // # Get posts that matched with tags, except itself
   const relatedPosts = useMemo(() => {
     try {
@@ -23,9 +23,9 @@ const useGetRelatedPost = ({ postId, posts, postTags }: Props) => {
       console.log(error);
       return [];
     }
-  }, [postTags]);
+  }, [postId, posts, postTags]);
 
   return { relatedPosts };
 };
 
-export default useGetRelatedPost;
+export default useGetRelatedPosts;
