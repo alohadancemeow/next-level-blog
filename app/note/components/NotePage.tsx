@@ -30,15 +30,16 @@ const NotePage = ({ children }: Props) => {
         />
         <Space h={"lg"} />
         <Space h={"lg"} />
-        <Divider />
+        <Divider label="Content from .mdx" labelPosition="center" />
 
         <ContentWrapper>
           <FirstContent />
+          <Divider label="Content from Notion" labelPosition="center" />
           {children}
         </ContentWrapper>
 
         <Space h={"lg"} />
-        <Divider />
+        <Divider  />
         <Space h={"lg"} />
       </Container>
     </>

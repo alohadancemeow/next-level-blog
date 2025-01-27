@@ -17,7 +17,7 @@ type Props = {
 const ContentBody = ({ posts, children, postData }: Props) => {
   return (
     <Suspense fallback={<Loader />}>
-      <div className="w-full m-auto">
+      <div className="w-full m-auto max-w-3xl">
         <div className="mx-auto mb-8">{children}</div>
 
         <Space h={"xl"} />

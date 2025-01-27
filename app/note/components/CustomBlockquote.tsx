@@ -1,6 +1,7 @@
 "use client";
 
 import { Blockquote, useMantineColorScheme } from "@mantine/core";
+import { IconInfoCircle } from "@tabler/icons-react";
 
 type Props = {
   cite: string;
@@ -9,11 +10,13 @@ type Props = {
 
 const CustomBlockquote = ({ cite, quote }: Props) => {
   const { colorScheme } = useMantineColorScheme();
+  const icon = <IconInfoCircle />;
 
   return (
     <Blockquote
       cite={`— ${cite}`}
       color="orange"
+      icon={icon}
       styles={(theme) => ({
         [theme.breakpoints.xs]: {
           fontSize: "15px",
