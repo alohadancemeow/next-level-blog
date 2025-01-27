@@ -7,9 +7,10 @@ const Footer = () => {
   return (
     <div style={{ margin: "2rem 0" }}>
       <Center style={{ fontWeight: "500", gap: "5px" }}>
-        <div className="flex flex-col items-center gap-1">
-          <div className="flex">
+        <div className="flex flex-col items-center gap-y-1">
+          <div className="flex gap-1">
             <Text>Made with 🧡</Text>
+
             <Text
               pl={8}
               component="a"
@@ -18,11 +19,6 @@ const Footer = () => {
               referrerPolicy="no-referrer"
             >
               {siteMetadata.title}
-            </Text>
-          </div>
-          <div className="flex">
-            <Text fz={"xs"} color="dimmed">
-              {`©2022 — ${new Date().getFullYear()}`}
             </Text>
             <Text
               fz={"xs"}
@@ -33,8 +29,53 @@ const Footer = () => {
               target={"_blank"}
               referrerPolicy="no-referrer"
             >
-              {siteMetadata.version}
+              {`${siteMetadata.version}`}
             </Text>
+          </div>
+          <div className="flex gap-2">
+            <Text fz={"xs"} c="dimmed">
+              {`©${new Date().getFullYear()} • `}
+            </Text>
+            <Text fz={"xs"} c="dimmed">
+              Powered by
+            </Text>
+            <Text
+              fz={"xs"}
+              // color="orange"
+              component="a"
+              target={"_blank"}
+              referrerPolicy="no-referrer"
+              href="https://nextjs.org/"
+            >
+              Next
+            </Text>
+            <Text fz={"xs"} c="dimmed">
+              +
+            </Text>
+            <Text
+              fz={"xs"}
+              // color="orange"
+              component="a"
+              target={"_blank"}
+              referrerPolicy="no-referrer"
+              href="https://www.notion.com/"
+            >
+              Notion
+            </Text>
+            <Text fz={"xs"} c="dimmed">
+              +
+            </Text>
+            <Text
+              fz={"xs"}
+              // color="orange"
+              component="a"
+              target={"_blank"}
+              referrerPolicy="no-referrer"
+              href="https://mantine.dev/"
+            >
+              Mantine
+            </Text>
+            <Text>🎉</Text>
           </div>
         </div>
       </Center>

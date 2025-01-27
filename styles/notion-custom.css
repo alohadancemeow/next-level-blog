@@ -50,6 +50,7 @@ pre[class*="language-"] {
 }
 
 .notion-bookmark-title,
+.notion-asset-caption,
 .notion-bookmark-description {
   color: rgb(107 114 128) !important;
 }

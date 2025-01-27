@@ -6,13 +6,12 @@ const ContentWrapper = ({ children }: { children: React.ReactNode }) => {
       className="
         flex 
         flex-col  
-        gap-4 
+        gap-3 
         m-auto 
         my-5 
         md:mx-0 
         prose
         prose-ul:list-square
-        w-full
         prose-ol:m-0 
         prose-ul:m-0 
         prose-li:m-0 
