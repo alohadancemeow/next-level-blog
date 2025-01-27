@@ -47,7 +47,7 @@ const HomePage: React.FC = () => {
             <Title order={1}>Personal Home</Title>
             <Space h="xs" />
             <Text>
-              Hi there! 👋 I&apos;m Hai [はい] aka : alohadancemeow ✌️
+              Hi there! 👋 I&apos;m Hai — 海 — aka: alohadancemeow ✌️
             </Text>
           </Box>
 

@@ -2,15 +2,17 @@
 
 import { useWindowScroll } from "@mantine/hooks";
 import { ActionIcon, Affix, Box, Transition } from "@mantine/core";
-import { ArrowUpCircle, Feather } from "tabler-icons-react";
+import { ArrowUpCircle, Feather, Books } from "tabler-icons-react";
 import { siteMetadata } from "@/site/siteMatedata";
+import { useRouter } from "next/navigation";
 
 const ScrollToTop = () => {
   const [scroll, scrollTo] = useWindowScroll();
+  const router = useRouter();
 
   return (
     <>
-      <Affix className="hidden md:flex md:right-[35px] lg:right-[50px] md:bottom-10">
+      <Affix className="hidden md:flex md:right-[25px] lg:right-[50px] md:bottom-10">
         <Transition transition="slide-up" mounted={scroll.y > 0}>
           {(transitionStyles) => (
             <Box className="flex flex-col mt-2">
@@ -30,6 +32,18 @@ const ScrollToTop = () => {
                       size={20}
                       className="text-black dark:text-white"
                     />
+                  </ActionIcon>
+                  <ActionIcon
+                    component="div"
+                    color="orange"
+                    size="lg"
+                    radius="sm"
+                    variant="filled"
+                    className="bg-orange-500 dark:bg-amber-900"
+                    style={transitionStyles}
+                    onClick={() => router.push("/posts")}
+                  >
+                    <Books size={20} className="text-black dark:text-white" />
                   </ActionIcon>
                   <ActionIcon
                     component="a"

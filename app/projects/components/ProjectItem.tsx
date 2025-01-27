@@ -58,7 +58,12 @@ const ProjectItem = () => {
   ));
 
   return (
-    <Accordion miw={600} defaultValue="Apples" classNames={classes}>
+    <Accordion
+      className="w-[340px] md:min-w-[600px]"
+      // miw={600}
+      defaultValue="Apples"
+      classNames={classes}
+    >
       {items}
     </Accordion>
   );

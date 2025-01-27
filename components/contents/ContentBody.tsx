@@ -26,7 +26,7 @@ const ContentBody = ({ posts, children, postData }: Props) => {
           <p> More in : </p>
           {postData.tags.map((tag, i) => (
             <Link key={i} href={`/tags/${tag.name}`} legacyBehavior>
-              <span className="decoration-none">{`#${tag.name}`}</span>
+              <span className="decoration-none cursor-pointer">{`#${tag.name}`}</span>
             </Link>
           ))}
         </Box>

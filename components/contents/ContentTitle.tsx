@@ -31,9 +31,10 @@ const ContentTitle = ({ postData }: Props) => {
       )}
       <Header title={postData.title} />
       <TagItem tags={postData.tags} />
+      <div className="md:hidden">
+        <Breadcrumbs />
+      </div>
       <Space h="xs" />
-      <Breadcrumbs />
-      <Space h="sm" />
     </Center>
   );
 };

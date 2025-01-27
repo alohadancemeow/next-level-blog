@@ -8,14 +8,12 @@ const PageLayout = ({ children }: { children: React.ReactNode }) => {
       <Center
         style={{
           width: "100%",
-          // height: '100vh',
           display: "flex",
           justifyContent: "flex-start",
           alignItems: "center",
-          // border: '1px solid red'
         }}
       >
-        <Stack style={{ margin: "0 2rem", width: "100%" }}>{children}</Stack>
+        <Stack className="m-0 w-full md:mx-8">{children}</Stack>
       </Center>
     </Container>
   );

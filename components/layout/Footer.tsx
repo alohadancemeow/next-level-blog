@@ -32,7 +32,7 @@ const Footer = () => {
               {`${siteMetadata.version}`}
             </Text>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-1 md:gap-2">
             <Text fz={"xs"} c="dimmed">
               {`©${new Date().getFullYear()} • `}
             </Text>
