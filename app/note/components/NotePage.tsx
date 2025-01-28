@@ -29,17 +29,17 @@ const NotePage = ({ children }: Props) => {
           quote="The only way to gain knowledge is to be aware of everything around you. ✌️"
         />
         <Space h={"lg"} />
-        <Space h={"lg"} />
-        <Divider label="Content from .mdx" labelPosition="center" />
 
         <ContentWrapper>
-          <FirstContent />
           <Divider label="Content from Notion" labelPosition="center" />
           {children}
+          <Space h={"lg"} />
+          <Divider label="Content from .mdx" labelPosition="center" />
+          <FirstContent />
         </ContentWrapper>
 
         <Space h={"lg"} />
-        <Divider  />
+        <Divider />
         <Space h={"lg"} />
       </Container>
     </>

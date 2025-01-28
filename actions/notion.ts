@@ -5,7 +5,7 @@ import { notion } from "@/lib/notion-client";
 import crypto from "crypto";
 import { kv } from "@vercel/kv";
 
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 import { postMapping } from "@/helpers/post-mapping";
 
 type NotionQueryParams = {
@@ -14,15 +14,15 @@ type NotionQueryParams = {
 };
 
 // Helper function to hash data
-// const hashData = (data: any) => {
-//   return crypto.createHash("sha256").update(JSON.stringify(data)).digest("hex");
-// };
+const hashData = (data: any) => {
+  return crypto.createHash("sha256").update(JSON.stringify(data)).digest("hex");
+};
 
 // Function to query the Notion database with caching
 const queryNotionDatabase = async (queryParams: NotionQueryParams) => {
-  // const cacheKey = `queryCache-${hashData(queryParams)}`;
-  // const cachedData = await kv.get(cacheKey);
-  // const cachedHash = await kv.get(`${cacheKey}-hash`);
+  const cacheKey = `queryCache-${hashData(queryParams)}`;
+  const cachedData = await kv.get(cacheKey);
+  const cachedHash = await kv.get(`${cacheKey}-hash`);
 
   try {
     const response = await notion.databases.query({
@@ -30,16 +30,16 @@ const queryNotionDatabase = async (queryParams: NotionQueryParams) => {
       ...queryParams,
     });
 
-    // const newHash = hashData(response.results);
+    const newHash = hashData(response.results);
 
-    // if (cachedHash === newHash) {
-    //   console.log("Returning cached data");
-    //   return JSON.parse(cachedData as any);
-    // }
+    if (cachedHash === newHash) {
+      console.log("Returning cached data");
+      return JSON.parse(cachedData as any);
+    }
 
-    // // If the data has changed, update the cache
-    // await kv.set(cacheKey, JSON.stringify(response.results), { ex: 60 * 60 }); // Cache for 1 hour
-    // await kv.set(`${cacheKey}-hash`, newHash, { ex: 60 * 60 }); // Cache for 1 hour
+    // If the data has changed, update the cache
+    await kv.set(cacheKey, JSON.stringify(response.results), { ex: 60 * 60 }); // Cache for 1 hour
+    await kv.set(`${cacheKey}-hash`, newHash, { ex: 60 * 60 }); // Cache for 1 hour
 
     return response.results;
   } catch (error) {

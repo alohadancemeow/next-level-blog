@@ -55,6 +55,18 @@ pre[class*="language-"] {
   color: rgb(107 114 128) !important;
 }
 
+.notion-code-copy-button {
+  display: none !important;
+}
+
+.notion-external-title {
+  color: inherit !important;
+}
+
+.notion-external-block-desc {
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1)) !important;
+}
+
 /* .prose :where(a):not(:where([class~=not-prose] *)) {
     @apply 
   } */
