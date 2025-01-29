@@ -5,26 +5,28 @@ import { siteMetadata } from "@/site/siteMatedata";
 import TagPage from "@/app/tags/components/TagPage";
 import { ogTagImage } from "@/site/data";
 
-type Params = Promise<{ slug: string }>;
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 
-export async function generateMetadata(props: {
-  params: Params;
-  parent: ResolvingMetadata;
-}): Promise<Metadata> {
-  const previousImages = (await props.parent)?.openGraph?.images || [];
-  const params = await props.params;
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const previousImages = (await parent)?.openGraph?.images || [];
+  const { slug } = await params;
 
   return {
-    title: `${siteMetadata.title} — ${params.slug}`,
-    description: `Posts about ${params.slug}`,
+    title: `${siteMetadata.title} — ${slug}`,
+    description: `Posts about ${slug}`,
     openGraph: {
       images: [ogTagImage, ...previousImages],
     },
   };
 }
 
-const Tag = async (props: { params: Params }) => {
-  const { slug } = await props.params;
+const Tag = async ({ params }: Props) => {
+  const { slug } = await params;
   const posts = await getAllPosts();
 
   return <TagPage posts={posts} tagname={slug} />;
