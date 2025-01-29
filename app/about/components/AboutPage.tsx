@@ -7,14 +7,7 @@ const AboutPage = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Space h="sm" />
-      <Container
-        size={"sm"}
-        styles={(theme) => ({
-          root: {
-            [theme.breakpoints.xs]: { margin: "0 -2rem" },
-          },
-        })}
-      >
+      <Container size={"sm"} className="my-0 mx-[-2rem] md:m-auto">
         <ContentWrapper>{children}</ContentWrapper>
         <Space h={"lg"} />
         <Divider />

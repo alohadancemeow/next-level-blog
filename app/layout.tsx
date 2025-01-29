@@ -38,9 +38,6 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-  // debug
-  console.log("RootLayout is rendering in production");
-
   return (
     <html lang="en" className="scroll-smooth" {...mantineHtmlProps}>
       <head>
