@@ -1,6 +1,5 @@
 "use client";
 
-// import NextImage from "next/image";
 import Link from "next/link";
 import {
   Container,
@@ -15,14 +14,13 @@ import {
   Center,
   Kbd,
   useMantineColorScheme,
+  Image,
 } from "@mantine/core";
 
 import { Navigations } from "@/site/data";
 import FeedbackComponent from "./Feedback";
 
-type Props = {};
-
-const HomePage: React.FC = (props: Props) => {
+const HomePage: React.FC = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
@@ -38,19 +36,7 @@ const HomePage: React.FC = (props: Props) => {
       >
         <Stack style={{ margin: "0 auto", paddingLeft: "10px" }}>
           <Box>
-            {/* <NextImage
-              // layout="fixed"
-              priority={true}
-              src="/image3.gif"
-              alt="image"
-              width={200}
-              height={200}
-              style={{
-                borderRadius: "100px",
-              }}
-            /> */}
-
-            <img
+            <Image
               src="/image3.gif"
               alt="profile-image"
               className="rounded-full w-48 h-48"
@@ -60,14 +46,12 @@ const HomePage: React.FC = (props: Props) => {
           <Box>
             <Title order={1}>Personal Home</Title>
             <Space h="xs" />
-            <Text
-            //  color="gray"
-            >
-              Hi there! 👋 I&apos;m Hai [はい] aka : alohadancemeow ✌️
+            <Text>
+              Hi there! 👋 I&apos;m Hai — 海 — aka: alohadancemeow ✌️
             </Text>
           </Box>
 
-          <Divider my="xs" variant="solid" />
+          <Divider my="xs" size="xs" variant="solid" />
           <Space h="sm" />
 
           <Box style={{ width: "70%" }}>
@@ -94,7 +78,6 @@ const HomePage: React.FC = (props: Props) => {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  // fontWeight: '500'
                 }}
                 onClick={() => toggleColorScheme()}
               >
@@ -114,7 +97,6 @@ const HomePage: React.FC = (props: Props) => {
               </UnstyledButton>
             }
           />
-
           <FeedbackComponent />
         </Stack>
       </Center>

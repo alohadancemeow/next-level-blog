@@ -1,13 +1,13 @@
 import { Metadata } from "next";
-import { getAllPosts } from "@/lib/notion";
+import { getAllPosts } from "@/actions/notion";
 
 import { siteMetadata } from "@/site/siteMatedata";
 import { ogPoststImage } from "@/site/data";
 
-import PostsPageLayout from "@/components/posts/PostsPageLayout";
-import TimelineContent from "@/components/posts/contents/TimelineContent";
+import PostsPageLayout from "@/app/posts/components/PostsPageLayout";
+import TimelineContent from "@/app/posts/components/contents/TimelineContent";
 import { Suspense } from "react";
-import Loader from "@/components/Loader";
+import Loader from "@/components/common/Loader";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Posts`,
@@ -17,10 +17,10 @@ export const metadata: Metadata = {
   },
 };
 
-type Props = {};
-
-const Posts = async (props: Props) => {
+const Posts = async () => {
   const posts = await getAllPosts();
+
+  // console.log(posts, "posts");
 
   return (
     <PostsPageLayout posts={posts}>

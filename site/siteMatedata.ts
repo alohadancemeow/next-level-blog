@@ -10,6 +10,7 @@ export const siteMetadata = {
   twitter: "@3rd_rabbitGo",
   github: "https://github.com/alohadancemeow",
   githubRepo: "https://github.com/alohadancemeow/next-level-blog",
-  keywords: ["alohadancemeow", "blog", "React", "Next", "Node", "Reading"],
-  version: "v0.1.4",
+  keywords: ["alohadancemeow", "blog", "React", "Next", "Node", "Reading", "Book"],
+  feedbackUrl: "https://alohadancemeow.featurebase.app",
+  version: "v0.1.5",
 };

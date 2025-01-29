@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Center, Text } from "@mantine/core";
 import { siteMetadata } from "@/site/siteMatedata";
-import { RocketIcon } from "../Icons";
+import { RocketIcon } from "../icons/Icons";
 
 const IconLogo = () => (
   <Link href="/" legacyBehavior>
@@ -13,6 +13,7 @@ const IconLogo = () => (
         display: "inline-flex",
         gap: "10px",
         alignItems: "center",
+        cursor: "pointer",
       }}
     >
       <span style={{ fontSize: "20px" }}>
