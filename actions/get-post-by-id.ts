@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { PageData } from "@/types";
+import { PageDataSchemaType } from "@/types";
 import { getAllPosts } from "@/actions/notion";
 
 export const getPostById = cache(async (postId: string) => {
@@ -7,7 +7,7 @@ export const getPostById = cache(async (postId: string) => {
 
   try {
     const post = posts.find((post) => post.id === postId)!;
-    const newPost: typeof PageData = {
+    const newPost: PageDataSchemaType = {
       id: post.id,
       coverImage: post.coverImage,
       title: post.title,

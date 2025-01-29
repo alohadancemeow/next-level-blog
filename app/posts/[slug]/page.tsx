@@ -1,7 +1,8 @@
 import { Metadata, ResolvingMetadata } from "next";
 import { getPostById } from "@/actions/get-post-by-id";
 import { getPageContent } from "@/actions/notion-x";
-import { TagSchemaType } from "@/types";
+import { PostTagSchemaType } from "@/types";
+
 import { siteMetadata } from "@/site/siteMatedata";
 import Content from "@/components/contents/Content";
 
@@ -21,14 +22,16 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || [];
 
   // get tag for keywords
-  const tags = (postData.tags || []) as TagSchemaType[];
+  const tags = (postData.tags || []) as PostTagSchemaType[];
 
   return {
     title: `${siteMetadata.title} — ${postData.title}`,
     description: postData && postData.description,
     keywords: tags.map((tag) => String(tag.name)),
     openGraph: {
-      images: [postData.coverImage, ...previousImages].filter(Boolean),
+      images: postData.coverImage
+        ? [postData.coverImage, ...previousImages]
+        : previousImages,
     },
   };
 }
