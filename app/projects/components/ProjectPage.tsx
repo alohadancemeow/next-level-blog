@@ -25,7 +25,7 @@ const ProjectPage = ({ children }: Props) => {
           quote="The only way to gain knowledge is to be aware of everything around you. ✌️"
         />
         <Space h={"xl"} />
-        <Divider label="Content from Notion" labelPosition="center" />
+        <Divider label="Recent Projects" labelPosition="center" />
         <ContentWrapper>
           {children}
           {/* <ProjectItem /> */}
