@@ -18,7 +18,8 @@ const About = async () => {
   const recordMap = await getAboutPageContent();
 
   return (
-    <AboutPage>{recordMap && <Content recordMap={recordMap} />}</AboutPage>
+    // <AboutPage>{recordMap && <Content recordMap={recordMap} />}</AboutPage>
+    <div>about page</div>
   );
 };
 

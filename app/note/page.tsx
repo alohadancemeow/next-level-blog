@@ -17,7 +17,8 @@ export const metadata: Metadata = {
 const Note = async () => {
   const recordMap = await getNotePageContent();
 
-  return <NotePage>{recordMap && <Content recordMap={recordMap} />}</NotePage>;
+  return <div>note page</div>;
+  // <NotePage>{recordMap && <Content recordMap={recordMap} />}</NotePage>;
 };
 
 export default Note;
