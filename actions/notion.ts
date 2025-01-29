@@ -20,9 +20,9 @@ const hashData = (data: any) => {
 
 // Function to query the Notion database with caching
 const queryNotionDatabase = async (queryParams: NotionQueryParams) => {
-  const cacheKey = `queryCache-${hashData(queryParams)}`;
-  const cachedData = await kv.get(cacheKey);
-  const cachedHash = await kv.get(`${cacheKey}-hash`);
+  // const cacheKey = `queryCache-${hashData(queryParams)}`;
+  // const cachedData = await kv.get(cacheKey);
+  // const cachedHash = await kv.get(`${cacheKey}-hash`);
 
   try {
     const response = await notion.databases.query({
@@ -30,16 +30,16 @@ const queryNotionDatabase = async (queryParams: NotionQueryParams) => {
       ...queryParams,
     });
 
-    const newHash = hashData(response.results);
+    // const newHash = hashData(response.results);
 
-    if (cachedHash === newHash) {
-      console.log("Returning cached data");
-      return JSON.parse(cachedData as any);
-    }
+    // if (cachedHash === newHash) {
+    //   console.log("Returning cached data");
+    //   return JSON.parse(cachedData as any);
+    // }
 
-    // If the data has changed, update the cache
-    await kv.set(cacheKey, JSON.stringify(response.results), { ex: 60 * 60 }); // Cache for 1 hour
-    await kv.set(`${cacheKey}-hash`, newHash, { ex: 60 * 60 }); // Cache for 1 hour
+    // // If the data has changed, update the cache
+    // await kv.set(cacheKey, JSON.stringify(response.results), { ex: 60 * 60 }); // Cache for 1 hour
+    // await kv.set(`${cacheKey}-hash`, newHash, { ex: 60 * 60 }); // Cache for 1 hour
 
     return response.results;
   } catch (error) {

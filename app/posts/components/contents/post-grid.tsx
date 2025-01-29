@@ -1,7 +1,7 @@
 "use client";
 
 import useFetchPosts from "@/hooks/use-fetch-posts";
-import GridItem from "./grid-item";
+import PostItem from "./post-item";
 import LoadButton from "@/components/common/LoadButton";
 import { Suspense } from "react";
 import Loader from "@/components/common/Loader";
@@ -26,7 +26,7 @@ const PostGrid = ({ categoryName, description }: Props) => {
         {`${description}`}
       </Text>
       <Space h="xl" />
-      <GridItem posts={posts} />
+      <PostItem posts={posts} />
       <Space h="xl" />
       {hasNextPage && (
         <LoadButton
