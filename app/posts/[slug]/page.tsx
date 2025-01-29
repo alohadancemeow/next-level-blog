@@ -7,15 +7,19 @@ import Content from "@/components/contents/Content";
 
 type Params = Promise<{ slug: string }>;
 
-export async function generateMetadata(props: {
+type Props = {
   params: Params;
-  parent: ResolvingMetadata;
-}): Promise<Metadata> {
-  const { slug } = await props.params;
+};
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { slug } = await params;
   const postData = await getPostById(slug);
 
   // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await props.parent)?.openGraph?.images || [];
+  const previousImages = (await parent)?.openGraph?.images || [];
 
   // get tag for keywords
   const tags = Object(postData?.tags) as TagSchemaType[];
