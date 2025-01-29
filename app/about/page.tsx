@@ -5,7 +5,6 @@ import { ogNoteImage } from "@/site/data";
 import AboutPage from "@/app/about/components/AboutPage";
 import Content from "@/components/contents/Content";
 import { getAboutPageContent } from "@/actions/notion-x";
-import MantineProviders from "@/components/providers/MantineProviders";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — About me`,
@@ -19,9 +18,7 @@ const About = async () => {
   const recordMap = await getAboutPageContent();
 
   return (
-    <MantineProviders>
-      <AboutPage>{recordMap && <Content recordMap={recordMap} />}</AboutPage>
-    </MantineProviders>
+    <AboutPage>{recordMap && <Content recordMap={recordMap} />}</AboutPage>
   );
 };
 

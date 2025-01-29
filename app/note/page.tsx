@@ -5,7 +5,6 @@ import { ogNoteImage } from "@/site/data";
 import NotePage from "./components/NotePage";
 import Content from "@/components/contents/Content";
 import { getNotePageContent } from "@/actions/notion-x";
-import MantineProviders from "@/components/providers/MantineProviders";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Notes`,
@@ -18,11 +17,7 @@ export const metadata: Metadata = {
 const Note = async () => {
   const recordMap = await getNotePageContent();
 
-  return (
-    <MantineProviders>
-      <NotePage>{recordMap && <Content recordMap={recordMap} />}</NotePage>
-    </MantineProviders>
-  );
+  return <NotePage>{recordMap && <Content recordMap={recordMap} />}</NotePage>;
 };
 
 export default Note;
