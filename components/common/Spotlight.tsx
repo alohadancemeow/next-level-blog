@@ -7,11 +7,7 @@ import {
 } from "@mantine/spotlight";
 import { useRouter } from "next/navigation";
 import { PageDataSchemaType } from "@/types";
-import {
-  IconHome,
-  // IconDashboard,
-  IconFileText,
-} from "@tabler/icons-react";
+import { IconHome, IconFileText, IconFolderPlus } from "@tabler/icons-react";
 
 type Props = {
   data: PageDataSchemaType[];
@@ -27,21 +23,21 @@ const CustomSpotlight = ({ data }: Props) => {
         {
           id: "home",
           label: "Home",
-          description: "Get to home page",
+          description: "Get to home page.",
           onClick: () => router.push(`/`),
           leftSection: <IconHome size={24} stroke={1.5} />,
         },
-        // {
-        //   id: "dashboard",
-        //   label: "Dashboard",
-        //   description: "Get full information about current system status",
-        //   onClick: () => console.log("Dashboard"),
-        //   leftSection: <IconDashboard size={24} stroke={1.5} />,
-        // },
+        {
+          id: "project",
+          label: "Project",
+          description: "Get full information about current projects.",
+          onClick: () => router.push(`/projects`),
+          leftSection: <IconFolderPlus size={24} stroke={1.5} />,
+        },
         {
           id: "note",
           label: "Note",
-          description: "Visit note to lean more about all features",
+          description: "Visit note to lean more about all features.",
           onClick: () => router.push(`/note`),
           leftSection: <IconFileText size={24} stroke={1.5} />,
         },
@@ -66,7 +62,7 @@ const CustomSpotlight = ({ data }: Props) => {
       }}
       nothingFound="🤔 Nothing found..."
       shortcut="mod + K"
-      limit={7}
+      limit={8}
       highlightQuery
       // transitionProps={{ duration: 300, transition: "slide-down" }}
     />

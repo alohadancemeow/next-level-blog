@@ -18,11 +18,7 @@ const Projects = async () => {
   const recordMap = await getProjectPageContent();
 
   return (
-    <ProjectPage>
-      {recordMap && <Content recordMap={recordMap} />}
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe possimus
-      cupiditate iure unde laborum, sed accusantium iusto quia velit hic.
-    </ProjectPage>
+    <ProjectPage>{recordMap && <Content recordMap={recordMap} />}</ProjectPage>
   );
 };
 
