@@ -6,13 +6,8 @@ const Shortcuts = () => {
   return (
     <ul>
       <li>
-        <Box
-          style={(theme) => ({
-            [theme.breakpoints.xs]: { fontSize: "15px" },
-          })}
-        >
+        <Box>
           <span>
-            {" "}
             🌤️ Switch Mode (<em>Global</em>) :
           </span>
           <Divider
@@ -45,11 +40,7 @@ const Shortcuts = () => {
       </li>
       <Space h={"lg"} />
       <li>
-        <Box
-          style={(theme) => ({
-            [theme.breakpoints.xs]: { fontSize: "15px" },
-          })}
-        >
+        <Box>
           <span>
             🪶 Search for posts (<em>Only allowed in posts/tags page</em>) :
           </span>
@@ -83,11 +74,7 @@ const Shortcuts = () => {
       </li>
       <Space h={"lg"} />
       <li>
-        <Box
-          style={(theme) => ({
-            [theme.breakpoints.xs]: { fontSize: "15px" },
-          })}
-        >
+        <Box>
           <span>
             🎵 Play/Stop the music (<em>Global</em>) :
           </span>

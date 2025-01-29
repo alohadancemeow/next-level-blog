@@ -15,12 +15,7 @@ const NotePage = ({ children }: Props) => {
   return (
     <>
       <Space h={"lg"} />
-      <Container
-        size={"sm"}
-        styles={(theme) => ({
-          [theme.breakpoints.xs]: { margin: "0 -2rem" },
-        })}
-      >
+      <Container size={"sm"} className="my-0 mx-2 md:m-auto">
         <Shortcuts />
         <Space h={"xl"} />
         <Space h={"sm"} />

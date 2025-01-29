@@ -7,7 +7,10 @@ const AboutPage = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Space h="sm" />
-      <Container size={"sm"} className="my-0 mx-[-2rem] md:m-auto">
+      <Container
+        size={"sm"}
+        className="my-0 md:m-auto w-full justify-center flex"
+      >
         <ContentWrapper>{children}</ContentWrapper>
         <Space h={"lg"} />
         <Divider />

@@ -12,7 +12,12 @@ const CustomBlockquote = ({ cite, quote }: Props) => {
   const icon = <IconInfoCircle />;
 
   return (
-    <Blockquote cite={`— ${cite}`} color="orange" icon={icon}>
+    <Blockquote
+      className="flex-wrap"
+      cite={`— ${cite}`}
+      color="orange"
+      icon={icon}
+    >
       {quote}
     </Blockquote>
   );
