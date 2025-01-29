@@ -34,8 +34,8 @@ export async function generateMetadata(
   };
 }
 
-const Post = async (props: { params: Params }) => {
-  const { slug } = await props.params;
+const Post = async ({ params }: Props) => {
+  const { slug } = await params;
   const recordMap = await getPageContent(slug);
 
   return recordMap && <Content recordMap={recordMap} />;
