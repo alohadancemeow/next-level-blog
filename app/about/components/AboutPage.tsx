@@ -9,11 +9,7 @@ const AboutPage = ({ children }: { children: React.ReactNode }) => {
       <Space h="sm" />
       <Container
         size={"sm"}
-        styles={(theme) => ({
-          root: {
-            [theme.breakpoints.xs]: { margin: "0 -2rem" },
-          },
-        })}
+        className="my-0 md:m-auto w-full justify-center flex"
       >
         <ContentWrapper>{children}</ContentWrapper>
         <Space h={"lg"} />

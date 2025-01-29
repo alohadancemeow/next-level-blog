@@ -4,12 +4,12 @@ import PageLayout from "@/components/layout/PageLayout";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <Layout>
-      <PageLayout>
-        <Menu title="About Me" />
-        {children}
-      </PageLayout>
-    </Layout>
+      <Layout>
+        <PageLayout>
+          <Menu title="About Me" />
+          {children}
+        </PageLayout>
+      </Layout>
   );
 };
 

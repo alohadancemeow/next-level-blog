@@ -13,19 +13,14 @@ const ProjectPage = ({ children }: Props) => {
   return (
     <>
       <Space h={"sm"} />
-      <Container
-        size={"sm"}
-        styles={(theme) => ({
-          [theme.breakpoints.xs]: { margin: "0 -2rem" },
-        })}
-      >
+      <Container size={"sm"} className="my-0 mx-2 md:m-auto w-full">
         <Space h={"sm"} />
         <CustomBlockquote
-          cite="3rd rabbit The caffeine-driven man"
-          quote="The only way to gain knowledge is to be aware of everything around you. ✌️"
+          cite="Unknown"
+          quote="Until it's done, tell none. ✌️"
         />
         <Space h={"xl"} />
-        <Divider label="Content from Notion" labelPosition="center" />
+        <Divider label="Recent Projects" labelPosition="center" />
         <ContentWrapper>
           {children}
           {/* <ProjectItem /> */}
