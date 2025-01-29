@@ -17,7 +17,7 @@ const PostCardFlex = ({ post }: Props) => {
       <Link href={`/posts/${post.id}`} legacyBehavior passHref>
         <div className="p-2 cursor-pointer">
           <div className="md:flex hover:text-orange-400 dark:hover:text-amber-900 justify-between items-center hover:underline transition-transform ease-in-out duration-300">
-            <div className="font-medium text-lg flex items-center justify-center gap-2 mb-1">
+            <div className="font-medium text-lg flex items-center gap-2 mb-1">
               <SmallFeatherIcon />
               <div>{post.title}</div>
             </div>
