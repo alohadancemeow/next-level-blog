@@ -1,31 +1,12 @@
-"use client";
-
-import { Title } from "@mantine/core";
-
 type Props = {
   title: string;
 };
 
 const Header = ({ title }: Props) => {
   return (
-    <Title
-      style={{ padding: "5px 10px" }}
-      sx={(theme) => ({
-        fontSize: "25px",
-        // [theme.fn.smallerThan('md')]: { fontSize: '25px' },
-        [theme.fn.smallerThan("xs")]: { fontSize: "12px" },
-        color:
-          theme.colors[theme.primaryColor][
-            theme.colorScheme === "dark" ? 2 : 0
-          ],
-        backgroundColor:
-          theme.colorScheme === "dark"
-            ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-            : theme.colors[theme.primaryColor][5],
-      })}
-    >
+    <div className="text-xs sm:text-3xl text-white bg-orange-400 py-2 px-2 rounded-sm dark:bg-amber-900 dark:text-orange-200">
       {title}
-    </Title>
+    </div>
   );
 };
 

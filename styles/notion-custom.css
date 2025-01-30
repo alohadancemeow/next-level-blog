@@ -1,0 +1,72 @@
+/* Customize notion styles */
+
+.react-tweet-theme {
+  --tweet-bg-color: rgb(255, 255, 255);
+  --tweet-bg-color-hover: rgb(248, 242, 234);
+}
+
+div[class*="tweet-container_"] {
+  background-color: transparent !important;
+}
+
+.notion-asset-wrapper-tweet > div > div {
+  max-width: 100% !important;
+}
+
+.notion,
+.notion-page,
+.notion-table-of-contents > * {
+  color: inherit !important;
+  list-style-type: square !important;
+}
+
+.notion-code > code[class*="language-"],
+pre[class*="language-"] {
+  font-family: "JetBrains Mono", sans-serif !important;
+}
+
+pre[class*="language-"] {
+  padding: 1.5em !important;
+}
+
+.token > .token,
+.maybe-class-name,
+.imports,
+.parameter,
+.property-access {
+  color: white !important;
+}
+
+.notion-inline-code {
+  color: #eb5757 !important;
+}
+
+/* notion-link */
+.notion-link {
+  color: rgb(255, 192, 120) !important;
+}
+.notion-h-title {
+  font-family: var(--mantine-font-family);
+}
+
+.notion-bookmark-title,
+.notion-asset-caption,
+.notion-bookmark-description {
+  color: rgb(107 114 128) !important;
+}
+
+.notion-code-copy-button {
+  display: none !important;
+}
+
+.notion-external-title {
+  color: inherit !important;
+}
+
+.notion-external-block-desc {
+  color: rgb(107 114 128 / var(--tw-text-opacity, 1)) !important;
+}
+
+/* .prose :where(a):not(:where([class~=not-prose] *)) {
+    @apply 
+  } */

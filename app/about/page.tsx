@@ -1,10 +1,12 @@
+export const dynamic = 'force-dynamic'
+
 import { Metadata } from "next";
 import { siteMetadata } from "@/site/siteMatedata";
 import { ogNoteImage } from "@/site/data";
 
-import AboutPage from "@/components/about/AboutPage";
-import Content from "@/components/Post/Content";
-import { getPageContent } from "@/lib/notion";
+import AboutPage from "@/app/about/components/AboutPage";
+import Content from "@/components/contents/Content";
+import { getAboutPageContent } from "@/actions/notion-x";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — About me`,
@@ -14,12 +16,8 @@ export const metadata: Metadata = {
   },
 };
 
-type Props = {};
-
-const About = async (props: Props) => {
-  const recordMap = await getPageContent(
-    process.env.NOTION_ABOUT_PAGE_ID as string
-  );
+const About = async () => {
+  const recordMap = await getAboutPageContent();
 
   return (
     <AboutPage>{recordMap && <Content recordMap={recordMap} />}</AboutPage>

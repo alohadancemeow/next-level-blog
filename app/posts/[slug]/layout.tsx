@@ -1,49 +1,48 @@
-import React from "react";
 import Layout from "@/components/layout/Layout";
-import ContentTitle from "@/components/Post/ContentTitle";
-import ScrollToTop from "@/components/ScrollToTop";
+import ContentTitle from "@/components/contents/ContentTitle";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
-import { getPosts } from "@/lib/notion";
-import { getPostById } from "@/actions/getPostById";
-import { getToc } from "@/actions/getToc";
-import { notFound } from "next/navigation";
-import ContentBody from "@/components/Post/ContentBody";
+import { getAllPosts } from "@/actions/notion";
+import { getPostById } from "@/actions/get-post-by-id";
+import ContentBody from "@/components/contents/ContentBody";
+import Loader from "@/components/common/Loader";
+import PageLayout from "@/components/layout/PageLayout";
+import { siteMetadata } from "@/site/siteMatedata";
+import Share from "@/components/contents/Share";
+
+type Params = Promise<{ slug: string }>;
 
 type Props = {
   children: React.ReactNode;
-  params: {
-    slug: string;
-  };
+  params: Params;
 };
 
 const layout = async ({ children, params }: Props) => {
-  const id = params.slug;
-  const posts = await getPosts();
-  const postData = await getPostById(id);
-  // const toc = await getToc(id);
+  const { slug } = await params;
+  const posts = await getAllPosts();
+  const postData = await getPostById(slug);
 
-  if (!postData) return notFound();
+  if (!postData) return <Loader />;
+
   return (
     <Layout>
-      <div
-        style={{
-          height: "100%",
-          padding: "0",
-          marginTop: "20px",
-        }}
-        className="relative"
-      >
-        <ContentTitle postData={postData} />
-        <ContentBody
-          posts={posts}
-          // toc={toc}
-          postData={postData}
-        >
-          <div>{children}</div>
-        </ContentBody>
+      <PageLayout>
+        <div className="relative h-full p-0 mt-3">
+          <ContentTitle postData={postData} />
+          <div className="sticky top-5 z-10 left-0">
+            {postData && (
+              <Share
+                postLink={`${siteMetadata.siteAddress}/posts/${postData.id}`}
+              />
+            )}
+          </div>
+          <ContentBody posts={posts} postData={postData}>
+            <div>{children}</div>
+          </ContentBody>
 
-        <ScrollToTop />
-      </div>
+          <ScrollToTop />
+        </div>
+      </PageLayout>
     </Layout>
   );
 };

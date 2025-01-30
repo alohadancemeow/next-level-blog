@@ -1,83 +1,28 @@
 "use client";
 
-import {
-  createStyles,
-  Container,
-  Title,
-  Text,
-  Button,
-  Group,
-  rem,
-} from "@mantine/core";
+import { Container, Title, Text, Button, Group, Center } from "@mantine/core";
 import { Illustration } from "./503-Image";
-
-const useStyles = createStyles((theme) => ({
-  root: {
-    paddingTop: rem(120),
-    paddingBottom: rem(120),
-    // backgroundColor: theme.fn.variant({
-    //   variant: "filled",
-    //   color: theme.primaryColor,
-    // }).background,
-  },
-
-  inner: {
-    position: "relative",
-  },
-
-  image: {
-    ...theme.fn.cover(),
-    opacity: 0.65,
-  },
-
-  content: {
-    paddingTop: rem(220),
-    position: "relative",
-    zIndex: 1,
-
-    [theme.fn.smallerThan("sm")]: {
-      paddingTop: rem(120),
-    },
-  },
-
-  title: {
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-    textAlign: "center",
-    fontWeight: 900,
-    fontSize: rem(38),
-    // color: theme.white,
-
-    [theme.fn.smallerThan("sm")]: {
-      fontSize: rem(32),
-    },
-  },
-
-  description: {
-    maxWidth: rem(460),
-    margin: "auto",
-    marginTop: theme.spacing.xl,
-    marginBottom: `calc(${theme.spacing.xl} * 1.5)`,
-    // color: theme.colors[theme.primaryColor][1],
-  },
-}));
+import classes from "./503.module.css";
 
 type Props = {
   reset: () => void;
 };
 
 const ServerErrorPage = ({ reset }: Props) => {
-  const { classes } = useStyles();
-
   return (
     <div className={classes.root}>
       <Container>
         <div className={classes.inner}>
           <Illustration className={classes.image} />
           <div className={classes.content}>
-            <Title className={classes.title}>All of our servers are busy</Title>
+            <Center>
+              <Title className={classes.title}>
+                All of our servers are busy
+              </Title>
+            </Center>
             <Text
               size="lg"
-              align="center"
+              ta="center"
               className={classes.description}
               color="dimmed"
             >
@@ -85,8 +30,13 @@ const ServerErrorPage = ({ reset }: Props) => {
               of minutes and refresh the page. Our team is already working on
               this issue.
             </Text>
-            <Group position="center">
-              <Button size="md" onClick={() => reset()}>
+            <Group justify="center">
+              <Button
+                size="md"
+                variant="light"
+                color="orange"
+                onClick={() => reset()}
+              >
                 Refresh the page
               </Button>
             </Group>

@@ -1,10 +1,15 @@
-import { Metadata } from "next";
-import { getTags } from "@/actions/getTags";
-import { getPosts } from "@/lib/notion";
+export const dynamic = 'force-dynamic'
 
-import PostsPage from "@/components/posts/PostsPage";
+import { Metadata } from "next";
+import { getAllPosts } from "@/actions/notion";
+
 import { siteMetadata } from "@/site/siteMatedata";
 import { ogPoststImage } from "@/site/data";
+
+import PostsPageLayout from "@/app/posts/components/PostsPageLayout";
+import TimelineContent from "@/app/posts/components/contents/TimelineContent";
+import { Suspense } from "react";
+import Loader from "@/components/common/Loader";
 
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Posts`,
@@ -14,13 +19,18 @@ export const metadata: Metadata = {
   },
 };
 
-type Props = {};
+const Posts = async () => {
+  const posts = await getAllPosts();
 
-const Posts = async (props: Props) => {
-  const posts = await getPosts();
-  const tags = posts && getTags(posts);
+  // console.log(posts, "posts");
 
-  return <PostsPage posts={posts} tags={tags} />;
+  return (
+    <PostsPageLayout posts={posts}>
+      <Suspense fallback={<Loader />}>
+        <TimelineContent posts={posts} />
+      </Suspense>
+    </PostsPageLayout>
+  );
 };
 
 export default Posts;

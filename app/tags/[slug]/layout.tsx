@@ -1,31 +1,32 @@
-import { getPosts } from "@/lib/notion";
 import Layout from "@/components/layout/Layout";
 import Menu from "@/components/layout/Menu";
 import PageLayout from "@/components/layout/PageLayout";
-import Spotlight from "@/components/Spotlight";
-import BackToPosts from "@/components/tag/BackToPosts";
+import Spotlight from "@/components/common/Spotlight";
+import BackToPosts from "@/app/tags/components/BackToPosts";
+import { getAllPosts } from "@/actions/notion";
+
+type Params = Promise<{ slug: string }>;
 
 type Props = {
   children: React.ReactNode;
-  params: {
-    slug: string;
-  };
+  params: Params;
 };
 
 const layout = async ({ children, params }: Props) => {
-  const posts = await getPosts();
+  const posts = await getAllPosts();
+  const { slug } = await params;
 
   return (
-    <Spotlight data={posts}>
+    <>
+      <Spotlight data={posts} />
       <Layout>
         <PageLayout>
-          <Menu title={`# ${params.slug}`} />
-          {/* <SearchPost /> */}
+          <Menu title={`# ${slug}`} />
           <BackToPosts />
           {children}
         </PageLayout>
       </Layout>
-    </Spotlight>
+    </>
   );
 };
 
