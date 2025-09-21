@@ -1,8 +1,7 @@
-import { cache } from "react";
 import { PageDataSchemaType } from "@/types";
 import { getAllPosts } from "@/actions/notion";
 
-export const getPostById = cache(async (postId: string) => {
+export const getPostById = async (postId: string) => {
   const posts = await getAllPosts();
 
   try {
@@ -25,4 +24,4 @@ export const getPostById = cache(async (postId: string) => {
   } catch (error) {
     console.log(error, "error at getPostById");
   }
-});
+};

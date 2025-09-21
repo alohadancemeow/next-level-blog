@@ -1,10 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /** Customize Mantine styles
  * see: https://mantine.dev/styles/css-variables-list/#light-only
 */
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
   --bg-dark-color: rgb(37, 38, 43);
@@ -37,6 +37,8 @@ body {
 
   -webkit-font-smoothing: var(--mantine-webkit-font-smoothing);
   -moz-osx-font-smoothing: var(--mantine-moz-font-smoothing);
+
+  list-style-type: square !important;
 }
 
 div {
@@ -72,10 +74,10 @@ p {
 a {
   cursor: "pointer";
   text-decoration: "none";
-  color: light-dark(
+  /* color: light-dark(
     var(--mantine-primary-color-5),
     var(--mantine-primary-color-7)
-  );
+  ); */
 }
 
 blockquote {
@@ -141,3 +143,7 @@ strong {
        visibility: "visible";
      }
    } */
+
+.notion-list-disc {
+  list-style-type: square !important;
+}

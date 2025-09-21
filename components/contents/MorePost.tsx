@@ -43,7 +43,7 @@ const MorePost = ({ post }: Props) => {
       }}
     >
       <Box>
-        <Link href={`/posts/${post.id}`} legacyBehavior passHref>
+        <Link href={`/posts/${post.id}`} passHref>
           <Card
             component="div"
             shadow="md"
