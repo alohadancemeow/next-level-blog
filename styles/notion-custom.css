@@ -70,3 +70,7 @@ pre[class*="language-"] {
 /* .prose :where(a):not(:where([class~=not-prose] *)) {
     @apply 
   } */
+
+.notion-list-disc {
+  list-style-type: square !important;
+}

@@ -17,7 +17,7 @@ const Share = ({ postLink }: Props) => {
           <Text tt="uppercase" c="dimmed">
             Share
           </Text>
-          <div className="bg-orange-500 dark:bg-amber-900 my-3 p-0 h-20 w-[2px] mx-auto " />
+          <div className="!bg-orange-500 dark:!bg-amber-900 my-3 p-0 h-20 w-[2px] mx-auto " />
           <Box className="flex justify-center items-center mb-3">
             <ActionIcon
               component="div"
@@ -25,7 +25,7 @@ const Share = ({ postLink }: Props) => {
               size="lg"
               radius="sm"
               variant="filled"
-              className="bg-orange-500 dark:bg-amber-900"
+              className="!bg-orange-500 dark:!bg-amber-900"
             >
               <FacebookShareButton
                 // quote="alohadancemeow"
@@ -45,7 +45,7 @@ const Share = ({ postLink }: Props) => {
               size="lg"
               radius="sm"
               variant="filled"
-              className="bg-orange-500 dark:bg-amber-900"
+              className="!bg-orange-500 dark:!bg-amber-900"
             >
               <TwitterShareButton
                 url={postLink}

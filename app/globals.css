@@ -1,10 +1,11 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /** Customize Mantine styles
  * see: https://mantine.dev/styles/css-variables-list/#light-only
 */
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *)); */
 
 :root {
   --bg-dark-color: rgb(37, 38, 43);
@@ -24,8 +25,7 @@
 
 body {
   font-family: var(--mantine-font-family);
-  background-color: light-dark(var(--bg-light-color), var(--bg-dark-color));
-
+  /* background-color: light-dark(var(--bg-light-color), var(--bg-dark-color)); */
   /* color: light-dark(var(--mantine-color-dark-0), var(--mantine-color-black)); */
 
   padding: 0;
@@ -144,6 +144,7 @@ strong {
      }
    } */
 
-.notion-list-disc {
-  list-style-type: square !important;
+.prose {
+  --tw-prose-body: none !important;
+  --tw-prose-headings: none !important;
 }

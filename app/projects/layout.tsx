@@ -1,3 +1,4 @@
+import ScrollToTop from "@/components/common/ScrollToTop";
 import Layout from "@/components/layout/Layout";
 import Menu from "@/components/layout/Menu";
 import PageLayout from "@/components/layout/PageLayout";
@@ -8,6 +9,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
       <PageLayout>
         <Menu title="Projects" />
         {children}
+        <ScrollToTop />
       </PageLayout>
     </Layout>
   );
