@@ -65,7 +65,7 @@ const MainProfile = () => {
         <p className="font-serif uppercase tracking-[0.4em] leading-relaxed text-center text-xs short:lg:text-xs text-foreground">
           Personal Home
         </p>
-        <h1 className="font-serif text-5xl italic short:lg:text-8xl sm:text-8xl text-foreground">
+        <h1 className="font-serif text-4xl italic short:lg:text-8xl lg:text-8xl sm:text-6xl text-foreground">
           Alohadancemeow®
         </h1>
       </motion.div>

@@ -200,6 +200,29 @@ strong {
 [data-mantine-color-scheme="dark"] .mantine-Divider-label {
   color: var(--mantine-color-white);
 }
+
+:root[data-mantine-color-scheme="dark"] {
+  /* Keep a solid body color for Mantine variables */
+  --mantine-color-body: var(--bg-dark-color);
+  /* Make layout wrappers transparent so the body gradient shows through */
+  --background: transparent;
+}
+
+/* If the attribute is on an ancestor (usually html), still force body to use gradient */
+[data-mantine-color-scheme="dark"] body,
+body[data-mantine-color-scheme="dark"] {
+  background: linear-gradient(
+    to bottom,
+    var(--bg-dark-color) 70%,
+    #4940375b 100%
+  ) !important;
+}
+
+/* Ensure Mantine AppShell does not cover the gradient in dark mode */
+[data-mantine-color-scheme="dark"] .mantine-AppShell-root {
+  background-color: transparent !important;
+}
+
 /* .mantine-Divider-label {
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
 } */

@@ -25,7 +25,7 @@ const LoadButton = ({
         onClick={loadNextPost}
         loading={isFetchingNextPage}
         disabled={isFetchingNextPage}
-        className="dark:hover:bg-amber-900 hover:bg-orange-200"
+        // className="dark:hover:bg-amber-900 hover:bg-orange-200"
       >
         {`#${postCount} More in: ${categoryName} `}
       </Button>

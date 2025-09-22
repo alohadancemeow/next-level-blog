@@ -27,23 +27,17 @@ const RelatedPosts = ({ postData, posts }: Props) => {
       </Center>
     );
 
-  return (
-    <div>
-      {isGrid && (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {relatedPosts.map((post) => (
-            <MorePost key={post.id} post={post} />
-          ))}
-        </div>
-      )}
+  const containerClass = isGrid
+    ? "grid grid-cols-2 md:grid-cols-3 gap-4"
+    : "flex flex-col gap-1";
 
-      {!isGrid && (
-        <div className="flex flex-col gap-1">
-          {relatedPosts.map((item) => (
-            <PostCardFlex key={item.id} post={item} />
-          ))}
-        </div>
-      )}
+  const Card = isGrid ? MorePost : PostCardFlex;
+
+  return (
+    <div className={containerClass}>
+      {relatedPosts.map((post) => (
+        <Card key={post.id} post={post} />
+      ))}
     </div>
   );
 };
