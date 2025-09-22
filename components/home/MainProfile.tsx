@@ -62,7 +62,7 @@ const MainProfile = () => {
             quality={100}
           />
         </div> */}
-        <p className="font-serif uppercase tracking-[0.4em] leading-relaxed text-center text-sm short:lg:text-md sm:text-sm lg:text-md text-foreground">
+        <p className="font-serif uppercase tracking-[0.4em] leading-relaxed text-center text-xs short:lg:text-xs text-foreground">
           Personal Home
         </p>
         <h1 className="font-serif text-5xl italic short:lg:text-8xl sm:text-8xl text-foreground">
@@ -128,7 +128,7 @@ const MainProfile = () => {
             className={isOpen ? "my-6" : "mt-6"}
           >
             <CNButton
-              className={cn("relative px-8")}
+              className={cn("relative px-8 cursor-pointer")}
               onClick={() => setIsOpen(!isOpen)}
               // shine={!isOpen.toString()}
             >
@@ -144,7 +144,7 @@ const MainProfile = () => {
                 <motion.div
                   className={cn(
                     buttonVariants({ variant: "iconButton", size: "icon" }),
-                    "absolute -top-px -right-px aspect-square"
+                    "absolute -top-px -right-px aspect-square cursor-pointer"
                   )}
                   initial={{ opacity: 0, scale: 0.8, rotate: -40 }}
                   animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -273,21 +273,21 @@ const Menu = () => {
     <div className="mt-6 md:mt-8 flex items-center justify-center gap-6 sm:gap-8 text-sm sm:text-base">
       <Link
         href="/posts"
-        className="text-foreground/80 hover:text-foreground transition-colors underline-offset-4 hover:underline decoration-border/50"
+        className="text-foreground/80 hover:text-foreground transition-colors decoration-border/50"
         aria-label="Go to Posts"
       >
         📝 Posts
       </Link>
       <Link
         href="/hobbies"
-        className="text-foreground/80 hover:text-foreground transition-colors underline-offset-4 hover:underline decoration-border/50"
+        className="text-foreground/80 hover:text-foreground transition-colors decoration-border/50"
         aria-label="Go to Hobbies"
       >
         🎨 Hobbies
       </Link>
       <Link
         href="/note"
-        className="text-foreground/80 hover:text-foreground transition-colors underline-offset-4 hover:underline decoration-border/50"
+        className="text-foreground/80 hover:text-foreground transition-colors decoration-border/50"
         aria-label="Go to Notes"
       >
         ✏️ Notes

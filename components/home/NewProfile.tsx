@@ -12,7 +12,7 @@ const NewProfile = () => {
         <Credit />
         <Background
           src="/silhouette-at-twilight.mp4"
-          placeholder="/alt-placeholder.png"
+          placeholder="/alt-placeholder.jpg"
         />
         {/* <Background
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/alt-g7Cv2QzqL3k6ey3igjNYkM32d8Fld7.mp4"

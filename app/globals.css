@@ -11,6 +11,11 @@
 
 /* @custom-variant dark (&:is(.dark *)); */
 
+@theme {
+  --font-jet-mono: "JetBrains Mono", monospace;
+  --font-jet-sans: "JetBrains Sans", sans-serif;
+}
+
 :root {
   --bg-dark-color: rgb(37, 38, 43);
   --bg-light-color: var(--mantine-color-gray-0);
