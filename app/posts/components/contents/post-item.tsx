@@ -12,22 +12,18 @@ type Props = {
 const PostItem = ({ posts }: Props) => {
   const { isGrid } = useLayoutStore();
 
+  const containerClass = isGrid
+    ? "grid md:grid-cols-2 lg:grid-cols-3 gap-4"
+    : "flex flex-col gap-1";
+
+  const Card = isGrid ? PostCard : PostCardFlex;
+
   return (
-    <>
-      {isGrid ? (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {posts.length === 0
-            ? posts.map((item) => <PostCard key={item.id} post={item} />)
-            : posts.map((item) => <PostCard key={item.id} post={item} />)}
-        </div>
-      ) : (
-        <div className="flex flex-col gap-1">
-          {posts.length === 0
-            ? posts.map((item) => <PostCardFlex key={item.id} post={item} />)
-            : posts.map((item) => <PostCardFlex key={item.id} post={item} />)}
-        </div>
-      )}
-    </>
+    <div className={containerClass}>
+      {posts.map((item) => (
+        <Card key={item.id} post={item} />
+      ))}
+    </div>
   );
 };
 

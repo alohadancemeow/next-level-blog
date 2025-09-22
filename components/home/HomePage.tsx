@@ -46,9 +46,7 @@ const HomePage: React.FC = () => {
           <Box>
             <Title order={1}>Personal Home</Title>
             <Space h="xs" />
-            <Text>
-              Hi there! 👋 I&apos;m Hai — 海 — aka: alohadancemeow ✌️
-            </Text>
+            <Text>Hi there! 👋 I&apos;m Hai — 海 — aka: alohadancemeow ✌️</Text>
           </Box>
 
           <Divider my="xs" size="xs" variant="solid" />
@@ -58,8 +56,8 @@ const HomePage: React.FC = () => {
             <Grid grow>
               {Navigations.map(({ name, href, id }) => (
                 <Grid.Col span={6} key={id}>
-                  <Link href={href} passHref legacyBehavior>
-                    <UnstyledButton component="a">{name}</UnstyledButton>
+                  <Link href={href} passHref>
+                    <UnstyledButton >{name}</UnstyledButton>
                   </Link>
                 </Grid.Col>
               ))}

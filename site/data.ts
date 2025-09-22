@@ -25,8 +25,8 @@ export const Navigations = [
   },
   {
     id: "3",
-    href: "/projects",
-    name: "📚 Projects",
+    href: "/hobbies",
+    name: "🎨 Hobbies",
   },
   {
     id: "4",

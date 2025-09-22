@@ -39,11 +39,19 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en" className="scroll-smooth" {...mantineHtmlProps}>
+    <html
+      lang="en"
+      className="scroll-smooth"
+      {...mantineHtmlProps}
+      suppressHydrationWarning
+    >
       <head>
         <ColorSchemeScript defaultColorScheme="auto" />
       </head>
-      <body className={`${jetBrains_mono.className} relative`}>
+      <body
+        className={`${jetBrains_mono.className} relative`}
+        suppressHydrationWarning
+      >
         <ClientComponent>
           <MantineProviders>
             <QueryProvider>{children}</QueryProvider>

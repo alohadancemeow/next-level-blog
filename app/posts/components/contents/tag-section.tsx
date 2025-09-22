@@ -18,7 +18,7 @@ const TagSection = ({ tags, categoryCount }: Props) => {
       </Text>
       <Space h="md" />
       <TagsBanner tags={tags} />
-      <Space h="lg" />
+      <Space h="md" />
     </div>
   );
 };

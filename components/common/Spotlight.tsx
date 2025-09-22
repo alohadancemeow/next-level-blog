@@ -31,7 +31,7 @@ const CustomSpotlight = ({ data }: Props) => {
           id: "project",
           label: "Project",
           description: "Get full information about current projects.",
-          onClick: () => router.push(`/projects`),
+          onClick: () => router.push(`/hobbies`),
           leftSection: <IconFolderPlus size={24} stroke={1.5} />,
         },
         {

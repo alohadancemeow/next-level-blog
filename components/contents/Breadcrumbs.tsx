@@ -2,7 +2,7 @@
 
 import {
   Breadcrumbs as MantineBreadcrumbs,
-  Anchor,
+  // Anchor,
   Center,
 } from "@mantine/core";
 import Link from "next/link";
@@ -11,8 +11,8 @@ const items = [
   { title: "HOME", href: "/" },
   { title: "POSTS", href: "/posts" },
 ].map((item, index) => (
-  <Link href={item.href} key={index} legacyBehavior>
-    <Anchor>{item.title}</Anchor>
+  <Link href={item.href} key={index}>
+    {/* <Anchor>{item.title}</Anchor> */}
   </Link>
 ));
 

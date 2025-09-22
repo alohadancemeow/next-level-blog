@@ -24,7 +24,7 @@ const ThemeMode = () => {
     <Group justify="center" my="md">
       <SegmentedControl
         size="xs"
-        style={{ fontSize: "14px" }}
+        style={{ fontSize: "14px", gap: "6px" }}
         defaultValue={colorScheme}
         value={colorScheme}
         onChange={() => toggleColorScheme()}

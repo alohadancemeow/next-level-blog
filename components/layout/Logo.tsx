@@ -1,26 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Center, Text } from "@mantine/core";
+import { Center } from "@mantine/core";
 import { siteMetadata } from "@/site/siteMatedata";
 import { RocketIcon } from "../icons/Icons";
 
 const IconLogo = () => (
-  <Link href="/" legacyBehavior>
-    <Text
-      component="a"
-      style={{
-        display: "inline-flex",
-        gap: "10px",
-        alignItems: "center",
-        cursor: "pointer",
-      }}
-    >
-      <span style={{ fontSize: "20px" }}>
-        <RocketIcon />
-      </span>
-      <Text style={{ fontWeight: "bold" }}>{siteMetadata.title}</Text>
-    </Text>
+  <Link href="/" className="inline-flex gap-2.5 items-center cursor-pointer">
+    <span style={{ fontSize: "20px" }}>
+      <RocketIcon />
+    </span>
+    <div style={{ fontWeight: "bold" }}>{siteMetadata.title}</div>
   </Link>
 );
 

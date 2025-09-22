@@ -17,7 +17,7 @@ const TagsBanner = ({ tags }: Props) => {
         <Box
           key={i}
           component="a"
-          className="cursor-pointer text-neutral-500 dark:hover:text-amber-700 hover:text-orange-400 font-medium text-base"
+          className="cursor-pointer text-neutral-500 dark:hover:text-amber-700 hover:text-orange-400 font-medium text-xs leading-relaxed"
           onClick={() => router.push(`/tags/${tag[0]}`)}
         >
           <span>{`#${tag[0]}(${tag[1]})`}</span>

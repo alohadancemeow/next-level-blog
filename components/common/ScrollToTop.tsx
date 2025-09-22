@@ -3,6 +3,7 @@
 import { useWindowScroll } from "@mantine/hooks";
 import { ActionIcon, Affix, Box, Transition } from "@mantine/core";
 import { ArrowUpCircle, Feather, Books } from "tabler-icons-react";
+import { IconHome } from "@tabler/icons-react";
 import { siteMetadata } from "@/site/siteMatedata";
 import { useRouter } from "next/navigation";
 
@@ -12,7 +13,7 @@ const ScrollToTop = () => {
 
   return (
     <>
-      <Affix className="hidden md:flex md:right-[25px] lg:right-[50px] md:bottom-10">
+      <Affix className="hidden md:flex md:!right-6 lg:!right-14 md:!bottom-4">
         <Transition transition="slide-up" mounted={scroll.y > 0}>
           {(transitionStyles) => (
             <Box className="flex flex-col mt-2">
@@ -24,7 +25,7 @@ const ScrollToTop = () => {
                     size="lg"
                     radius="sm"
                     variant="filled"
-                    className="bg-orange-500 dark:bg-amber-900"
+                    className="!bg-orange-500 dark:!bg-amber-900"
                     style={transitionStyles}
                     onClick={() => scrollTo({ y: 0 })}
                   >
@@ -39,7 +40,7 @@ const ScrollToTop = () => {
                     size="lg"
                     radius="sm"
                     variant="filled"
-                    className="bg-orange-500 dark:bg-amber-900"
+                    className="!bg-orange-500 dark:!bg-amber-900"
                     style={transitionStyles}
                     onClick={() => router.push("/posts")}
                   >
@@ -51,12 +52,27 @@ const ScrollToTop = () => {
                     size="lg"
                     radius="sm"
                     variant="filled"
-                    className="bg-orange-500 dark:bg-amber-900"
+                    className="!bg-orange-500 dark:!bg-amber-900"
                     style={transitionStyles}
                     target="_blank"
                     href={`${siteMetadata.feedbackUrl}`}
                   >
                     <Feather size={20} className="text-black dark:text-white" />
+                  </ActionIcon>
+                  <ActionIcon
+                    component="div"
+                    color="orange"
+                    size="lg"
+                    radius="sm"
+                    variant="filled"
+                    className="!bg-orange-500 dark:!bg-amber-900"
+                    style={transitionStyles}
+                    onClick={() => router.push("/")}
+                  >
+                    <IconHome
+                      size={20}
+                      className="text-black dark:text-white"
+                    />
                   </ActionIcon>
                 </div>
               </Box>

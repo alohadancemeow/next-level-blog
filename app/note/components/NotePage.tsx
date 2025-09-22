@@ -30,7 +30,10 @@ const NotePage = ({ children }: Props) => {
           {children}
           <Space h={"lg"} />
           <Divider label="Content from .mdx" labelPosition="center" />
-          <FirstContent />
+          <Space h={"lg"} />
+          <div className="prose">
+            <FirstContent />
+          </div>
         </ContentWrapper>
 
         <Space h={"lg"} />

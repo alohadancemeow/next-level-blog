@@ -1,6 +1,5 @@
 "use server";
 
-import { cache } from "react";
 import api from "@/lib/notion-api";
 import { revalidatePath } from "next/cache";
 
@@ -12,7 +11,7 @@ type PageContentFetcher = (slug: string) => Promise<any>;
  * @param pageId (notion-post-ID)
  * @returnsType ExtendedRecordMap
  */
-const fetchPageContent: PageContentFetcher = cache(async (pageId: string) => {
+const fetchPageContent: PageContentFetcher = async (pageId: string) => {
   if (!pageId) return null;
 
   try {
@@ -22,7 +21,7 @@ const fetchPageContent: PageContentFetcher = cache(async (pageId: string) => {
     console.error("Failed to fetch page content:", error);
     throw new Error("Failed to fetch page content");
   }
-});
+};
 
 // Helper function to fetch content by page ID from environment variables
 const fetchContentById = async (pageId: string, pathToRevalidate: string) => {

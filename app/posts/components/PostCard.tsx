@@ -15,7 +15,7 @@ type Props = {
 const PostCard = ({ post }: Props) => {
   return (
     <div>
-      <Link href={`/posts/${post.id}`} legacyBehavior passHref>
+      <Link href={`/posts/${post.id}`} passHref>
         <Card
           component="div"
           shadow="md"
