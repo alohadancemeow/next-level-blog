@@ -1,11 +1,11 @@
 // set site metadata here
 
 export const siteMetadata = {
-  metadataBase: new URL("https://alohadancemeow.com"),
+  metadataBase: new URL("https://alohadancemeow.dev"),
   homeTitle: "Personal Home",
   title: "alohadancemeow",
   description: "บล็อกเกอร์น่ะมีเยอะแล้ว นับฉันเข้าไปอีกสักคนจะเป็นอะไรไป ✌️",
-  siteAddress: "https://alohadancemeow.com",
+  siteAddress: "https://alohadancemeow.dev",
   author: "alohadancemeow",
   twitter: "@3rd_meepo",
   github: "https://github.com/alohadancemeow",
