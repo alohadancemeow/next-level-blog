@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { getAllPosts } from "@/actions/notion";
 
 import { siteMetadata } from "@/site/siteMatedata";
-import { ogPoststImage } from "@/site/data";
+// import { ogPoststImage } from "@/site/data";
 
 import PostsPageLayout from "@/app/posts/components/PostsPageLayout";
 import TimelineContent from "@/app/posts/components/contents/TimelineContent";
@@ -14,9 +14,9 @@ import Loader from "@/components/common/Loader";
 export const metadata: Metadata = {
   title: `${siteMetadata.title} — Posts`,
   description: `All posts from ${siteMetadata.title}`,
-  openGraph: {
-    images: [ogPoststImage],
-  },
+  // openGraph: {
+  //   images: [ogPoststImage],
+  // },
 };
 
 const Posts = async () => {

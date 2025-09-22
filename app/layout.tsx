@@ -8,7 +8,7 @@ import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 import type { Metadata } from "next";
 import { jetBrains_mono } from "./fonts";
 import { siteMetadata } from "@/site/siteMatedata";
-import { ogHomeImage } from "@/site/data";
+// import { ogHomeImage } from "@/site/data";
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -31,10 +31,10 @@ export const metadata: Metadata = {
   title: `${siteMetadata.title} — ${siteMetadata.homeTitle}`,
   description: siteMetadata.description,
   keywords: siteMetadata.keywords,
-  openGraph: {
-    images: [ogHomeImage],
-    type: "website",
-  },
+  // openGraph: {
+  //   images: [ogHomeImage],
+  //   type: "website",
+  // },
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
