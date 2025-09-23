@@ -34,7 +34,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## :frog: Live site:
 
-- [alohadancemeow](https://next-level-blog.vercel.app/) :v:
+- [alohadancemeow](https://alohadancemeow.dev/) :v:
 
-![image](/public/assets/og-home.png)
+![image](/app/opengraph-image.png)
 
