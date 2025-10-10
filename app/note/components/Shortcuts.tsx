@@ -73,7 +73,7 @@ const Shortcuts = () => {
         </Box>
       </li>
       <Space h={"lg"} />
-      <li>
+      {/* <li>
         <Box>
           <span>
             🎵 Play/Stop the music (<em>Global</em>) :
@@ -109,7 +109,7 @@ const Shortcuts = () => {
             }
           />
         </Box>
-      </li>
+      </li> */}
     </ul>
   );
 };
